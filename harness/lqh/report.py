@@ -478,7 +478,7 @@ def displayed_values(runs: list[dict], summary: list[dict], comparisons: list[di
             elif "value" in metric and isinstance(metric.get("value"), (int, float)) and not isinstance(metric.get("value"), bool):
                 shown.append({"run_dir": str(run["dir"]), "run_id": m.get("run_id"), "metric": name, "field": "value",
                               "value": metric["value"]})
-        # Service eligibility (multi-GPU benchmark prompt, section 4) is shown, so the checker re-derives it.
+        # Service eligibility (multi-GPU benchmark plan, section 4) is shown, so the checker re-derives it.
         eligible, _ = service_rule(m.get("metrics") or {}, (m.get("slo") or {}).get("definition"))
         if eligible is not None:
             shown.append({"run_dir": str(run["dir"]), "run_id": m.get("run_id"), "metric": "service_eligible",

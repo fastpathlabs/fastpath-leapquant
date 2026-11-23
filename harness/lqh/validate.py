@@ -285,7 +285,7 @@ def validate_run(run_dir: str | Path, write: bool = True) -> dict:
     check_phases(summary, records, lane, report, manifest.get("native"))
     # The pinned InferenceX client runs its warmups itself and exports only the measured cohort, so the records hold
     # no warmup (the exported warmup count is 0). Its own log states the count and the order; that is the evidence
-    # (multi-GPU benchmark prompt, 15 Nov 2026: "audit the exported warmup count of zero against the 2C claim").
+    # (multi-GPU benchmark plan, 15 Nov 2026: "audit the exported warmup count of zero against the 2C claim").
     client_log = run_dir / "native" / "client.log"
     if client_log.exists():
         text = client_log.read_text(encoding="utf-8", errors="replace")

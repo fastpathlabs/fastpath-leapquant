@@ -629,7 +629,7 @@
    ]
   },
   "confirm_aa_slt": {
-   "purpose": "Confirmation repeats of the public matrix (Asif, 15 Nov 2026 ~19:00 UTC: 'ok do the repeat'): the AA-SLT method (staggered starts and a timed steady phase, so no wave lock), 5 paired blocks at 1, 64, 256 and 512 users, all three arms in every block. The claim ledger refuses single-run comparisons; these give the 95% intervals.",
+   "purpose": "Confirmation repeats of the public matrix: the AA-SLT method (staggered starts and a timed steady phase, so no wave lock), 5 paired blocks at 1, 64, 256 and 512 users, all three arms in every block. The claim ledger refuses single-run comparisons; these give the 95% intervals.",
    "blocks": 5,
    "candidates": [
     "lq_final",
@@ -696,7 +696,7 @@
    "order_note": "balanced arm order per block (runner.block_order). Baseline lq_final, so the report lists bf16_window / lq_final and fp32_packed / lq_final; LeapQuant over each arm is the exact inverse (per block and interval bounds)."
   },
   "tuned_slots_aa": {
-   "purpose": "DEPLOYMENT comparison (15 Nov 2026 23:30 UTC; Asif's multi-GPU benchmark prompt, section 6): each arm's state slots balanced for 1k/1k under the same HBM budget (LeapQuant 1,008, bf16 window 927, fp32 609 slots), AA-SLT method at 1 user (small batch) and 256 users (the highest point of the screen with latency-qualified goodput); 512 dropped (zero SLO goodput in every arm: an overload point, not an operating point). 5 paired blocks, balanced order. Time-boxed: tests must finish within a few hours.",
+   "purpose": "DEPLOYMENT comparison (15 Nov 2026 23:30 UTC; multi-GPU benchmark plan, section 6): each arm's state slots balanced for 1k/1k under the same HBM budget (LeapQuant 1,008, bf16 window 927, fp32 609 slots), AA-SLT method at 1 user (small batch) and 256 users (the highest point of the screen with latency-qualified goodput); 512 dropped (zero SLO goodput in every arm: an overload point, not an operating point). 5 paired blocks, balanced order. Time-boxed: tests must finish within a few hours.",
    "blocks": 5,
    "candidates": [
     "lq_final_s1008",
@@ -738,7 +738,7 @@
   }
  },
  "schedule_12h": {
-  "decided": "15 Nov 2026, 05:00 UTC, Asif: 'Try to finish all tests in the next 12 hours max'; public matrix before the remaining quality runs",
+  "decided": "15 Nov 2026, 05:00 UTC, all tests within 12 hours; public matrix before the remaining quality runs",
   "window_utc": [
    "2026-11-15T05:40Z",
    "2026-11-15T16:30Z"

@@ -15,6 +15,10 @@ FastPathLabs from the paper, with these exceptions:
   from vLLM's ReplaySSM kernel (Apache License 2.0, Copyright contributors to the
   vLLM project). The changes are described in the file's header.
 
-- eval/lcb_sandbox_runner.py: contains grading code copied from LiveCodeBench
+- eval/lcb_sandbox_runner.py and eval/lcb_sandbox.py: contain grading code, prompt
+  constants, the question template and the code extraction copied from LiveCodeBench
   (github.com/LiveCodeBench/LiveCodeBench, commit 28fef95e), MIT License,
-  Copyright (c) 2024 LiveCodeBench. The MIT license text is reproduced in that file.
+  Copyright (c) 2024 LiveCodeBench. The MIT license text is reproduced in both files.
+
+- integrations/sglang/*.patch and integrations/vllm/*.patch: patches against SGLang
+  and vLLM (both Apache License 2.0). The context lines in them are SGLang and vLLM code.

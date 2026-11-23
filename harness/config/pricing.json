@@ -42,7 +42,7 @@
    "mode": "whole_instance",
    "currency": "USD",
    "usd_per_instance_hour": 2.0,
-   "source": "SCENARIO ESTIMATE: $2.00 per host-hour as stated by Asif on 15 Nov 2026; not verified against the provider's published rate or an invoice (single-GPU execution prompt, section 6: an assumed hourly price makes every dollar figure a scenario estimate). Replace with the billed rate when known.",
+   "source": "SCENARIO ESTIMATE: $2.00 per host-hour as stated by Asif on 15 Nov 2026; not verified against the provider's published rate or an invoice (single-GPU benchmark plan, section 6: an assumed hourly price makes every dollar figure a scenario estimate). Replace with the billed rate when known.",
    "date": "2026-11-16",
    "region": null,
    "billing_granularity": null,

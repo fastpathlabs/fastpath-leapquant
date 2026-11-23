@@ -1,6 +1,6 @@
 """python -m lqh.eligibility RESULTS_DIR... [--out FILE]
 
-Separates what one word, "measured", used to cover (multi-GPU benchmark prompt, 15 Nov 2026, section 4):
+Separates what one word, "measured", used to cover (multi-GPU benchmark plan, 15 Nov 2026, section 4):
   execution_status       the validator's status (measured / invalid / crashed / not_run ...)
   protocol_status        conforming, divergent (the run left the profile's recipe) or unverified (evidence missing)
   service_eligible       the operating point meets the service policy: every run of the SLO's request predicate

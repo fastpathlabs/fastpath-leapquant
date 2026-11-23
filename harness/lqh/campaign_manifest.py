@@ -1,6 +1,6 @@
 """python -m lqh.campaign_manifest --out FILE [--build-manifest MANIFEST_TXT] [--job-log LOG]
 
-campaign_manifest.json (multi-GPU benchmark prompt, 15 Nov 2026, sections 2 and 12): the pins, configurations,
+campaign_manifest.json (multi-GPU benchmark plan, 15 Nov 2026, sections 2 and 12): the pins, configurations,
 hardware, budgets and planned/actual work of the campaign in one file. Run on the GPU host (it reads nvidia-smi,
 lscpu, /proc/meminfo and the build manifest written by runbook/manifest.sh). What cannot be pinned is recorded with a
 null and the reason, never guessed (no git repository on the host, no container).
@@ -110,7 +110,7 @@ def main(argv=None) -> int:
         "schema": "lqh.campaign_manifest.v1",
         "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "specification": ["the internal test-harness specification of 14 Nov 2026 (revision 3)",
-                          "LeapQuant multi-GPU benchmark execution prompt (15 Nov 2026), adopted 15 Nov ~23:00 UTC "
+                          "LeapQuant multi-GPU benchmark plan (15 Nov 2026), adopted 15 Nov ~23:00 UTC "
                           "with the constraint that tests finish within a few hours"],
         "source": {"git_commit": None, "git_null_reason": "the source tree on the host and the local copy are not git "
                    "repositories (a git tag/commit is open item X2, on Asif's request only)",
@@ -134,7 +134,7 @@ def main(argv=None) -> int:
         "jobs": jobs(Path(args.job_log) if args.job_log else None),
         "blocked_or_not_run": [
             {"item": "multi-GPU stages 2-5 (DP 1/2/4/8 for the 9B, TP 1/2/4/8 for the 27B, equal-budget TP/DP/EP)",
-             "reason": "one GPU on this host; no authorization to provision more (Asif: 'prompt to me when you need "
+             "reason": "one GPU on this host; no authorization to provision more (more GPUs need the owners' approval; "
                        "the multi-gpu'); TP support in the LeapQuant integration is also untested"},
             {"item": "Qwen3.6-35B-A3B (MoE)", "reason": "prompt stage 5, after the 27B passes; not in the time box"},
             {"item": "profile C (product open-loop), profile D (AgentX), profile E (mixed-length wave study)",

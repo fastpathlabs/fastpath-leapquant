@@ -822,7 +822,7 @@ PLAN = [("110", 25, "Complete state-advancing kernel cycle (16 steps + fold, one
         ("119", 25, "Long-context NLL through the server (1k-32k)"),
         ("120", 30, "Compounding: 8 single layers, those 8 together, all 24"),
         ("121", 230, "Quality re-run of 118 (FlashInfer sampling kernel fixed; arms with failed requests now fail)"),
-        ("122", 300, "Speed repeats (Asif: \"ok do the repeat\"): AA-SLT at 1, 64, 256, 512 users, three arms, 5 paired blocks"),
+        ("122", 300, "Speed repeats: AA-SLT at 1, 64, 256, 512 users, three arms, 5 paired blocks"),
         ("123", 60, "Qwen3.8-27B first contact (B75): kernel agreement and memcheck at its head layout, one server per arm, balanced slot counts"),
         ("124", 180, "9B slot-tuned control (B77): each arm with slots balanced for 1k/1k (LeapQuant 1,008, bf16 window 927, fp32 609); AA-SLT 256/512, 5 blocks")]
 # A job's exit code alone can mislead: these are the outcomes found by reading the results.
@@ -865,7 +865,7 @@ for job, minutes, what in PLAN:
         cursor = begin + minutes
         status, when = "queued", f"about {clock(begin)}"
     srows.append([job, status, when, what])
-nxt = ("<p><b>Job queue</b>: the 12-hour schedule (Asif, 15 Nov: \"try to finish all tests in the next 12 hours max\") "
+nxt = ("<p><b>Job queue</b>: the 12-hour schedule "
        "ran jobs 110-120 from 05:45 to 13:54 UTC; 121-124 were queued after it. Times are UTC, actual for jobs that "
        "ran, estimated for the rest (planned minutes per job), from the job log at "
        f"{clock(now)} UTC.</p>"
@@ -1114,7 +1114,7 @@ if arows:
                      + table(["Users", "LeapQuant tok/s", "bf16 window tok/s", "fp32 packed tok/s", "LeapQuant / bf16",
                               "LeapQuant / fp32", "Per-user speed, tok/s (median)", "TTFT p99, ms",
                               "Running at once (median)", "Service-eligible"], arows)
-                     + "<p><b>Service-eligible</b> (multi-GPU benchmark prompt's suggested internal gates, derived by "
+                     + "<p><b>Service-eligible</b> (multi-GPU benchmark plan's suggested internal gates, derived by "
                        "python -m lqh.eligibility, not yet reproduced by the independent checker): the SLO's request "
                        "predicate (TTFT &le; 2 s, TPOT &le; 50 ms) met by &ge; 95% of attempted requests, &ge; 99% "
                        "completed, error rate &le; 1%, p99 token gap &le; 100 ms. Quality is a separate gate (pending), "

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# public_bench.sh: the public benchmark suite (backlog B60; Asif, 14 Nov 2026 evening: "yes to all"). Concurrency
+# public_bench.sh: the public benchmark suite (backlog B60). Concurrency
 # sweeps in the shapes public inference benchmarks use, so that our numbers read as theirs do: system output
 # throughput against speed per user, with TTFT, TPOT, ITL and end-to-end percentiles (reports/generate_reports.py):
 #   aa1k     1,000 in / 1,000 out, exact   Artificial Analysis's system load test         users 1, 4, 16, 64, 128, 256, 512

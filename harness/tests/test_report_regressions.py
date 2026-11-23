@@ -99,7 +99,7 @@ class Bundle(unittest.TestCase):
 
 
 class ServiceEligibility(unittest.TestCase):
-    """Multi-GPU benchmark prompt (15 Nov 2026), section 4: service eligibility is shown, so the checker re-derives it."""
+    """Multi-GPU benchmark plan (15 Nov 2026), section 4: service eligibility is shown, so the checker re-derives it."""
 
     def setUp(self):
         root = Path(tempfile.mkdtemp())

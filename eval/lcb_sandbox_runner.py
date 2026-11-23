@@ -605,6 +605,12 @@ OUTPUT_LOG = "/tmp/solution_output.log"
 
 def main():
     global RESULT_FD
+    # This file executes model-written programs. eval/lcb_sandbox.py starts it in a container as uid 65534 with no
+    # network; refuse to run anywhere else unless the operator says so explicitly.
+    if os.getuid() != 65534 and os.environ.get("LCB_SANDBOX_ALLOW_HOST") != "1":
+        sys.stderr.write("lcb_sandbox_runner.py runs only inside the sandbox container (uid 65534); "
+                         "use eval/lcb_sandbox.py. Set LCB_SANDBOX_ALLOW_HOST=1 to override at your own risk.\n")
+        sys.exit(2)
     RESULT_FD = os.dup(1)
     # Whatever reaches file descriptors 1 and 2 outside LiveCodeBench's capture (the solution's stderr, os.write,
     # tracebacks) goes to a file on the 64 MB tmpfs, never to the result channel; its tail is returned.

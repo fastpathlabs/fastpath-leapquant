@@ -501,7 +501,7 @@
    "order_note": "baseline lq_final_q38: the report gives bf16_window_q38 / lq_final_q38 and fp32_packed_q38 / lq_final_q38"
   },
   "screen_aa_q38": {
-   "purpose": "Qwen3.8-27B screening inside the 15 Nov time box (multi-GPU benchmark prompt, stage 1: one-GPU short-context feasibility): AA-SLT method at 1, 16, 64 and 128 users, three arms with slots balanced for 1k/1k, one block. Screening, not confirmation: no interval.",
+   "purpose": "Qwen3.8-27B screening inside the 15 Nov time box (multi-GPU benchmark plan, stage 1: one-GPU short-context feasibility): AA-SLT method at 1, 16, 64 and 128 users, three arms with slots balanced for 1k/1k, one block. Screening, not confirmation: no interval.",
    "blocks": 1,
    "candidates": [
     "lq_final_q38",
@@ -567,5 +567,5 @@
    ]
   }
  },
- "second_model_note": "Backlog B75 (Asif, 15 Nov 2026 ~22:00 UTC: 'proceed with Qwen 3.8 27B'): the newest released model with linear-attention layers that fits one H100. Arms use state slots balanced for 1k/1k from the first-contact probe (job 123, runbook/q38_probe.sh), not the 9B's counts (backlog B77)."
+ "second_model_note": "Backlog B75: the newest released model with linear-attention layers that fits one H100. Arms use state slots balanced for 1k/1k from the first-contact probe (job 123, runbook/q38_probe.sh), not the 9B's counts (backlog B77)."
 }

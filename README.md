@@ -133,6 +133,21 @@ sequenceDiagram
 | `runbook/` | One script per stage of the plan's H100 test; `fast_checks.sh`, `serving_fast.sh` and `accuracy_fast.sh` for the fast kernels (all restartable, meant to run detached). |
 | `results/` | Where measurements are recorded. |
 
+## Requirements and setup
+
+- **No GPU:** a C++17 compiler, plus Python 3 with `torch` and `numpy` for the Python checks.
+- **GPU:** one NVIDIA H100 (the measured card is an H100 PCIe 80 GB), CUDA 12.8 or newer, Linux.
+- **Docker:** only for the LiveCodeBench grader, which runs model-written code in a container with no network.
+
+**Read the setup scripts before you run them.** `runbook/stage_a_setup.sh` and `runbook/stage_b_baselines.sh`
+are written for a disposable rented GPU machine. They pipe the uv and rustup installers from the web into `sh`,
+install system packages with `sudo apt-get`, install SGLang and vLLM with pip (the vLLM install is not pinned to a version; the SGLang venv is pinned in `runbook/locks/`), and put virtual environments and
+checkouts in `$HOME`. Do not run them on a machine you care about.
+
+**About the run records.** The files in `results/` and `reports/` are kept as they were written during the runs.
+They include the team's working notes, such as who made a decision, and an assumed host price of $2.00 per hour.
+That price is a scenario value, not an invoice.
+
 ## Check everything that needs no GPU
 
 Needs a C++17 compiler and, for the last step, Python with `torch` and `numpy`.

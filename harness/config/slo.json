@@ -63,7 +63,7 @@
    "slo_id": "slo-interactive-v2",
    "version": 2,
    "declared_utc": "2026-11-16T01:55:00Z",
-   "origin": "LeapQuant single-GPU benchmark execution prompt (updated 15 Nov 2026, adopted by Asif 16 Nov ~01:30 UTC), section 5, 'suggested local service policy for the short-context workload': request TTFT <= 2 s and average request TPOT <= 50 ms, at least 95% joint attainment over offered logical requests, at least 99% complete success; p99 token/chunk gap recorded separately. Declared before any run of the single-gpu campaign (lq-h100-2026-11-sg). No documented product policy governs the campaign; v1 (which also gated p99 token gap <= 100 ms and error rate <= 1% of attempted requests) remains the policy of record for jobs 116-124 and is reported alongside for them. Our proposed service gates, not industry thresholds.",
+   "origin": "LeapQuant single-GPU benchmark plan (16 Nov 2026), section 5, 'suggested local service policy for the short-context workload': request TTFT <= 2 s and average request TPOT <= 50 ms, at least 95% joint attainment over offered logical requests, at least 99% complete success; p99 token/chunk gap recorded separately. Declared before any run of the single-gpu campaign (lq-h100-2026-11-sg). No documented product policy governs the campaign; v1 (which also gated p99 token gap <= 100 ms and error rate <= 1% of attempted requests) remains the policy of record for jobs 116-124 and is reported alongside for them. Our proposed service gates, not industry thresholds.",
    "request_predicate": {
     "require_success": true,
     "ttft_ms_max": 2000,
