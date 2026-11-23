@@ -1,0 +1,20 @@
+LeapQuant kernel benchmark on cuda: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+  GPU: NVIDIA H100 PCIe
+  milliseconds per decode step of one layer, whole batch
+
+  batch  kernel                    per step  append step  fold step  vs packed
+     32  sglang packed               0.0816       0.0816     0.0816      1.00x
+     32  sglang window L=16          0.0509       0.0472     0.1076      1.60x
+     32  leapquant, kernel only      0.1063       0.0466     1.0016      0.77x
+     32  leapquant, with gates       0.3741       0.3075     1.3728      0.22x
+
+    128  sglang packed               0.3058       0.3058     0.3058      1.00x
+    128  sglang window L=16          0.1787       0.1629     0.4153      1.71x
+    128  leapquant, kernel only      0.4023       0.1903     3.5833      0.76x
+    128  leapquant, with gates       0.5879       0.3220     4.5759      0.52x
+
+    512  sglang packed               1.2002       1.2002     1.2002      1.00x
+    512  sglang window L=16          0.6972       0.6369     1.6024      1.72x
+    512  leapquant, kernel only      1.4777       0.6375    14.0802      0.81x
+    512  leapquant, with gates       1.8490       0.8316    17.1105      0.65x
+

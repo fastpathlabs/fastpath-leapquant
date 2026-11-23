@@ -1,0 +1,6 @@
+bench_v1_1.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.310 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.289 ms 
+bench_v1_2.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.310 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.343 ms 
+bench_v3_x0_1.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.272 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.200 ms 
+bench_v3_x0_2.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.274 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.121 ms 
+bench_v3_x1_1.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.263 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.104 ms 
+bench_v3_x1_2.txt: fast / exact (mean): 1.0052 fast / exact (mean): 0.9996 fast fold 0.265 ms fast / exact (mean): 1.0060 fast / exact (mean): 0.9997 fast fold 1.118 ms 

@@ -1,0 +1,7 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  gsm8k           1000      940    94.00%  0.75%         28       0         87           2259
+  aime2025          30        1     3.33%  3.28%          2       0         29           8097
+  mmlu_pro        1000      656    65.60%  1.50%        120       0        296           5089
+
+  wrote /home/ubuntu/lqexp/results/accuracy-v7/accuracy_fp32_run1.json

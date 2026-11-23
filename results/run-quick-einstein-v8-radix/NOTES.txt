@@ -1,0 +1,4 @@
+Eighth round (14 Nov 2026, H100 PCIe 80 GB): SGLang's radix (prefix) cache ON, as a production server runs. With it SGLang runs at most one request per three state slots.
+Each configuration got the most state slots it holds: fp32 + window 560 slots (at most 186 running), bf16 + window 1,100 (366), LeapQuant compressed state 1,560 (512).
+Memory: fp32 state 26.3 GB, KV 495,468 tokens; bf16 state 25.8 GB, KV 492,156; LeapQuant state 30.9 GB, KV 308,464 (the slots were not chosen for equal memory: LeapQuant spent more on slots and kept less KV cache).
+Step R0: answers from cache hits on the compressed state agree with the fp32 window server.

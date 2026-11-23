@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the LeapQuant paper, and this repository if you use its code or measurements."
+title: "fastpath-leapquant: an implementation of LeapQuant for SGLang and vLLM"
+authors:
+  - name: "FastPathLabs"
+license: Apache-2.0
+repository-code: "https://github.com/fastpathlabs/fastpath-leapquant"
+date-released: 2026-11-23
+preferred-citation:
+  type: article
+  title: "LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization"
+  authors:
+    - family-names: "Pan"
+      given-names: "Y."
+    - family-names: "Xi"
+      given-names: "H."
+    - family-names: "Zhu"
+      given-names: "K."
+    - name: "et al."
+  year: 2026
+  identifiers:
+    - type: other
+      value: "arXiv:2609.38166"
+  url: "https://arxiv.org/abs/2609.38166"

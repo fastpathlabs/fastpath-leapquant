@@ -1,0 +1,22 @@
+trace                                                   A  B fold loss k/ref  C output error k/ref
+/home/ubuntu/leapquant/traces/code/trace_layer_00.bin pass        1.607  FAIL          11.250  FAIL
+/home/ubuntu/leapquant/traces/code/trace_layer_13.bin pass        1.033  pass           1.026      
+/home/ubuntu/leapquant/traces/code/trace_layer_30.bin pass        1.000  pass           1.072      
+/home/ubuntu/leapquant/traces/explain/trace_layer_00.bin pass        1.366  FAIL          13.057  FAIL
+/home/ubuntu/leapquant/traces/explain/trace_layer_13.bin pass        0.990  pass           1.115      
+/home/ubuntu/leapquant/traces/explain/trace_layer_30.bin pass        0.960  pass           1.105      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_00.bin pass        1.194  FAIL           8.442  FAIL
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_13.bin pass        1.013  pass           1.681  FAIL
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_30.bin pass        0.990  pass           1.166      
+
+C over 9 traces: geometric mean of kernel / reference output error 2.460 (limit 1.10); lowest 1.026, highest 13.057
+
+RESULT: FAIL
+  /home/ubuntu/leapquant/traces/code/trace_layer_00.bin: criterion B
+  /home/ubuntu/leapquant/traces/code/trace_layer_00.bin: output error 11.25x the reference's (limit 1.5)
+  /home/ubuntu/leapquant/traces/explain/trace_layer_00.bin: criterion B
+  /home/ubuntu/leapquant/traces/explain/trace_layer_00.bin: output error 13.06x the reference's (limit 1.5)
+  /home/ubuntu/leapquant/traces/reasoning/trace_layer_00.bin: criterion B
+  /home/ubuntu/leapquant/traces/reasoning/trace_layer_00.bin: output error 8.44x the reference's (limit 1.5)
+  /home/ubuntu/leapquant/traces/reasoning/trace_layer_13.bin: output error 1.68x the reference's (limit 1.5)
+  geometric mean 2.460 above 1.10

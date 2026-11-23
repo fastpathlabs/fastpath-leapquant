@@ -1,0 +1,17 @@
+========= COMPUTE-SANITIZER
+LeapQuant decode: CUDA decode, variant 9
+Triton kernels on NVIDIA H100 PCIe: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+dtypes: projections bf16; state int8 levels, fp32 steps and scales, fp16 compensators and records, fp16 log decays; fold backend cuda; decode backend cuda
+
+  batch 512
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.7e-06  worst 1.0e-04;   records written: worst relative difference 5.8e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00104 worst 0.00167   fast: mean 0.00105 worst 0.00167   fast / exact (mean): 1.0124
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9997
+    full-precision state exported by the fast fold vs exact export: worst relative difference 6.1e-07
+    fast export vs exact export: worst relative difference 7.0e-08 (boundary state), 6.1e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99746, 0.99280   fast: 0.99656, 0.98952
+    time   fast decode step 6.8393 ms (position 0: 5.9415, last: 8.0700)   fast fold 58.654 ms   ->  10.5051 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 88.522 ms; with every row skipped 0.3107 ms
+    full cycle   LeapQuant: 172.8403 ms per window of 16 tokens = 10.8025 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 5 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+
+========= ERROR SUMMARY: 0 errors

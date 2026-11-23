@@ -1,0 +1,77 @@
+{
+ "arm": "fp32",
+ "model": "Qwen/Qwen3.8-27B-FP8",
+ "greedy": [
+  {
+   "prompt": "The capital of Australia is",
+   "text": " Canberra, not Sydney, which is a common misconception. Canberra was purpose-built as the capital in 1913, following a compromise between Sydney and Melbourne, the two largest cities at the time. The city's name, derived from the Ngunnawal and Ngambri words 'Kamberra' or 'Canberran', means 'place of meeting'. The name was chosen by the New South Wales government in 1913, and the city",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.822
+  },
+  {
+   "prompt": "def fibonacci(n):\n    \"\"\"Return the n-th Fibonacci number.\"\"\"\n",
+   "text": "    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Example usage\nn = 10\nprint(f\"The {n}th Fibonacci number is: {fibonacci(n)}\")",
+   "finish_reason": "stop",
+   "completion_tokens": 74,
+   "seconds": 1.409
+  },
+  {
+   "prompt": "Question: A train travels 120 km in 1.5 hours. What is its average speed in km/h?\nAnswer:",
+   "text": "\n\nTo find the average speed, we use the formula:\n\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nGiven:\n*   Distance = 120 km\n*   Time = 1.5 hours\n\nCalculation:\n$$ \\text{Speed} = \\frac{120}{1.5} = 80 \\text{ km/h} $$\n\n**Answer: 8",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.82
+  },
+  {
+   "prompt": "In 1905, Albert Einstein published four papers that",
+   "text": " revolutionized physics. One of these papers introduced the concept of mass-energy equivalence, expressed by the equation \\( E = mc^2 \\). What was the title of this paper?\n\nThe title of the paper in which Einstein introduced the concept of mass-energy equivalence, \\( E = mc^2 \\), is \"Does the Inertia of a Body Depend Upon Its Energy Content?\" (German: \"Ist die Tr\u00e4gheit eines K\u00f6rpers von seinem Energieinhalt abh\u00e4ngig?\").",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.817
+  },
+  {
+   "prompt": "The three primary colors of light are",
+   "text": " red, green, and blue. When these colors are combined in equal intensities, they produce white light. This principle is known as additive color mixing. In contrast, the primary colors of pigment\u2014used in painting and printing\u2014are cyan, magenta, and yellow. These are called subtractive primaries because they work by absorbing (subtracting) certain wavelengths of light and reflecting others. When all three pigments are mixed, they absorb most of the visible spectrum, resulting in a",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.819
+  },
+  {
+   "prompt": "Translate to French: 'The weather is beautiful today.'\nFrench:",
+   "text": "\n\n<think>\nThe user wants me to translate \"The weather is beautiful today.\" into French.\n\nLet me think about the best French translation:\n\n- \"The weather\" = \"Le temps\" (in the sense of weather)\n- \"is beautiful\" = \"est beau\" (masculine, since \"temps\" is masculine)\n- \"today\" = \"aujourd'hui\"\n\nSo the full sentence would be: \"Le temps est beau aujourd'hui.\"",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.819
+  },
+  {
+   "prompt": "List the first five prime numbers:",
+   "text": " 2, 3, 5, 7, 11.\n\nThe first five prime numbers are 2, 3, 5, 7, and 11.\n\nWhat is the sum of the first five prime numbers?\n\nThe sum of the first five prime numbers is 2 + 3 + 5 + 7 + 11 = 28.\n\nWhat is the product of the first five prime numbers?\n\nThe",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.818
+  },
+  {
+   "prompt": "Photosynthesis is the process by which",
+   "text": " plants convert light energy into chemical energy. This process is essential for life on Earth, as it provides the oxygen we breathe and the food we eat.\n\nThe process of photosynthesis occurs in the chloroplasts of plant cells. Chloroplasts contain a green pigment called chlorophyll, which absorbs light energy. The light energy is used to split water molecules into hydrogen and oxygen. The hydrogen is then used to convert carbon dioxide into glucose, a type of sugar.\n\nThe",
+   "finish_reason": "length",
+   "completion_tokens": 96,
+   "seconds": 1.817
+  }
+ ],
+ "sampled": [
+  {
+   "seed": 1,
+   "text": "User asks: What is 17 * 23? Answer briefly. Compute: 17*23 = 17*20 +17*3=340+51=391. Need final brief.\n</think>\n\n391",
+   "finish_reason": "stop",
+   "completion_tokens": 59
+  },
+  {
+   "seed": 2,
+   "text": "We need answer briefly. User asks 17*23. Compute: 17*20=340, +51=391. Need final brief only.\n</think>\n\n391",
+   "finish_reason": "stop",
+   "completion_tokens": 47
+  }
+ ],
+ "errors": []
+}

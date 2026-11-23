@@ -1,0 +1,431 @@
+{
+ "schema": "lqh.paper_crosswalk.v1",
+ "computed_utc": "2026-11-15T01:31:04.851199Z",
+ "label": "H100 port evaluated with paper-inspired methodology",
+ "rows": [
+  {
+   "paper_cell": "headline.e2e_avg_speedup.v2_pdf_html",
+   "reported": 1.57,
+   "metric_boundary": "end-to-end offline output throughput vs FP32-state vLLM, mean of the 24 Figure 9 cells (B200 15, RTX PRO 6000 9)",
+   "local_value": null,
+   "local_null_reason": "no offline-serving lane on the paper's datasets has been run (paper_reproduction lane planned)",
+   "matches": {
+    "hardware": false,
+    "model": "partial (Qwen3.5-9B is one of the averaged models)",
+    "engine": false,
+    "precision": true,
+    "workload": false,
+    "cache": "unknown",
+    "graph": "unknown"
+   },
+   "missing_fields": [
+    "vLLM/FLA/TileLang versions",
+    "request counts",
+    "prefix caching setting for Figure 8/9"
+   ],
+   "status": "not_comparable",
+   "note": "the arXiv abstract page still says 1.47x (v1's 18-cell mean); the full v2 PDF says 1.57x; neither is a universal target",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "headline.e2e_avg_speedup.abs_page_metadata",
+   "reported": 1.47,
+   "metric_boundary": "v1 abstract leftover",
+   "local_value": null,
+   "local_null_reason": "superseded by the v2 PDF (discrepancy retained)",
+   "matches": {},
+   "missing_fields": [],
+   "status": "not_comparable",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "fig7.gdn.b200.bs512",
+   "reported": 2.68,
+   "metric_boundary": "single GDN layer decode kernel, 32 heads, d_k = d_v = 128, batch 512, LeapQuant TileLang vs FLA FP32 kernel, B200",
+   "local_value": 2.3245231516926865,
+   "local_boundary": "H100 PCIe, one layer, component sum (decode + fold/16), LeapQuant CUDA v9 vs SGLang's FP32 WINDOW kernel (not FLA's packed kernel), 10 runs (results/g3-final)",
+   "local_value_against_sglang_fp32_packed": 3.987517060017975,
+   "matches": {
+    "hardware": false,
+    "model_layer_shape": true,
+    "batch": true,
+    "dtype": true,
+    "full_cycle": false,
+    "baseline_kernel": false
+   },
+   "missing_fields": [
+    "full state-advancing cycle timing (queued: harness kernel-cycle job)",
+    "FLA FP32 kernel on H100"
+   ],
+   "status": "partial",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "fig8.qwen3.5-9b.b200.bs512",
+   "reported": 1.23,
+   "metric_boundary": "full decode step in vLLM, 4K context, batch 512, CUDA graphs, vs FP32-state vLLM, B200",
+   "local_value": null,
+   "local_null_reason": "pure-decode lane not run (planned); client concurrency in serving runs is not the decode batch",
+   "matches": {
+    "hardware": false,
+    "engine": false
+   },
+   "missing_fields": [
+    "pure-decode measurement on H100/SGLang"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "fig9.qwen3.5-9b.b200.gpqa",
+   "reported": 1.44,
+   "metric_boundary": "offline output throughput, GPQA prompts, vLLM, vs FP32-state vLLM, B200",
+   "local_value": null,
+   "local_null_reason": "offline lane not run; GPQA gated for this account until terms are accepted",
+   "matches": {
+    "hardware": false,
+    "engine": false
+   },
+   "missing_fields": [
+    "dataset access",
+    "offline harness lane"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.aime2026.fp32",
+   "reported": 87.9,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-aime2026 (job 102)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.aime2026.bf16",
+   "reported": 72.1,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-aime2026 (job 102)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.aime2026.8bit.ours",
+   "reported": 87.9,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-aime2026 (job 102)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.beyondaime.fp32",
+   "reported": 63.3,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-beyond-aime (job 103)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.beyondaime.bf16",
+   "reported": 33.7,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-beyond-aime (job 103)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.beyondaime.8bit.ours",
+   "reported": 64.0,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: results/harness/quality-beyond-aime (job 103)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.gpqa_diamond.fp32",
+   "reported": 81.3,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: gated dataset (job 103b checks access)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.gpqa_diamond.bf16",
+   "reported": 66.2,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: gated dataset (job 103b checks access)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.gpqa_diamond.8bit.ours",
+   "reported": 81.8,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: gated dataset (job 103b checks access)",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.lcb_v6.fp32",
+   "reported": 64.1,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: no sandboxed scorer",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.lcb_v6.bf16",
+   "reported": 49.6,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: no sandboxed scorer",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "tab1.qwen3.5-9b.lcb_v6.8bit.ours",
+   "reported": 64.1,
+   "unit": "%",
+   "metric_boundary": "task accuracy, Qwen3.5-9B, 3 seeds, Table 5 sampling (T 1.0, top-p 0.95, top-k 20, presence 1.5, 81,920 tokens, early stop on repetition)",
+   "local_value": null,
+   "local_null_reason": "pending: BLOCKED: no sandboxed scorer",
+   "matches": {
+    "model": true,
+    "sampling": "partial (early repetition stop not reproduced)",
+    "seeds": true,
+    "engine": false,
+    "hardware": false,
+    "bf16_variant": "paper BF16 = rounded every step; local arm bf16_rounded matches it"
+   },
+   "missing_fields": [
+    "paper's early-stop rule",
+    "dataset versions (local: MathArena/aime_2026, ByteDance-Seed/BeyondAIME)"
+   ],
+   "status": "pending",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  },
+  {
+   "paper_cell": "headline.state_memory_traffic_reduction",
+   "reported": 3.4,
+   "unit": "x vs FP32 (4 bytes/element)",
+   "metric_boundary": "stored window-boundary state per element: 1.19 bytes vs 4",
+   "local_value": 3.361344537815126,
+   "local_boundary": "arithmetic on the reported 1.19 bytes (derived_from_reported); measured server-log allocation: LeapQuant 1.69 vs bf16 window 2.38 bytes per entry (historical inventory)",
+   "matches": {
+    "definition": true
+   },
+   "missing_fields": [
+    "measured equal-total-memory serving capacity (plan memory_per_arm)"
+   ],
+   "status": "partial",
+   "paper": {
+    "version": "arXiv 2609.38166v2 (10 Nov 2026)",
+    "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f"
+   }
+  }
+ ]
+}

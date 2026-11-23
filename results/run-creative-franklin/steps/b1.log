@@ -1,0 +1,38 @@
+GDN ReplaySSM decode microbench  HV=32 H=16 K=128 V=128 dtype=fp32 nk=2
+replay = mean per-step latency over one L-phase cycle (ms), split into its
+non-flush and flush steps; speedup = packed/replay; state-traffic = replay/packed
+(lower is better)
+
+B=32    packed=0.0798 ms
+    L=1   replay=0.1104 ms  speedup= 0.72x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.0713 ms  speedup= 1.12x  state-traffic= 0.56x  (non-flush 0.0651, flush 0.1152)
+    L=16  replay=0.0696 ms  speedup= 1.15x  state-traffic= 0.53x  (non-flush 0.0663, flush 0.1189)
+
+B=128   packed=0.3047 ms
+    L=1   replay=0.4165 ms  speedup= 0.73x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.2171 ms  speedup= 1.40x  state-traffic= 0.56x  (non-flush 0.1862, flush 0.4330)
+    L=16  replay=0.2095 ms  speedup= 1.45x  state-traffic= 0.53x  (non-flush 0.1935, flush 0.4493)
+
+B=512   packed=1.2026 ms
+    L=1   replay=1.5695 ms  speedup= 0.77x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.8199 ms  speedup= 1.47x  state-traffic= 0.56x  (non-flush 0.6987, flush 1.6682)
+    L=16  replay=0.7982 ms  speedup= 1.51x  state-traffic= 0.53x  (non-flush 0.7338, flush 1.7646)
+GDN ReplaySSM decode microbench  HV=32 H=16 K=128 V=128 dtype=bf16 nk=2
+replay = mean per-step latency over one L-phase cycle (ms), split into its
+non-flush and flush steps; speedup = packed/replay; state-traffic = replay/packed
+(lower is better)
+
+B=32    packed=0.0789 ms
+    L=1   replay=0.1025 ms  speedup= 0.77x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.0644 ms  speedup= 1.23x  state-traffic= 0.56x  (non-flush 0.0584, flush 0.1062)
+    L=16  replay=0.0620 ms  speedup= 1.27x  state-traffic= 0.53x  (non-flush 0.0590, flush 0.1073)
+
+B=128   packed=0.3030 ms
+    L=1   replay=0.3992 ms  speedup= 0.76x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.2011 ms  speedup= 1.51x  state-traffic= 0.56x  (non-flush 0.1716, flush 0.4071)
+    L=16  replay=0.1910 ms  speedup= 1.59x  state-traffic= 0.53x  (non-flush 0.1760, flush 0.4157)
+
+B=512   packed=1.1975 ms
+    L=1   replay=1.5133 ms  speedup= 0.79x  state-traffic= 1.00x  (flush only)
+    L=8   replay=0.7605 ms  speedup= 1.57x  state-traffic= 0.56x  (non-flush 0.6340, flush 1.6466)
+    L=16  replay=0.7096 ms  speedup= 1.69x  state-traffic= 0.53x  (non-flush 0.6505, flush 1.5958)

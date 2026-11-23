@@ -1,0 +1,4 @@
+{"t": "2026-11-15T01:34:30.188707Z", "block": 1, "candidate": "mock_baseline", "state": "done"}
+{"t": "2026-11-15T01:34:50.220161Z", "block": 1, "candidate": "mock_candidate", "state": "done"}
+{"t": "2026-11-15T01:35:10.258692Z", "block": 2, "candidate": "mock_candidate", "state": "done"}
+{"t": "2026-11-15T01:35:31.065698Z", "block": 2, "candidate": "mock_baseline", "state": "done"}

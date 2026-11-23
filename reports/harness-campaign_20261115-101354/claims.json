@@ -1,0 +1,226 @@
+{
+ "claims": [
+  {
+   "text": "Observed successful output throughput of lq_final 0.6% lower than bf16_window on local_diagnostics:decode_128_512_c512 (ratio 0.994, 95% interval 0.870 to 1.136, 5 paired blocks); the interval includes no change",
+   "metric": "deployment successful output tok/s (geometric mean of per-block ratios)",
+   "cells": [
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "plan": "pilot_128_512_c512",
+   "baseline": "bf16_window",
+   "scope": "1 x H100 PCIe, SGLang c8ea707, Qwen3.5-9B; this cell only",
+   "uncertainty": "95% t interval on log ratios, 5 blocks; per-block ratios 1.055, 1.023, 1.048, 0.821, 1.046",
+   "latency_cost": "bf16_window TTFT p99 18770.7 ms, ITL p99 38.94 ms; lq_final TTFT p99 17744.0 ms, ITL p99 39.62 ms",
+   "eligibility": "experimental: quality not yet qualified (campaign quality_qualification pending)",
+   "limitation": "H100 port evaluated with paper-inspired methodology; not a paper reproduction; screening results are not confirmation"
+  }
+ ],
+ "refused": [
+  {
+   "comparison": [
+    "validation_pair",
+    "aa_slt_local:aa_slt_1k1k_c16"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "validation_pair",
+    "infx_fixed_seq:infx_1k1k_c16"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "validation_pair",
+    "local_diagnostics:decode_128_512_c64"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "memory_per_arm",
+    "local_diagnostics:decode_128_512_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c1"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c1"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c16"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c16"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c256"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c256"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c4"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c4"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c512"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c64"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_1k1k_c64"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_8k1k_c4"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_8k1k_c4"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_8k1k_c64"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  },
+  {
+   "comparison": [
+    "matrix_infx",
+    "infx_fixed_seq:infx_8k1k_c64"
+   ],
+   "reason": "fewer than two paired blocks: no interval"
+  }
+ ],
+ "note": "",
+ "banned_wording": [
+  {
+   "pattern": "production[- ]ready",
+   "reason": "production readiness is a release decision (gate G5), not a benchmark result"
+  },
+  {
+   "pattern": "\\blossless\\b",
+   "reason": "the state is compressed; quality is qualified by noninferiority at a margin"
+  },
+  {
+   "pattern": "universally faster|always faster|faster everywhere",
+   "reason": "results hold for the measured cells only"
+  },
+  {
+   "pattern": "official\\s+inferencex",
+   "reason": "InferenceX-derived results are Unofficial"
+  },
+  {
+   "pattern": "official\\s+(aa|artificial analysis)",
+   "reason": "AA-SLT results are method-inspired, not AA measurements"
+  },
+  {
+   "pattern": "reproduc(ed|es) the paper|paper reproduced",
+   "reason": "an H100/SGLang port is not a reproduction of B200/vLLM results"
+  },
+  {
+   "pattern": "quality[- ]equivalent",
+   "reason": "quality is noninferiority at a declared margin, not equivalence"
+  }
+ ]
+}

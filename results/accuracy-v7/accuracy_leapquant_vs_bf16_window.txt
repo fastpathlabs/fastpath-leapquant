@@ -1,0 +1,13 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  gsm8k           1000      935    93.50%  0.78%         30       0         94           2334
+  aime2025          30        2     6.67%  4.55%          0       0         28           8131
+  mmlu_pro        1000      670    67.00%  1.49%        117       0        298           5089
+
+  Paired comparison with /home/ubuntu/lqexp/results/accuracy-v7/accuracy_bf16_window.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2025        30     6.67%     6.67%          1          1      +0.00%     -9.24 .. +9.24  INCONCLUSIVE
+  gsm8k         1000    93.50%    93.50%         23         23      +0.00%     -1.33 .. +1.33  INCONCLUSIVE
+  mmlu_pro      1000    67.00%    65.90%         69         58      +1.10%     -1.11 .. +3.31  INCONCLUSIVE
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin

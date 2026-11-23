@@ -1,0 +1,5 @@
+Q_fp32 PASS 1 min  beyond_aime:15,aime2026,livecodebench_v6:12,gpqa_diamond:30: fp32 (paper sampling, budget 131072, 1 seed(s), retraction-free)
+Q_leapquant PASS 1 min  beyond_aime:15,aime2026,livecodebench_v6:12,gpqa_diamond:30: leapquant (paper sampling, budget 131072, 1 seed(s), retraction-free)
+Q_bf16_window PASS 0 min  beyond_aime:15,aime2026,livecodebench_v6:12,gpqa_diamond:30: bf16_window (paper sampling, budget 131072, 1 seed(s), retraction-free)
+Q_decision PASS 0 min  decision rule (campaign.json quality_qualification)
+done 2026-11-15T12:36:35Z

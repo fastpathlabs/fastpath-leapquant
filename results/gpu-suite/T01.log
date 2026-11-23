@@ -1,0 +1,7 @@
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off leapquant.cpp reference_heads.cpp leapquant_test.cpp -o leapquant_test
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off leapquant.cpp reference_heads.cpp leapquant_replay.cpp -o leapquant_replay
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -fPIC -shared -pthread kernel/leapquant_kernel_cpu.cpp -o build/libleapquant_cpu.so
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -fPIC -shared leapquant.cpp reference_heads.cpp kernel/reference_shim.cpp -o build/libleapquant_reference.so
+rm -f build/libleapquant_cuda.so
+nvcc -O3 -std=c++17 -arch=sm_90 -fmad=false -DLQ_CUDA_THREADS_PER_BLOCK=128 -DLQ_FOLD_IN_SHARED=1 -DLQ_WORD_LOADS -shared -Xcompiler -fPIC kernel/leapquant_kernel_cuda.cu -o build/libleapquant_cuda.so
+dc0049c7938f38e3c3069d2ddde4657da03f24c268a383a940628db74bfac968  build/libleapquant_cuda.so

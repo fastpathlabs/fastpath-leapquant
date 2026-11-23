@@ -1,0 +1,4 @@
+S1 PASS 0 min  skipped: bf16 window in results/round13
+U1 PASS 0 min  skipped: fp32 in results/round13
+T1 PASS 3 min  LeapQuant, 1100 slots, up to 1024 running
+done 2026-11-14T17:30:02Z

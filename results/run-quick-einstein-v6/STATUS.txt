@@ -1,0 +1,8 @@
+S1 PASS 1 min  smoke: fp32 window server
+S2 PASS 1 min  smoke: LeapQuant, fp32 state mirrored (phase 1)
+S3 PASS 1 min  smoke: LeapQuant, compressed state (phase 2)
+P1 PASS 5 min  serving config1: fp32, packed kernel
+P2 PASS 5 min  serving config2: fp32, window kernel
+P3 PASS 4 min  serving config3: bf16, window kernel
+P4 PASS 5 min  serving config4: LeapQuant compressed, fast kernels
+done 2026-11-14T03:00:45Z

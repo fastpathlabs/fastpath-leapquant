@@ -1,0 +1,9 @@
+{
+ "bundle": "./reports/harness-smoke_20261115-0134/bundle",
+ "checked": 2059,
+ "failed": [],
+ "uncovered": [],
+ "hash_failures": [],
+ "ok": true,
+ "checked_utc": "2026-11-15T01:35:31Z"
+}

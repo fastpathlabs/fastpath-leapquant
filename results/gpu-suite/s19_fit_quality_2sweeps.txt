@@ -1,0 +1,3 @@
+fit under test: 4 compensators, one at a time, 2 sweeps, start = longest row
+trace                              samples | top-4 share top-8 share | captured: median  worst head  heads < 90%
+explain/trace_layer_00.bin             224 |      100.0%      100.0% |           100.0%      100.0%         0.0%

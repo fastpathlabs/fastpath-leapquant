@@ -1,0 +1,48 @@
+{
+ "figure_id": "frontier_aa_slt_local_aa_slt_1k1k",
+ "title": "aa_slt_local aa_slt_1k1k: throughput per GPU vs per-user speed",
+ "generator": "lqh 1.0.0 (2026-11-15)",
+ "points": [
+  {
+   "figure_id": "frontier_aa_slt_local_aa_slt_1k1k",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.bf16_window.aa_slt_1k1k_c16",
+   "candidate_id": "bf16_window",
+   "cell_id": "aa_slt_local:aa_slt_1k1k_c16",
+   "client_concurrency": 16,
+   "x_per_user_tps_median": 77.39202770096321,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 1234.9333333333334,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "steady window (successful in-window tokens)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  },
+  {
+   "figure_id": "frontier_aa_slt_local_aa_slt_1k1k",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.lq_final.aa_slt_1k1k_c16",
+   "candidate_id": "lq_final",
+   "cell_id": "aa_slt_local:aa_slt_1k1k_c16",
+   "client_concurrency": 16,
+   "x_per_user_tps_median": 76.36023446620194,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 1217.4833333333331,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "steady window (successful in-window tokens)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  }
+ ],
+ "data_sha256": "2d5a20dcf9e1d8175228c1d8763ef1d6d9ef33553f19d472bb174953ed9be78e"
+}

@@ -1,0 +1,4 @@
+S1 PASS 3 min  bf16 window, 1100 slots, up to 1024 running
+T1 PASS 3 min  LeapQuant, 1100 slots, up to 1024 running
+U1 PASS 4 min  fp32 packed (SGLang's default), 560 slots: what fits
+done 2026-11-14T17:42:45Z

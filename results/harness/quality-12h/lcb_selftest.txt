@@ -1,0 +1,29 @@
+static: the host module never imports or calls pickle      PASS
+window: 131 problems; abc399_a tests 44, 3811 tests 33; image lqh-lcb-sandbox:py311-numpy1264 sha256:14a781964fd6
+stdin correct                                              PASS  pass 4/4  0.3s
+stdin wrong answer                                         PASS  fail:wrong_answer 0/4  0.3s
+stdin __main__ block and sys.stdin.read                    PASS  pass 4/4  0.3s
+infinite loop: per-test limit                              PASS  fail:timeout 0/1  2.3s
+SIGALRM ignored: global limit                              PASS  fail:global_timeout 0/1  7.3s
+network and DNS unreachable                                PASS  pass 1/1  0.3s
+root file system read-only, host invisible, /tmp writable  PASS  pass 1/1  0.3s
+process bomb contained (pid limit)                         PASS  pass 1/1  1.6s
+thread bomb contained (pid limit)                          PASS  pass 1/1  0.3s
+memory bomb fails, sandbox survives                        PASS  fail:global_timeout 0/1  1.3s
+10 MB on stderr does not disturb grading                   PASS  pass 4/4  0.4s
+float output: Decimal fallback                             PASS  pass 1/1  0.3s
+functional correct                                         PASS  pass 2/2  0.3s
+functional tuple compared as list                          PASS  pass 1/1  0.3s
+functional wrong answer                                    PASS  fail:wrong_answer 0/1  0.3s
+functional runtime error                                   PASS  fail:runtime_error 0/1  0.3s
+compile error                                              PASS  fail:runtime_error 0/1  0.3s
+no code: unclosed <think>                                  PASS  no_code 0/None  0.0s
+no code: no fenced block                                   PASS  no_code 0/None  0.0s
+no think tags: last fenced block                           PASS  pass 4/4  0.3s
+real abc399_a (stdin, pickled private tests) correct       PASS  pass 44/44  0.4s
+real abc399_a wrong                                        PASS  fail:wrong_answer 0/44  0.3s
+real 3811 (call-based, pickled private tests) correct      PASS  pass 33/33  0.3s
+real 3811 wrong (alphabet not reversed)                    PASS  fail:wrong_answer 0/33  0.3s
+no container left behind                                   PASS
+
+self-test: PASS

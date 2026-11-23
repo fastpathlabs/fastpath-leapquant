@@ -1,0 +1,38 @@
+F01 PASS 7 s  engine glue, fast kernels
+F02 PASS 5 s  block engine glue, fast kernels
+F03 PASS 3 s  engine glue, exact kernels on GPU
+F04 PASS 23 s  speed and agreement, batch 32/128/512
+F06 PASS 64 s  verify --fast explain_trace_layer_13
+F07 PASS 64 s  verify --fast explain_trace_layer_30
+F05 PASS 68 s  verify --fast explain_trace_layer_00
+F08 PASS 69 s  verify --fast code_trace_layer_00
+F10 PASS 63 s  verify --fast code_trace_layer_30
+F09 PASS 64 s  verify --fast code_trace_layer_13
+F12 PASS 62 s  verify --fast reasoning_trace_layer_13
+F11 PASS 67 s  verify --fast reasoning_trace_layer_00
+F14 PASS 33 s  verify --fast all_layers_trace_layer_00
+F15 PASS 32 s  verify --fast all_layers_trace_layer_01
+F16 PASS 32 s  verify --fast all_layers_trace_layer_02
+F13 PASS 60 s  verify --fast reasoning_trace_layer_30
+F17 PASS 33 s  verify --fast all_layers_trace_layer_04
+F18 PASS 32 s  verify --fast all_layers_trace_layer_05
+F19 PASS 32 s  verify --fast all_layers_trace_layer_06
+F20 PASS 33 s  verify --fast all_layers_trace_layer_08
+F21 PASS 32 s  verify --fast all_layers_trace_layer_09
+F22 PASS 32 s  verify --fast all_layers_trace_layer_10
+F23 PASS 31 s  verify --fast all_layers_trace_layer_12
+F24 PASS 31 s  verify --fast all_layers_trace_layer_13
+F25 PASS 32 s  verify --fast all_layers_trace_layer_14
+F26 PASS 32 s  verify --fast all_layers_trace_layer_16
+F27 PASS 32 s  verify --fast all_layers_trace_layer_17
+F28 PASS 33 s  verify --fast all_layers_trace_layer_18
+F29 PASS 32 s  verify --fast all_layers_trace_layer_20
+F30 PASS 32 s  verify --fast all_layers_trace_layer_21
+F31 PASS 33 s  verify --fast all_layers_trace_layer_22
+F32 PASS 32 s  verify --fast all_layers_trace_layer_24
+F33 PASS 32 s  verify --fast all_layers_trace_layer_25
+F34 PASS 32 s  verify --fast all_layers_trace_layer_26
+F35 PASS 32 s  verify --fast all_layers_trace_layer_28
+F36 PASS 27 s  verify --fast all_layers_trace_layer_29
+F37 PASS 25 s  verify --fast all_layers_trace_layer_30
+done 2026-11-14T00:42:09Z

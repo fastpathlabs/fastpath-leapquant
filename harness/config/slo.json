@@ -1,0 +1,97 @@
+{
+ "schema": "lqh.slo.v1",
+ "note": "Versioned SLO objects. Every threshold has its unit; request conditions are evaluated together per request; global constraints are evaluated separately. Declared 2026-11-15, before any harness result; a change is a new version, never an edit after results.",
+ "slos": [
+  {
+   "slo_id": "slo-interactive-v1",
+   "version": 1,
+   "declared_utc": "2026-11-15T01:30:00Z",
+   "origin": "docs/DECISIONS.md line 15 (Service SLO, declared 14 Nov 2026): per request TTFT <= 2 s (1,000-token prompts) and TPOT <= 50 ms; distribution: p99 time between tokens <= 100 ms. The historical open-loop runs applied only the two request limits (runbook/serving_openloop.sh); this object applies all three.",
+   "request_predicate": {
+    "require_success": true,
+    "ttft_ms_max": 2000,
+    "tpot_ms_max": 50,
+    "tpot_metric": "tpot_native_ms: (E2EL - TTFT) / (N - 1) for N > 1; 0 for a one-token response (pinned InferenceX convention)",
+    "e2e_ms_max": null,
+    "e2e_metric": "e2e_terminal_ms",
+    "token_gap_rule": null
+   },
+   "global_constraints": {
+    "error_rate_max": 0.01,
+    "p99_token_gap_ms_max": 100,
+    "quality_status_required": "qualified",
+    "p99_token_gap_metric": "itl_token_ms",
+    "p99_token_gap_note": "exact token gaps; when per-chunk token counts are unknown the limit is unmeasurable (chunk gaps are not substituted)"
+   },
+   "eligibility": "measured requests of the run (warmup excluded); finite cohort over the cohort duration, sustained lane inside the steady window",
+   "units": {
+    "ttft_ms_max": "ms",
+    "tpot_ms_max": "ms per output token",
+    "error_rate_max": "fraction of attempted measured requests"
+   },
+   "scope_note": "TTFT limit stated for 1,000-token prompts; for 8,192-token prompts slo-batch-v1 is reported alongside"
+  },
+  {
+   "slo_id": "slo-batch-v1",
+   "version": 1,
+   "declared_utc": "2026-11-15T01:30:00Z",
+   "origin": "project addition declared 2026-11-15 before any harness result (not in docs/DECISIONS.md): long prompts and throughput-oriented serving",
+   "request_predicate": {
+    "require_success": true,
+    "ttft_ms_max": 10000,
+    "tpot_ms_max": 100,
+    "tpot_metric": "tpot_native_ms",
+    "e2e_ms_max": null,
+    "e2e_metric": "e2e_terminal_ms",
+    "token_gap_rule": null
+   },
+   "global_constraints": {
+    "error_rate_max": 0.01,
+    "p99_token_gap_ms_max": 200,
+    "quality_status_required": "qualified",
+    "p99_token_gap_metric": "itl_token_ms",
+    "p99_token_gap_note": "exact token gaps; when per-chunk token counts are unknown the limit is unmeasurable (chunk gaps are not substituted)"
+   },
+   "eligibility": "as slo-interactive-v1",
+   "units": {
+    "ttft_ms_max": "ms",
+    "tpot_ms_max": "ms per output token",
+    "error_rate_max": "fraction"
+   }
+  },
+  {
+   "slo_id": "slo-interactive-v2",
+   "version": 2,
+   "declared_utc": "2026-11-16T01:55:00Z",
+   "origin": "LeapQuant single-GPU benchmark execution prompt (updated 15 Nov 2026, adopted by Asif 16 Nov ~01:30 UTC), section 5, 'suggested local service policy for the short-context workload': request TTFT <= 2 s and average request TPOT <= 50 ms, at least 95% joint attainment over offered logical requests, at least 99% complete success; p99 token/chunk gap recorded separately. Declared before any run of the single-gpu campaign (lq-h100-2026-11-sg). No documented product policy governs the campaign; v1 (which also gated p99 token gap <= 100 ms and error rate <= 1% of attempted requests) remains the policy of record for jobs 116-124 and is reported alongside for them. Our proposed service gates, not industry thresholds.",
+   "request_predicate": {
+    "require_success": true,
+    "ttft_ms_max": 2000,
+    "tpot_ms_max": 50,
+    "tpot_metric": "tpot_native_ms: (E2EL - TTFT) / (N - 1) for N > 1; 0 for a one-token response (pinned InferenceX convention)",
+    "e2e_ms_max": null,
+    "e2e_metric": "e2e_terminal_ms",
+    "token_gap_rule": null
+   },
+   "global_constraints": {
+    "attainment_min": 0.95,
+    "complete_success_min": 0.99,
+    "denominator": "offered_logical_requests",
+    "denominator_note": "finite cohort: the requests the profile offers (num_prompts = 10C, warm-up excluded); sustained lane: logical requests started inside the steady window; a retry is the same logical request",
+    "quality_status_required": "qualified",
+    "p99_token_gap_ms_max": null,
+    "p99_token_gap_report_only": true,
+    "p99_token_gap_metric": "itl_token_ms",
+    "p99_token_gap_note": "recorded separately, not a gate; observed chunk gaps are reported when per-chunk token counts are unknown (never fabricated per-token times)"
+   },
+   "eligibility": "measured requests of the run (warmup excluded); finite cohort over the cohort duration, sustained lane inside the steady window",
+   "units": {
+    "ttft_ms_max": "ms",
+    "tpot_ms_max": "ms per output token (average over the request)",
+    "attainment_min": "fraction of offered logical requests",
+    "complete_success_min": "fraction of offered logical requests"
+   },
+   "scope_note": "short-context workload (1k/1k); a long-prompt profile would need its own declared policy"
+  }
+ ]
+}

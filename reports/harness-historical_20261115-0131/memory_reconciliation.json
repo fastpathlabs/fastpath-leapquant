@@ -1,0 +1,43 @@
+{
+ "schema": "lqh.memory_reconciliation.v1",
+ "computed_utc": "2026-11-15T01:31:04.855128Z",
+ "historical_findings": [
+  "SLOT LABELS DO NOT MATCH THE SERVER LOGS: the snapshot paired tables of round9-equalmem_20261114-0503, radix-equalmem-final_20261114-0956, ab-trackflush_20261114-1129 and ab-slotcopy_20261114-1130 are titled 'Radix cache on: ... (bf16 1,100, LeapQuant 1,560)' (hard-coded in generate_reports.paired_section) while those servers had LeapQuant 1,310 slots ('max_mamba_cache_size: 1310', 'LeapQuant decode state allocated: 24 layers x 1311 slots', capped to 436 running); the same reports' index.html step tables say '1310 slots'. Radix-off titles say '560 state slots, up to 512 running' also for round13/13b (1,100 slots, up to 1,024).",
+  "SLOT COUNT OFF BY ONE: LeapQuant allocates configured+1 slots (padding slot): 561 / 1,101 / 1,311 / 1,561 in the logs vs 560 / 1,100 / 1,310 / 1,560 configured.",
+  "'EQUAL MEMORY' IS EQUAL ssm_state vs LeapQuant decode state ONLY: bf16 window 1,100 slots = ssm_state 25.80 GiB but also ReplaySSM ring buffers d 3.226 + k 1.613 + g 0.050 = 4.89 GiB and conv 1.21 GiB; LeapQuant 1,310 = 25.956 GiB + conv 1.44 + ssm 0.09. Measured device peaks in the 'equal memory' runs: bf16 window 71,334-71,882 MiB vs LeapQuant 67,028-67,456 MiB (round9-equalmem, radix-equalmem-final .mem): LeapQuant used ~4.3 GiB less, so the runs are not equal-total-memory; KV tokens 492,156 vs 479,653.",
+  "THE *_memory.txt EXTRACTS OMIT THE ReplaySSM RING LINE, so any memory figure built from them misses 2.49 GiB (560 slots) / 4.89 GiB (1,100) of bf16-window state and the fp32-window ring (v6/v7: available_gpu_mem 10.38 vs 15.34 GB for fp32 packed).",
+  "BYTES PER ENTRY 1.19 vs 2 IS REPLAY ACCOUNTING, NOT SERVER MEMORY: 1.19 = 19,456-byte boundary state per 128x128 head (no window records); the server allocates 11.107 GiB for 561 slots = 1.69 B/entry (window records included, kernel/leapquant_engine.py bytes_allocated) while bf16 window allocates 2.00 (ssm) + 0.38 (ring) = 2.38 B/entry: measured ratio ~1.41x, not 2/1.19 = 1.68x. bf16's 2.00 is a hard-coded constant in kernel/ablation_table.py.",
+  "MISSING GPU FIELDS: .mem files exist only from round 10 on (B17); none for rounds 1-9, gpu-suite, v6-v8, openloop/openloop-final(-2,-3) (serving_openloop.sh does not sample memory), prefill-radix, retraction. A .mem holds only the device-wide peak of nvidia-smi memory.used (0.5 s sampling) and the total: no per-process, allocated vs reserved, KV/state split, time series (samples deleted, one leftover file) or clocks/power.",
+  "MEMORY ACCOUNTING: the LeapQuant state is allocated after SGLang's 'Memory pool end' (outside --mem-fraction-static; env.sh comment) and mem_usage_bytes() charges only BOUNDARY_FIELDS; SGLang's int8 checkpoint pool (sglang-best-3: 15.61 GB) is also outside the static fraction. KV-token counts therefore are the only like-for-like capacity figure.",
+  "NOT IN THE SNAPSHOT: no snapshot report shows GB, KV tokens or .mem peaks (the 11:30 generator never read .mem/server memory lines; the post-snapshot generator of 22:45 UTC does). A memory graphic from reports.zip can only have used headings ('1,100 / 1,560 / 560'), index step descriptions ('1310 slots'), accuracy.html's '1.19 bytes per entry instead of 2' and prose."
+ ],
+ "categories_required": [
+  "weights",
+  "ordinary attention KV",
+  "active recurrent state",
+  "window records",
+  "compensators",
+  "scales",
+  "checkpoint copies",
+  "convolution state",
+  "temporary dequantisation",
+  "scratch",
+  "graph pools",
+  "fallback buffers"
+ ],
+ "categories_logged_by_sglang": [
+  "weights (Load weight end mem usage)",
+  "KV K/V sizes",
+  "recurrent ssm/conv state",
+  "LeapQuant decode state (window, compensators, scales, levels together)",
+  "CUDA graph mem usage",
+  "ReplaySSM ring (window kernel records)"
+ ],
+ "not_separable_from_logs": [
+  "LeapQuant compensators vs scales vs window records (one allocation)",
+  "temporary dequantisation and scratch (transient, inside the allocator)"
+ ],
+ "snapshots": "every harness run records nvidia-smi samples (whole device) and snapshots before model load, after pools/graphs, at steady load, at the peak and after drain; allocation vs reservation is not separable from nvidia-smi (torch allocator statistics are not exported by SGLang)",
+ "measurement_plan": "plan memory_per_arm (job 104): all 13 candidates, decode 128/512 at 512 users, allocations, peaks, configured slots, admitted running and waiting requests per arm",
+ "inventory_sha256": "ca09baf540fe881928ae203361939e8dad57b9b9b1eed50747316459ffcd633f"
+}

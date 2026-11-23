@@ -1,0 +1,1090 @@
+{
+ "schema": "lqh.campaign_manifest.v1",
+ "written_utc": "2026-11-15T23:52:03Z",
+ "specification": [
+  "LeapQuant_test_harness_prompt_2026-11-14_chatgpt.txt (revision 3)",
+  "LeapQuant multi-GPU benchmark execution prompt (15 Nov 2026), adopted 15 Nov ~23:00 UTC with the constraint that tests finish within a few hours"
+ ],
+ "source": {
+  "git_commit": null,
+  "git_null_reason": "the source tree on the host and the local copy are not git repositories (a git tag/commit is open item X2, on Asif's request only)",
+  "dirty_patch_hash": null,
+  "container_digest": null,
+  "container_null_reason": "bare-metal virtualenvs, no container",
+  "config_sha256": {
+   "campaign.json": "329020a80e74db12d105a8c5d0c85bec38dfe1bd55442f596113e7532a3ce24b",
+   "campaign_q38_27b.json": "728419340de6ce376a35f3245cb5878cc8e2a422d411b9f80dbd24f0fae57ad2",
+   "candidates.json": "2914cb93f39da6f4238a0e3a0515e9be3c8e442a01091b412c3850b49509d5c7",
+   "slo.json": "ceaafa48c17bd6f78551e4f24699d81bfefdcb35c30fcb666de3bc914b29e267",
+   "pricing.json": "8a5779f0a2616a6d28de383352282b645785153154ca135414db211cfc8be2c5",
+   "profiles.json": "147ca00d88e6a4d33f1bf4363b73f5634cc2ebed117ad63b0ccbcbaf5c19f063"
+  },
+  "build": {
+   "time_utc": "2026-11-15T23:36:13Z",
+   "host": "quick-einstein",
+   "kernel_source_hash": "265d1f4e500b6323",
+   "reference_source_hash": "7b205c3e35144a0c",
+   "engine_glue_hash": "f2bcd1208e5860d4",
+   "fast_kernels_hash": "da343b2295b7b793",
+   "fast_cuda_source_hash": "11cb0afebef2d2ae",
+   "run_scripts_hash": "f44ffe29d3b25e21",
+   "environment": "LEAPQUANT_STATE= LEAPQUANT_FAST= LEAPQUANT_ALIGN_FOLDS= LEAPQUANT_COMPENSATORS= LEAPQUANT_FOLD_BACKEND= LEAPQUANT_DECODE_BACKEND= LEAPQUANT_CUDA_DECODE_VARIANT= LEAPQUANT_STEP_REUSE= LEAPQUANT_LAYERS= LEAPQUANT_FOLD_POLICY= LEAPQUANT_TRACK_FLUSH= LEAPQUANT_FUSED_SLOT_COPY=",
+   "sglang_patch_hash": "ed78ccd6a8bc1c60",
+   "build_dir": "/home/ubuntu/lqdec8/build_v9",
+   "libleapquant_cuda.so": "1645e965e8bf9c03 built 2026-11-14T09:01:26Z",
+   "libleapquant_cpu.so": "56ed80c2006746e9 built 2026-11-14T09:01:26Z",
+   "libleapquant_reference.so": "3fb061c61c7673e7 built 2026-11-14T09:01:26Z",
+   "libleapquant_fastfold.so": "8a78d45fa72cbc8b built 2026-11-14T12:18:05Z",
+   "gpu": "NVIDIA H100 PCIe, 81559 MiB, 580.196.07",
+   "nvcc": "Build cuda_13.0.r13.0/compiler.36424714_0",
+   "venv-sglang": "torch 2.14.1+cu132; sglang 0.5.24.dev1336+gc8ea70797; sglang-kernel 0.4.10; triton 3.8.0; transformers 5.19.0; flashinfer-python 0.7.4 ; cuda 13.2",
+   "venv-trace": "torch 2.15.0+cu132; triton 3.9.0; transformers 5.23.0 ; cuda 13.2",
+   "sglang_commit": "c8ea707971 with 9 changed files",
+   "sglang_diff_hash": "7c29ce2b1bbb8863",
+   "model": "Qwen/Qwen3.8-27B-FP8 (HF_HUB_CACHE /data/hf/hub)"
+  }
+ },
+ "models": {
+  "qwen3.5-9b": {
+   "id": "Qwen/Qwen3.5-9B",
+   "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+   "tokenizer": "Qwen/Qwen3.5-9B (same snapshot)",
+   "served_path": "Qwen/Qwen3.5-9B",
+   "weights_dtype": "bfloat16",
+   "context_positions": 262144,
+   "vocab_size": 248320
+  },
+  "qwen3.8-27b": {
+   "id": "Qwen/Qwen3.8-27B-FP8",
+   "revision": "c3a462cc3d38cf351f3b26cbd763469eeb74ef81",
+   "tokenizer": "Qwen/Qwen3.8-27B-FP8 (same snapshot)",
+   "served_path": "Qwen/Qwen3.8-27B-FP8",
+   "weights_dtype": "fp8 e4m3, 128x128 blocks (the published FP8 checkpoint)",
+   "context_positions": 262144,
+   "vocab_size": 248320,
+   "layers": "64: 48 Gated DeltaNet (48 value heads over 16 key heads, 128x128 state per head) + 16 attention (24 heads, 4 KV heads x 256)",
+   "released": "2026-08-05 (FP8 checkpoint 2026-08-13)",
+   "storage": "HF_HUB_CACHE=/data/hf/hub on the 100 GB volume; HF_HUB_OFFLINE=1 in every job"
+  },
+  "qwen3.6-35b-a3b": {
+   "status": "not started (prompt stage 5: after the dense model passes)"
+  }
+ },
+ "numerical_policy": {
+  "source": "docs/DECISIONS.md",
+  "bits": 8,
+  "rank": 4,
+  "window": 16,
+  "fit_sweeps": 1,
+  "folds": "staggered by default (LEAPQUANT_FOLD_POLICY unset = stagger; 'aligned' gives the earlier default)",
+  "owner": "Asif (changes create a new numerical candidate and need new quality evidence)",
+  "changed": "15 Nov 2026, 05:00 UTC, Asif: one sweep (B52) and staggered folds (B53) adopted; runs before this used 2 sweeps and aligned/auto folds"
+ },
+ "candidates": {
+  "fp32_packed": {
+   "config_hash": "f0b2d90197a451a74e5c3f01b7a0a10e586384beac3e5027aa37ff1faefb667c",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "560"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 560,
+   "label": "FP32 state, SGLang packed kernel"
+  },
+  "fp32_window": {
+   "config_hash": "69d2fa7359670a0988502ea4d3ca0bf4c981b884ac4366e460455c258a2e86b4",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "560"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 560,
+   "label": "FP32 state + 16-token window (SGLang replay kernel)"
+  },
+  "bf16_rounded": {
+   "config_hash": "b939651eb92849cf4e847ab34c0b31a1c862467cf1b732b35bcaf4b68b367d5f",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "bfloat16",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 1100,
+   "label": "BF16 state rounded every token (packed kernel): the paper's BF16 baseline"
+  },
+  "bf16_window": {
+   "config_hash": "112a88e84418e7dd31df7811582fdc637b242af8e31e7b213b34859dd252c50a",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "bfloat16",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 1100,
+   "label": "BF16 state + 16-token window (SGLang replay kernel)"
+  },
+  "sglang_default": {
+   "config_hash": "552fa84dff0141505103bfca28de43ec1148fb6da8e47e9d45f5c48d6c00689f",
+   "server_flags": [],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": null,
+   "label": "SGLang started with no options"
+  },
+  "sglang_best": {
+   "config_hash": "df493b649375342003e054b6039fedfbdace2f344ea0de4ef64163d625b36e50",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "bfloat16",
+    "--mamba-radix-cache-strategy",
+    "extra_buffer_lazy",
+    "--enable-int8-mamba-checkpoint",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "600",
+    "--mem-fraction-static",
+    "0.60"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 600,
+   "label": "SGLang best native: BF16 state, lazy extra buffers, INT8 checkpoints, 600 slots, memory fraction 0.60"
+  },
+  "lq_default": {
+   "config_hash": "7eb179686d3afe1f4db91f6cf582498383117718cabee0e1f9b9b3abb823aae0",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "0",
+    "LEAPQUANT_SWEEPS": "2",
+    "LEAPQUANT_FOLD_POLICY": "aligned"
+   },
+   "slots": 1100,
+   "label": "LeapQuant default: aligned folds, field-by-field slot copy (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_stagger": {
+   "config_hash": "59d60e05b05b6da27f3c831e2ebe2c954eae5b861aa2c29dbd769d8753ec9a38",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "0",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_SWEEPS": "2"
+   },
+   "slots": 1100,
+   "label": "LeapQuant + staggered folds (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_fusedcopy": {
+   "config_hash": "49a8ca51bbcc4bf16697ab39e47910b36816cbc70351742b5e8fc9c65cb5cd25",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_SWEEPS": "2",
+    "LEAPQUANT_FOLD_POLICY": "aligned"
+   },
+   "slots": 1100,
+   "label": "LeapQuant + fused slot copy (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_combined": {
+   "config_hash": "c5f389e7db1248fb7887238ba088c47e4976f45a7434a17115a423ca13af7957",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "auto",
+    "LEAPQUANT_SWEEPS": "2"
+   },
+   "slots": 1100,
+   "label": "LeapQuant final proposed: folds 'auto' + fused slot copy (job 095's configuration) (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_trackflush0": {
+   "config_hash": "8762be3f455688df7fc9f6a5ec0f822ce2339051e369333f3a35eafec8b1a14b",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "0",
+    "LEAPQUANT_TRACK_FLUSH": "0",
+    "LEAPQUANT_SWEEPS": "2",
+    "LEAPQUANT_FOLD_POLICY": "aligned"
+   },
+   "slots": 1100,
+   "label": "LeapQuant default with track-boundary flushes off (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_stagger_trackflush0": {
+   "config_hash": "702fa7a9894187be311a07ef4b91e9cea584b0d17ea2c3107f13461574f7d7f4",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "0",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_TRACK_FLUSH": "0",
+    "LEAPQUANT_SWEEPS": "2"
+   },
+   "slots": 1100,
+   "label": "LeapQuant staggered folds with track-boundary flushes off (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_combined_eqmem": {
+   "config_hash": "eb926509676d96d6f25e7b81260c1f8d2e1d4b28fd4984fb7f1c48903acc001c",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1310"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "auto",
+    "LEAPQUANT_SWEEPS": "2"
+   },
+   "slots": 1310,
+   "label": "LeapQuant final proposed at 1,310 slots (equal state bytes with bf16_window at 1,100: configured, not yet measured) (2 sweeps and an explicit fold policy: the settings before 15 Nov 2026)"
+  },
+  "lq_final": {
+   "config_hash": "729262cf5f28760630deae8323f55cb6f052de9e62659b763a2a16ab0bd1270b",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1100"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_SWEEPS": "1"
+   },
+   "slots": 1100,
+   "label": "LeapQuant final (15 Nov 2026): staggered folds (the new default), fused slot copy, one fit sweep"
+  },
+  "lq_final_eqmem": {
+   "config_hash": "519d7b664f5612393f149e17d51df41254410726d1428bb11068858530ff4efa",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1310"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_SWEEPS": "1"
+   },
+   "slots": 1310,
+   "label": "LeapQuant final at 1,310 slots (equal state bytes with bf16_window at 1,100: configured, not yet measured)"
+  },
+  "mock_baseline": {
+   "config_hash": "b4720aebe5f86ffccaa56ec120f66e5eb9db316d8f77fd33b85e65f62bb96a13",
+   "server_flags": null,
+   "env": null,
+   "slots": null,
+   "label": "mock server (baseline settings)"
+  },
+  "mock_candidate": {
+   "config_hash": "97feeb2f0ef6e935135b5feade40c019d19ecd05374c163a0349ea767ed8c927",
+   "server_flags": null,
+   "env": null,
+   "slots": null,
+   "label": "mock server (faster settings, 1 failure in 25)"
+  },
+  "lq_final_s1008": {
+   "config_hash": "a930c41eae52fd98715dc4a547aa80ac184613e45223b7bf77503082591c9e0d",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "1008"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_SWEEPS": "1"
+   },
+   "slots": 1008,
+   "label": "LeapQuant final (15 Nov 2026): staggered folds (the new default), fused slot copy, one fit sweep - 1008 state slots (balanced for 1k/1k)"
+  },
+  "bf16_window_s927": {
+   "config_hash": "6e2451883632c5b44d2bb41ce9abbea7a5aa99459f9445a6c5182d55f5a58b30",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "bfloat16",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "927"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 927,
+   "label": "BF16 state + 16-token window (SGLang replay kernel) - 927 state slots (balanced for 1k/1k)"
+  },
+  "fp32_packed_s609": {
+   "config_hash": "a7405f434598a890d346a013efae913dd5f9174dda88782858f6ac2572c38a61",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "609"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8"
+   },
+   "slots": 609,
+   "label": "FP32 state, SGLang packed kernel - 609 state slots (balanced for 1k/1k)"
+  },
+  "lq_final_q38": {
+   "config_hash": "ebbad4992a63b8e7aa6b9adc90c7c3e487f083b99f7a9f1d0c34bd15907a5d82",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--enable-linear-leapquant",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "300"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "LEAPQUANT_BUILD_DIR": "$HOME/lqdec8/build_v9",
+    "LEAPQUANT_STATE": "compressed",
+    "LEAPQUANT_FOLD_BACKEND": "cuda",
+    "LEAPQUANT_DECODE_BACKEND": "cuda",
+    "LEAPQUANT_CUDA_DECODE_VARIANT": "9",
+    "LEAPQUANT_STEP_REUSE": "1",
+    "LEAPQUANT_FUSED_SLOT_COPY": "1",
+    "LEAPQUANT_FOLD_POLICY": "stagger",
+    "LEAPQUANT_SWEEPS": "1",
+    "HF_HUB_CACHE": "/data/hf/hub",
+    "HF_HUB_OFFLINE": "1"
+   },
+   "slots": 300,
+   "label": "LeapQuant final (15 Nov 2026): staggered folds (the new default), fused slot copy, one fit sweep - Qwen3.8-27B FP8, 300 state slots (balanced for 1k/1k)"
+  },
+  "bf16_window_q38": {
+   "config_hash": "282d2ef7902402c1207633056ec15ec0fb353a1cc1ee3acb94a755c11538bd27",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "bfloat16",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--enable-linear-replayssm",
+    "--linear-replayssm-cache-len",
+    "16",
+    "--linear-attn-decode-backend",
+    "triton",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "270"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "HF_HUB_CACHE": "/data/hf/hub",
+    "HF_HUB_OFFLINE": "1"
+   },
+   "slots": 270,
+   "label": "BF16 state + 16-token window (SGLang replay kernel) - Qwen3.8-27B FP8, 270 state slots (balanced for 1k/1k)"
+  },
+  "fp32_packed_q38": {
+   "config_hash": "adc34874439ef12a0d3cd530eed4381cb8b471611fe6a834822f3d49f1b715bb",
+   "server_flags": [
+    "--mamba-ssm-dtype",
+    "float32",
+    "--mamba-radix-cache-strategy",
+    "no_buffer",
+    "--disable-overlap-schedule",
+    "--max-running-requests",
+    "512",
+    "--cuda-graph-max-bs-decode",
+    "512",
+    "--max-mamba-cache-size",
+    "165"
+   ],
+   "env": {
+    "LEAPQUANT_HOME": "$HOME/lqdec8",
+    "HF_HUB_CACHE": "/data/hf/hub",
+    "HF_HUB_OFFLINE": "1"
+   },
+   "slots": 165,
+   "label": "FP32 state, SGLang packed kernel - Qwen3.8-27B FP8, 165 state slots (balanced for 1k/1k)"
+  }
+ },
+ "slo": {
+  "schema": "lqh.slo.v1",
+  "note": "Versioned SLO objects. Every threshold has its unit; request conditions are evaluated together per request; global constraints are evaluated separately. Declared 2026-11-15, before any harness result; a change is a new version, never an edit after results.",
+  "slos": [
+   {
+    "slo_id": "slo-interactive-v1",
+    "version": 1,
+    "declared_utc": "2026-11-15T01:30:00Z",
+    "origin": "docs/DECISIONS.md line 15 (Service SLO, declared 14 Nov 2026): per request TTFT <= 2 s (1,000-token prompts) and TPOT <= 50 ms; distribution: p99 time between tokens <= 100 ms. The historical open-loop runs applied only the two request limits (runbook/serving_openloop.sh); this object applies all three.",
+    "request_predicate": {
+     "require_success": true,
+     "ttft_ms_max": 2000,
+     "tpot_ms_max": 50,
+     "tpot_metric": "tpot_native_ms: (E2EL - TTFT) / (N - 1) for N > 1; 0 for a one-token response (pinned InferenceX convention)",
+     "e2e_ms_max": null,
+     "e2e_metric": "e2e_terminal_ms",
+     "token_gap_rule": null
+    },
+    "global_constraints": {
+     "error_rate_max": 0.01,
+     "p99_token_gap_ms_max": 100,
+     "quality_status_required": "qualified",
+     "p99_token_gap_metric": "itl_token_ms",
+     "p99_token_gap_note": "exact token gaps; when per-chunk token counts are unknown the limit is unmeasurable (chunk gaps are not substituted)"
+    },
+    "eligibility": "measured requests of the run (warmup excluded); finite cohort over the cohort duration, sustained lane inside the steady window",
+    "units": {
+     "ttft_ms_max": "ms",
+     "tpot_ms_max": "ms per output token",
+     "error_rate_max": "fraction of attempted measured requests"
+    },
+    "scope_note": "TTFT limit stated for 1,000-token prompts; for 8,192-token prompts slo-batch-v1 is reported alongside"
+   },
+   {
+    "slo_id": "slo-batch-v1",
+    "version": 1,
+    "declared_utc": "2026-11-15T01:30:00Z",
+    "origin": "project addition declared 2026-11-15 before any harness result (not in docs/DECISIONS.md): long prompts and throughput-oriented serving",
+    "request_predicate": {
+     "require_success": true,
+     "ttft_ms_max": 10000,
+     "tpot_ms_max": 100,
+     "tpot_metric": "tpot_native_ms",
+     "e2e_ms_max": null,
+     "e2e_metric": "e2e_terminal_ms",
+     "token_gap_rule": null
+    },
+    "global_constraints": {
+     "error_rate_max": 0.01,
+     "p99_token_gap_ms_max": 200,
+     "quality_status_required": "qualified",
+     "p99_token_gap_metric": "itl_token_ms",
+     "p99_token_gap_note": "exact token gaps; when per-chunk token counts are unknown the limit is unmeasurable (chunk gaps are not substituted)"
+    },
+    "eligibility": "as slo-interactive-v1",
+    "units": {
+     "ttft_ms_max": "ms",
+     "tpot_ms_max": "ms per output token",
+     "error_rate_max": "fraction"
+    }
+   }
+  ]
+ },
+ "pricing": {
+  "schema": "lqh.pricing.v1",
+  "note": "Cost inputs. A missing price gives null dollar metrics (reason price_missing); nothing is assumed. Fill in a price with its source, date, region, billing granularity, commitment and what it includes, as a NEW pricing_id, and set campaign.json pricing_id.",
+  "default_pricing_id": "host-h100pcie-rental-v1",
+  "pricing": [
+   {
+    "pricing_id": "host-h100pcie-rental-v0",
+    "mode": "per_gpu",
+    "currency": "USD",
+    "usd_per_gpu_hour": null,
+    "source": null,
+    "date": null,
+    "region": null,
+    "billing_granularity": null,
+    "commitment": null,
+    "utilization": "the GPU is allocated to the run for its whole duration (fixed allocation per run)",
+    "included": [],
+    "excluded": [],
+    "separately_billed": [],
+    "null_reason": "the rental price of the assigned H100 PCIe host (1 GPU, 28 CPUs, 177 GB RAM) is not recorded in the repository"
+   },
+   {
+    "pricing_id": "host-h100pcie-rental-v1",
+    "mode": "whole_instance",
+    "currency": "USD",
+    "usd_per_instance_hour": 2.0,
+    "source": "Asif (user decision, 15 Nov 2026): the host's price is $2.00 per hour",
+    "date": "2026-11-15",
+    "region": null,
+    "billing_granularity": null,
+    "commitment": null,
+    "utilization": "the host is allocated to the run for its whole duration (fixed allocation per run)",
+    "included": [
+     "the whole host: 1x H100 PCIe 80 GB, 28 CPUs, 177 GB RAM"
+    ],
+    "excluded": [],
+    "separately_billed": [],
+    "note": "One GPU per host, so this is also the price per GPU-hour. v0 (null price) is kept for history."
+   }
+  ]
+ },
+ "hardware": {
+  "gpus": [
+   {
+    "uuid": "GPU-43c8b3d1-6c2a-9b4f-28d2-59a8ac034d76",
+    "name": "NVIDIA H100 PCIe",
+    "pci.bus_id": "00000000:00:07.0",
+    "memory.total": "81559 MiB",
+    "power.limit": "350.00 W",
+    "power.default_limit": "310.00 W",
+    "clocks.max.sm": "1755 MHz",
+    "clocks.max.mem": "1593 MHz",
+    "driver_version": "580.196.07",
+    "pcie.link.gen.max": "5",
+    "pcie.link.width.max": "16",
+    "persistence_mode": "Enabled",
+    "compute_mode": "Default",
+    "form_factor": "PCIe"
+   },
+   {
+    "topology_matrix": "\t\u001b[4mGPU0\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \t0-27\t0-1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n"
+   }
+  ],
+  "allocated_gpus": 1,
+  "host": {
+   "hostname": "quick-einstein",
+   "cpu_model": "AMD EPYC 9554 64-Core Processor",
+   "logical_cpus": 28,
+   "numa_nodes": 2,
+   "ram_gib": 177.1,
+   "kernel": "6.8.0-40-generic",
+   "open_file_limit_note": "soft 1,024 by default; runbook/harness_plan.sh raises it to the hard limit (15 Nov)",
+   "network_interconnect": "single host, single GPU: no NVLink/NVSwitch or inter-node network in use"
+  },
+  "curves": "one hardware type (H100 PCIe 80 GB); no other hardware in this campaign"
+ },
+ "jobs": [
+  {
+   "job": "025",
+   "name": "v10",
+   "start": "16:14",
+   "end": "16:17",
+   "exit": 0
+  },
+  {
+   "job": "026",
+   "name": "ab_policy",
+   "start": "16:17",
+   "end": "16:32",
+   "exit": 0
+  },
+  {
+   "job": "035",
+   "name": "ab_stagger",
+   "start": "16:32",
+   "end": "16:46",
+   "exit": 0
+  },
+  {
+   "job": "045",
+   "name": "round13_stagger",
+   "start": "17:26",
+   "end": "17:30",
+   "exit": 0
+  },
+  {
+   "job": "046",
+   "name": "round13b",
+   "start": "17:30",
+   "end": "17:42",
+   "exit": 0
+  },
+  {
+   "job": "060",
+   "name": "ab_trackflush",
+   "start": "18:10",
+   "end": "18:40",
+   "exit": 0
+  },
+  {
+   "job": "065",
+   "name": "layer_switch",
+   "start": "18:40",
+   "end": "18:46",
+   "exit": 0
+  },
+  {
+   "job": "066",
+   "name": "prefill_radix",
+   "start": "18:46",
+   "end": "18:56",
+   "exit": 0
+  },
+  {
+   "job": "067",
+   "name": "ab_slotcopy",
+   "start": "19:03",
+   "end": "19:26",
+   "exit": 0
+  },
+  {
+   "job": "091",
+   "name": "accuracy_paper",
+   "start": "18:56",
+   "end": "19:03",
+   "exit": 0
+  },
+  {
+   "job": "092",
+   "name": "accuracy_paper",
+   "start": "22:39",
+   "end": "06:10",
+   "exit": 0
+  },
+  {
+   "job": "110",
+   "name": "kernel_cycle",
+   "start": "06:10",
+   "end": "06:15",
+   "exit": 0
+  },
+  {
+   "job": "111",
+   "name": "lifecycle",
+   "start": "06:15",
+   "end": "06:17",
+   "exit": 0
+  },
+  {
+   "job": "112",
+   "name": "sanitizers",
+   "start": "06:17",
+   "end": "06:30",
+   "exit": 0
+  },
+  {
+   "job": "113",
+   "name": "validation_pair",
+   "start": "06:30",
+   "end": "06:44",
+   "exit": 0
+  },
+  {
+   "job": "114",
+   "name": "memory_per_arm",
+   "start": "06:44",
+   "end": "07:05",
+   "exit": 0
+  },
+  {
+   "job": "115",
+   "name": "pilot",
+   "start": "07:05",
+   "end": "07:38",
+   "exit": 0
+  },
+  {
+   "job": "116",
+   "name": "matrix_infx",
+   "start": "07:38",
+   "end": "10:16",
+   "exit": 0
+  },
+  {
+   "job": "117",
+   "name": "matrix_aa_slt",
+   "start": "10:16",
+   "end": "12:33",
+   "exit": 0
+  },
+  {
+   "job": "118",
+   "name": "quality",
+   "notes": [
+    "edited before its start: arms run fp32, leapquant, bf16_window (was fp32, bf16_window, leapquant) so a time-limit cut cannot lose LeapQuant vs fp32; if cut, the decision runs on the finished arms (quality_decision_partial.txt); earlier script kept as results/118_quality.before_arm_order.sh"
+   ],
+   "start": "12:33",
+   "end": "12:42",
+   "exit": 0
+  },
+  {
+   "job": "119",
+   "name": "longcontext",
+   "start": "12:42",
+   "end": "13:31",
+   "exit": 0
+  },
+  {
+   "job": "120",
+   "name": "compounding",
+   "start": "13:31",
+   "end": "13:54",
+   "exit": 0
+  },
+  {
+   "job": "121",
+   "name": "quality",
+   "notes": [
+    "queued: re-run of 118 (every request failed: FlashInfer sampling-kernel compile could not find curand.h); fix FLASHINFER_EXTRA_CUDAFLAGS (curand-only include folder, runbook/env.sh), arms with failed requests now fail, smoke run first; earlier runbook files in results/quality-fix_backup_20261115"
+   ],
+   "start": "18:31",
+   "end": "22:18",
+   "exit": 0
+  },
+  {
+   "job": "122",
+   "name": "confirm_aa_slt",
+   "notes": [
+    "queued (Asif: \"ok do the repeat\"): AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)",
+    "STOPPED by decision at 23:29 during block 2 (Asif 23:00: tests must finish within a few hours; plan revised to the 15 Nov multi-GPU benchmark prompt). Block 1 complete for all three arms; block 2 fp32 c1 and c64 kept; fp32 c256 cut mid-run."
+   ],
+   "start": "22:18",
+   "end": "23:36",
+   "exit": 0
+  },
+  {
+   "job": "123",
+   "name": "q38_probe",
+   "notes": [
+    "queued (B75: Qwen3.8-27B kernel agreement/memcheck at its head layout, one server per arm, balanced slot counts) and 124_tuned_slots_9b queued (9B arms with slots balanced for 1k/1k: LeapQuant 1,008, bf16 window 927, fp32 609; AA 256/512 users, 5 blocks); configs backed up in results/quality-fix_bac"
+   ],
+   "start": "23:36",
+   "end": "23:50",
+   "exit": 3
+  },
+  {
+   "job": "124",
+   "name": "tuned_slots_9b",
+   "start": "23:50"
+  },
+  {
+   "job": "125",
+   "name": "q38_screen",
+   "notes": [
+    "queued: Qwen3.8-27B memcheck rerun (--report-api-errors no) + AA-SLT at 1/16/64/128 users, three arms with probe-balanced slots (LeapQuant 300, bf16 window 270, fp32 165), one screening block; report harness-q38_*"
+   ]
+  }
+ ],
+ "blocked_or_not_run": [
+  {
+   "item": "multi-GPU stages 2-5 (DP 1/2/4/8 for the 9B, TP 1/2/4/8 for the 27B, equal-budget TP/DP/EP)",
+   "reason": "one GPU on this host; no authorization to provision more (Asif: 'prompt to me when you need the multi-gpu'); TP support in the LeapQuant integration is also untested"
+  },
+  {
+   "item": "Qwen3.6-35B-A3B (MoE)",
+   "reason": "prompt stage 5, after the 27B passes; not in the time box"
+  },
+  {
+   "item": "profile C (product open-loop), profile D (AgentX), profile E (mixed-length wave study)",
+   "reason": "not in the time box; AgentX harness not installed (backlog B70)"
+  },
+  {
+   "item": "10-block confirmations; full quality suites (GPQA-Diamond 198, MMLU-Pro, LiveCodeBench)",
+   "reason": "not in the time box; quality stays pending, so performance claims stay experimental"
+  },
+  {
+   "item": "racecheck of the decode kernel at batch 512",
+   "reason": "interrupted at 600 s on 15 Nov (job 112); needs an hour or more; not in the time box"
+  },
+  {
+   "item": "compounding probe repair",
+   "reason": "the mirror state is never read back between prefill chunks; needs a code change and a sensitivity test"
+  }
+ ]
+}

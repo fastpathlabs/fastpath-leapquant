@@ -1,0 +1,15 @@
+F1a FAIL 0 s  compute-sanitizer memcheck, fast_fold_test --quick
+F1b FAIL 0 s  compute-sanitizer racecheck (shared memory) of the CUDA fold, fast_fold_test --quick
+F2 PASS 39 s  CUDA fold against Triton fold, 9 cases, 32 heads
+F3_triton_1 PASS 25 s  bench_triton batch 32/128/512, fold backend triton, round 1
+F3_cuda_1 PASS 22 s  bench_triton batch 32/128/512, fold backend cuda, round 1
+F3_triton_2 PASS 22 s  bench_triton batch 32/128/512, fold backend triton, round 2
+F3_cuda_2 PASS 22 s  bench_triton batch 32/128/512, fold backend cuda, round 2
+F3x PASS 16 s  bench_triton with exact times, fold backend cuda
+F4 PASS 0 s  verify --fast with the CUDA fold, 9 traces, set verdict
+F5a PASS 6 s  engine glue, fast kernels, CUDA fold
+F5b PASS 4 s  compressed state, CUDA fold
+done 2026-11-14T08:30:05Z
+F1a_rerun exit 1
+F1b_rerun exit 0
+F1a_memcheck2 exit 0

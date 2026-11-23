@@ -1,0 +1,28 @@
+bf16_window    beyond_aime    INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.204, +0.204]  cap 0.0%  15 failed requests (an execution failure is never scored silently)
+bf16_window    aime2026       INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.114, +0.114]  cap 0.0%  30 failed requests (an execution failure is never scored silently)
+bf16_window    livecodebench_v6 INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.242, +0.242]  cap 0.0%  12 failed requests (an execution failure is never scored silently)
+bf16_window    gpqa_diamond   INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.114, +0.114]  cap 0.0%  30 failed requests (an execution failure is never scored silently)
+leapquant      beyond_aime    INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.204, +0.204]  cap 0.0%  15 failed requests (an execution failure is never scored silently)
+leapquant      aime2026       INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.114, +0.114]  cap 0.0%  30 failed requests (an execution failure is never scored silently)
+leapquant      livecodebench_v6 INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.242, +0.242]  cap 0.0%  12 failed requests (an execution failure is never scored silently)
+leapquant      gpqa_diamond   INVALID       acc 0.000 vs 0.000  diff +0.000 [-0.114, +0.114]  cap 0.0%  30 failed requests (an execution failure is never scored silently)
+{
+ "bf16_window_primary_product_baseline": false,
+ "bf16_window_reasons": [
+  "aime2026: INVALID",
+  "beyond_aime: INVALID",
+  "gpqa_diamond: INVALID",
+  "livecodebench_v6: INVALID"
+ ],
+ "comparator_for_cost_claims": "fp32 (bf16_window ineligible as the primary baseline; its speed stays visible)",
+ "leapquant_quality_qualified": false,
+ "leapquant_reasons": [
+  "aime2026: INVALID",
+  "beyond_aime: INVALID",
+  "gpqa_diamond: INVALID",
+  "livecodebench_v6: INVALID"
+ ],
+ "leapquant_claim_status": "experimental: raw performance only, no quality-qualified cost claim",
+ "cap_rate_target": "under 5% of answers cut",
+ "cap_rate_exceeded": []
+}

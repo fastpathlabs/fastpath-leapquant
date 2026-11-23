@@ -1,0 +1,16 @@
+wrote /home/ubuntu/leapquant/build/tune/synthetic_trace.bin: 200 tokens, 32 heads, state 128 x 128
+t64_w0_fmadfalse         verify PASS   ms per step at batch [32, 128, 512]:   0.6536    2.0082    6.8625
+t64_w0_fmadtrue          verify PASS   ms per step at batch [32, 128, 512]:   0.6472    2.0314    6.8178
+t64_w1_fmadfalse         verify PASS   ms per step at batch [32, 128, 512]:   0.6627    1.7763    5.8840
+t64_w1_fmadtrue          verify PASS   ms per step at batch [32, 128, 512]:   0.6397    1.7708    5.7955
+t128_w0_fmadfalse        verify PASS   ms per step at batch [32, 128, 512]:   0.7131    1.8922    6.7741
+t128_w0_fmadtrue         verify PASS   ms per step at batch [32, 128, 512]:   0.7165    1.8625    6.7050
+t128_w1_fmadfalse        verify PASS   ms per step at batch [32, 128, 512]:   0.6909    1.6005    5.6620
+t128_w1_fmadtrue         verify PASS   ms per step at batch [32, 128, 512]:   0.7073    1.5943    5.6185
+t256_w0_fmadfalse        verify PASS   ms per step at batch [32, 128, 512]:   0.6442    1.9581    7.3044
+t256_w0_fmadtrue         verify PASS   ms per step at batch [32, 128, 512]:   0.6437    1.9617    7.3192
+t256_w1_fmadfalse        verify PASS   ms per step at batch [32, 128, 512]:   0.6376    1.6398    6.1380
+t256_w1_fmadtrue         verify PASS   ms per step at batch [32, 128, 512]:   0.6372    1.6379    6.0678
+
+Fastest correct build at batch 512: t128_w1_fmadtrue (5.6185 ms per step).
+Installed as build/libleapquant_cuda.so. To rebuild it:  make cuda CUDA_THREADS=128 WORD_LOADS=1 FMAD=true

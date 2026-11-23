@@ -1,0 +1,15 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2025         120       91    75.83%  3.91%          3       0         29          45211
+  aime2024         120      101    84.17%  3.33%          4       0         18          41334
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/accuracy-strict/paper_strict_bf16_window.json
+
+  Paired comparison with /home/ubuntu/lqexp/results/accuracy-paper/paper_fp32_window.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2024       120    84.17%    88.33%          1          6      -4.17%    -12.96 .. +4.63  INCONCLUSIVE
+  aime2025       120    75.83%    85.83%          4         16     -10.00%    -19.40 .. -0.60  INCONCLUSIVE
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin

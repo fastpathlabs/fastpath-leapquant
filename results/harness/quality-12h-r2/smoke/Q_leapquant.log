@@ -1,0 +1,13 @@
+server starting (pid 1704196), log: /home/ubuntu/lqexp/results/harness/quality-12h-r2/smoke/server_quality_leapquant.log
+server is up
+KV cache 1718242 tokens, at most 1792 per request: retraction-free up to 958; concurrency 16
+aime2026: 2 questions
+all tasks through one pool, concurrency 16 ...
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2026           2        0     0.00%  0.00%          1       0          2            256
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/smoke/quality_leapquant.json
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/smoke/quality_items_leapquant.jsonl

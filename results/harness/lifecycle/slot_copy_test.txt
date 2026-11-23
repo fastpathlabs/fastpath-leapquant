@@ -1,0 +1,11 @@
+PASS  fused: one pair, CPU int64
+PASS  fused: one pair, GPU int32
+PASS  fused: a slot onto itself, GPU int64
+PASS  fused: two pairs, GPU int64
+PASS  fused: three pairs, overlapping
+PASS  field by field: one pair, CPU int64
+PASS  field by field: one pair, GPU int32
+PASS  field by field: a slot onto itself, GPU int64
+PASS  field by field: two pairs, GPU int64
+PASS  field by field: three pairs, overlapping
+SLOT COPY: PASS

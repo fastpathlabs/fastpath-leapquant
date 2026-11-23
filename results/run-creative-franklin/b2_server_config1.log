@@ -1,0 +1,66 @@
+/home/ubuntu/sglang/python/sglang/launch_server.py:71: UserWarning: 'python -m sglang.launch_server' is still supported, but 'sglang serve' is the recommended entrypoint.
+  Example: sglang serve --model-path <model> [options]
+  warnings.warn(
+[2026-11-13 08:13:26] kill_process_tree called: parent_pid=665187, include_parent=False, pid=665187
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/ubuntu/sglang/python/sglang/launch_server.py", line 84, in <module>
+    run_server(server_args)
+  File "/home/ubuntu/sglang/python/sglang/launch_server.py", line 29, in run_server
+    server_args.resolve_once()
+  File "/home/ubuntu/sglang/python/sglang/srt/server_args.py", line 265, in resolve_once
+    run_resolution_pipeline(self)
+  File "/home/ubuntu/sglang/python/sglang/srt/arg_groups/pipeline.py", line 141, in run_resolution_pipeline
+    from sglang.srt.arg_groups.expert_pack_hook import handle_expert_pack
+  File "/home/ubuntu/sglang/python/sglang/srt/arg_groups/expert_pack_hook.py", line 20, in <module>
+    from sglang.srt.model_loader.expert_pack_config import (
+  File "/home/ubuntu/sglang/python/sglang/srt/model_loader/__init__.py", line 11, in <module>
+    from sglang.srt.model_loader.loader import BaseModelLoader, get_model_loader
+  File "/home/ubuntu/sglang/python/sglang/srt/model_loader/loader.py", line 89, in <module>
+    from sglang.srt.layers.layer_boundary.stage import check_stage_producers
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/layer_boundary/__init__.py", line 16, in <module>
+    from sglang.srt.layers.layer_boundary.adapters.attention import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/layer_boundary/adapters/attention.py", line 27, in <module>
+    from sglang.srt.layers.layer_boundary.layout import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/layer_boundary/layout.py", line 27, in <module>
+    from sglang.srt.layers.cp.utils import is_mla_cp_active, is_mla_cp_enabled
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/cp/__init__.py", line 33, in <module>
+    from sglang.srt.layers.cp.zigzag import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/cp/zigzag.py", line 55, in <module>
+    from sglang.srt.mem_cache.memory_pool import KVWriteLoc
+  File "/home/ubuntu/sglang/python/sglang/srt/mem_cache/memory_pool.py", line 70, in <module>
+    from sglang.srt.layers.quantization.fp4_kv_cache_quant_method import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/quantization/__init__.py", line 18, in <module>
+    from sglang.srt.layers.quantization.compressed_tensors.compressed_tensors import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/quantization/compressed_tensors/compressed_tensors.py", line 41, in <module>
+    from sglang.srt.layers.quantization.compressed_tensors.schemes import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/quantization/compressed_tensors/schemes/__init__.py", line 19, in <module>
+    from .compressed_tensors_w8a8_int8 import (
+  File "/home/ubuntu/sglang/python/sglang/srt/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_int8.py", line 30, in <module>
+    from sgl_kernel import int8_scaled_mm
+  File "/home/ubuntu/venv-sglang/lib/python3.12/site-packages/sgl_kernel/__init__.py", line 19, in <module>
+    common_ops = _load_architecture_specific_ops()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/venv-sglang/lib/python3.12/site-packages/sgl_kernel/load_utils.py", line 192, in _load_architecture_specific_ops
+    raise ImportError(error_msg)
+ImportError: 
+[sgl_kernel] CRITICAL: Could not load any common_ops library!
+
+Attempted locations:
+1. Architecture-specific pattern: /home/ubuntu/venv-sglang/lib/python3.12/site-packages/sgl_kernel/sm90/common_ops.* - found files: ['/home/ubuntu/venv-sglang/lib/python3.12/site-packages/sgl_kernel/sm90/common_ops.abi3.so']
+2. Fallback pattern: /home/ubuntu/venv-sglang/lib/python3.12/site-packages/sgl_kernel/common_ops.* - found files: []
+3. Standard Python import: common_ops - failed
+
+GPU Info:
+- Compute capability: 90
+- Expected variant: SM90 (Hopper/H100 with fast math optimization)
+- CUDA version: 12.6
+
+Please ensure sgl_kernel is properly installed with:
+pip install --upgrade sglang-kernel
+
+Error details from previous import attempts:
+- ImportError: libnvrtc.so.13: cannot open shared object file: No such file or directory
+- ModuleNotFoundError: No module named 'common_ops'
+

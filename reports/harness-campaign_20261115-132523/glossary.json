@@ -1,0 +1,642 @@
+{
+ "requests_expected": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured requests the profile asked for (warmup excluded).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_attempted": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured request attempts sent (retries count separately).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_succeeded": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts that ended with a complete response.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_failed": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts that ended with an error (HTTP, stream or server error).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_timeout": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts stopped at their deadline.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_cancelled": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts cancelled by the client.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_incomplete": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts with no final status when the run ended (unresolved).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_with_first_token": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Measured attempts that received at least one output token.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "retries": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Attempts that retry an earlier attempt (credited once if they succeed).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "warmup_requests": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Warmup requests (never part of any metric).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "completion_rate": {
+  "unit": "fraction",
+  "aggregation": "run",
+  "definition": "Succeeded / attempted measured requests.",
+  "numerator": "requests_succeeded",
+  "denominator": "requests_attempted",
+  "lane": "all"
+ },
+ "error_rate": {
+  "unit": "fraction",
+  "aggregation": "run",
+  "definition": "(failed + timeout + cancelled + incomplete) / attempted measured requests.",
+  "numerator": "unsuccessful attempts",
+  "denominator": "requests_attempted",
+  "lane": "all"
+ },
+ "first_token_response_rate": {
+  "unit": "fraction",
+  "aggregation": "run",
+  "definition": "Attempts with at least one output token / attempted. A first token is not a successful completion.",
+  "numerator": "requests_with_first_token",
+  "denominator": "requests_attempted",
+  "lane": "all"
+ },
+ "output_length_mismatches": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Succeeded requests whose output token count differs from the requested exact length (profiles that ignore EOS).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "requests_exact_chunk_tokens": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Succeeded requests whose every streamed chunk carried an exact server-reported token count.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "input_tokens_succeeded": {
+  "unit": "tokens",
+  "aggregation": "run",
+  "definition": "Prompt tokens of succeeded measured requests.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "output_tokens_succeeded": {
+  "unit": "tokens",
+  "aggregation": "run",
+  "definition": "Output tokens of succeeded measured requests (server usage count).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "output_tokens_unsuccessful": {
+  "unit": "tokens",
+  "aggregation": "run",
+  "definition": "Output tokens streamed to measured requests that did not succeed (partial, failed, superseded). Never credited.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "cohort_duration_s": {
+  "unit": "s",
+  "aggregation": "run",
+  "definition": "From the start of main scheduling (warmup excluded) to the last measured completion or deadline. Drain included.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "finite"
+ },
+ "finite_cohort_output_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "Successful cohort output tokens / cohort duration.",
+  "numerator": "output_tokens_succeeded",
+  "denominator": "cohort_duration_s",
+  "lane": "finite"
+ },
+ "finite_cohort_input_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "Successful cohort input tokens / cohort duration.",
+  "numerator": "input_tokens_succeeded",
+  "denominator": "cohort_duration_s",
+  "lane": "finite"
+ },
+ "finite_cohort_total_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "Successful cohort input + output tokens / cohort duration (same cohort).",
+  "numerator": "input + output tokens of succeeded requests",
+  "denominator": "cohort_duration_s",
+  "lane": "finite"
+ },
+ "request_throughput_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "Succeeded measured requests / cohort duration.",
+  "numerator": "requests_succeeded",
+  "denominator": "cohort_duration_s",
+  "lane": "finite"
+ },
+ "output_tps_per_gpu": {
+  "unit": "tok/s/GPU",
+  "aggregation": "run",
+  "definition": "Deployment output tok/s (finite cohort or steady successful) / all allocated physical GPUs, idle and prefill GPUs included.",
+  "numerator": "deployment output tok/s",
+  "denominator": "allocated physical GPUs",
+  "lane": "all"
+ },
+ "input_tps_per_gpu": {
+  "unit": "tok/s/GPU",
+  "aggregation": "run",
+  "definition": "Deployment input tok/s / all allocated physical GPUs.",
+  "numerator": "deployment input tok/s",
+  "denominator": "allocated physical GPUs",
+  "lane": "all"
+ },
+ "total_tps_per_gpu": {
+  "unit": "tok/s/GPU",
+  "aggregation": "run",
+  "definition": "Deployment total tok/s / all allocated physical GPUs.",
+  "numerator": "deployment total tok/s",
+  "denominator": "allocated physical GPUs",
+  "lane": "all"
+ },
+ "output_event_tps_max_10s": {
+  "unit": "tok/s",
+  "aggregation": "10 s window",
+  "definition": "Diagnostic: the largest output-token arrival rate in any 10 s window of the main phase (all requests). Not a headline.",
+  "numerator": "tokens arriving in the window",
+  "denominator": "10 s",
+  "lane": "all"
+ },
+ "steady_window_s": {
+  "unit": "s",
+  "aggregation": "run",
+  "definition": "Length of the declared steady phase (ramp and drain excluded).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_output_event_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "Output tokens received inside the steady window (any request) / window seconds.",
+  "numerator": "tokens received in window",
+  "denominator": "steady_window_s",
+  "lane": "sustained"
+ },
+ "successful_steady_output_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "In-window output tokens of requests that eventually succeeded / window seconds (status known after drain).",
+  "numerator": "in-window tokens of succeeded requests",
+  "denominator": "steady_window_s",
+  "lane": "sustained"
+ },
+ "steady_failed_request_tokens": {
+  "unit": "tokens",
+  "aggregation": "run",
+  "definition": "In-window output tokens of requests that did not succeed.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_unresolved_requests": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests with in-window tokens whose final status was still unknown after drain.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_unresolved_tokens": {
+  "unit": "tokens",
+  "aggregation": "run",
+  "definition": "In-window tokens of unresolved requests (neither successful nor failed; never credited).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_completions": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Succeeded requests whose terminal response arrived inside the window.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_request_rate_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "steady_completions / window seconds.",
+  "numerator": "steady_completions",
+  "denominator": "steady_window_s",
+  "lane": "sustained"
+ },
+ "steady_first_token_responses": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests whose first output token arrived inside the window.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_boundary_started_before": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests sent before the window that completed inside it.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_boundary_ended_after": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests sent inside the window that completed after it.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_boundary_spanning": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests sent before the window and completed after it.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "steady_cohort_requests": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Requests SENT inside the window (cohort of the per-query medians).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "sustained"
+ },
+ "offered_rate_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "Declared Poisson arrival rate.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "open_loop"
+ },
+ "attempted_rate_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "Requests sent / arrival span.",
+  "numerator": "requests sent",
+  "denominator": "arrival span",
+  "lane": "open_loop"
+ },
+ "achieved_completion_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "Succeeded requests / (arrival start to end of drain).",
+  "numerator": "requests_succeeded",
+  "denominator": "arrival start to drain end",
+  "lane": "open_loop"
+ },
+ "ttft_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "First content chunk arrival minus send. Succeeded measured requests.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "e2e_terminal_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "Terminal response (stream end) minus send. Succeeded measured requests.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "e2e_last_token_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "Last content chunk arrival minus send: the pinned InferenceX client's E2EL. Succeeded measured requests.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "tpot_native_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "Pinned InferenceX TPOT: (E2EL - TTFT) / (N - 1), N > 1, E2EL ending at the last content chunk. Its reciprocal is the client's 'interactivity'.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "tpot_terminal_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "(terminal response latency - TTFT) / (N - 1), N > 1. Differs from the native TPOT by the stream's closing delay.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "span_last_first_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "(last token - first token) / (N - 1), N > 1. Equal to the native TPOT by construction of the pinned client; named separately as the specification asks.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "itl_token_ms": {
+  "unit": "ms",
+  "aggregation": "token gap",
+  "definition": "Gaps between consecutive output tokens, from requests whose every chunk carried exactly one token (exact). Requests with multi-token chunks are excluded and counted.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "chunk_gap_ms": {
+  "unit": "ms",
+  "aggregation": "chunk gap",
+  "definition": "Gaps between consecutive content chunks (all succeeded requests): the pinned client's ITL. A multi-token chunk is ONE gap, never several zero gaps.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "itl_estimated_uniform_ms": {
+  "unit": "ms",
+  "aggregation": "token gap (estimate)",
+  "definition": "ESTIMATE, only when multi-token chunks exist: each chunk gap divided evenly among its tokens.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "client_queue_delay_ms": {
+  "unit": "ms",
+  "aggregation": "request",
+  "definition": "Send minus scheduled time (client-side wait for a concurrency slot or a late arrival).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "user_speed_post_first_token_tps": {
+  "unit": "tok/s/user",
+  "aggregation": "request",
+  "definition": "(N - 1) / (last token - first token), N > 1: generation speed one user sees after the first token.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "user_speed_e2e_tps": {
+  "unit": "tok/s/user",
+  "aggregation": "request",
+  "definition": "N / (last token - send): speed one user sees including the wait for the first token.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "interactivity_native_median_tps": {
+  "unit": "tok/s/user",
+  "aggregation": "run",
+  "definition": "1000 / median native TPOT (ms): the pinned client's 'median_intvty'.",
+  "numerator": "1000",
+  "denominator": "median tpot_native_ms",
+  "lane": "all"
+ },
+ "slo_qualifying_requests": {
+  "unit": "requests",
+  "aggregation": "run",
+  "definition": "Succeeded measured requests that meet every request-level SLO condition together.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "slo_qualifying_fraction": {
+  "unit": "fraction",
+  "aggregation": "run",
+  "definition": "Qualifying requests / attempted measured requests.",
+  "numerator": "slo_qualifying_requests",
+  "denominator": "requests_attempted",
+  "lane": "all"
+ },
+ "request_goodput_rps": {
+  "unit": "req/s",
+  "aggregation": "run",
+  "definition": "Qualifying requests / the lane's duration (finite: cohort duration; steady: qualifying completions inside the window / window).",
+  "numerator": "qualifying requests",
+  "denominator": "duration",
+  "lane": "all"
+ },
+ "output_goodput_tps": {
+  "unit": "tok/s",
+  "aggregation": "run",
+  "definition": "Output tokens of qualifying requests / the lane's duration (steady: their in-window tokens / window).",
+  "numerator": "qualifying output tokens",
+  "denominator": "duration",
+  "lane": "all"
+ },
+ "output_goodput_tps_per_gpu": {
+  "unit": "tok/s/GPU",
+  "aggregation": "run",
+  "definition": "output_goodput_tps / allocated physical GPUs.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_running_requests": {
+  "unit": "requests",
+  "aggregation": "decode log line",
+  "definition": "Running requests in the server's decode batches during the main phase (the actual kernel batch, not client concurrency).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_queue_depth": {
+  "unit": "requests",
+  "aggregation": "log line",
+  "definition": "Requests waiting in the server queue during the main phase.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_token_usage": {
+  "unit": "fraction",
+  "aggregation": "log line",
+  "definition": "KV token pool usage reported by the server.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_retractions": {
+  "unit": "events",
+  "aggregation": "run",
+  "definition": "Decode retractions (a request's state discarded and rebuilt by prefill) during the run.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_cuda_graph_fraction": {
+  "unit": "fraction",
+  "aggregation": "decode log line",
+  "definition": "Share of decode log lines that ran a CUDA graph.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "server_reported_gen_tps": {
+  "unit": "tok/s",
+  "aggregation": "decode log line",
+  "definition": "The server's own generation throughput readings (diagnostic, not a headline).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_memory_used_mib": {
+  "unit": "MiB",
+  "aggregation": "sample",
+  "definition": "Device memory in use (nvidia-smi), whole device, during the main phase.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_memory_total_mib": {
+  "unit": "MiB",
+  "aggregation": "run",
+  "definition": "Device memory size.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_power_w": {
+  "unit": "W",
+  "aggregation": "sample",
+  "definition": "GPU board power (nvidia-smi power.draw), during the main phase. GPU only, not host or facility.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_sm_clock_mhz": {
+  "unit": "MHz",
+  "aggregation": "sample",
+  "definition": "SM clock during the main phase (thermal/clock telemetry).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_temperature_c": {
+  "unit": "C",
+  "aggregation": "sample",
+  "definition": "GPU temperature during the main phase.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_energy_j": {
+  "unit": "J",
+  "aggregation": "run",
+  "definition": "Integral of GPU power over the measurement interval (trapezoid), only with adequate sample coverage.",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "gpu_energy_j_per_output_token": {
+  "unit": "J/token",
+  "aggregation": "run",
+  "definition": "GPU energy / successful output tokens of the same interval.",
+  "numerator": "gpu_energy_j",
+  "denominator": "output_tokens_succeeded",
+  "lane": "all"
+ },
+ "gpu_energy_j_per_qualified_output_token": {
+  "unit": "J/token",
+  "aggregation": "run",
+  "definition": "GPU energy / output tokens of SLO-qualifying requests.",
+  "numerator": "gpu_energy_j",
+  "denominator": "qualifying output tokens",
+  "lane": "all"
+ },
+ "usd_per_hour": {
+  "unit": "USD/h",
+  "aggregation": "run",
+  "definition": "Deployment cost per hour from pricing.json under its cost mode (null when no price is recorded).",
+  "numerator": "",
+  "denominator": "",
+  "lane": "all"
+ },
+ "usd_per_million_output_tokens": {
+  "unit": "USD/1M tok",
+  "aggregation": "run",
+  "definition": "USD/h x 1e6 / (3600 x successful deployment output tok/s).",
+  "numerator": "USD/h x 1e6",
+  "denominator": "3600 x output tok/s",
+  "lane": "all"
+ },
+ "usd_per_million_qualified_output_tokens": {
+  "unit": "USD/1M tok",
+  "aggregation": "run",
+  "definition": "Same with SLO-qualified output tok/s.",
+  "numerator": "USD/h x 1e6",
+  "denominator": "3600 x output_goodput_tps",
+  "lane": "all"
+ },
+ "usd_per_million_input_tokens": {
+  "unit": "USD/1M tok",
+  "aggregation": "run",
+  "definition": "Alternative view: the WHOLE deployment cost attributed to input tokens. Not additive with the output view.",
+  "numerator": "USD/h x 1e6",
+  "denominator": "3600 x input tok/s",
+  "lane": "all"
+ },
+ "usd_per_million_total_tokens": {
+  "unit": "USD/1M tok",
+  "aggregation": "run",
+  "definition": "Alternative view: the whole deployment cost attributed to input + output tokens. Never an output-token cost.",
+  "numerator": "USD/h x 1e6",
+  "denominator": "3600 x total tok/s",
+  "lane": "all"
+ }
+}

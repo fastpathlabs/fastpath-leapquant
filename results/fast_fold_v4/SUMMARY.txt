@@ -1,0 +1,4 @@
+bench_cuda_1.txt: ratio 1.0052 ratio 0.9998 fast fold 0.265 ms fast store (adopt) of every row 0.450 ms ratio 1.0060 ratio 0.9997 fast fold 1.076 ms fast store (adopt) of every row 1.740 ms 
+bench_cuda_2.txt: ratio 1.0052 ratio 0.9998 fast fold 0.266 ms fast store (adopt) of every row 0.450 ms ratio 1.0060 ratio 0.9997 fast fold 1.140 ms fast store (adopt) of every row 1.713 ms 
+bench_triton_1.txt: ratio 1.0052 ratio 0.9996 fast fold 0.567 ms fast store (adopt) of every row 0.882 ms ratio 1.0060 ratio 0.9997 fast fold 2.257 ms fast store (adopt) of every row 3.417 ms 
+bench_triton_2.txt: ratio 1.0052 ratio 0.9996 fast fold 0.568 ms fast store (adopt) of every row 0.882 ms ratio 1.0060 ratio 0.9997 fast fold 2.295 ms fast store (adopt) of every row 3.413 ms 

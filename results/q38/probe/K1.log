@@ -1,0 +1,75 @@
+LeapQuant decode: CUDA decode, variant 9
+Triton kernels on NVIDIA H100 PCIe: HV=48 H=16 K=128 V=128 window=16 projections=bf16
+dtypes: projections bf16; state int8 levels, fp32 steps and scales, fp16 compensators and records, fp16 log decays; fold backend cuda; decode backend cuda
+
+  batch 4
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.4e-06  worst 5.4e-05;   records written: worst relative difference 4.8e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00176 worst 0.00252   fast: mean 0.00177 worst 0.00253   fast / exact (mean): 1.0033
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00032   fast: mean 0.00027 worst 0.00032   fast / exact (mean): 0.9990
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.0e-07
+    fast export vs exact export: worst relative difference 6.9e-08 (boundary state), 4.1e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99527, 0.98137   fast: 0.99459, 0.97123
+    time   fast decode step 0.0085 ms (position 0: 0.0077, last: 0.0088)   fast fold 0.020 ms   ->  0.0097 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.025 ms; with every row skipped 0.0037 ms
+    time   exact decode step 0.0223 ms   exact fold 0.343 ms   ->  0.0437 ms per token
+
+  batch 32
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.5e-06  worst 1.0e-04;   records written: worst relative difference 4.7e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00175 worst 0.00300   fast: mean 0.00176 worst 0.00298   fast / exact (mean): 1.0033
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00035   fast: mean 0.00027 worst 0.00035   fast / exact (mean): 0.9997
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.6e-07
+    fast export vs exact export: worst relative difference 6.9e-08 (boundary state), 4.7e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99535, 0.95936   fast: 0.99441, 0.95353
+    time   fast decode step 0.0259 ms (position 0: 0.0217, last: 0.0271)   fast fold 0.090 ms   ->  0.0316 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.162 ms; with every row skipped 0.0041 ms
+    time   exact decode step 0.0701 ms   exact fold 1.881 ms   ->  0.1877 ms per token
+
+  batch 128
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.7e-06  worst 6.6e-05;   records written: worst relative difference 5.8e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00172 worst 0.00261   fast: mean 0.00173 worst 0.00264   fast / exact (mean): 1.0025
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9997
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.1e-07
+    fast export vs exact export: worst relative difference 7.1e-08 (boundary state), 5.0e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99538, 0.98419   fast: 0.99477, 0.98394
+    time   fast decode step 0.0927 ms (position 0: 0.0687, last: 0.1094)   fast fold 0.315 ms   ->  0.1123 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.573 ms; with every row skipped 0.0041 ms
+    time   exact decode step 0.2346 ms   exact fold 6.927 ms   ->  0.6676 ms per token
+
+=== 9B layout (HV 32, H 16) ===
+LeapQuant decode: CUDA decode, variant 9
+Triton kernels on NVIDIA H100 PCIe: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+dtypes: projections bf16; state int8 levels, fp32 steps and scales, fp16 compensators and records, fp16 log decays; fold backend cuda; decode backend cuda
+
+  batch 4
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.7e-06  worst 3.2e-05;   records written: worst relative difference 4.7e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00179 worst 0.00283   fast: mean 0.00180 worst 0.00284   fast / exact (mean): 1.0032
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00032   fast: mean 0.00027 worst 0.00032   fast / exact (mean): 0.9986
+    full-precision state exported by the fast fold vs exact export: worst relative difference 3.8e-07
+    fast export vs exact export: worst relative difference 6.9e-08 (boundary state), 4.0e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99470, 0.97026   fast: 0.99371, 0.96094
+    time   fast decode step 0.0083 ms (position 0: 0.0076, last: 0.0086)   fast fold 0.019 ms   ->  0.0095 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.024 ms; with every row skipped 0.0036 ms
+    time   exact decode step 0.0217 ms   exact fold 0.337 ms   ->  0.0428 ms per token
+
+  batch 32
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 4.0e-06  worst 6.8e-05;   records written: worst relative difference 6.6e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00172 worst 0.00272   fast: mean 0.00173 worst 0.00271   fast / exact (mean): 1.0025
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00033   fast: mean 0.00027 worst 0.00033   fast / exact (mean): 1.0001
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.9e-07
+    fast export vs exact export: worst relative difference 6.9e-08 (boundary state), 4.9e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99550, 0.97862   fast: 0.99494, 0.97613
+    time   fast decode step 0.0165 ms (position 0: 0.0118, last: 0.0175)   fast fold 0.068 ms   ->  0.0207 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.114 ms; with every row skipped 0.0041 ms
+    time   exact decode step 0.0364 ms   exact fold 1.180 ms   ->  0.1102 ms per token
+
+  batch 128
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.8e-06  worst 7.4e-05;   records written: worst relative difference 7.5e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00172 worst 0.00256   fast: mean 0.00173 worst 0.00254   fast / exact (mean): 1.0024
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00033   fast: mean 0.00027 worst 0.00033   fast / exact (mean): 0.9998
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.0e-07
+    fast export vs exact export: worst relative difference 7.1e-08 (boundary state), 5.0e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99553, 0.98590   fast: 0.99485, 0.98432
+    time   fast decode step 0.0565 ms (position 0: 0.0443, last: 0.0743)   fast fold 0.215 ms   ->  0.0699 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.389 ms; with every row skipped 0.0042 ms
+    time   exact decode step 0.1597 ms   exact fold 4.645 ms   ->  0.4501 ms per token
+

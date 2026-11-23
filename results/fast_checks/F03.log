@@ -1,0 +1,12 @@
+engine test on cuda: 150 steps, 2 layers, 4 value heads, state 32 x 48
+  1. worst difference from the reference core: 1.3e-02   (reported only: free-running on a GPU)
+  2. output error against the fp32 engine: 0.369%   (limit 2%)
+  3. 98 folds seen, 50 of them forced; fp32 tensor after a fold is off by at most 0.565%   (limit 2%)
+  4. prefix-cache hit followed for 88 steps
+     the hit copied in fp32 differs from the original by 0.705%   (limit 2%)
+     the hit restored from a LeapQuant checkpoint differs from the original by 0.737%   (limit 2%)
+     error against fp32 after the hit: original request 0.539%, restored request 0.566%
+     checkpoint size: 2,496 bytes per head
+  5. slot reuse, host round trip and padded rows: covered by 1 and 2 above
+
+PASS

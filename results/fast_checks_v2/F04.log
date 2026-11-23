@@ -1,0 +1,44 @@
+Triton kernels on NVIDIA H100 PCIe: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+
+  batch 32
+    decode step, fast vs exact   output difference: median 2.2e-07  p99 3.8e-06  worst 9.6e-05;   records written: worst relative difference 6.9e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00170 worst 0.00241   fast: mean 0.00171 worst 0.00243   fast / exact (mean): 1.0053
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00033   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9995
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.7e-07
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99774, 0.99100   fast: 0.99635, 0.98365
+    time   fast decode step 0.0193 ms (position 0: 0.0192, last: 0.0195)   fast fold 0.162 ms   ->  0.0294 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.247 ms; with every row skipped 0.0031 ms
+    time   exact decode step 0.0411 ms   exact fold 1.019 ms   ->  0.1048 ms per token
+    time   sglang window kernel, fp32 state: 0.0506 ms per token (append steps 0.0473, the step that writes the state 0.1000)
+    time   sglang packed kernel, fp32 state: 0.0800 ms per token
+    time   sglang window kernel, bf16 state: 0.0280 ms per token (append steps 0.0268, the step that writes the state 0.0464)
+    time   sglang packed kernel, bf16 state: 0.0241 ms per token
+
+  batch 128
+    decode step, fast vs exact   output difference: median 2.2e-07  p99 3.7e-06  worst 1.4e-04;   records written: worst relative difference 4.7e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00171 worst 0.00262   fast: mean 0.00172 worst 0.00264   fast / exact (mean): 1.0054
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9997
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.5e-07
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99778, 0.99056   fast: 0.99657, 0.98732
+    time   fast decode step 0.0753 ms (position 0: 0.0702, last: 0.0807)   fast fold 0.584 ms   ->  0.1118 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.883 ms; with every row skipped 0.0036 ms
+    time   exact decode step 0.1719 ms   exact fold 3.999 ms   ->  0.4218 ms per token
+    time   sglang window kernel, fp32 state: 0.1785 ms per token (append steps 0.1630, the step that writes the state 0.4117)
+    time   sglang packed kernel, fp32 state: 0.3040 ms per token
+    time   sglang window kernel, bf16 state: 0.1014 ms per token (append steps 0.0957, the step that writes the state 0.1867)
+    time   sglang packed kernel, bf16 state: 0.1567 ms per token
+
+  batch 512
+    decode step, fast vs exact   output difference: median 2.2e-07  p99 3.7e-06  worst 1.4e-04;   records written: worst relative difference 8.2e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00177 worst 0.00292   fast: mean 0.00178 worst 0.00294   fast / exact (mean): 1.0065
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00035   fast: mean 0.00027 worst 0.00035   fast / exact (mean): 0.9996
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.8e-07
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99746, 0.98942   fast: 0.99611, 0.98236
+    time   fast decode step 0.2522 ms (position 0: 0.2259, last: 0.2794)   fast fold 2.333 ms   ->  0.3980 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 3.438 ms; with every row skipped 0.0038 ms
+    time   exact decode step 0.6053 ms   exact fold 16.253 ms   ->  1.6211 ms per token
+    time   sglang window kernel, fp32 state: 0.6947 ms per token (append steps 0.6357, the step that writes the state 1.5792)
+    time   sglang packed kernel, fp32 state: 1.1981 ms per token
+    time   sglang window kernel, bf16 state: 0.3815 ms per token (append steps 0.3585, the step that writes the state 0.7260)
+    time   sglang packed kernel, bf16 state: 0.6110 ms per token
+

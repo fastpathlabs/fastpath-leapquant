@@ -1,0 +1,6 @@
+burst 0: wall 1.605 s  20,419 prompt tok/s  latency median 1.521 s, max 1.543 s
+burst 1: wall 1.604 s  20,431 prompt tok/s  latency median 1.522 s, max 1.547 s
+burst 2: wall 1.609 s  20,362 prompt tok/s  latency median 1.524 s, max 1.545 s
+burst 3: wall 1.597 s  20,512 prompt tok/s  latency median 1.510 s, max 1.539 s
+burst 4: wall 1.612 s  20,331 prompt tok/s  latency median 1.522 s, max 1.546 s
+median wall 1.605 s over 5 bursts

@@ -1,0 +1,104 @@
+{
+ "request_tokens": 2048,
+ "slots_per_request": 3,
+ "arms": {
+  "bf16_window": {
+   "pools": {
+    "log": "/home/ubuntu/lqexp/results/q38/probe/server_bf16_window.log",
+    "avail_after_weights_gib": 50.11,
+    "weights_gib": 28.47,
+    "slots": 120,
+    "conv_gib": 0.33,
+    "ssm_gib": 8.51,
+    "kv_tokens": 366083,
+    "kv_gib": 22.34,
+    "avail_after_pools_gib": 17.36,
+    "max_running_requests": 40,
+    "available_after_graphs_gib": 14.72,
+    "mem_fraction_static": 0.7610821093749999,
+    "cuda_graph_max_bs_decode": 512
+   },
+   "kv_bytes_per_token": 65524.46398264874,
+   "state_bytes_per_slot": 79098981.03466667,
+   "budget_gib": 31.18,
+   "balanced_requests": 90,
+   "balanced_slots": 270,
+   "probe_requests_kv_bound": 178,
+   "probe_requests_state_bound": 40
+  },
+  "fp32": {
+   "pools": {
+    "log": "/home/ubuntu/lqexp/results/q38/probe/server_fp32.log",
+    "avail_after_weights_gib": 50.11,
+    "weights_gib": 28.47,
+    "slots": 120,
+    "conv_gib": 0.33,
+    "ssm_gib": 17.02,
+    "kv_tokens": 226691,
+    "kv_gib": 13.84,
+    "avail_after_pools_gib": 18.84,
+    "max_running_requests": 40,
+    "available_after_graphs_gib": 16.01,
+    "mem_fraction_static": 0.7610821093749999,
+    "cuda_graph_max_bs_decode": 512
+   },
+   "kv_bytes_per_token": 65554.37509279151,
+   "state_bytes_per_slot": 155245172.05333334,
+   "budget_gib": 31.189999999999998,
+   "balanced_requests": 55,
+   "balanced_slots": 165,
+   "probe_requests_kv_bound": 110,
+   "probe_requests_state_bound": 40
+  },
+  "leapquant": {
+   "pools": {
+    "log": "/home/ubuntu/lqexp/results/q38/probe/server_leapquant.log",
+    "avail_after_weights_gib": 50.11,
+    "weights_gib": 28.47,
+    "slots": 120,
+    "conv_gib": 0.33,
+    "ssm_gib": 0.28,
+    "kv_tokens": 387727,
+    "kv_gib": 23.66,
+    "lq_layers": 48,
+    "lq_slots": 121,
+    "lq_heads": 48,
+    "lq_pool_gib": 7.187,
+    "avail_after_pools_gib": 25.69,
+    "max_running_requests": 40,
+    "available_after_graphs_gib": 15.49,
+    "mem_fraction_static": 0.7610821093749999,
+    "cuda_graph_max_bs_decode": 512
+   },
+   "kv_bytes_per_token": 65522.21422763955,
+   "state_bytes_per_slot": 66729504.80185124,
+   "budget_gib": 31.457,
+   "balanced_requests": 100,
+   "balanced_slots": 300,
+   "probe_requests_kv_bound": 189,
+   "probe_requests_state_bound": 40
+  }
+ },
+ "agreement": {
+  "bf16_window": [
+   204,
+   null,
+   159,
+   71,
+   null,
+   235,
+   null,
+   65
+  ],
+  "leapquant": [
+   240,
+   null,
+   206,
+   null,
+   null,
+   72,
+   165,
+   185
+  ]
+ }
+}

@@ -1,0 +1,72 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi8ELb1EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi8ELb1EEEvNS_4ArgsE
+    16 bytes stack frame, 16 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers, 16 bytes cumulative stack size
+ptxas info    : Compile time = 554.384 ms
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi4ELb1EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi4ELb1EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 127 registers, used 1 barriers
+ptxas info    : Compile time = 326.424 ms
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi8ELb0EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi8ELb0EEEvNS_4ArgsE
+    48 bytes stack frame, 48 bytes spill stores, 48 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers, 48 bytes cumulative stack size
+ptxas info    : Compile time = 747.282 ms
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi4ELb0EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi4ELb0EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers
+ptxas info    : Compile time = 460.660 ms
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi0ELb0EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi0ELb0EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers
+ptxas info    : Compile time = 252.094 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi0ELb1EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi0ELb1EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers
+ptxas info    : Compile time = 196.200 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi1ELb0EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi1ELb0EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers
+ptxas info    : Compile time = 253.090 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi1ELb1EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi1ELb1EEEvNS_4ArgsE
+    8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 198.946 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi2ELb1EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi2ELb1EEEvNS_4ArgsE
+    8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers, 8 bytes cumulative stack size
+ptxas info    : Compile time = 195.294 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode8_kernelILi2ELb0EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode8_kernelILi2ELb0EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 168 registers, used 0 barriers
+ptxas info    : Compile time = 423.924 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode7_kernelILi4EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode7_kernelILi4EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 124 registers, used 1 barriers
+ptxas info    : Compile time = 544.290 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode7_kernelILi3EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode7_kernelILi3EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 124 registers, used 1 barriers
+ptxas info    : Compile time = 309.497 ms
+ptxas info    : Compiling entry function '_ZN4lqfd14decode7_kernelILi2EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd14decode7_kernelILi2EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 124 registers, used 1 barriers
+ptxas info    : Compile time = 424.463 ms
+ptxas info    : Compiling entry function '_ZN4lqfd18fast_decode_kernelENS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqfd18fast_decode_kernelENS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 147 registers, used 0 barriers, 768 bytes smem
+ptxas info    : Compile time = 608.233 ms

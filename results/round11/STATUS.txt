@@ -1,0 +1,4 @@
+U1 PASS 0 min  fp32 arm skipped: round 10 has it (same model, shapes and slots)
+S1 PASS 17 min  sweep: bf16 state, window kernel, repetition 1
+T1 PASS 16 min  sweep: LeapQuant, compressed state, CUDA fold and store, repetition 1
+done 2026-11-14T13:44:34Z

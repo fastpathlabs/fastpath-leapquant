@@ -1,0 +1,16 @@
+{"kind":"capacity","max_total_num_tokens":100000,"max_running_requests":4096}
+{"kind":"decode","t_unix":1794706511.0,"line":3,"t_run":-5.295546054840088,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706512.0,"line":4,"t_run":-4.295546054840088,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706513.0,"line":5,"t_run":-3.295546054840088,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1440.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706514.0,"line":6,"t_run":-2.295546054840088,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1632.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706515.0,"line":7,"t_run":-1.295546054840088,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706516.0,"line":8,"t_run":-0.2955460548400879,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706517.0,"line":9,"t_run":0.7044539451599121,"running":7.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":810.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706518.0,"line":10,"t_run":1.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1855.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706519.0,"line":11,"t_run":2.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1868.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706520.0,"line":12,"t_run":3.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1862.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706521.0,"line":13,"t_run":4.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1856.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706522.0,"line":14,"t_run":5.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1871.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706523.0,"line":15,"t_run":6.704453945159912,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1859.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706524.0,"line":16,"t_run":7.704453945159912,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":691.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706525.0,"line":17,"t_run":8.704453945159912,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}

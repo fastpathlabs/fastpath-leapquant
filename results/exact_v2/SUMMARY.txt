@@ -1,0 +1,27 @@
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_00.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_00.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_00.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_13.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_13.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_13.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_30.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_30.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_code_trace_layer_30.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_00.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_00.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_00.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_13.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_13.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_13.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_30.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_30.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_explain_trace_layer_30.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_00.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_00.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_00.txt:  RESULT: PASS
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_13.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_13.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_13.txt:  RESULT: FAIL
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_30.txt:     255 folds of 32 heads; bit-identical to the reference: 255
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_30.txt:  bit-identical to the reference: no (expected on a GPU)
+/home/ubuntu/lqexp/results/exact_v2/d_verify_reasoning_trace_layer_30.txt:  RESULT: PASS

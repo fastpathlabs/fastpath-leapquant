@@ -1,0 +1,10 @@
+{"t": "2026-11-15T07:08:27.913903Z", "block": 1, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T07:11:35.026581Z", "block": 1, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T07:14:46.417737Z", "block": 2, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T07:17:43.057604Z", "block": 2, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T07:20:50.657932Z", "block": 3, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T07:23:54.417013Z", "block": 3, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T07:26:57.334707Z", "block": 4, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T07:30:33.641581Z", "block": 4, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T07:33:35.654449Z", "block": 5, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T07:36:44.557176Z", "block": 5, "candidate": "lq_final", "state": "done"}

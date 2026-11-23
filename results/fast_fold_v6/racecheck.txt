@@ -1,0 +1,16 @@
+========= COMPUTE-SANITIZER
+PASS  4 compensators, 2 sweeps               loss triton mean 0.00061 worst 0.00099 | cuda mean 0.00061 worst 0.00099 | ratio 0.9988 / 0.9975
+PASS  4 compensators, 1 sweep                loss triton mean 0.00065 worst 0.00101 | cuda mean 0.00065 worst 0.00100 | ratio 0.9996 / 0.9960
+PASS  4 compensators, half sweep             loss triton mean 0.00066 worst 0.00097 | cuda mean 0.00066 worst 0.00096 | ratio 0.9984 / 0.9939
+PASS  4 compensators, no smoothing           loss triton mean 0.00066 worst 0.00111 | cuda mean 0.00066 worst 0.00110 | ratio 0.9997 / 0.9929
+PASS  1 compensator                          loss triton mean 0.00220 worst 0.00252 | cuda mean 0.00220 worst 0.00252 | ratio 0.9999 / 1.0012
+PASS  3 compensators                         loss triton mean 0.00066 worst 0.00110 | cuda mean 0.00066 worst 0.00110 | ratio 1.0013 / 1.0061
+PASS  6 compensators                         loss triton mean 0.00055 worst 0.00086 | cuda mean 0.00055 worst 0.00086 | ratio 0.9984 / 0.9950
+PASS  8 compensators                         loss triton mean 0.00048 worst 0.00076 | cuda mean 0.00048 worst 0.00076 | ratio 0.9999 / 1.0013
+PASS  window 8                               loss triton mean 0.00045 worst 0.00052 | cuda mean 0.00045 worst 0.00053 | ratio 1.0008 / 1.0069
+PASS  store: 4 compensators, 2 sweeps        loss triton mean 0.00026 worst 0.00030 | cuda mean 0.00026 worst 0.00030 | ratio 0.9988 / 1.0074
+PASS  store: 4 compensators, source index, skip loss triton mean 0.00027 worst 0.00029 | cuda mean 0.00027 worst 0.00029 | ratio 1.0026 / 1.0031
+PASS  store: 1 compensator                   loss triton mean 0.00214 worst 0.00249 | cuda mean 0.00214 worst 0.00249 | ratio 0.9998 / 0.9982
+PASS  store: 8 compensators, no smoothing    loss triton mean 0.00026 worst 0.00030 | cuda mean 0.00026 worst 0.00029 | ratio 1.0009 / 0.9943
+RESULT: PASS
+========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)

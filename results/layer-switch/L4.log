@@ -1,0 +1,3 @@
+server starting (pid 1514796), log: /home/ubuntu/lqexp/results/layer-switch/server_layers_compressed_subset.log
+runbook/env.sh: line 51: 1514796 Killed                  python3 -m sglang.launch_server --model-path "$MODEL" --port "$PORT" "$@" > "$log" 2>&1
+server exited; see /home/ubuntu/lqexp/results/layer-switch/server_layers_compressed_subset.log

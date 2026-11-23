@@ -1,0 +1,8 @@
+==PROF== Connected to process 975537 (/home/ubuntu/.local/share/uv/python/cpython-3.12.16-linux-x86_64-gnu/bin/python3.12)
+==WARNING== Unable to access the following 6 metrics: ctc__rx_bytes_data_user.sum, ctc__rx_bytes_data_user.sum.pct_of_peak_sustained_elapsed, ctc__rx_bytes_data_user.sum.per_second, ctc__tx_bytes_data_user.sum, ctc__tx_bytes_data_user.sum.pct_of_peak_sustained_elapsed, ctc__tx_bytes_data_user.sum.per_second.
+
+
+==PROF== Profiling "_ZN4lqff16fast_fold_kernelILi4ELb0EEEvNS_4ArgsE": 0%....50%....100% - 38 passes
+done
+==PROF== Disconnected from process 975537
+==PROF== Report: /home/ubuntu/lqexp/results/ncu_v7/fold_v6.ncu-rep

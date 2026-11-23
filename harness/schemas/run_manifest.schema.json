@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lqh.run_manifest.v1",
+  "title": "Run manifest: identity, provenance, configuration and artifact hashes of one measured point",
+  "type": "object",
+  "required": ["schema", "run_id", "campaign_id", "experiment_id", "profile_id", "profile_version", "cell_id",
+               "candidate", "block_id", "comparison_class", "is_carried", "evidence_kind", "execution", "clock",
+               "device", "workload", "engine", "started_utc"],
+  "properties": {
+    "schema": {"const": "lqh.run_manifest.v1"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "campaign_id": {"type": "string"},
+    "experiment_id": {"type": "string"},
+    "plan_id": {"type": ["string", "null"]},
+    "profile_id": {"enum": ["infx_fixed_seq", "aa_slt_local", "agentx_local", "aa_api_v3_metrics", "paper_reproduction", "local_diagnostics", "harness_smoke"]},
+    "profile_version": {"type": "string"},
+    "cell_id": {"type": "string"},
+    "pair_id": {"type": ["string", "null"]},
+    "block_id": {"type": ["string", "integer"]},
+    "block_order_position": {"type": ["integer", "null"]},
+    "comparison_class": {"enum": ["same_capacity", "equal_total_memory", "best_qualified", "paper_reference", "diagnostic", "smoke"]},
+    "is_carried": {"type": "boolean"},
+    "origin_experiment_id": {"type": ["string", "null"]},
+    "source_group_id": {"type": ["string", "null"]},
+    "source_artifact_sha256": {"type": ["string", "null"]},
+    "source_row_id": {"type": ["string", "null"]},
+    "evidence_kind": {"enum": ["measured_raw", "reported_aggregate", "derived_from_reported", "unverified_assertion", "planned"]},
+    "candidate": {
+      "type": "object",
+      "required": ["candidate_id", "config_hash"],
+      "properties": {
+        "candidate_id": {"type": "string"},
+        "config_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "config": {"type": ["object", "null"]},
+        "role": {"type": ["string", "null"]}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["completed", "crashed", "not_run", "unsupported", "skipped"]},
+        "reason": {"type": ["string", "null"]},
+        "exit_code": {"type": ["integer", "null"]}
+      }
+    },
+    "clock": {
+      "type": "object",
+      "required": ["origin_utc", "domain"],
+      "properties": {
+        "origin_utc": {"type": "string"},
+        "origin_unix": {"type": ["number", "null"]},
+        "domain": {"enum": ["client_monotonic", "request_relative"]},
+        "sync": {"type": ["string", "null"]}
+      }
+    },
+    "device": {
+      "type": "object",
+      "required": ["gpus", "allocated_physical_gpus"],
+      "properties": {
+        "host": {"type": ["string", "null"]},
+        "allocated_physical_gpus": {"type": ["integer", "null"], "minimum": 0},
+        "gpus": {"type": "array", "items": {"type": "object", "properties": {
+          "index": {"type": ["integer", "null"]}, "uuid": {"type": ["string", "null"]}, "name": {"type": ["string", "null"]},
+          "memory_total_mib": {"type": ["number", "null"]}, "driver": {"type": ["string", "null"]}, "pci_bus_id": {"type": ["string", "null"]}}}},
+        "roles": {"type": ["object", "null"]}
+      }
+    },
+    "workload": {"type": "object", "required": ["lane"], "properties": {"lane": {"enum": ["finite", "sustained", "open_loop", "session_replay", "offline", "kernel"]}}},
+    "engine": {"type": "object", "properties": {"mock": {"type": "boolean"}}},
+    "server": {"type": ["object", "null"]},
+    "build": {"type": ["object", "null"]},
+    "slo_id": {"type": ["string", "null"]},
+    "pricing_id": {"type": ["string", "null"]},
+    "native": {"type": ["object", "null"]},
+    "artifacts": {"type": "object", "additionalProperties": {"type": "object", "required": ["sha256"], "properties": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "bytes": {"type": "integer"}}}},
+    "started_utc": {"type": "string"},
+    "ended_utc": {"type": ["string", "null"]}
+  }
+}

@@ -1,0 +1,4 @@
+S1 PASS 3 min  sweep: bf16 state, window kernel, repetition 1
+T1 PASS 3 min  sweep: LeapQuant, compressed state, CUDA fold and store, repetition 1
+U1 PASS 3 min  sweep: fp32 state, SGLang's packed kernel (the default; the paper compares against fp32)
+done 2026-11-14T14:56:39Z

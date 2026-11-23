@@ -1,0 +1,10 @@
+PASS  4 compensators, 2 sweeps               loss triton mean 0.00061 worst 0.00108 | cuda mean 0.00061 worst 0.00108 | ratio 1.0004 / 1.0001
+PASS  4 compensators, 1 sweep                loss triton mean 0.00064 worst 0.00108 | cuda mean 0.00064 worst 0.00108 | ratio 0.9996 / 0.9954
+PASS  4 compensators, half sweep             loss triton mean 0.00066 worst 0.00109 | cuda mean 0.00066 worst 0.00110 | ratio 1.0005 / 1.0027
+PASS  4 compensators, no smoothing           loss triton mean 0.00066 worst 0.00121 | cuda mean 0.00066 worst 0.00121 | ratio 0.9999 / 1.0025
+PASS  1 compensator                          loss triton mean 0.00224 worst 0.00299 | cuda mean 0.00224 worst 0.00299 | ratio 1.0002 / 0.9989
+PASS  3 compensators                         loss triton mean 0.00066 worst 0.00113 | cuda mean 0.00066 worst 0.00113 | ratio 1.0001 / 0.9928
+PASS  6 compensators                         loss triton mean 0.00054 worst 0.00087 | cuda mean 0.00054 worst 0.00088 | ratio 0.9996 / 1.0029
+PASS  8 compensators                         loss triton mean 0.00047 worst 0.00079 | cuda mean 0.00047 worst 0.00078 | ratio 1.0009 / 0.9951
+PASS  window 8                               loss triton mean 0.00045 worst 0.00065 | cuda mean 0.00045 worst 0.00065 | ratio 1.0001 / 0.9996
+RESULT: PASS

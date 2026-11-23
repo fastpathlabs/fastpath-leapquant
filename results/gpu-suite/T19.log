@@ -1,0 +1,18 @@
+server starting (pid 692730), log: /home/ubuntu/leapquant/results/gpu-suite/server_lq_nograph.log
+server is up
+wrote /home/ubuntu/leapquant/results/gpu-suite/smoke_lq_nograph.json: 6 answers
+server starting (pid 693176), log: /home/ubuntu/leapquant/results/gpu-suite/server_lq_graph.log
+server is up
+wrote /home/ubuntu/leapquant/results/gpu-suite/smoke_lq_graph.json: 6 answers
+
+ words  same first  prompt
+   116         116  What is the capital of France? Answer in one sentence.
+   151         151  List the first ten prime numbers and explain in two sentence
+   199         199  Write a Python function that returns the n-th Fibonacci numb
+   180          77  Explain step by step how to compute 37 * 43 in your head.
+   267         248  Summarise in five sentences how a hash table handles collisi
+   243         164  Translate into German: 'The train to Munich leaves from plat
+
+answers that differ within their first 15 words: 0 of 6
+Read the two files side by side. Differences late in an answer are expected;
+an answer that degrades into noise or repetition is a bug.

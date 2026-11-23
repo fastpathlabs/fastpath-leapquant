@@ -1,0 +1,8 @@
+HEAD is now at c8ea707971 [Doc] tool-parser: Clarify streamed argument completion (#49927)
+M	python/sglang/srt/arg_groups/attention_hook.py
+M	python/sglang/srt/arg_groups/field_order.py
+M	python/sglang/srt/arg_groups/fields/exec_.py
+M	python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
+M	python/sglang/srt/layers/attention/linear/gdn_backend.py
+M	python/sglang/srt/mem_cache/mamba_checkpoint_pool.py
+the patch is already applied

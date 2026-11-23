@@ -1,0 +1,18 @@
+[928241] python3.12@127.0.0.1
+  void fast_fold_kernel<4>(Args) (228, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 9.0
+  Metric Name                                         Metric Unit         Metric Value
+  --------------------------------------------------- ----------- --------------------
+  smsp__pcsamp_warps_issue_stalled_barrier                   warp                27307
+  smsp__pcsamp_warps_issue_stalled_branch_resolving      branches                 1066
+  smsp__pcsamp_warps_issue_stalled_dispatch_stall            warp                 1951
+  smsp__pcsamp_warps_issue_stalled_lg_throttle               warp                    3
+  smsp__pcsamp_warps_issue_stalled_long_scoreboard           warp                15442
+  smsp__pcsamp_warps_issue_stalled_math_pipe_throttle        warp                 3845
+  smsp__pcsamp_warps_issue_stalled_membar                    warp                    0
+  smsp__pcsamp_warps_issue_stalled_mio_throttle              warp                 4001
+  smsp__pcsamp_warps_issue_stalled_no_instructions           warp                 1065
+  smsp__pcsamp_warps_issue_stalled_not_selected              warp                 6734
+  smsp__pcsamp_warps_issue_stalled_selected                  warp                10371
+  smsp__pcsamp_warps_issue_stalled_short_scoreboard          warp                11496
+  smsp__pcsamp_warps_issue_stalled_wait                      warp                14927
+

@@ -1,0 +1,51 @@
+{
+ "schema": "lqh.driver_summary.v1",
+ "lane": "open_loop",
+ "config": {
+  "profile": "harness_smoke",
+  "lane": "open_loop",
+  "isl": 64,
+  "osl": 32,
+  "rate_rps": 40,
+  "arrival_s": 3,
+  "drain_timeout_s": 30,
+  "request_timeout_s": 60,
+  "variant": "mock_open_loop",
+  "ignore_eos": true
+ },
+ "target": {
+  "base_url": "http://127.0.0.1:31983",
+  "model": "mock-model",
+  "endpoint": "/v1/completions"
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T01:35:05.030038Z",
+  "origin_unix": 1794706505.030037,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "started_utc": "2026-11-15T01:35:05.031754Z",
+ "exit": "ok",
+ "phases": {
+  "arrivals": {
+   "start": 0.149405625,
+   "end": 3.149698708,
+   "offered_rate_rps": 40.0,
+   "scheduled": 121
+  },
+  "main": {
+   "start": 0.149405625,
+   "end": 3.197261083
+  },
+  "drain": {
+   "start": 3.149698708,
+   "end": 3.197261083,
+   "unfinished_at_deadline": 0
+  }
+ },
+ "requests": {
+  "scheduled": 121
+ },
+ "ended_utc": "2026-11-15T01:35:08.227850Z",
+ "records_written": 121
+}

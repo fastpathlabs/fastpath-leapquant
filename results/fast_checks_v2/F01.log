@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/lqexp/kernel/engine_test.py", line 314, in <module>
+    main()
+  File "/home/ubuntu/lqexp/kernel/engine_test.py", line 220, in main
+    output = engine.decode(layer, mixed_qkv, a, b, A_log[layer], dt_bias[layer], scale, temporal[layer],
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/lqexp/kernel/leapquant_engine.py", line 287, in decode
+    out = self._token(pool, slot, write_pos, mixed_qkv, a, b, A_log, dt_bias, scale, out_dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/lqexp/kernel/leapquant_engine.py", line 241, in _token
+    fast_kernels.decode_step_raw(pool, slot, write_pos, mixed_qkv, a, b, A_log, dt_bias, scale, self.key_heads, out)
+  File "/home/ubuntu/lqexp/kernel/leapquant_triton.py", line 603, in decode_step_raw
+    return _launch(pool, mixed_qkv, a, b, A_log, dt_bias, scale, slot, tokens_in_window, out, key_heads,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/lqexp/kernel/leapquant_triton.py", line 577, in _launch
+    raise ValueError("the K tile must be at least 16 wide for the tensor-core product")
+ValueError: the K tile must be at least 16 wide for the tensor-core product

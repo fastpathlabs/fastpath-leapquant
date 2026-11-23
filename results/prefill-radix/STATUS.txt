@@ -1,0 +1,5 @@
+B1 PASS 2 min  prefill bursts: bf16 window, radix cache on
+L1 PASS 2 min  prefill bursts: LeapQuant, radix cache on
+B0 PASS 2 min  prefill bursts: bf16 window, radix cache off
+L0 PASS 2 min  prefill bursts: LeapQuant, radix cache off
+done 2026-11-14T18:56:44Z

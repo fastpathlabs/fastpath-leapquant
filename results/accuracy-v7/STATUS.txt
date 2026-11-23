@@ -1,0 +1,6 @@
+A1 PASS 60 min  accuracy: fp32 server, twice (run-to-run noise)
+A2 PASS 24 min  accuracy: LeapQuant, compressed state, fast kernels
+A3 PASS 23 min  accuracy: bf16 state with the window
+A4 PASS 0 min  accuracy: LeapQuant against bf16 + window
+A5 PASS 24 min  accuracy: LeapQuant with 8 compensators on layers 20-31
+done 2026-11-14T07:59:11Z

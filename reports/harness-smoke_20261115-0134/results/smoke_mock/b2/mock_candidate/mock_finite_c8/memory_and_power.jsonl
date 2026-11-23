@@ -1,0 +1,5 @@
+{"kind":"sampler_unavailable","reason":"no GPU sampling for this run (nvidia-smi absent or mock)"}
+{"kind":"snapshot","label":"before_model_load","value":null,"null_reason":"no_samples"}
+{"kind":"snapshot","label":"after_pools","value":null,"null_reason":"no_samples"}
+{"kind":"snapshot","label":"steady","value":null,"null_reason":"no_samples"}
+{"kind":"snapshot","label":"after_drain","value":null,"null_reason":"no_samples"}

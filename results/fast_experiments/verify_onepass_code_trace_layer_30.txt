@@ -1,0 +1,27 @@
+trace: /home/ubuntu/leapquant/traces/code/trace_layer_30.bin
+  4095 tokens, 32 heads, state 128 x 128, window 16, 4 compensators, 8 bits, 2 sweeps
+  kernel: kernel/leapquant_triton.py (decode step, fold) + /home/ubuntu/lqexp_final/build/libleapquant_cuda.so on cuda
+  fast fold: 2 sweeps
+  1 synchronised + 1 free-running requests + 1 padded row; stored per head: 19,456 + 8,224 bytes
+
+  A. inside a window (kernel and reference start every window from the same state)
+     output difference over 131,040 (token, head) pairs: median 1.4e-07, 99% below 8.6e-06, worst 3.4e-04
+     (plain relative difference, not floored: worst 3.4e-04)
+     limits: median < 1e-05, 99% < 1e-03, worst < 1e-02 .......... pass
+
+  B. folds (the same full-precision matrix in, a boundary state out)
+     255 folds of 32 heads; bit-identical to the reference: 0
+     int8 entries that differ: 80,661,702 of 133,693,440; fp16 compensator values that differ: 7,461,644 of 8,355,840
+     rounding error of the fold: kernel 0.4011%, reference 0.4009%
+     limit: kernel at most 5% worse than the reference ......... pass
+
+  C. free run (kernel and reference each run the whole trace alone), against fp32
+     output error: kernel 0.6888%, reference 0.6236%
+     state error at the end: kernel 3.5617%, reference 3.5827%
+     largest difference between the two free runs: 5.4e-02 (not a pass criterion)
+     limit: kernel at most 50% worse than the reference ........ pass   (--fast: the set of traces is judged by kernel/summarize_verify.py)
+
+  padded row gives zeros ....................................... pass
+  bit-identical to the reference: no (expected on a GPU)
+
+  RESULT: PASS

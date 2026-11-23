@@ -1,0 +1,156 @@
+{
+ "run_dir": "/home/ubuntu/lqexp/results/harness/validation_pair/b1/lq_final/aa_slt_1k1k_c16",
+ "schema": "lqh.validation.v1",
+ "run_id": "lq-h100-2026-11.validation_pair.b1.lq_final.aa_slt_1k1k_c16",
+ "counts": {
+  "expected": null,
+  "attempted": 114,
+  "parsed": 114,
+  "completed": 114,
+  "duplicates": 0
+ },
+ "status": "measured",
+ "execution_validity": "valid",
+ "checks": [
+  {
+   "id": "V002_manifest_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V004_candidate_hash",
+   "ok": true,
+   "severity": "error",
+   "detail": "manifest 729262cf5f28760630deae8323f55cb6f052de9e62659b763a2a16ab0bd1270b != recomputed 729262cf5f28760630deae8323f55cb6f052de9e62659b763a2a16ab0bd1270b"
+  },
+  {
+   "id": "V005_artifact:requests.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 8deb2005f2e41ac4 != manifest 8deb2005f2e41ac4"
+  },
+  {
+   "id": "V005_artifact:stream_events.jsonl.gz",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 12eed272d54b089f != manifest 12eed272d54b089f"
+  },
+  {
+   "id": "V005_artifact:driver_summary.json",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 c36161f226189cfb != manifest c36161f226189cfb"
+  },
+  {
+   "id": "V005_artifact:server_events.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 b85b0fecd2a8c0fb != manifest b85b0fecd2a8c0fb"
+  },
+  {
+   "id": "V005_artifact:memory_and_power.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 ff0c0e7dea9921c1 != manifest ff0c0e7dea9921c1"
+  },
+  {
+   "id": "V010_request_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V011_duplicate_request_ids",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V012_non_finite_times",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V013_timestamp_order",
+   "ok": true,
+   "severity": "error",
+   "detail": "send <= first <= last <= terminal violated: "
+  },
+  {
+   "id": "V014_token_counts",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V015_success_fields",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V016_exact_output_length",
+   "ok": true,
+   "severity": "warning",
+   "detail": ""
+  },
+  {
+   "id": "V017_chunk_series",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V018_chunk_token_sum",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V030_phases_well_formed",
+   "ok": true,
+   "severity": "error",
+   "detail": "bad phases: []"
+  },
+  {
+   "id": "V034_sustained_phases",
+   "ok": true,
+   "severity": "error",
+   "detail": "needs ('ramp', 'steady', 'drain')"
+  },
+  {
+   "id": "V035_sustained_phase_order",
+   "ok": true,
+   "severity": "error",
+   "detail": "ramp, steady and drain overlap or are out of order"
+  },
+  {
+   "id": "V020_device_listed",
+   "ok": true,
+   "severity": "error",
+   "detail": "no GPU recorded in the manifest"
+  },
+  {
+   "id": "V021_device_fields_known",
+   "ok": true,
+   "severity": "error",
+   "detail": "GPU fields unknown for index []"
+  },
+  {
+   "id": "V022_device_count_consistent",
+   "ok": true,
+   "severity": "error",
+   "detail": "allocated_physical_gpus=1, distinct listed GPUs=1"
+  },
+  {
+   "id": "V023_samples_from_allocated_devices",
+   "ok": true,
+   "severity": "error",
+   "detail": "samples from unlisted GPUs []"
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

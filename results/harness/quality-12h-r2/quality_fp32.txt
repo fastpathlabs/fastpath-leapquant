@@ -1,0 +1,11 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  beyond_aime        15        8    53.33% 12.88%          0       0          0          55365
+  aime2026          30       26    86.67%  6.21%          0       0          0          31422
+  livecodebench_v6        12        9    75.00% 12.50%          0       0          0          22696
+  gpqa_diamond        30       26    86.67%  6.21%          0       0          0          15006
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/quality_fp32.json
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/quality_items_fp32.jsonl

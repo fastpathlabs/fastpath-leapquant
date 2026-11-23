@@ -1,0 +1,160 @@
+{
+ "schema": "lqh.campaign.v1",
+ "model": {
+  "id": "Qwen/Qwen3.5-9B",
+  "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "tokenizer": "Qwen/Qwen3.5-9B (same snapshot)",
+  "served_path": "Qwen/Qwen3.5-9B",
+  "weights_dtype": "bfloat16",
+  "context_positions": 262144,
+  "vocab_size": 248320
+ },
+ "engine": {
+  "name": "sglang",
+  "commit": "c8ea70797157cafab46b3807f850d1c5c061a8d1",
+  "python": "$HOME/venv-sglang/bin/python",
+  "build_facts": "runbook/manifest.sh output in every run manifest (source, library and package hashes)"
+ },
+ "hardware": {
+  "allocation": "1 x NVIDIA H100 PCIe 80 GB, host quick-einstein (28 CPUs, 177 GB RAM), driver 580, CUDA 13",
+  "gpus": 1,
+  "label": "H100 port evaluated with paper-inspired methodology (the paper used B200, RTX PRO 6000 and RTX 5090)"
+ },
+ "numerical_policy": {
+  "source": "docs/DECISIONS.md",
+  "bits": 8,
+  "rank": 4,
+  "window": 16,
+  "fit_sweeps": 1,
+  "folds": "staggered by default (LEAPQUANT_FOLD_POLICY unset = stagger; 'aligned' gives the earlier default)",
+  "owner": "Asif (changes create a new numerical candidate and need new quality evidence)",
+  "changed": "15 Nov 2026, 05:00 UTC, Asif: one sweep (B52) and staggered folds (B53) adopted; runs before this used 2 sweeps and aligned/auto folds"
+ },
+ "candidates_file": "harness/config/candidates.json",
+ "profile_versions": {
+  "infx_fixed_seq": "infx-fabf7ba-v1",
+  "aa_slt_local": "aa-slt-2026-11-15-v1",
+  "agentx_local": "agentx-v1.0.14-18015a2-v1",
+  "aa_api_v3_metrics": "aa-api-3.0.0-local-v1",
+  "paper_reproduction": "leapquant-v2-2026-11-10-v1",
+  "local_diagnostics": "local-2026-11-15-v1"
+ },
+ "campaign_id": "lq-h100-2026-11-sg",
+ "declared_utc": "2026-11-16T02:00:00Z",
+ "specification": "LEAPQUANT: SINGLE-GPU BENCHMARK EXECUTION PROMPT, updated 15 Nov 2026",
+ "default_slo_id": "slo-interactive-v2",
+ "pricing_id": "host-h100pcie-scenario-v2",
+ "objective": "Does LeapQuant deliver more successful output tokens, better user latency, lower serving cost and smaller memory use than the strongest working native configuration of the same engine (bf16 window), on one H100 PCIe, while preserving quality? fp32 packed is the correctness/paper reference with one serving bridge run.",
+ "comparison_classes": {
+  "equal_total_memory": "DEPLOYMENT comparison: same model weights, weight/KV precision, workload and GPU-memory ceiling (same mem fraction); each arm's state slots set by the same rule (state + KV balanced for 2,048-token requests: LeapQuant 1,008, bf16 window 927, fp32 609); includes the memory-capacity gain",
+  "mechanism": "kernel cycle at equal batches and equal work (lqh kernel-cycle), not a serving result"
+ },
+ "primary_profile": "infx_fixed_seq:infx_1k1k (pinned inferencex-e2e fabf7ba; its client files are identical at the reviewed revision 879bb3716e329084c76cff7ae360eb5566982644, which only adds video configs: verified 16 Nov 01:45 UTC through the GitHub compare API)",
+ "screening_rule": {
+  "ladder": [
+   1,
+   4,
+   16,
+   64,
+   128,
+   256
+  ],
+  "first": [
+   1,
+   4,
+   16,
+   64
+  ],
+  "extend": "after 64: run the next ladder point (128, then 256) for both arms only while at least one arm met the service policy (slo-interactive-v2) at the previous point and neither arm's run there was invalid (failure storm, client resources) or above 1% errors",
+  "neighbor": "let P be the highest screened point both arms pass and N the next screened point above it; if N/P >= 4, run the one neighbouring point 2P for both arms (32 between 16 and 64)",
+  "prior_evidence": "job 116 InferenceX 1k/1k used 1,100/1,100/560 slots (other configuration hashes): reported as historical, not reused as screening"
+ },
+ "cell_selection_rule": {
+  "A": "concurrency 1 (low-load, interactive)",
+  "B": "the highest screened concurrency at which BOTH arms meet slo-interactive-v2 with measured, protocol-conforming runs; each arm's own highest passing point is reported separately; if no point above 1 qualifies for both, B is absent and that is reported and diagnosed (the policy is not relaxed)",
+  "frozen_utc": "2026-11-16T02:00:00Z (before any screening result of this campaign)",
+  "not_by": "the largest observed LeapQuant gain"
+ },
+ "repetition_design": {
+  "confirmation": "2 cells x 5 fresh paired blocks x 2 arms = 20 runs; server restart per arm and block; balanced arm order (runner.block_order); paired workload seeds (block b uses seed b for both arms; screening used seed 0); native 2C warm-ups and 10C measured requests every run; all valid blocks kept",
+  "interval": "paired geometric-mean ratio with a t interval on the log ratios (lqh.stats), all block values shown",
+  "decision": "superiority needs the interval above 1, an effect of at least +3% (declared here: smaller is not practically useful for a serving claim), acceptable service behaviour and quality qualification; otherwise the measured uncertainty is reported. No runs are added after seeing results."
+ },
+ "budget": {
+  "gpu_hours_first_pass": 6.0,
+  "start_utc": "2026-11-16T01:34:00Z",
+  "note": "single-GPU prompt section 1: no run limit was configured as GPU-hours, so the six-GPU-hour first-pass cap applies from adoption (01:34 UTC), including the rest of job 124; confirmation is reserved before optional work; 125 (27B) parked",
+  "estimates_min": {
+   "124_rest": 40,
+   "screen_first": 26,
+   "screen_extension_max": 30,
+   "confirmation_max": 115,
+   "fp32_bridge": 12,
+   "report_cpu": 0
+  }
+ },
+ "plans": {
+  "screen_infx_sg": {
+   "purpose": "Screening, InferenceX 1k/1k at 1, 4, 16, 64 (single-GPU prompt section 4); extension and cell selection by the frozen rules above (runbook/sg_select.py)",
+   "blocks": 1,
+   "candidates": [
+    "bf16_window_s927",
+    "lq_final_s1008"
+   ],
+   "baseline": "bf16_window_s927",
+   "comparison_class": "equal_total_memory",
+   "slo_id": "slo-interactive-v2",
+   "budget_s": 3600,
+   "points": [
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 1,
+     "num_prompts": 10,
+     "num_warmups": 2,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 4,
+     "num_prompts": 40,
+     "num_warmups": 8,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 16,
+     "num_prompts": 160,
+     "num_warmups": 32,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 64,
+     "num_prompts": 640,
+     "num_warmups": 128,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    }
+   ]
+  }
+ }
+}

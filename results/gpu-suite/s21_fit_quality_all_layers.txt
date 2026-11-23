@@ -1,0 +1,29 @@
+fit under test: 4 compensators, one at a time, 2 sweeps, start = longest row
+trace                              samples | top-4 share top-8 share | captured: median  worst head  heads < 90%
+all_layers/trace_layer_00.bin           96 |      100.0%      100.0% |           100.0%      100.0%         0.0%
+all_layers/trace_layer_01.bin           96 |       99.7%      100.0% |           100.0%       95.3%         0.0%
+all_layers/trace_layer_02.bin           96 |       99.8%      100.0% |           100.0%       98.8%         0.0%
+all_layers/trace_layer_04.bin           96 |       99.8%      100.0% |           100.0%       96.8%         0.0%
+all_layers/trace_layer_05.bin           96 |       98.3%       99.7% |           100.0%       96.1%         0.0%
+all_layers/trace_layer_06.bin           96 |       96.4%       98.9% |            99.9%       96.7%         0.0%
+all_layers/trace_layer_08.bin           96 |       97.2%       99.1% |            99.9%       98.5%         0.0%
+all_layers/trace_layer_09.bin           96 |       95.4%       98.1% |            99.9%       94.6%         0.0%
+all_layers/trace_layer_10.bin           96 |       96.0%       98.4% |            99.9%       98.0%         0.0%
+all_layers/trace_layer_12.bin           96 |       93.1%       97.3% |            99.8%       94.6%         0.0%
+all_layers/trace_layer_13.bin           96 |       96.6%       99.0% |            99.9%       96.5%         0.0%
+all_layers/trace_layer_14.bin           96 |       95.8%       98.1% |            99.9%       95.7%         0.0%
+all_layers/trace_layer_16.bin           96 |       94.9%       97.9% |            99.9%       96.7%         0.0%
+all_layers/trace_layer_17.bin           96 |       96.0%       98.8% |            99.9%       96.8%         0.0%
+all_layers/trace_layer_18.bin           96 |       96.2%       98.2% |            99.9%       98.5%         0.0%
+all_layers/trace_layer_20.bin           96 |       91.6%       96.3% |            99.9%       97.1%         0.0%
+all_layers/trace_layer_21.bin           96 |       94.2%       97.8% |            99.9%       92.0%         0.0%
+all_layers/trace_layer_22.bin           96 |       95.8%       98.6% |            99.9%       96.6%         0.0%
+all_layers/trace_layer_24.bin           96 |       92.2%       96.9% |            99.9%       96.2%         0.0%
+all_layers/trace_layer_25.bin           96 |       94.8%       98.3% |            99.9%       97.0%         0.0%
+all_layers/trace_layer_26.bin           96 |       97.8%       99.5% |           100.0%       94.5%         0.0%
+all_layers/trace_layer_28.bin           96 |       94.0%       98.1% |            99.9%       94.9%         0.0%
+all_layers/trace_layer_29.bin           96 |       97.0%       99.1% |            99.9%       94.0%         0.0%
+all_layers/trace_layer_30.bin           96 |       95.0%       98.4% |            99.9%       96.1%         0.0%
+
+top-N share low (say under 50%): little for compensators to capture, whatever the fit.
+captured well under 100%: the fit misses patterns that are there.

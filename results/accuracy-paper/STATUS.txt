@@ -1,0 +1,5 @@
+P2 PASS 0 min  SKIPPED, not run: replaced by the retraction-free arms in results/accuracy-strict (B58, 14 Nov 22:30 UTC)
+P3 PASS 0 min  SKIPPED, not run: replaced by the retraction-free arms in results/accuracy-strict (B58, 14 Nov 22:30 UTC)
+P4 PASS 0 min  SKIPPED, not run: the comparison is made in results/accuracy-strict (B58, 14 Nov 22:30 UTC)
+P1 PASS 193 min  paper lane: fp32 window (reference)
+done 2026-11-14T22:39:39Z

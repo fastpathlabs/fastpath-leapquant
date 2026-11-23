@@ -1,0 +1,48 @@
+{
+ "figure_id": "frontier_local_diagnostics_decode_128_512",
+ "title": "local_diagnostics decode_128_512: throughput per GPU vs per-user speed",
+ "generator": "lqh 1.0.0 (2026-11-15)",
+ "points": [
+  {
+   "figure_id": "frontier_local_diagnostics_decode_128_512",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.bf16_window.decode_128_512_c64",
+   "candidate_id": "bf16_window",
+   "cell_id": "local_diagnostics:decode_128_512_c64",
+   "client_concurrency": 64,
+   "x_per_user_tps_median": 70.67726482800407,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 4315.72559009849,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "finite cohort (drain included)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  },
+  {
+   "figure_id": "frontier_local_diagnostics_decode_128_512",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.lq_final.decode_128_512_c64",
+   "candidate_id": "lq_final",
+   "cell_id": "local_diagnostics:decode_128_512_c64",
+   "client_concurrency": 64,
+   "x_per_user_tps_median": 68.98687558103106,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 4210.308902003398,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "finite cohort (drain included)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  }
+ ],
+ "data_sha256": "8382cefc6977940c05dc9fb1b1c28821d21cecc291406fd7549bf13552d0ac33"
+}

@@ -1,0 +1,4 @@
+G3: LeapQuant per token against bf16 + window per token, batch 512, paired within each run (gate: ratio >= 1.25)
+adopted  n=6  LeapQuant 0.3171 ms  bf16 window 0.3817 ms  ratio 1.204 (95% 1.195 .. 1.212)  NOT MET
+v8       n=6  LeapQuant 0.3056 ms  bf16 window 0.3820 ms  ratio 1.250 (95% 1.249 .. 1.251)  INCONCLUSIVE
+v9       n=6  LeapQuant 0.3004 ms  bf16 window 0.3817 ms  ratio 1.271 (95% 1.270 .. 1.271)  MET

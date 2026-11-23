@@ -1,0 +1,272 @@
+diff --git a/vllm/model_executor/layers/mamba/gdn/leapquant_glue.py b/vllm/model_executor/layers/mamba/gdn/leapquant_glue.py
+new file mode 100644
+index 000000000..dd66b0da8
+--- /dev/null
++++ b/vllm/model_executor/layers/mamba/gdn/leapquant_glue.py
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: Apache-2.0
++"""LeapQuant decode for Qwen GDN layers (VLLM_GDN_LEAPQUANT=1), first port.
++
++The arithmetic and the glue live in the leapquant-core repository
++(kernel/leapquant_engine.py, class BlockEngineState, tested there on a CPU
++against its C++ reference). This module locates that repository, checks the
++configuration and builds one state object per GDN layer.
++
++Scope of the first port
++  - mamba cache mode "none" (prefix caching off): a request keeps one state
++    block for its whole life. In "align" mode vLLM moves the state between
++    blocks inside its own kernels, which this port does not follow.
++  - no speculative decoding.
++  - --mamba-ssm-cache-dtype float32.
++
++Environment
++  VLLM_GDN_LEAPQUANT=1        switch
++  LEAPQUANT_HOME              leapquant-core checkout, built with `make cuda`
++  VLLM_GDN_LEAPQUANT_SLOTS    LeapQuant slots per layer (default: max_num_seqs
++                              plus a quarter, at least 16 spare). Each slot is
++                              about 0.9 MB per layer for 32 heads of 128 x 128.
++"""
++
++from __future__ import annotations
++
++import os
++import sys
++from typing import Any
++
++import torch
++
++from vllm.logger import init_logger
++
++logger = init_logger(__name__)
++
++# Working memory of the kernel, shared by all layers (they run one after another).
++_SHARED_SCRATCH: dict[tuple, torch.Tensor] = {}
++
++
++def _load_engine_module():
++    home = os.environ.get("LEAPQUANT_HOME")
++    if not home:
++        raise RuntimeError(
++            "VLLM_GDN_LEAPQUANT=1 requires LEAPQUANT_HOME: the path of a "
++            "leapquant-core checkout in which `make cuda` has been run."
++        )
++    kernel_dir = os.path.join(home, "kernel")
++    if not os.path.isfile(os.path.join(kernel_dir, "leapquant_engine.py")):
++        raise RuntimeError(f"LEAPQUANT_HOME={home!r} holds no kernel/leapquant_engine.py")
++    if kernel_dir not in sys.path:
++        sys.path.insert(0, kernel_dir)
++    os.environ.setdefault("LEAPQUANT_BUILD_DIR", os.path.join(home, "build"))
++    import leapquant_engine
++
++    return leapquant_engine
++
++
++def check_leapquant_config(vllm_config: Any, packed_decode_enabled: bool) -> None:
++    """Fail at start-up, with a reason, in every configuration the first port
++    does not cover."""
++    mode = vllm_config.cache_config.mamba_cache_mode
++    if mode != "none":
++        raise ValueError(
++            "VLLM_GDN_LEAPQUANT supports mamba cache mode 'none' only (prefix "
++            f"caching off); got {mode!r}."
++        )
++    if vllm_config.speculative_config is not None:
++        raise ValueError("VLLM_GDN_LEAPQUANT does not support speculative decoding.")
++    if not packed_decode_enabled:
++        raise ValueError(
++            "VLLM_GDN_LEAPQUANT requires VLLM_ENABLE_FLA_PACKED_RECURRENT_DECODE (the default)."
++        )
++    _load_engine_module()
++
++
++def build_leapquant_state(ssm_state: torch.Tensor, vllm_config: Any):
++    """One BlockEngineState for one GDN layer, over its state view
++    ``ssm_state`` = [num_blocks, HV, V, K]."""
++    if ssm_state.dtype != torch.float32:
++        raise ValueError(
++            "VLLM_GDN_LEAPQUANT requires --mamba-ssm-cache-dtype float32; the "
++            f"recurrent state is {ssm_state.dtype}."
++        )
++    blocks, value_heads, value_channels, key_channels = ssm_state.shape
++    max_num_seqs = vllm_config.scheduler_config.max_num_seqs
++    slots = int(
++        os.environ.get(
++            "VLLM_GDN_LEAPQUANT_SLOTS", max_num_seqs + max(16, max_num_seqs // 4)
++        )
++    )
++    key = (str(ssm_state.device), max_num_seqs, value_heads, value_channels, key_channels)
++    scratch = _SHARED_SCRATCH.get(key)
++    if scratch is None:
++        scratch = torch.empty(
++            (max_num_seqs, value_heads, value_channels, key_channels),
++            dtype=torch.float32,
++            device=ssm_state.device,
++        )
++        _SHARED_SCRATCH[key] = scratch
++    state = _load_engine_module().BlockEngineState(
++        layers=1,
++        blocks=blocks,
++        value_heads=value_heads,
++        key_channels=key_channels,
++        value_channels=value_channels,
++        lq_slots=slots + 1,
++        max_rows=max_num_seqs,
++        device=ssm_state.device,
++        idle_steps=2,
++        scratch=scratch,
++    )
++    logger.info_once(
++        "LeapQuant GDN decode: %d slots per layer over %d state blocks",
++        slots,
++        blocks,
++    )
++    return state
+diff --git a/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py b/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py
+index 77c284449..e287de4ca 100644
+--- a/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py
++++ b/vllm/model_executor/layers/mamba/gdn/qwen_gdn_linear_attn.py
+@@ -861,6 +861,21 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+         self.enable_packed_recurrent_decode = (
+             envs.VLLM_ENABLE_FLA_PACKED_RECURRENT_DECODE
+         )
++        # LeapQuant decode (arXiv 2609.38166), first port: VLLM_GDN_LEAPQUANT=1.
++        # The decode kernel reads an int8 recurrent state plus a window of fp16
++        # records and rewrites the int8 state once per window. The state object
++        # is built in bind_kv_cache(); None means the feature is off and every
++        # path below is unchanged.
++        self._leapquant = None
++        self._leapquant_enabled = os.environ.get(
++            "VLLM_GDN_LEAPQUANT", "0"
++        ).strip().lower() in ("1", "true")
++        if self._leapquant_enabled:
++            from vllm.model_executor.layers.mamba.gdn.leapquant_glue import (
++                check_leapquant_config,
++            )
++
++            check_leapquant_config(vllm_config, self.enable_packed_recurrent_decode)
+         # Off by default; the Qwen3.5 NVIDIA variant passes a fused gated RMS
+         # norm that reads z strided from the packed qkvz projection and
+         # returns the out_proj input: `out`, or a pre-quantized activation.
+@@ -1765,6 +1780,17 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+             core_attn_out=core_attn_out,
+         )
+ 
++    def bind_kv_cache(self, kv_cache: torch.Tensor) -> None:
++        super().bind_kv_cache(kv_cache)
++        if self._leapquant_enabled:
++            # Built here, before any CUDA graph is captured: tensors created
++            # inside a capture would be re-initialised on every replay.
++            from vllm.model_executor.layers.mamba.gdn.leapquant_glue import (
++                build_leapquant_state,
++            )
++
++            self._leapquant = build_leapquant_state(self.kv_cache[1], self.vllm_config)
++
+     def _forward_core(
+         self,
+         mixed_qkv: torch.Tensor,
+@@ -1807,6 +1833,11 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+                 attn_metadata=attn_metadata,
+             )
+ 
++        if self._leapquant is not None and attn_metadata.spec_sequence_masks is not None:
++            raise NotImplementedError(
++                "VLLM_GDN_LEAPQUANT does not support speculative decoding"
++            )
++
+         has_initial_state = attn_metadata.has_initial_state
+         spec_query_start_loc = attn_metadata.spec_query_start_loc
+         non_spec_query_start_loc = attn_metadata.non_spec_query_start_loc
+@@ -1996,22 +2027,41 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+             query_decode, key_decode, value_decode = self.rearrange_mixed_qkv(
+                 mixed_qkv_non_spec[:num_decode_tokens]  # type: ignore[index]
+             )
+-            core_attn_out_decode, _ = fused_sigmoid_gating_delta_rule_update(
+-                A_log=self.A_log,
+-                a=a[:num_decode_tokens],
+-                b=b[:num_decode_tokens],
+-                dt_bias=self.dt_bias,
+-                q=query_decode,
+-                k=key_decode,
+-                v=value_decode,
+-                initial_state=ssm_state,
+-                inplace_final_state=True,
+-                cu_seqlens=non_spec_query_start_loc[  # type: ignore[index]
+-                    : attn_metadata.num_decodes + 1
+-                ],
+-                ssm_state_indices=non_spec_state_indices_tensor,
+-                use_qk_l2norm_in_kernel=True,
+-            )
++            if self._leapquant is not None:
++                # LeapQuant: the decode rows of a mixed batch go through the
++                # same kernel as a decode-only batch. [N, HV, V] -> [1, N, HV, V].
++                core_attn_out_decode = (
++                    self._leapquant.decode(
++                        0,
++                        mixed_qkv_non_spec[:num_decode_tokens],  # type: ignore[index]
++                        a[:num_decode_tokens],
++                        b[:num_decode_tokens],
++                        self.A_log,
++                        self.dt_bias,
++                        self.head_k_dim**-0.5,
++                        ssm_state,
++                        non_spec_state_indices_tensor[:num_decode_tokens],  # type: ignore[index]
++                    )
++                    .to(core_attn_out.dtype)
++                    .unsqueeze(0)
++                )
++            else:
++                core_attn_out_decode, _ = fused_sigmoid_gating_delta_rule_update(
++                    A_log=self.A_log,
++                    a=a[:num_decode_tokens],
++                    b=b[:num_decode_tokens],
++                    dt_bias=self.dt_bias,
++                    q=query_decode,
++                    k=key_decode,
++                    v=value_decode,
++                    initial_state=ssm_state,
++                    inplace_final_state=True,
++                    cu_seqlens=non_spec_query_start_loc[  # type: ignore[index]
++                        : attn_metadata.num_decodes + 1
++                    ],
++                    ssm_state_indices=non_spec_state_indices_tensor,
++                    use_qk_l2norm_in_kernel=True,
++                )
+         else:
+             core_attn_out_decode = None
+ 
+@@ -2071,6 +2121,10 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+                 )
+             # Init cache
+             scatter_states(ssm_state, last_recurrent_state, prefill_state_indices)
++            if self._leapquant is not None:
++                # The fp32 state of these blocks was just written by prefill:
++                # give each a LeapQuant slot, adopted at its first decode step.
++                self._leapquant.assign(0, prefill_state_indices)
+ 
+             if split_non_spec and prefill_in_place:
+                 core_attn_out[:num_decode_tokens] = core_attn_out_decode.squeeze(0)
+@@ -2294,6 +2348,23 @@ class QwenGatedDeltaNetAttention(GatedDeltaNetAttention):
+             validate_data=False,
+         )
+         out_buf = core_attn_out[:num_actual_tokens].unsqueeze(1)
++        if self._leapquant is not None:
++            # LeapQuant: adopt new requests from their fp32 block, read the int8
++            # state plus the window, append one record, fold full windows.
++            out_buf.copy_(
++                self._leapquant.decode(
++                    0,
++                    mixed_qkv_non_spec,
++                    a,
++                    b,
++                    self.A_log,
++                    self.dt_bias,
++                    self.head_k_dim**-0.5,
++                    ssm_state,
++                    non_spec_state_indices_tensor[:num_actual_tokens],  # type: ignore[index]
++                ).unsqueeze(1)
++            )
++            return
+         fused_recurrent_gated_delta_rule_packed_decode(
+             mixed_qkv=mixed_qkv_non_spec,
+             a=a,

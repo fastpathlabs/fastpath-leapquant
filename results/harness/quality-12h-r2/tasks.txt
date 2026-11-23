@@ -1,0 +1,1 @@
+tasks: beyond_aime:15,aime2026,livecodebench_v6:12,gpqa_diamond:30

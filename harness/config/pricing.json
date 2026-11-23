@@ -1,0 +1,61 @@
+{
+ "schema": "lqh.pricing.v1",
+ "note": "Cost inputs. A missing price gives null dollar metrics (reason price_missing); nothing is assumed. Fill in a price with its source, date, region, billing granularity, commitment and what it includes, as a NEW pricing_id, and set campaign.json pricing_id.",
+ "default_pricing_id": "host-h100pcie-rental-v1",
+ "pricing": [
+  {
+   "pricing_id": "host-h100pcie-rental-v0",
+   "mode": "per_gpu",
+   "currency": "USD",
+   "usd_per_gpu_hour": null,
+   "source": null,
+   "date": null,
+   "region": null,
+   "billing_granularity": null,
+   "commitment": null,
+   "utilization": "the GPU is allocated to the run for its whole duration (fixed allocation per run)",
+   "included": [],
+   "excluded": [],
+   "separately_billed": [],
+   "null_reason": "the rental price of the assigned H100 PCIe host (1 GPU, 28 CPUs, 177 GB RAM) is not recorded in the repository"
+  },
+  {
+   "pricing_id": "host-h100pcie-rental-v1",
+   "mode": "whole_instance",
+   "currency": "USD",
+   "usd_per_instance_hour": 2.0,
+   "source": "Asif (user decision, 15 Nov 2026): the host's price is $2.00 per hour",
+   "date": "2026-11-15",
+   "region": null,
+   "billing_granularity": null,
+   "commitment": null,
+   "utilization": "the host is allocated to the run for its whole duration (fixed allocation per run)",
+   "included": [
+    "the whole host: 1x H100 PCIe 80 GB, 28 CPUs, 177 GB RAM"
+   ],
+   "excluded": [],
+   "separately_billed": [],
+   "note": "One GPU per host, so this is also the price per GPU-hour. v0 (null price) is kept for history."
+  },
+  {
+   "pricing_id": "host-h100pcie-scenario-v2",
+   "mode": "whole_instance",
+   "currency": "USD",
+   "usd_per_instance_hour": 2.0,
+   "source": "SCENARIO ESTIMATE: $2.00 per host-hour as stated by Asif on 15 Nov 2026; not verified against the provider's published rate or an invoice (single-GPU execution prompt, section 6: an assumed hourly price makes every dollar figure a scenario estimate). Replace with the billed rate when known.",
+   "date": "2026-11-16",
+   "region": null,
+   "billing_granularity": null,
+   "commitment": null,
+   "utilization": "the host is allocated to the run for its whole duration (fixed allocation per run)",
+   "included": [
+    "the whole host: 1x H100 PCIe 80 GB, 28 CPUs, 177 GB RAM"
+   ],
+   "excluded": [],
+   "separately_billed": [],
+   "note": "One GPU per host, so this is also the price per GPU-hour. v0 (null price) is kept for history.",
+   "evidence": "user_stated_unverified",
+   "label": "scenario estimate"
+  }
+ ]
+}

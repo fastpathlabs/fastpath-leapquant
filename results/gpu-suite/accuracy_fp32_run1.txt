@@ -1,0 +1,7 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  gsm8k            300      282    94.00%  1.37%          8       0         24           2208
+  aime2025          30        1     3.33%  3.28%          1       0         29           8176
+  mmlu_pro         300      190    63.33%  2.78%         42       0        101           5223
+
+  wrote /home/ubuntu/leapquant/results/gpu-suite/accuracy_fp32_run1.json

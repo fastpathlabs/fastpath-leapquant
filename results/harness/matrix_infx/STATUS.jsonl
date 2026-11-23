@@ -1,0 +1,3 @@
+{"t": "2026-11-15T08:26:22.310037Z", "block": 1, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T09:16:01.666853Z", "block": 1, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T10:13:31.001988Z", "block": 1, "candidate": "fp32_packed", "state": "done"}

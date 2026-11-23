@@ -1,0 +1,20 @@
+trace: /home/ubuntu/leapquant/traces/reasoning/trace_layer_30.bin
+  32 heads (32 used), state 128 x 128, one decay per token (Gated DeltaNet)
+  starting states loaded from the trace
+  4095 tokens replayed, window 16, 4 compensators, 8 bits, 8 sweeps
+  self-check: fp32 replay vs the model's own kernel output, worst relative difference 1.14e-06  (ok)
+
+                                      bytes |    after | state error at end  | output
+  method                             /entry |     1024 |    median     worst | error
+  fp32 (what the model does today)     4.00 |        0 |         0         0 | 0
+  bf16, rounded every token            2.00 |   4.667% |    1.526%   17.175% | 3.426%
+  bf16, rounded every window           2.00 |   1.014% |    0.349%    3.627% | 0.703%
+  int8, rounded every token            1.03 |  19.856% |    8.071%   55.991% | 14.416%
+  int8, rounded every window           1.03 |   6.812% |    2.064%   17.148% | 3.739%
+    + compensators                     1.16 |   2.944% |    1.010%    8.421% | 5.115%
+    + smoothing  (= LeapQuant)         1.19 |   2.189% |    0.728%    6.188% | 1.106%
+
+  after N       : state error of all heads together after N tokens
+  median, worst : state error across heads, after the last token
+  output error  : all heads and all tokens together
+  (error = distance from the fp32 result, as a share of its size)

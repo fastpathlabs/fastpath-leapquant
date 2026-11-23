@@ -1,0 +1,22 @@
+LeapQuant kernel profile on cuda: batch 512, 32 heads, state 128 x 128, window 16, 4 compensators, 8 sweeps   v2-clean
+  kernel library: /home/ubuntu/leapquant/build/libleapquant_cuda.so
+
+  decode step (append only)
+    phase                                          ms  share     cumulative ms (10% .. 90%)
+    decays of the window records                0.025   3.2%        0.025 (0.025 .. 0.026)
+    fade the two input vectors                  0.031   3.9%        0.057 (0.057 .. 0.057)
+    key matches (records, compensators)         0.320  40.1%        0.377 (0.376 .. 0.379)
+    int8 matrix, correction, output             0.421  52.8%        0.798 (0.797 .. 0.801)
+
+  fold of a full window (all 512 rows fold)
+    phase                                          ms  share     cumulative ms (10% .. 90%)
+    rebuild the full-precision matrix           9.761  13.3%        9.761 (9.755 .. 9.765)
+    compensator 1: starting guess               0.145   0.2%        9.906 (9.902 .. 9.908)
+    compensator 1: power-iteration sweeps      11.267  15.3%       21.172 (21.166 .. 21.180)
+    compensator 1: store and subtract           2.422   3.3%       23.595 (23.588 .. 23.601)
+    compensators 2 .. R                        43.812  59.7%       67.407 (67.358 .. 67.453)
+    row scales (smoothing)                      0.087   0.1%       67.494 (67.452 .. 67.516)
+    column steps and rounding                   5.937   8.1%       73.432 (73.378 .. 73.488)
+
+  fold launch in which no row folds: 0.057 ms
+  per decode step, averaged over a window of 16: 0.798 + 73.432 / 16 + launches = 5.441 ms

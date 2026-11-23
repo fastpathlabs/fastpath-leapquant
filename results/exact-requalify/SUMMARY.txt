@@ -1,0 +1,13 @@
+trace                                   bit-identical folds        criterion C (free run)   result
+exact_code_trace_layer_00                255/255                    pass                     RESULT: PASS
+exact_code_trace_layer_13                255/255                    pass                     RESULT: PASS
+exact_code_trace_layer_30                255/255                    pass                     RESULT: PASS
+exact_explain_trace_layer_00             255/255                    pass                     RESULT: PASS
+exact_explain_trace_layer_13             255/255                    pass                     RESULT: PASS
+exact_explain_trace_layer_30             255/255                    pass                     RESULT: PASS
+exact_reasoning_trace_layer_00           255/255                    pass                     RESULT: PASS
+exact_reasoning_trace_layer_13           255/255                    FAIL                     RESULT: FAIL
+exact_reasoning_trace_layer_30           255/255                    pass                     RESULT: PASS
+2082115 checks run, 0 failed
+build/kernel_test_words | tail -1
+2082115 checks run, 0 failed

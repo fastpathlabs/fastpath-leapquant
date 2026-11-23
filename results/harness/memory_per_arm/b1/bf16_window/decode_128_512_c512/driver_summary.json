@@ -1,0 +1,50 @@
+{
+ "schema": "lqh.driver_summary.v1",
+ "lane": "finite",
+ "config": {
+  "profile": "local_diagnostics",
+  "lane": "finite",
+  "isl": 128,
+  "osl": 512,
+  "concurrency": 512,
+  "num_prompts": 1024,
+  "num_warmups": 512,
+  "random_range_ratio": 1.0,
+  "seed": 0,
+  "request_timeout_s": 3600,
+  "variant": "decode_128_512",
+  "ignore_eos": true
+ },
+ "target": {
+  "base_url": "http://127.0.0.1:30000",
+  "model": "Qwen/Qwen3.5-9B",
+  "endpoint": "/v1/completions"
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T06:53:23.059686Z",
+  "origin_unix": 1794725603.059668,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "started_utc": "2026-11-15T06:53:23.076428Z",
+ "exit": "ok",
+ "phases": {
+  "warmup": {
+   "start": 0.312588544,
+   "end": 27.346279395,
+   "requests": 512
+  },
+  "main": {
+   "start": 27.346282669,
+   "end": 77.155124089,
+   "requests": 1024
+  }
+ },
+ "requests": {
+  "measured": 1024,
+  "warmup": 512,
+  "succeeded": 1024
+ },
+ "ended_utc": "2026-11-15T06:54:40.217152Z",
+ "records_written": 1536
+}

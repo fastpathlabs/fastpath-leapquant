@@ -1,0 +1,156 @@
+{
+ "run_dir": "./reports/harness-smoke_20261115-0134/results/smoke_mock/b1/mock_baseline/mock_sustained_c8",
+ "schema": "lqh.validation.v1",
+ "run_id": "lq-h100-2026-11.smoke_mock.b1.mock_baseline.mock_sustained_c8",
+ "counts": {
+  "expected": null,
+  "attempted": 259,
+  "parsed": 259,
+  "completed": 259,
+  "duplicates": 0
+ },
+ "status": "smoke_only",
+ "execution_validity": "valid",
+ "checks": [
+  {
+   "id": "V002_manifest_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V004_candidate_hash",
+   "ok": true,
+   "severity": "error",
+   "detail": "manifest b4720aebe5f86ffccaa56ec120f66e5eb9db316d8f77fd33b85e65f62bb96a13 != recomputed b4720aebe5f86ffccaa56ec120f66e5eb9db316d8f77fd33b85e65f62bb96a13"
+  },
+  {
+   "id": "V005_artifact:requests.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 eeb00346bd0a8a7c != manifest eeb00346bd0a8a7c"
+  },
+  {
+   "id": "V005_artifact:stream_events.jsonl.gz",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 2d9a41eab65c73c1 != manifest 2d9a41eab65c73c1"
+  },
+  {
+   "id": "V005_artifact:driver_summary.json",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 e465ddcc759ecaac != manifest e465ddcc759ecaac"
+  },
+  {
+   "id": "V005_artifact:server_events.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 68f6005a6707ae26 != manifest 68f6005a6707ae26"
+  },
+  {
+   "id": "V005_artifact:memory_and_power.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 62fd5aa25de21823 != manifest 62fd5aa25de21823"
+  },
+  {
+   "id": "V010_request_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V011_duplicate_request_ids",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V012_non_finite_times",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V013_timestamp_order",
+   "ok": true,
+   "severity": "error",
+   "detail": "send <= first <= last <= terminal violated: "
+  },
+  {
+   "id": "V014_token_counts",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V015_success_fields",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V016_exact_output_length",
+   "ok": true,
+   "severity": "warning",
+   "detail": ""
+  },
+  {
+   "id": "V017_chunk_series",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V018_chunk_token_sum",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V030_phases_well_formed",
+   "ok": true,
+   "severity": "error",
+   "detail": "bad phases: []"
+  },
+  {
+   "id": "V034_sustained_phases",
+   "ok": true,
+   "severity": "error",
+   "detail": "needs ('ramp', 'steady', 'drain')"
+  },
+  {
+   "id": "V035_sustained_phase_order",
+   "ok": true,
+   "severity": "error",
+   "detail": "ramp, steady and drain overlap or are out of order"
+  },
+  {
+   "id": "V020_device_listed",
+   "ok": true,
+   "severity": "error",
+   "detail": "no GPU recorded in the manifest"
+  },
+  {
+   "id": "V021_device_fields_known",
+   "ok": true,
+   "severity": "error",
+   "detail": "GPU fields unknown for index []"
+  },
+  {
+   "id": "V022_device_count_consistent",
+   "ok": true,
+   "severity": "error",
+   "detail": "allocated_physical_gpus=1, distinct listed GPUs=1"
+  },
+  {
+   "id": "V023_samples_from_allocated_devices",
+   "ok": true,
+   "severity": "error",
+   "detail": "samples from unlisted GPUs []"
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

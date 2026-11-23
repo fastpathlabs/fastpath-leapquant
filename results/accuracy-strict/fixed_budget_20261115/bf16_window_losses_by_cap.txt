@@ -1,0 +1,5 @@
+Strict lane, 4 samples x 30 questions per task. Disagreements with the fp32 window, split by whether the arm hit the 81,920 cap.
+bf16_window  aime2024: lost  6 (arm capped in 5), won  1 (fp32 capped in 1); capped arm 18, fp32 12, both 11
+bf16_window  aime2025: lost 16 (arm capped in 16), won  4 (fp32 capped in 3); capped arm 29, fp32 13, both 10
+leapquant    aime2024: lost  4 (arm capped in 4), won  1 (fp32 capped in 1); capped arm 13, fp32 12, both 8
+leapquant    aime2025: lost  7 (arm capped in 7), won  9 (fp32 capped in 8); capped arm 14, fp32 13, both 5

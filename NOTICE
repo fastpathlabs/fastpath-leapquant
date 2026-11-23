@@ -1,0 +1,20 @@
+fastpath-leapquant
+Copyright 2026 FastPathLabs
+
+This product is an independent implementation of the LeapQuant method described in:
+Y. Pan, H. Xi, K. Zhu, et al. "LeapQuant: Efficient Linear Attention with Accurate
+Recurrent State Quantization." arXiv:2609.38166, 2026. https://leapquant.github.io
+
+The method is the work of its authors. The code in this repository was written by
+FastPathLabs from the paper, with these exceptions:
+
+- kernel/leapquant_triton.py: the structure of the decode kernel is adapted from
+  SGLang's fused_recurrent_linear_replayssm_decode_kernel
+  (sglang/kernels/ops/attention/linear/fused_recurrent_linear_replayssm.py),
+  Apache License 2.0, Copyright 2023-2024 SGLang Team. SGLang ported that kernel
+  from vLLM's ReplaySSM kernel (Apache License 2.0, Copyright contributors to the
+  vLLM project). The changes are described in the file's header.
+
+- eval/lcb_sandbox_runner.py: contains grading code copied from LiveCodeBench
+  (github.com/LiveCodeBench/LiveCodeBench, commit 28fef95e), MIT License,
+  Copyright (c) 2024 LiveCodeBench. The MIT license text is reproduced in that file.

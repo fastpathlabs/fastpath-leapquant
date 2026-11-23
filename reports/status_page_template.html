@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeapQuant on H100</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, tables that scroll on their own, a status strip of verdicts at the top. */
+:root {
+  --bg: #f7f8f7; --surface: #ffffff; --fg: #15191a; --muted: #5a6466; --line: #dde2e1;
+  --accent: #1f6f78; --accent-soft: #e2f0f1; --good: #2f7a3a; --warn: #9a6200; --bad: #a33a2b;
+  --bar-base: #9aa6a8; --bar-lq: #1f6f78; --bar-lq2: #5fa3aa;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-data: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111516; --surface: #171d1e; --fg: #e4ebea; --muted: #9aa7a8; --line: #2b3536;
+  --accent: #6cc0c8; --accent-soft: #1c3335; --good: #7ccb84; --warn: #e2b04d; --bad: #f08a78;
+  --bar-base: #5c6a6c; --bar-lq: #6cc0c8; --bar-lq2: #3f8890; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111516; --surface: #171d1e; --fg: #e4ebea; --muted: #9aa7a8; --line: #2b3536;
+  --accent: #6cc0c8; --accent-soft: #1c3335; --good: #7ccb84; --warn: #e2b04d; --bad: #f08a78;
+  --bar-base: #5c6a6c; --bar-lq: #6cc0c8; --bar-lq2: #3f8890; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--font-body); margin: 0; }
+main { max-width: 900px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.2; }
+h1 { font-size: 2rem; margin: 0 0 6px; }
+h2 { font-size: 1.35rem; margin: 44px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+h3 { font-size: 1.05rem; margin: 26px 0 6px; }
+p, li { max-width: 68ch; }
+.lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 20px; }
+.meta { font-family: var(--font-data); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em; }
+.verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 22px 0 8px; }
+.verdict { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.verdict .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.verdict .value { font-family: var(--font-display); font-size: 1.3rem; margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+.verdict .note { font-size: 0.85rem; color: var(--muted); }
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; }
+.pass { color: var(--good); } .open { color: var(--warn); } .fail { color: var(--bad); }
+.warn { border-left: 3px solid var(--warn); padding: 2px 0 2px 12px; }
+.scroll { overflow-x: auto; margin: 12px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-weight: 600; color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-data); font-size: 0.84rem; }
+tr:last-child td { border-bottom: 0; }
+.src { font-family: var(--font-data); font-size: 0.75rem; color: var(--muted); }
+figure { margin: 16px 0; }
+figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+svg text { fill: var(--fg); font-family: var(--font-body); }
+svg .tick { fill: var(--muted); font-size: 11px; }
+.callout { background: var(--accent-soft); border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+code { font-family: var(--font-data); font-size: 0.85em; }
+a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <p class="meta">QWEN3.5-9B · ONE H100 PCIe 80 GB · SGLang · UPDATED __UPDATED__</p>
+  <h1>LeapQuant on H100</h1>
+  <p class="lede">Where the implementation stands against the paper (arXiv 2609.38166) and against SGLang's own state settings: kernel speed, serving speed, accuracy, and what changed today.</p>
+
+  <div class="verdicts">
+    __VERDICTS__
+  </div>
+
+  <h2>Kernel speed</h2>
+  <p>One linear-attention layer (32 heads of 128 × 128). First the complete cycle measured by the test harness, which decides gate G3; then the component timings (decode step plus one sixteenth of a fold, batch 512) that led to the final configuration. bf16 + window is SGLang's 16-bit state with its window kernel, the fastest baseline that keeps accuracy.</p>
+  __KERNEL_CHART__
+  __KERNEL_TABLE__
+
+  <h2>Serving against the 16-bit window</h2>
+  <p>Newest first: the final configuration through the test harness (15 Nov), then the earlier rounds. Round 9: the two servers alternated, two repetitions, same shapes as rounds 7 and 8; LeapQuant runs the compressed state with the CUDA fold; ratio is LeapQuant over bf16 + window on the mean of the repetitions.</p>
+  __SERVING__
+
+  <h2>Accuracy</h2>
+  __ACCURACY__
+
+  <h2>What was decided</h2>
+  __DECISIONS__
+
+  <h2>Next on the GPU</h2>
+  __NEXT__
+  <p class="src">Sources: results/ folders named per table (copied from the GPU machine); notes in summary.txt; backlog in docs/PLAN6_BACKLOG.md. This page: __SELF__, built by reports/build_status_page.py; every build goes to a new folder, and reports/all_reports.html lists them all.</p>
+</main>
+</body>
+</html>

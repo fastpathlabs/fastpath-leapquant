@@ -1,0 +1,7 @@
+LeapQuant decode: CUDA decode, variant 9
+  pass  after 32 tokens the request sits at a window boundary
+  pass  A. restored into a fresh engine, slot 5: the next 64 tokens' outputs are bit-identical (largest difference 0.0e+00)
+  pass  B's pool lies at another address
+  pass  B. restored into moved buffers, slot 7, batch row 2 of 4 with two other requests and a padded row: the next 64 tokens' outputs are bit-identical (largest difference 0.0e+00)
+
+PASS

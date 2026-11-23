@@ -1,0 +1,19 @@
+server starting (pid 347989), log: /home/ubuntu/leapquant/results/run-quick-einstein/f_server_window.log
+server is up
+wrote /home/ubuntu/leapquant/results/run-quick-einstein/f_smoke_window.json: 6 answers
+server starting (pid 348452), log: /home/ubuntu/leapquant/results/run-quick-einstein/f_server_leapquant.log
+server is up
+[2026-11-13 18:15:30 PID348527] LeapQuant decode state allocated: 24 layers x 561 slots x 32 heads, window 16, 12.203 GB (on top of the fp32 state; phase 1)
+wrote /home/ubuntu/leapquant/results/run-quick-einstein/f_smoke_leapquant.json: 6 answers
+
+ words  same first  prompt
+   116         116  What is the capital of France? Answer in one sentence.
+   151         151  List the first ten prime numbers and explain in two sentence
+   199         172  Write a Python function that returns the n-th Fibonacci numb
+   179          23  Explain step by step how to compute 37 * 43 in your head.
+   267         201  Summarise in five sentences how a hash table handles collisi
+   241          85  Translate into German: 'The train to Munich leaves from plat
+
+answers that differ within their first 15 words: 0 of 6
+Read the two files side by side. Differences late in an answer are expected;
+an answer that degrades into noise or repetition is a bug.

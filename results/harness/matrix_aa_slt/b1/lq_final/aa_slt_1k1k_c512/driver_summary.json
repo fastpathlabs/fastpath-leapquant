@@ -1,0 +1,54 @@
+{
+ "schema": "lqh.driver_summary.v1",
+ "lane": "sustained",
+ "config": {
+  "profile": "aa_slt_local",
+  "lane": "sustained",
+  "isl": 1000,
+  "osl": 1000,
+  "concurrency": 512,
+  "steady_s": 180,
+  "ramp_min_s": 30,
+  "drain_timeout_s": 900,
+  "seed": 0,
+  "request_timeout_s": 3600,
+  "variant": "aa_slt_1k1k",
+  "ignore_eos": true
+ },
+ "target": {
+  "base_url": "http://127.0.0.1:30000",
+  "model": "Qwen/Qwen3.5-9B",
+  "endpoint": "/v1/completions"
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T10:41:25.667471Z",
+  "origin_unix": 1794739285.667469,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "started_utc": "2026-11-15T10:41:25.682738Z",
+ "exit": "ok",
+ "phases": {
+  "ramp": {
+   "start": 0.286415634,
+   "end": 107.617761512,
+   "rule": "min 30.0 s and every worker completed one query",
+   "stagger_start": true
+  },
+  "steady": {
+   "start": 107.617761512,
+   "end": 287.617761512
+  },
+  "drain": {
+   "start": 287.617946764,
+   "end": 326.970289804,
+   "timeout_s": 900.0,
+   "unfinished_at_deadline": 0
+  }
+ },
+ "requests": {
+  "issued": 2113
+ },
+ "ended_utc": "2026-11-15T10:46:52.638269Z",
+ "records_written": 2113
+}

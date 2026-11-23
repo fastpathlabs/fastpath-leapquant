@@ -1,0 +1,24 @@
+T01 PASS 0 min  build: reference, CPU kernel, GPU kernel for sm_90
+T02 FAIL 8 min  CPU check suite (make check)
+T03 PASS 0 min  engine glue on the GPU, gates outside the kernel
+T04 PASS 0 min  engine glue on the GPU, gates inside the kernel
+T05 PASS 0 min  vLLM-style glue on the GPU
+T06 PASS 0 min  verify: synthetic trace of the model's shape
+T07 PASS 0 min  verify: layer 30, three prompts, all 4,095 tokens
+T08 PASS 0 min  verify: layer 13, three prompts, all 4,095 tokens
+T09 FAIL 0 min  verify: layer 0, three prompts, all 4,095 tokens
+T10 PASS 0 min  profile by phase, batch 32 / 128 / 512
+T11 PASS 0 min  kernel speed next to SGLang's kernels
+T12 PASS 0 min  complete windows, every state format
+T13 PASS 0 min  the same benchmark a second time (repeatability, gate G0)
+T14 PASS 0 min  fit quality against the exact optimum, nine traces
+T15 PASS 9 min  replay sweeps: rank 0/2/8, window 8, 8 sweeps, nine traces
+T16 PASS 13 min  all 24 linear layers, one prompt: replay and fit quality
+T17 PASS 0 min  SGLang: apply the patch
+T18 PASS 2 min  SGLang smoke: window server against LeapQuant server
+T19 PASS 3 min  SGLang smoke: LeapQuant with CUDA graphs off against on
+T20 PASS 16 min  serving baselines: fp32, fp32 + window, bf16 + window
+T21 PASS 6 min  serving with LeapQuant
+T22 PASS 6 min  serving with LeapQuant, second repetition
+T23 FAIL 50 min  task accuracy: fp32 twice, then LeapQuant (GSM8K, AIME, MMLU-Pro)
+suite finished 2026-11-13T21:53Z

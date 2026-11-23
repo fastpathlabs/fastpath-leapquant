@@ -1,0 +1,10 @@
+{
+ "harness_version": "lqh 1.0.0 (2026-11-15)",
+ "campaign_id": "lq-h100-2026-11",
+ "campaign_sha256": "ba6fbdeadaeb5e4a7ea581788fccac91d04427ceef02fcaa011b64d48e9523f5",
+ "profiles_sha256": "147ca00d88e6a4d33f1bf4363b73f5634cc2ebed117ad63b0ccbcbaf5c19f063",
+ "candidates_sha256": "2e709cf98b905564baba2b972b15a9f5cf010f83624dc5dc582b5a82eaed3bb8",
+ "result_roots": [
+  "/home/ubuntu/lqexp/results/harness"
+ ]
+}

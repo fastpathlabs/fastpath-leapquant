@@ -1,0 +1,79 @@
+{
+ "schema": "lqh.nll.v1",
+ "measured_utc": "2026-11-15T13:32:43.406426Z",
+ "base_url": "http://127.0.0.1:30000",
+ "lengths": [
+  8192
+ ],
+ "documents": [
+  "emozilla/pg19-test:test:0",
+  "emozilla/pg19-test:test:1",
+  "emozilla/pg19-test:test:2",
+  "emozilla/pg19-test:test:3"
+ ],
+ "server_info": {
+  "chunked_prefill_size": 16,
+  "mamba_ssm_dtype": "float32",
+  "disable_radix_cache": true,
+  "max_running_requests": 4,
+  "model_path": "Qwen/Qwen3.5-9B"
+ },
+ "chunked_prefill_size": 16,
+ "buckets": {
+  "L8192:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9192675965090527,
+    "emozilla/pg19-test:test:1": 3.2087372444264415,
+    "emozilla/pg19-test:test:2": 2.782353917307727,
+    "emozilla/pg19-test:test:3": 2.795377174043937
+   },
+   "mean": 2.6764339830717896,
+   "documents": 4,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9280664594976298,
+    "emozilla/pg19-test:test:1": 3.2237454855936942,
+    "emozilla/pg19-test:test:2": 2.541695651491107,
+    "emozilla/pg19-test:test:3": 2.78591853957344
+   },
+   "mean": 2.6198565340389677,
+   "documents": 4,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:2048-4096": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.0325538352137142,
+    "emozilla/pg19-test:test:1": 2.8644662053152112,
+    "emozilla/pg19-test:test:2": 2.4208993535730663,
+    "emozilla/pg19-test:test:3": 2.9426374361252474
+   },
+   "mean": 2.56513920755681,
+   "documents": 4,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:4096-8192": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.023015884401584,
+    "emozilla/pg19-test:test:1": 2.996656084175324,
+    "emozilla/pg19-test:test:2": 2.368437758341436,
+    "emozilla/pg19-test:test:3": 3.006975496298947
+   },
+   "mean": 2.5987713058043225,
+   "documents": 4,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:8192-16384": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 9.005733489990234,
+    "emozilla/pg19-test:test:1": 2.060476064682007,
+    "emozilla/pg19-test:test:2": 0.7392818927764893,
+    "emozilla/pg19-test:test:3": 0.5284992456436157
+   },
+   "mean": 3.0834976732730865,
+   "documents": 4,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  }
+ }
+}

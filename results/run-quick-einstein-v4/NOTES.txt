@@ -1,0 +1,3 @@
+Fourth round. Baselines are the logs of round 2 (384 state slots, at most 128 requests running).
+The LeapQuant serving numbers of this round are WORSE than round 3 because of a mistake in the SGLang patch of this round: a prefix-cache boundary of one request made every request fold. With many requests that happened every couple of steps. Fixed for round 5.
+The kernel numbers of this round (kernel speed, profile, verification) are not affected and are the current kernel.

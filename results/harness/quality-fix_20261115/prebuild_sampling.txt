@@ -1,0 +1,6 @@
+2026-11-15 18:27:54,877 - INFO - core.py:635 - flashinfer.jit: Building JIT module sampling; this can take several minutes on first use.
+sampled [78368, 128106, 143952, 151052]
+
+real	1m7.160s
+user	1m33.920s
+sys	0m6.849s

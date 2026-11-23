@@ -1,0 +1,2416 @@
+========= COMPUTE-SANITIZER
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 56, Incoming Value : 252
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 228, Incoming Value : 69
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 156, Incoming Value : 154
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (5,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 186, Incoming Value : 205
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (5,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 138, Incoming Value : 44
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (5,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 160, Incoming Value : 140
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (5,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (14,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 111, Incoming Value : 134
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (14,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 101, Incoming Value : 31
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (14,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 157, Incoming Value : 166
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (14,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (1,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 140, Incoming Value : 202
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (1,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 141, Incoming Value : 106
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (1,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 143, Incoming Value : 161
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (1,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (8,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 192, Incoming Value : 70
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (8,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 107, Incoming Value : 133
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (8,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 63, Incoming Value : 20
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (8,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 220, Incoming Value : 136
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 133, Incoming Value : 183
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 93, Incoming Value : 33
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (6,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 170, Incoming Value : 194
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (6,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 251, Incoming Value : 214
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (6,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 79, Incoming Value : 37
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (6,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (13,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 121, Incoming Value : 123
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (13,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 163, Incoming Value : 252
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (13,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 206, Incoming Value : 128
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (13,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 252, Incoming Value : 160
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 69, Incoming Value : 124
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 154, Incoming Value : 31
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (9,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (2,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 244, Incoming Value : 248
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (2,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 206, Incoming Value : 35
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (2,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 144, Incoming Value : 169
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (2,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (15,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 64, Incoming Value : 86
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (15,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 172, Incoming Value : 55
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (15,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 0, Incoming Value : 255
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (3,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 52, Incoming Value : 104
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (3,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 32, Incoming Value : 207
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (3,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 25, Incoming Value : 16
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (3,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (4,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 16, Incoming Value : 100
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (4,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 200, Incoming Value : 139
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (4,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 137, Incoming Value : 132
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (4,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (10,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 100, Incoming Value : 108
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (10,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 83, Incoming Value : 80
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (10,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 175, Incoming Value : 11
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (10,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 67
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (9,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 160, Incoming Value : 231
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (9,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 124, Incoming Value : 115
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (9,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 31, Incoming Value : 73
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (9,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 62
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (5,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 205, Incoming Value : 6
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (5,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 44, Incoming Value : 251
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (5,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 140, Incoming Value : 140
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (5,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (12,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 130, Incoming Value : 124
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (12,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 89, Incoming Value : 194
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (12,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 178, Incoming Value : 31
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (12,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 67
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (14,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 134, Incoming Value : 144
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (14,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 31, Incoming Value : 64
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (14,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 166, Incoming Value : 111
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (14,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (0,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 136, Incoming Value : 1
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (0,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 183, Incoming Value : 179
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (0,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 33, Incoming Value : 252
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (0,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (15,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 68, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (1,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 202, Incoming Value : 52
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (1,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 106, Incoming Value : 11
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (1,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 161, Incoming Value : 132
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (1,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (6,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 194, Incoming Value : 113
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (6,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 214, Incoming Value : 28
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (6,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 37, Incoming Value : 230
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (6,0,0) :
+=========     Read Thread (63,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (5,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 6, Incoming Value : 54
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (5,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 251, Incoming Value : 33
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (5,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 140, Incoming Value : 226
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (5,0,0) :
+=========     Read Thread (95,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 65, Incoming Value : 61
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (4,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 100, Incoming Value : 80
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (4,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 139, Incoming Value : 136
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (4,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 132, Incoming Value : 206
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (4,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 66, Incoming Value : 65
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d00 in block (7,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 42, Incoming Value : 186
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d01 in block (7,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 150, Incoming Value : 47
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d02 in block (7,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 185, Incoming Value : 197
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Error: Potential WAR hazard detected at __shared__ 0x14d03 in block (7,0,0) :
+=========     Read Thread (127,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 67, Incoming Value : 66
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d00 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 1, Incoming Value : 168
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d01 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 179, Incoming Value : 199
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d02 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 252, Incoming Value : 13
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+========= Warning: (Warp Level Programming) Potential WAR hazard detected at __shared__ 0x14d03 in block (0,0,0) :
+=========     Read Thread (31,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x54a0 in leapquant_fast_fold_v4.cu:642
+=========     Write Thread (0,0,0) at void lqff::fast_fold_kernel<(int)4, (bool)1>(lqff::Args)+0x5720 in leapquant_fast_fold_v4.cu:647
+=========     Current Value : 65, Incoming Value : 62
+=========     Saved host backtrace up to driver entry point at kernel launch time
+=========         Host Frame: cudaLaunchKernel [0x71007] in libleapquant_fastfold.so
+=========         Host Frame: int lqff::launch<true>(lqff::Args const*, int, void*) [0x99a8] in libleapquant_fastfold.so
+=========         Host Frame: ffi_call_unix64 [0xb78051] in python3
+=========         Host Frame: ffi_call_int [0xa99329] in python3
+=========         Host Frame: ffi_call [0xa98ef6] in python3
+=========         Host Frame: _ctypes_callproc [0xa9745c] in python3
+=========         Host Frame: PyCFuncPtr_call [0xa96854] in python3
+=========         Host Frame: _PyEval_EvalFrameDefault [0x141b817] in python3
+=========         Host Frame: PyEval_EvalCode [0x147841d] in python3
+=========         Host Frame: run_mod [0x14b2596] in python3
+=========         Host Frame: pyrun_file [0x1635fc4] in python3
+=========         Host Frame: _PyRun_SimpleFileObject [0x163580d] in python3
+=========         Host Frame: _PyRun_AnyFileObject [0x1635609] in python3
+=========         Host Frame: pymain_run_file_obj [0x1635594] in python3
+=========         Host Frame: pymain_run_file [0x163549c] in python3
+=========         Host Frame: Py_RunMain.warm [0x16dd164] in python3
+=========         Host Frame: pymain_main [0x15902ce] in python3
+=========         Host Frame: main [0x1590137] in python3
+========= 
+PASS  4 compensators, 2 sweeps               loss triton mean 0.00061 worst 0.00099 | cuda mean 0.00061 worst 0.00099 | ratio 0.9992 / 0.9969
+PASS  4 compensators, 1 sweep                loss triton mean 0.00065 worst 0.00100 | cuda mean 0.00065 worst 0.00101 | ratio 1.0011 / 1.0023
+PASS  4 compensators, half sweep             loss triton mean 0.00066 worst 0.00096 | cuda mean 0.00066 worst 0.00096 | ratio 1.0002 / 0.9995
+PASS  4 compensators, no smoothing           loss triton mean 0.00066 worst 0.00111 | cuda mean 0.00066 worst 0.00111 | ratio 0.9985 / 1.0011
+PASS  1 compensator                          loss triton mean 0.00220 worst 0.00251 | cuda mean 0.00220 worst 0.00251 | ratio 0.9994 / 0.9984
+PASS  3 compensators                         loss triton mean 0.00066 worst 0.00110 | cuda mean 0.00066 worst 0.00110 | ratio 1.0004 / 1.0062
+PASS  6 compensators                         loss triton mean 0.00055 worst 0.00086 | cuda mean 0.00055 worst 0.00086 | ratio 0.9998 / 1.0020
+PASS  8 compensators                         loss triton mean 0.00048 worst 0.00076 | cuda mean 0.00048 worst 0.00077 | ratio 1.0020 / 1.0033
+PASS  window 8                               loss triton mean 0.00045 worst 0.00053 | cuda mean 0.00045 worst 0.00053 | ratio 0.9984 / 1.0026
+PASS  store: 4 compensators, 2 sweeps        loss triton mean 0.00026 worst 0.00030 | cuda mean 0.00026 worst 0.00030 | ratio 0.9992 / 1.0046
+PASS  store: 4 compensators, source index, skip loss triton mean 0.00027 worst 0.00029 | cuda mean 0.00027 worst 0.00029 | ratio 1.0023 / 1.0039
+PASS  store: 1 compensator                   loss triton mean 0.00214 worst 0.00249 | cuda mean 0.00214 worst 0.00249 | ratio 0.9994 / 0.9988
+PASS  store: 8 compensators, no smoothing    loss triton mean 0.00026 worst 0.00030 | cuda mean 0.00026 worst 0.00029 | ratio 1.0024 / 0.9903
+RESULT: PASS
+========= RACECHECK SUMMARY: 100 hazards displayed (2177 errors, 840 warnings)

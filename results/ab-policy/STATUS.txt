@@ -1,0 +1,4 @@
+A PASS 4 min  bf16 window
+B PASS 4 min  LeapQuant, fold policy as before (aligned folds, track flushes kept)
+C PASS 4 min  LeapQuant, LEAPQUANT_FOLD_POLICY=auto (no track flushes with the radix cache off)
+done 2026-11-14T16:32:05Z

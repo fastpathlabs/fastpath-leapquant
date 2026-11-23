@@ -1,0 +1,4 @@
+server starting (pid 1726105), log: /home/ubuntu/lqexp/results/q38/probe/server_bf16_window.log
+server is up
+bf16_window: server up with CUDA graphs to batch 512
+bf16_window: 8 greedy, 2 sampled, 0 errors -> OK

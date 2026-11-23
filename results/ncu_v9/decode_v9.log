@@ -1,0 +1,9 @@
+==PROF== Connected to process 1517984 (/home/ubuntu/.local/share/uv/python/cpython-3.12.16-linux-x86_64-gnu/bin/python3.12)
+LeapQuant decode: CUDA decode, variant 9
+==WARNING== Unable to access the following 6 metrics: ctc__rx_bytes_data_user.sum, ctc__rx_bytes_data_user.sum.pct_of_peak_sustained_elapsed, ctc__rx_bytes_data_user.sum.per_second, ctc__tx_bytes_data_user.sum, ctc__tx_bytes_data_user.sum.pct_of_peak_sustained_elapsed, ctc__tx_bytes_data_user.sum.per_second.
+
+
+==PROF== Profiling "_ZN4lqfd14decode8_kernelILi2ELb1EEEvNS_4ArgsE": 0%....50%....100% - 38 passes
+done
+==PROF== Disconnected from process 1517984
+==PROF== Report: /home/ubuntu/lqexp/results/ncu_v9/decode_v9.ncu-rep

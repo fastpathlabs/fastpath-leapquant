@@ -1,0 +1,53 @@
+{
+ "schema": "lqh.driver_summary.v1",
+ "lane": "sustained",
+ "config": {
+  "profile": "harness_smoke",
+  "lane": "sustained",
+  "isl": 64,
+  "osl": 48,
+  "concurrency": 8,
+  "steady_s": 6,
+  "ramp_min_s": 1,
+  "drain_timeout_s": 30,
+  "request_timeout_s": 60,
+  "variant": "mock_sustained",
+  "ignore_eos": true
+ },
+ "target": {
+  "base_url": "http://127.0.0.1:31983",
+  "model": "mock-model",
+  "endpoint": "/v1/completions"
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T01:34:55.666394Z",
+  "origin_unix": 1794706495.666393,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "started_utc": "2026-11-15T01:34:55.668732Z",
+ "exit": "ok",
+ "phases": {
+  "ramp": {
+   "start": 0.155631417,
+   "end": 1.206204083,
+   "rule": "min 1.0 s and every worker completed one query",
+   "stagger_start": true
+  },
+  "steady": {
+   "start": 1.206204083,
+   "end": 7.206204083
+  },
+  "drain": {
+   "start": 7.206372917,
+   "end": 7.30700375,
+   "timeout_s": 30.0,
+   "unfinished_at_deadline": 0
+  }
+ },
+ "requests": {
+  "issued": 370
+ },
+ "ended_utc": "2026-11-15T01:35:02.975021Z",
+ "records_written": 370
+}

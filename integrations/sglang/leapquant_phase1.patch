@@ -1,0 +1,733 @@
+diff --git a/python/sglang/srt/arg_groups/attention_hook.py b/python/sglang/srt/arg_groups/attention_hook.py
+index cd11d3feae..ccca1f385c 100644
+--- a/python/sglang/srt/arg_groups/attention_hook.py
++++ b/python/sglang/srt/arg_groups/attention_hook.py
+@@ -451,6 +451,60 @@ def handle_linear_attn_backend(server_args: Any):
+                 f"{cfg.linear_replayssm_cache_len}."
+             )
+ 
++    # LeapQuant decode, phase 1. It reuses the ReplaySSM cursor, the forced
++    # flush on radix track boundaries and the "temporal[slot] is current at
++    # every flush" contract, so it inherits every ReplaySSM guard above.
++    if cfg.enable_linear_leapquant:
++        if not cfg.enable_linear_replayssm:
++            raise ValueError(
++                "--enable-linear-leapquant requires --enable-linear-replayssm "
++                "(it uses the same per-slot cursor and flush protocol)."
++            )
++        if cfg.linear_replayssm_cache_len > 16:
++            raise ValueError(
++                "--enable-linear-leapquant supports --linear-replayssm-cache-len "
++                f"up to 16 (LQ_MAX_WINDOW), got {cfg.linear_replayssm_cache_len}."
++            )
++        if cfg.mamba_ssm_dtype not in (None, "float32"):
++            raise ValueError(
++                "--enable-linear-leapquant requires a float32 SSM state, got "
++                f"--mamba-ssm-dtype={cfg.mamba_ssm_dtype!r}."
++            )
++        if not os.environ.get("LEAPQUANT_HOME"):
++            raise ValueError(
++                "--enable-linear-leapquant requires the environment variable "
++                "LEAPQUANT_HOME: the path of a leapquant-core checkout in which "
++                "`make cuda` has been run."
++            )
++        # Decode rows of a mixed chunk run through the prefill kernel on
++        # temporal[slot], which LeapQuant does not keep current between folds.
++        if cfg.enable_mixed_chunk:
++            raise ValueError(
++                "--enable-linear-leapquant does not support --enable-mixed-chunk."
++            )
++        if cfg.speculative_algorithm is not None:
++            raise ValueError(
++                "--enable-linear-leapquant does not support speculative decoding."
++            )
++        leapquant_state = os.environ.get("LEAPQUANT_STATE", "mirror").strip().lower()
++        if leapquant_state not in ("mirror", "compressed"):
++            raise ValueError(
++                "LEAPQUANT_STATE must be 'mirror' or 'compressed', got "
++                f"{leapquant_state!r}."
++            )
++        # The compressed state has no fp32 state per slot. The radix cache's slot
++        # copies go through the side state (copy_slots); these paths read the fp32
++        # state directly and are not supported with it.
++        if leapquant_state == "compressed" and cfg.enable_int8_mamba_checkpoint:
++            raise ValueError(
++                "LEAPQUANT_STATE=compressed does not support "
++                "--enable-int8-mamba-checkpoint (the checkpoint store reads the fp32 state)."
++            )
++        if leapquant_state == "compressed" and cfg.enable_hierarchical_cache:
++            raise ValueError(
++                "LEAPQUANT_STATE=compressed does not support --enable-hierarchical-cache."
++            )
++
+     # ReplaySSM spec-verify (Part B of #28511): linear-chain target verify via
+     # compact cached replay. Verify stores normalized keys, update vectors,
+     # and fp32 log-decays; accepted BF16 windows are materialized with
+diff --git a/python/sglang/srt/arg_groups/field_order.py b/python/sglang/srt/arg_groups/field_order.py
+index 51d6de150c..18a11b0577 100644
+--- a/python/sglang/srt/arg_groups/field_order.py
++++ b/python/sglang/srt/arg_groups/field_order.py
+@@ -356,6 +356,7 @@ POSITIONAL_FIELD_ORDER = (
+     "enable_linear_replayssm",
+     "linear_replayssm_cache_len",
+     "enable_linear_replayssm_spec",
++    "enable_linear_leapquant",
+     "enable_hierarchical_cache",
+     "hicache_host_memory_mode",
+     "hicache_ratio",
+diff --git a/python/sglang/srt/arg_groups/fields/exec_.py b/python/sglang/srt/arg_groups/fields/exec_.py
+index e1d434251b..749dd725c3 100644
+--- a/python/sglang/srt/arg_groups/fields/exec_.py
++++ b/python/sglang/srt/arg_groups/fields/exec_.py
+@@ -631,6 +631,22 @@ class ExecMamba(msgspec.Struct):
+         bool,
+         "Enable the ReplaySSM spec-verify: fold-every-commit -- a per-slot raw-input window replaces the recurrent verify's per-draft full-state snapshots. GDN or KDA hybrid linear-attn models, linear-chain (--speculative-eagle-topk in {None, 1}) only.",
+     ] = False
++    # LeapQuant decode (arXiv 2609.38166), integration phase 1: the GDN decode
++    # kernel reads an int8 recurrent state plus a window of fp16 records and
++    # rewrites the int8 state once per window. It rides on the ReplaySSM
++    # cursor and flush protocol; the fp32 state tensor is kept for prefill and
++    # for the prefix cache and is refreshed at every fold.
++    enable_linear_leapquant: A[
++        bool,
++        "Enable the LeapQuant decode kernel for GDN linear attention (int8 "
++        "recurrent state, rewritten once per --linear-replayssm-cache-len "
++        "decode steps). Requires --enable-linear-replayssm with a cache length "
++        "of at most 16, a float32 SSM state, and the environment variable "
++        "LEAPQUANT_HOME pointing at a leapquant-core checkout built with "
++        "`make cuda`. By default the fp32 state is kept as well (speed only); "
++        "with LEAPQUANT_STATE=compressed and --disable-radix-cache the fp32 "
++        "state per slot is dropped (speed and memory).",
++    ] = False
+ 
+ 
+ class ExecGraph(msgspec.Struct):
+diff --git a/python/sglang/srt/configs/mamba_utils.py b/python/sglang/srt/configs/mamba_utils.py
+index b8a00f50ee..74881297ee 100644
+--- a/python/sglang/srt/configs/mamba_utils.py
++++ b/python/sglang/srt/configs/mamba_utils.py
+@@ -107,6 +107,31 @@ def mamba2_state_dtype(config=None) -> Mamba2StateDType:
+     return Mamba2StateDType(conv=conv_dtype, temporal=ssm_dtype)
+ 
+ 
++def _leapquant_state_bytes(temporal_shape, layer_ids) -> Optional[List[int]]:
++    """Bytes of each layer's LeapQuant state per slot, when it replaces the fp32 state."""
++    try:
++        from sglang.srt.layers.attention.linear.leapquant_state import (
++            leapquant_bytes_per_head,
++            leapquant_compensators,
++            leapquant_compressed_only,
++        )
++        from sglang.srt.runtime_context import get_exec
++
++        if not leapquant_compressed_only():
++            return None
++        window_length = get_exec().mamba.linear_replayssm_cache_len
++    except Exception:  # noqa: BLE001 - no server config: the plain fp32 size
++        return None
++    value_heads, value_channels, key_channels = temporal_shape
++    return [
++        value_heads
++        * leapquant_bytes_per_head(
++            key_channels, value_channels, window_length, leapquant_compensators(layer_id)
++        )
++        for layer_id in layer_ids
++    ]
++
++
+ @dataclass(kw_only=True, frozen=True)
+ class BaseLinearStateParams(ABC):
+     dtype: Mamba2StateDType = field(default_factory=lambda: mamba2_state_dtype(None))
+@@ -119,10 +144,13 @@ class BaseLinearStateParams(ABC):
+         )
+ 
+         ssm_numel = int(np.prod(self.shape.temporal))
+-        return (
+-            conv_numel * self.dtype.conv.itemsize
+-            + ssm_numel * self.dtype.temporal.itemsize
+-        ) * len(self.layers)
++        conv_bytes = conv_numel * self.dtype.conv.itemsize * len(self.layers)
++        leapquant_bytes = _leapquant_state_bytes(self.shape.temporal, self.layers)
++        if leapquant_bytes is not None:
++            # LeapQuant compressed state: the slot holds the LeapQuant state
++            # instead of the fp32 state (layers/attention/linear/leapquant_state.py).
++            return conv_bytes + sum(leapquant_bytes)
++        return conv_bytes + ssm_numel * self.dtype.temporal.itemsize * len(self.layers)
+ 
+     def replayssm_ring_bytes_per_req(self, record_len: int) -> int:
+         """ReplaySSM spec-verify scratch bytes across all layers.
+diff --git a/python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py b/python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
+index 6a5543da75..4761046ae2 100644
+--- a/python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
++++ b/python/sglang/srt/layers/attention/hybrid_linear_attn_backend.py
+@@ -304,6 +304,13 @@ class MambaAttnBackendBase(AttentionBackend):
+                     replayssm_force_flush = force_flush_bool.to(
+                         device=self.device, dtype=torch.int32
+                     )
++                    replayssm_force_flush = self._leapquant_align_flush(
++                        replayssm_force_flush,
++                        replayssm_write_pos,
++                        L,
++                        seq_lens_cpu=forward_batch.seq_lens_cpu,
++                        slots=slots,
++                    )
+                 # Advance only valid slots, scattered over unique slots (dup-index
+                 # race; padded rows share slot 0); a forced flush -> next write_pos 0.
+                 valid_mask = slots >= 0
+@@ -673,6 +680,81 @@ class MambaAttnBackendBase(AttentionBackend):
+             buf[bs - num_padding : bs].fill_(-1)
+         return buf
+ 
++    def _leapquant_align_flush(
++        self,
++        force_flush: torch.Tensor,
++        write_pos: torch.Tensor,
++        cache_len: int,
++        seq_lens_cpu: Optional[torch.Tensor] = None,
++        slots: Optional[torch.Tensor] = None,
++    ) -> torch.Tensor:
++        """LeapQuant: when ANY request of the batch closes its window on this step,
++        close every request's window (int32 flags, on device, no host sync).
++
++        A LeapQuant fold is a long chain of small steps per head. With unaligned
++        cursors some request folds on almost every step, and every layer of every
++        step waits for one such chain: measured on an H100 at about 0.2 ms per
++        layer, 5 ms per decode step, at any batch size. Aligned, the requests that
++        run together fold together once per window and the other steps fold
++        nothing. A request that joins later is pulled into step at the next fold;
++        a forced flush of a partly filled window is what the radix track boundary
++        already asks of the kernel."""
++        if not get_exec().mamba.enable_linear_leapquant:
++            return force_flush
++        # LEAPQUANT_ALIGN_FOLDS=0: every request folds on its own step. With the fast
++        # (Triton) fold a fold of a few rows costs about 30 us per layer, so spreading
++        # the folds over the 16 steps of a window removes the aligned fold step (the
++        # p99 spike) at about the same total work.
++        import os
++
++        # LEAPQUANT_TRACK_FLUSH=0 (backlog B55): drop the radix track-boundary flushes, radix
++        # cache on or off. ReplaySSM (so LeapQuant) runs only with the no_buffer strategy, and
++        # there nothing reads a decode state at a track boundary: a running request is published
++        # after a prefill chunk (empty window), a finished one up to its last fold (settle_replay
++        # takes the cursor off the cached length). Each flush was a fold of a partly filled window
++        # that put the request out of phase with the aligned folds. Kept with extra_buffer.
++        if os.environ.get("LEAPQUANT_TRACK_FLUSH", "").strip() == "0" and not getattr(
++            get_exec().mamba, "enable_mamba_extra_buffer", False
++        ):
++            force_flush = torch.zeros_like(force_flush)
++
++        # LEAPQUANT_FOLD_POLICY=auto (14 Nov 2026): with the radix cache off nothing reads a
++        # snapshot, so the track-boundary flushes are dropped (for LeapQuant each was a
++        # single-request fold that put the request out of phase, and aligned folds then pulled
++        # every request into an early fold); with the radix cache on, every request folds on
++        # its own step (measured 2-3% faster than aligned folds there).
++        if os.environ.get("LEAPQUANT_FOLD_POLICY", "").strip() == "auto":
++            if not get_memory().disable_radix_cache:
++                return force_flush
++            force_flush = torch.zeros_like(force_flush)
++        # LEAPQUANT_FOLD_POLICY=stagger (backlog B53): each request folds on its own phase,
++        # (seq_len + slot) % cache_len == 0, so ~1/cache_len of the requests fold on every
++        # step and there is no aligned fold step; no alignment below.
++        if (
++            os.environ.get("LEAPQUANT_FOLD_POLICY", "").strip() == "stagger"
++            and seq_lens_cpu is not None
++            and slots is not None
++        ):
++            rows = force_flush.shape[0]
++            lengths = seq_lens_cpu[:rows].to(torch.int64)
++            if lengths.shape[0] < rows:
++                lengths = torch.cat(
++                    [lengths, torch.zeros((rows - lengths.shape[0],), dtype=torch.int64)]
++                )
++            lengths = lengths.to(device=force_flush.device)
++            phase = (lengths + slots[:rows].to(torch.int64).clamp(min=0)) % cache_len == 0
++            if get_memory().disable_radix_cache:
++                force_flush = torch.zeros_like(force_flush)
++            return force_flush | phase.to(force_flush.dtype)
++        if os.environ.get("LEAPQUANT_ALIGN_FOLDS", "1").strip() == "0":
++            return force_flush
++        # Only a window that is FULL pulls the others along. A radix-track flush
++        # of one row must not: with many rows, some row is at a track boundary
++        # on almost every step, and every request would then fold on almost
++        # every step (measured: throughput at 128 requests fell by a third).
++        any_full = (write_pos == cache_len - 1).any()
++        return force_flush | any_full.to(force_flush.dtype)
++
+     def _replayssm_track_flush_mask(
+         self, seq_lens_cpu: torch.Tensor, bs: int
+     ) -> torch.Tensor:
+@@ -937,6 +1019,13 @@ class MambaAttnBackendBase(AttentionBackend):
+                 ):
+                     ff_mask = self._replayssm_track_flush_mask(seq_lens_cpu, bs)
+                     force_flush_dev = ff_mask.to(device=self.device, dtype=torch.int32)
++                    force_flush_dev = self._leapquant_align_flush(
++                        force_flush_dev,
++                        write_pos_buf[safe_slots],
++                        mamba_pool.linear_replayssm_cache_len,
++                        seq_lens_cpu=seq_lens_cpu,
++                        slots=safe_slots,
++                    )
+                     static_ff.copy_(force_flush_dev)
+                 else:
+                     static_ff.zero_()
+diff --git a/python/sglang/srt/layers/attention/linear/gdn_backend.py b/python/sglang/srt/layers/attention/linear/gdn_backend.py
+index bd0fb55bf9..843322701c 100644
+--- a/python/sglang/srt/layers/attention/linear/gdn_backend.py
++++ b/python/sglang/srt/layers/attention/linear/gdn_backend.py
+@@ -662,6 +662,37 @@ class GDNAttnBackend(MambaAttnBackendBase):
+         validate_gdn_mis_backend(backends.prefill)
+         self.linear_attn_backends = backends
+         self.kernel_dispatcher = self._create_kernel_dispatcher(backends)
++        # LeapQuant decode (--enable-linear-leapquant, phase 1). None when the
++        # flag is off, so the decode dispatch below is unchanged.
++        self.leapquant = None
++        if get_exec().mamba.enable_linear_leapquant:
++            from sglang.srt.layers.attention.linear.leapquant_state import (
++                build_leapquant_state,
++            )
++
++            self.leapquant = build_leapquant_state(
++                self.state_pool,
++                model_runner.device,
++                get_exec().mamba.linear_replayssm_cache_len,
++            )
++            # LEAPQUANT_LAYERS (task TQ.5): the layers that carry LeapQuant; the others keep
++            # SGLang's window kernel on the fp32 state (mirror state only).
++            import os as _os
++
++            from leapquant_engine import parse_layer_selection
++
++            self.leapquant_layers = parse_layer_selection(
++                _os.environ.get("LEAPQUANT_LAYERS", "all"), list(self.state_layer_indices)
++            )
++            if (
++                self.leapquant is not None
++                and self.leapquant.compressed_only
++                and self.leapquant_layers != set(self.state_layer_indices)
++            ):
++                raise ValueError(
++                    "LEAPQUANT_LAYERS selects a subset of the layers: the compressed state keeps no "
++                    "fp32 state for the others. Use LEAPQUANT_STATE=mirror."
++                )
+         # Sized past the pool for attn_tp-padded warmup/MLP-sync batches (see helper).
+         self.verify_intermediate_state_indices = (
+             build_verify_intermediate_state_indices(
+@@ -1131,6 +1162,35 @@ class GDNAttnBackend(MambaAttnBackendBase):
+                 conv_state_indices=cache_indices,
+             )
+ 
++        # LeapQuant decode: adopt the slots that start to decode from
++        # temporal[slot], read the int8 state plus the window, append one
++        # record, fold full or force-flushed windows and write their
++        # full-precision state back to temporal[slot] (so the track snapshot
++        # below reads a current state, as with ReplaySSM).
++        if self.leapquant is not None and layer.layer_id in self.leapquant_layers:
++            core_attn_out = self.leapquant.decode(
++                self.state_layer_indices[layer.layer_id],
++                mixed_qkv,
++                a,
++                b,
++                layer.A_log,
++                layer.dt_bias,
++                layer.head_k_dim**-0.5,
++                # Compressed state: no fp32 state to adopt from or write back to.
++                None if self.leapquant.compressed_only else ssm_states,
++                cache_indices,
++                replayssm_write_pos,
++                replayssm_force_flush,
++                out_dtype=mixed_qkv.dtype,
++            )
++            # [B, HV, V] float32 -> [1, B, HV, V] in the model dtype, the layout
++            # of the packed decode below.
++            core_attn_out = core_attn_out.to(mixed_qkv.dtype).unsqueeze(0)
++            self._track_mamba_state_decode(
++                forward_batch, conv_states, ssm_states, cache_indices, layer.layer_id
++            )
++            return (core_attn_out, z) if return_z else core_attn_out
++
+         # Skip split + reshape + separate gating kernel by consuming
+         # the packed mixed_qkv directly in a single fused Triton kernel.
+         if self.kernel_dispatcher.supports_packed_decode:
+@@ -1336,6 +1396,8 @@ class GDNAttnBackend(MambaAttnBackendBase):
+         if self.mis_metadata is not None:
+             if is_target_verify:
+                 raise ValueError("GDN MIS does not support target verify")
++            if self.leapquant is not None:
++                raise ValueError("GDN MIS is not supported with --enable-linear-leapquant")
+             return self._forward_extend_mis(
+                 layer=layer,
+                 mixed_qkv=mixed_qkv,
+@@ -1541,14 +1603,32 @@ class GDNAttnBackend(MambaAttnBackendBase):
+                     dtype=torch.float32,
+                     device=ssm_states.device,
+                 )
++            # LeapQuant compressed state: the prefill runs on a staging tensor
++            # (one row per request: zero for a new request, the decompressed
++            # state for a later chunk) and is compressed into the LeapQuant pool
++            # right after. The conv state above is unaffected.
++            leapquant_staging = None
++            if self.leapquant is not None and self.leapquant.compressed_only:
++                leapquant_layer = self.state_layer_indices[layer.layer_id]
++                leapquant_staging = self.leapquant.extend_begin(
++                    leapquant_layer, state_cache_indices
++                )
+             core_attn_out, last_recurrent_state, h = self.kernel_dispatcher.extend(
+                 q=query,
+                 k=key,
+                 v=value,
+                 g=g,
+                 beta=beta,
+-                ssm_states=ssm_states_contig,
+-                cache_indices=state_cache_indices,
++                ssm_states=(
++                    leapquant_staging[0]
++                    if leapquant_staging is not None
++                    else ssm_states_contig
++                ),
++                cache_indices=(
++                    leapquant_staging[1]
++                    if leapquant_staging is not None
++                    else state_cache_indices
++                ),
+                 query_start_loc=query_start_loc,
+                 state_checkpoint_cu_starts=(
+                     forward_metadata.state_checkpoint_cu_starts
+@@ -1576,6 +1656,11 @@ class GDNAttnBackend(MambaAttnBackendBase):
+                 ),
+             )
+ 
++            if leapquant_staging is not None:
++                self.leapquant.extend_end(
++                    leapquant_layer, state_cache_indices, *leapquant_staging
++                )
++
+             if is_npu() and last_recurrent_state is not None:
+                 last_recurrent_state = last_recurrent_state.to(
+                     ssm_states.dtype, copy=False
+diff --git a/python/sglang/srt/layers/attention/linear/leapquant_state.py b/python/sglang/srt/layers/attention/linear/leapquant_state.py
+new file mode 100644
+index 0000000000..5d5cccee80
+--- /dev/null
++++ b/python/sglang/srt/layers/attention/linear/leapquant_state.py
+@@ -0,0 +1,223 @@
++# SPDX-License-Identifier: Apache-2.0
++"""LeapQuant decode for GDN linear attention (--enable-linear-leapquant).
++
++The arithmetic and the engine-side glue live in the leapquant-core repository
++(kernel/leapquant_engine.py, kernel/leapquant_triton.py; tested there against its
++C++ reference). This module locates that repository, builds one ``EngineState``
++over the MambaPool, and registers it as a slot-indexed side state so that it
++hears about every slot that is cleared or copied.
++
++How the state is kept: environment variable LEAPQUANT_STATE
++
++``mirror`` (default; integration phase 1)
++    ``temporal`` (the fp32 state) is kept as it is. A slot that starts to decode
++    is adopted from ``temporal[slot]``; at every fold the full-precision state is
++    written back to ``temporal[slot]``. That is the contract ReplaySSM already
++    gives the radix cache, so no cache code changes. No memory is saved.
++
++``compressed`` (phase 2)
++    ``temporal`` has two rows only. The prefill of a layer runs on a staging
++    tensor with one row per request of the batch, and at its end the states are
++    compressed into the LeapQuant pool; a later chunk of a chunked prefill starts
++    from its own state, decompressed. Decode reads and writes only the pool. A slot
++    costs the LeapQuant state (about 21 MB for Qwen3.5-9B) instead of the fp32 state
++    (50 MB), and the memory accounting charges the former
++    (configs/mamba_utils.py). The radix cache works on it: a cached prefix is a
++    slot's state at its last fold, which is the boundary state, and the slot
++    copies of MambaPool.copy_from reach EngineState.copy_slots. Not supported with
++    it: --enable-int8-mamba-checkpoint, --enable-hierarchical-cache.
++
++LEAPQUANT_FAST=0 selects the exact CUDA kernels instead of the fast Triton ones
++(mirror only).
++
++LEAPQUANT_COMPENSATORS sets the compensators per head: "4" (default, the paper's
++setting) or a default followed by "from_layer:count" items, e.g. "4,20:8" for 8
++compensators on the model's layers 20 and above (where 4 lose more than bf16 does). With --enable-int8-mamba-checkpoint (mirror only) the radix
++cache's checkpoints are kept in the LeapQuant boundary format
++(``leapquant_checkpoint_store_class``).
++
++Either way the ReplaySSM decode ring is not used, so it is allocated for one slot.
++"""
++
++from __future__ import annotations
++
++import logging
++import os
++import sys
++from typing import Any, Optional
++
++import torch
++
++logger = logging.getLogger(__name__)
++
++# The MambaPool reserves slot 0 for padded batch rows.
++_PADDING_SLOT = 0
++# Compensators per head (the paper's setting); see leapquant_compensators().
++LEAPQUANT_COMPENSATORS = 4
++
++
++def leapquant_compensators(layer_id: int) -> int:
++    """Compensators for a model layer, from LEAPQUANT_COMPENSATORS ("4" or e.g. "4,20:8")."""
++    spec = os.environ.get("LEAPQUANT_COMPENSATORS", str(LEAPQUANT_COMPENSATORS)).replace(" ", "")
++    items = [item for item in spec.split(",") if item]
++    try:
++        count = int(items[0])
++        rules = [tuple(int(part) for part in item.split(":")) for item in items[1:]]
++        if any(len(rule) != 2 for rule in rules):
++            raise ValueError("an item is not from_layer:count")
++    except (ValueError, IndexError) as error:
++        raise ValueError(f"LEAPQUANT_COMPENSATORS={spec!r}: expected e.g. '4' or '4,20:8'") from error
++    for value in [count] + [rule[1] for rule in rules]:
++        if not 1 <= value <= 16:
++            raise ValueError(f"LEAPQUANT_COMPENSATORS={spec!r}: {value} compensators (1 to 16 are supported)")
++    for first_layer, layer_count in rules:
++        if layer_id >= first_layer:
++            count = layer_count
++    return count
++
++
++def leapquant_enabled() -> bool:
++    try:
++        from sglang.srt.runtime_context import get_exec
++
++        return bool(get_exec().mamba.enable_linear_leapquant)
++    except Exception:  # noqa: BLE001 - no server config (tools, unit tests)
++        return False
++
++
++def leapquant_state_mode() -> str:
++    mode = os.environ.get("LEAPQUANT_STATE", "mirror").strip().lower()
++    if mode not in ("mirror", "compressed"):
++        raise ValueError(
++            f"LEAPQUANT_STATE must be 'mirror' or 'compressed', got {mode!r}"
++        )
++    return mode
++
++
++def leapquant_compressed_only() -> bool:
++    """True when the fp32 state per slot is replaced by the LeapQuant state (phase 2)."""
++    return leapquant_enabled() and leapquant_state_mode() == "compressed"
++
++
++def leapquant_fast() -> bool:
++    return os.environ.get("LEAPQUANT_FAST", "1").strip() != "0"
++
++
++def leapquant_bytes_per_head(
++    key_channels: int, value_channels: int, window_length: int,
++    compensators: int = LEAPQUANT_COMPENSATORS,
++) -> int:
++    """Boundary state (int8 matrix, two fp32 scale vectors, fp16 compensators) plus the
++    window of fp16 records: 19,456 + 8,224 bytes for a 128 x 128 head and a window of 16."""
++    boundary = (
++        value_channels * key_channels
++        + 4 * (value_channels + key_channels)
++        + 2 * compensators * (key_channels + value_channels)
++    )
++    window = 2 * window_length * (key_channels + value_channels) + 2 * window_length
++    return boundary + window
++
++
++def leapquant_temporal_rows(size: int) -> int:
++    """Rows of ``temporal``: one per slot plus padding, or two in the compressed state."""
++    return 2 if leapquant_compressed_only() else size + 1
++
++
++def leapquant_ring_slots(slots: int) -> int:
++    """The ReplaySSM decode ring is not used by LeapQuant: one slot is enough."""
++    return 1 if leapquant_enabled() else slots
++
++
++def _load_engine_module():
++    home = os.environ.get("LEAPQUANT_HOME")
++    if not home:
++        raise RuntimeError(
++            "--enable-linear-leapquant requires LEAPQUANT_HOME: the path of a "
++            "leapquant-core checkout in which `make cuda` has been run."
++        )
++    kernel_dir = os.path.join(home, "kernel")
++    if not os.path.isfile(os.path.join(kernel_dir, "leapquant_engine.py")):
++        raise RuntimeError(f"LEAPQUANT_HOME={home!r} holds no kernel/leapquant_engine.py")
++    if kernel_dir not in sys.path:
++        sys.path.insert(0, kernel_dir)
++    os.environ.setdefault("LEAPQUANT_BUILD_DIR", os.path.join(home, "build"))
++    import leapquant_engine
++
++    return leapquant_engine
++
++
++def leapquant_checkpoint_store_class():
++    """The prefix-cache checkpoint store in the LeapQuant boundary format. It
++    has the interface of ``Int8CheckpointStore`` (mamba_checkpoint_pool.py)."""
++    return _load_engine_module().CheckpointStore
++
++
++def build_leapquant_state(state_pool: Any, device: Any, window_length: int) -> Optional[Any]:
++    """The LeapQuant state over ``state_pool``; built once per pool and
++    registered with it. ``state_pool`` is the backend's MambaPool view."""
++    existing = getattr(state_pool, "_leapquant_state", None)
++    if existing is not None:
++        return existing
++
++    compressed = leapquant_compressed_only()
++    temporal = state_pool.mamba_cache.temporal  # [layers, rows, HV, V, K]
++    if temporal.dim() != 5 or temporal.numel() == 0 or not temporal.is_contiguous():
++        raise RuntimeError(
++            "--enable-linear-leapquant expects a contiguous [layers, slots, HV, V, K] "
++            f"SSM state, got shape {tuple(temporal.shape)}"
++        )
++    if temporal.dtype != torch.float32:
++        raise RuntimeError(
++            "--enable-linear-leapquant requires a float32 SSM state "
++            f"(--mamba-ssm-dtype float32), got {temporal.dtype}"
++        )
++    cursor = state_pool.replayssm_write_pos
++    if cursor is None:
++        raise RuntimeError("--enable-linear-leapquant requires --enable-linear-replayssm")
++    if compressed:
++        from sglang.srt.environ import envs
++
++        if envs.SGLANG_ENABLE_GDN_PREFILL_GRAPH_EXTEND.get():
++            raise RuntimeError(
++                "LEAPQUANT_STATE=compressed does not support the GDN prefill CUDA graph "
++                "(SGLANG_ENABLE_GDN_PREFILL_GRAPH_EXTEND): its captured slot indices "
++                "address the fp32 state, which this mode does not keep."
++            )
++
++    layers, rows, value_heads, value_channels, key_channels = temporal.shape
++    slots = state_pool.size + 1 if compressed else rows
++    layer_ids = list(getattr(state_pool, "mamba_layer_ids", range(layers)))
++    compensators = [leapquant_compensators(layer_id) for layer_id in layer_ids]
++    engine_module = _load_engine_module()
++    state = engine_module.EngineState(
++        layers=layers,
++        slots=slots,
++        value_heads=value_heads,
++        key_heads=None,  # read from the packed qkv width at the first decode
++        key_channels=key_channels,
++        value_channels=value_channels,
++        max_rows=slots,
++        window_length=window_length,
++        compensator_count=compensators,
++        device=device,
++        cursor=cursor,
++        padding_slot=_PADDING_SLOT,
++        fast=True if compressed else leapquant_fast(),
++        compressed_only=compressed,
++    )
++    # Unified memory rejects side states here, loudly; that is intended.
++    state_pool.register_slot_state(state)
++    state_pool._leapquant_state = state
++    logger.info(
++        "LeapQuant decode state allocated: %d layers x %d slots x %d heads, "
++        "window %d, compensators %s, %.3f GB, %s kernels, state %s",
++        layers,
++        slots,
++        value_heads,
++        window_length,
++        ",".join(str(count) for count in compensators),
++        state.bytes_allocated() / (1 << 30),
++        "fast" if state.fast else "exact",
++        "compressed only (no fp32 state per slot)" if compressed else "mirrored in fp32 (phase 1)",
++    )
++    return state
+diff --git a/python/sglang/srt/mem_cache/mamba_checkpoint_pool.py b/python/sglang/srt/mem_cache/mamba_checkpoint_pool.py
+index e1d1237b3a..e28c72ce0b 100644
+--- a/python/sglang/srt/mem_cache/mamba_checkpoint_pool.py
++++ b/python/sglang/srt/mem_cache/mamba_checkpoint_pool.py
+@@ -184,6 +184,26 @@ class Int8CheckpointStore:
+         return self.mem_usage_bytes() // max(1, self.num_slots)
+ 
+ 
++def _temporal_checkpoint_store_class():
++    """The store for cached temporal states: SGLang's int8 format, or, under
++    --enable-linear-leapquant, the LeapQuant boundary format (int8 matrix, two
++    scale vectors, 4 fp16 compensators: 19,456 bytes per 128 x 128 head against
++    16,896). A LeapQuant checkpoint is bit-identical to the boundary state of the
++    request it was taken from, because the decode kernel writes the unrounded
++    state to ``temporal`` at every fold and the store folds it the same way."""
++    try:
++        mamba = get_exec().mamba
++    except ValueError:
++        return Int8CheckpointStore
++    if not getattr(mamba, "enable_linear_leapquant", False):
++        return Int8CheckpointStore
++    from sglang.srt.layers.attention.linear.leapquant_state import (
++        leapquant_checkpoint_store_class,
++    )
++
++    return leapquant_checkpoint_store_class()
++
++
+ class MambaCheckpointPool:
+     def __init__(
+         self,
+@@ -200,7 +220,7 @@ class MambaCheckpointPool:
+     ):
+         self.num_slots = num_slots
+         self.device = device
+-        self.temporal = Int8CheckpointStore(
++        self.temporal = _temporal_checkpoint_store_class()(
+             num_layers=num_layers,
+             num_slots=num_slots + 1,  # slot 0 reserved (matches MambaSlotAllocator)
+             num_heads=num_heads,
+diff --git a/python/sglang/srt/mem_cache/memory_pool.py b/python/sglang/srt/mem_cache/memory_pool.py
+index 5e40be88c0..b8e7213a72 100644
+--- a/python/sglang/srt/mem_cache/memory_pool.py
++++ b/python/sglang/srt/mem_cache/memory_pool.py
+@@ -763,8 +763,15 @@ class MambaPool:
+                     # CPU uses a different layout of conv_state for kernel optimization
+                     conv_state = _init_amx_conv_state(conv_state)
+ 
++                # LeapQuant's compressed state keeps no fp32 state per slot:
++                # `temporal` then has two rows (see leapquant_state.py).
++                from sglang.srt.layers.attention.linear.leapquant_state import (
++                    leapquant_temporal_rows,
++                )
++
+                 temporal_state = torch.zeros(
+-                    size=(num_mamba_layers, size + 1) + temporal_state_shape,
++                    size=(num_mamba_layers, leapquant_temporal_rows(size))
++                    + temporal_state_shape,
+                     dtype=ssm_dtype,
+                     device=device,
+                 )
+@@ -813,6 +820,13 @@ class MambaPool:
+                     and (not cache_params.is_kda or self.replayssm_request_ring)
+                     else size + 1
+                 )
++                if not enable_linear_replayssm_spec:
++                    # LeapQuant keeps its own window and never reads the ring.
++                    from sglang.srt.layers.attention.linear.leapquant_state import (
++                        leapquant_ring_slots,
++                    )
++
++                    num_slots = leapquant_ring_slots(num_slots)
+                 # Decode records follow the SSM dtype. Spec-verify compact d/k
+                 # records follow the activation dtype; g stays fp32.
+                 ring_dtype = conv_dtype if enable_linear_replayssm_spec else ssm_dtype
+@@ -1202,7 +1216,9 @@ class MambaPool:
+             for conv in self.mamba_cache.conv:
+                 conv.index_fill_(1, idx64, 0)
+         temporal = self.mamba_cache.temporal
+-        if temporal.numel() > 0:
++        # (LeapQuant's compressed state: `temporal` has no row per slot; the
++        # sibling reset above is what starts a new request from zero.)
++        if temporal.numel() > 0 and temporal.shape[1] == self.size + 1:
+             temporal.index_fill_(1, idx64, 0)
+ 
+     def _copy_temporal_slots(
+@@ -1211,6 +1227,11 @@ class MambaPool:
+         temporal = self.mamba_cache.temporal
+         if temporal.numel() == 0:
+             return
++        if temporal.shape[1] != self.size + 1:
++            # LeapQuant compressed state (LEAPQUANT_STATE=compressed): no fp32 state
++            # per slot. The registered side state copies the compressed states in
++            # its copy_slots(), which copy_from() calls next.
++            return
+         num_slots = dst_indices.shape[0]
+         slot_bytes = temporal.element_size() * (temporal.numel() // temporal.shape[1])
+         step = max(1, _MAMBA_TEMPORAL_COPY_CHUNK_BYTES // slot_bytes)

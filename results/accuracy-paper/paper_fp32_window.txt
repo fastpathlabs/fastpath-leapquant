@@ -1,0 +1,8 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2025         120      103    85.83%  3.18%          1       0         13          41336
+  aime2024         120      106    88.33%  2.93%          2       0         12          35920
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/accuracy-paper/paper_fp32_window.json

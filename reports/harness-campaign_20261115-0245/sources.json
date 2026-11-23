@@ -1,0 +1,10 @@
+{
+ "harness_version": "lqh 1.0.0 (2026-11-15)",
+ "campaign_id": "lq-h100-2026-11",
+ "campaign_sha256": "6463b174c75cc62135de26c4b9b97031917c61b16be5a66ad4a4367302d0364a",
+ "profiles_sha256": "147ca00d88e6a4d33f1bf4363b73f5634cc2ebed117ad63b0ccbcbaf5c19f063",
+ "candidates_sha256": "bd5726e551afba1a56e056f843e873106aead25ce09154b3141f34f37ab93e18",
+ "result_roots": [
+  "results/harness"
+ ]
+}

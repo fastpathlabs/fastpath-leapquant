@@ -1,0 +1,72 @@
+01_ncu_v9 start 15:48
+01_ncu_v9 end 15:49 exit 0
+02_openloop_final start 15:49
+02_openloop_final end 16:14 exit 0
+025_v10 start 16:14
+025_v10 end 16:17 exit 0
+026_ab_policy start 16:17
+026_ab_policy end 16:32 exit 0
+035_ab_stagger start 16:32
+035_ab_stagger end 16:46 exit 0
+03_round13 start 16:46
+03_round13 end 16:59 exit 0
+04_openloop_reps start 16:59
+04_openloop_reps end 17:26 exit 0
+045_round13_stagger start 17:26
+045_round13_stagger end 17:30 exit 0
+046_round13b start 17:30
+046_round13b end 17:42 exit 0
+05_radix_equalmem_final start 17:42
+05_radix_equalmem_final end 17:56 exit 0
+09_accuracy_paper start 17:56
+09_accuracy_paper end 18:09 exit 0
+06_ab_trackflush start 18:09
+06_ab_trackflush end 18:10 exit 143
+060_ab_trackflush start 18:10
+060_ab_trackflush end 18:40 exit 0
+065_layer_switch start 18:40
+065_layer_switch end 18:46 exit 0
+066_prefill_radix start 18:46
+066_prefill_radix end 18:56 exit 0
+091_accuracy_paper start 18:56
+091_accuracy_paper end 19:03 exit 0
+067_ab_slotcopy start 19:03
+067_ab_slotcopy end 19:26 exit 0
+092_accuracy_paper start 19:26
+092_accuracy_paper end 22:39 exit 0
+092b_accuracy_strict start 22:39
+2026-11-15T01:15:38Z parked 093/094/095/096 (superseded by the test-harness plans 100-107, prompt rev. 3 order of work); restore with mv parked/<job> pending/
+2026-11-15T04:47:18Z 12-hour schedule (Asif): parked 100-107 in parked/rev3_before_12h; queued 110-120 (campaign.json schedule_12h)
+092b_accuracy_strict end 06:10 exit 0
+110_kernel_cycle start 06:10
+110_kernel_cycle end 06:15 exit 0
+111_lifecycle start 06:15
+111_lifecycle end 06:17 exit 0
+112_sanitizers start 06:17
+112_sanitizers end 06:30 exit 0
+113_validation_pair start 06:30
+113_validation_pair end 06:44 exit 0
+114_memory_per_arm start 06:44
+114_memory_per_arm end 07:05 exit 0
+115_pilot start 07:05
+2026-11-15T07:11:48Z 118_quality edited before its start: arms run fp32, leapquant, bf16_window (was fp32, bf16_window, leapquant) so a time-limit cut cannot lose LeapQuant vs fp32; if cut, the decision runs on the finished arms (quality_decision_partial.txt); earlier script kept as results/118_quality.before_arm_order.sh
+115_pilot end 07:38 exit 0
+116_matrix_infx start 07:38
+116_matrix_infx end 10:16 exit 0
+117_matrix_aa_slt start 10:16
+117_matrix_aa_slt end 12:33 exit 0
+118_quality start 12:33
+118_quality end 12:42 exit 0
+119_longcontext start 12:42
+119_longcontext end 13:31 exit 0
+120_compounding start 13:31
+120_compounding end 13:54 exit 0
+2026-11-15T18:30:53Z 121_quality queued: re-run of 118 (every request failed: FlashInfer sampling-kernel compile could not find curand.h); fix FLASHINFER_EXTRA_CUDAFLAGS (curand-only include folder, runbook/env.sh), arms with failed requests now fail, smoke run first; earlier runbook files in results/quality-fix_backup_20261115
+121_quality start 18:31
+2026-11-15T18:52:35Z 122_confirm_aa_slt queued (Asif: "ok do the repeat"): AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)
+121_quality end 22:18 exit 0
+122_confirm_aa_slt start 22:18
+2026-11-15T22:27:47Z 123_q38_probe queued (B75: Qwen3.8-27B kernel agreement/memcheck at its head layout, one server per arm, balanced slot counts) and 124_tuned_slots_9b queued (9B arms with slots balanced for 1k/1k: LeapQuant 1,008, bf16 window 927, fp32 609; AA 256/512 users, 5 blocks); configs backed up in results/quality-fix_backup_20261115
+2026-11-15T23:29:58Z 122_confirm_aa_slt STOPPED by decision at 23:29 during block 2 (Asif 23:00: tests must finish within a few hours; plan revised to the 15 Nov multi-GPU benchmark prompt). Block 1 complete for all three arms; block 2 fp32 c1 and c64 kept; fp32 c256 cut mid-run.
+122_confirm_aa_slt end 23:36 exit 0
+123_q38_probe start 23:36

@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LeapQuant reports</title><style>
+:root { --surface:#fcfcfb; --ink:#0b0b0b; --muted:#52514e; --line:#e4e3df; --accent:#2a78d6; --warn:#a15c00; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--surface); color:var(--ink); font:16px/1.55 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 28px 16px 64px; }
+nav { font-size:14px; color:var(--muted); margin-bottom:18px; } nav a { color:var(--accent); text-decoration:none; margin-right:14px; }
+h1 { font-size: 30px; line-height:1.2; margin: 8px 0 10px; } h2 { font-size: 21px; margin: 40px 0 8px; } h3 { font-size:16px; margin:26px 0 6px; }
+p, li { color: var(--ink); } .lede { font-size:18px; color:var(--muted); } .muted { color:var(--muted); font-size:14px; }
+figure { margin: 18px 0 6px; } img { max-width:100%; height:auto; border:1px solid var(--line); border-radius:8px; }
+figcaption { font-size:13px; color:var(--muted); margin-top:4px; }
+.scroll { overflow-x:auto; } table { border-collapse:collapse; width:100%; font-size:14px; margin:8px 0 18px; }
+th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
+th { color:var(--muted); font-weight:600; } td.num { text-align:right; font-variant-numeric: tabular-nums; }
+.tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap:12px; margin:18px 0; }
+.tile { border:1px solid var(--line); border-radius:10px; padding:12px 14px; } .tile b { display:block; font-size:24px; }
+.tile span { color:var(--muted); font-size:13px; }
+.note { border-left:3px solid var(--warn); padding:6px 12px; margin:14px 0; color:var(--ink); background:#fff8ec; }
+.pending { border:1px dashed var(--line); border-radius:10px; padding:16px; color:var(--muted); }
+pre { font-size: 12px; background:#f2f1ee; padding:10px; border-radius:8px; }
+code { font-size: 13px; background:#f2f1ee; padding:1px 4px; border-radius:4px; }
+</style></head><body><main><nav><a href="index.html">Overview</a><a href="serving.html">Serving</a></nav><h1>LeapQuant on the GPU: what has been measured</h1><p class="lede">Run <code>radix-equalmem-final</code> on unknown GPU.</p><div class="tiles"></div><h2>Reports</h2><table><thead><tr><th>Report</th><th>What it answers</th></tr></thead><tbody><tr><td class=""><a href="serving.html">Serving</a></td><td class="">Gate 1 and the end-to-end result: throughput, time to first token, speed per user.</td></tr></tbody></table><p class="muted">Only the reports with measurements are listed. Measured in: <code>results/radix-equalmem-final</code>, <code>results/round9-equalmem</code>.</p><h2>Steps of the run</h2><table><thead><tr><th>Step</th><th>What</th><th>Verdict</th><th>Time</th></tr></thead><tbody><tr><td class="">C1</td><td class="">radix on: bf16 window, 1100 slots, repetition 1</td><td class="">PASS</td><td class="">6 min</td></tr><tr><td class="">D1</td><td class="">radix on: LeapQuant compressed, CUDA fold, 1310 slots, repetition 1</td><td class="">PASS</td><td class="">6 min</td></tr></tbody></table><p class="muted">Generated 2026-11-14 09:56 from <code>results/radix-equalmem-final</code>, <code>results/round9-equalmem</code> by <code>reports/generate_reports.py</code>. <a href="../all_reports.html">All reports</a>.</p></main></body></html>

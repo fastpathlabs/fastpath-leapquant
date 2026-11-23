@@ -1,0 +1,11 @@
+fit under test: 4 compensators, one at a time, 2 sweeps, start = longest row
+trace                              samples | top-4 share top-8 share | captured: median  worst head  heads < 90%
+code/trace_layer_30.bin                224 |       93.6%       97.2% |            99.9%       95.4%         0.0%
+explain/trace_layer_30.bin             224 |       90.6%       96.6% |            99.8%       93.5%         0.0%
+reasoning/trace_layer_30.bin           224 |       88.4%       94.2% |            99.7%       91.3%         0.0%
+code/trace_layer_13.bin                224 |       94.7%       98.7% |            99.9%       96.3%         0.0%
+explain/trace_layer_13.bin             224 |       93.8%       97.9% |            99.9%       94.3%         0.0%
+reasoning/trace_layer_13.bin           224 |       93.3%       97.9% |            99.9%       91.3%         0.0%
+
+top-N share low (say under 50%): little for compensators to capture, whatever the fit.
+captured well under 100%: the fit misses patterns that are there.

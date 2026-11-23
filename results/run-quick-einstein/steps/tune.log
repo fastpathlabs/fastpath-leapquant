@@ -1,0 +1,4 @@
+wrote /home/ubuntu/leapquant/build/tune/synthetic_trace.bin: 200 tokens, 32 heads, state 128 x 128
+t64_w0_fmadfalse         verify PASS   ms per step at batch [32, 128, 512]:   0.6606    1.9676    7.0855
+t64_w0_fmadtrue          verify PASS   ms per step at batch [32, 128, 512]:   0.6566    1.9517    6.9683
+t64_w1_fmadfalse         verify PASS   ms per step at batch [32, 128, 512]:   0.6675    1.7267    6.1076

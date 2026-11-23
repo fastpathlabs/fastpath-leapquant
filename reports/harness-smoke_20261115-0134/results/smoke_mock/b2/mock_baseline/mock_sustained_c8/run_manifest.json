@@ -1,0 +1,129 @@
+{
+ "schema": "lqh.run_manifest.v1",
+ "run_id": "lq-h100-2026-11.smoke_mock.b2.mock_baseline.mock_sustained_c8",
+ "campaign_id": "lq-h100-2026-11",
+ "experiment_id": "lq-h100-2026-11.smoke_mock",
+ "plan_id": "smoke_mock",
+ "profile_id": "harness_smoke",
+ "profile_version": "smoke-v1",
+ "cell_id": "harness_smoke:mock_sustained_c8",
+ "pair_id": "smoke_mock.b2.mock_sustained_c8",
+ "block_id": 2,
+ "block_order_position": 2,
+ "comparison_class": "smoke",
+ "is_carried": false,
+ "origin_experiment_id": null,
+ "source_group_id": null,
+ "source_artifact_sha256": null,
+ "source_row_id": null,
+ "evidence_kind": "measured_raw",
+ "candidate": {
+  "candidate_id": "mock_baseline",
+  "config_hash": "b4720aebe5f86ffccaa56ec120f66e5eb9db316d8f77fd33b85e65f62bb96a13",
+  "config": {
+   "launch": "mock",
+   "engine": "mock",
+   "mock": {
+    "decode_ms": 3.0,
+    "knee": 32
+   },
+   "configured_slots": null
+  },
+  "role": "smoke only",
+  "quality_status": null
+ },
+ "execution": {
+  "status": "completed",
+  "reason": null
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T01:35:16.295546Z",
+  "origin_unix": 1794706516.295546,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "device": {
+  "host": "Mac",
+  "allocated_physical_gpus": 1,
+  "gpus": [
+   {
+    "index": 0,
+    "uuid": "MOCK-0",
+    "name": "mock device (no GPU)",
+    "memory_total_mib": 0.0,
+    "driver": "none",
+    "pci_bus_id": "none"
+   }
+  ],
+  "instances": 1
+ },
+ "workload": {
+  "profile": "harness_smoke",
+  "lane": "sustained",
+  "isl": 64,
+  "osl": 48,
+  "concurrency": 8,
+  "steady_s": 6,
+  "ramp_min_s": 1,
+  "drain_timeout_s": 30,
+  "request_timeout_s": 60,
+  "variant": "mock_sustained",
+  "ignore_eos": true
+ },
+ "engine": {
+  "name": "mock",
+  "commit": null,
+  "mock": true
+ },
+ "server": {
+  "command": [
+   "./harness/../.venv/bin/python",
+   "-m",
+   "lqh.mock_server",
+   "--port",
+   "31983",
+   "--config",
+   "{\"decode_ms\": 3.0, \"knee\": 32}",
+   "--log",
+   "./reports/harness-smoke_20261115-0134/results/smoke_mock/b2/mock_baseline/server.log"
+  ],
+  "log": "./reports/harness-smoke_20261115-0134/results/smoke_mock/b2/mock_baseline/server.log",
+  "nondefault_flags": [],
+  "env": {},
+  "configured_slots": null,
+  "max_running_requests": null,
+  "served_model": "mock-model",
+  "server_info_keys": [
+   "config",
+   "mock"
+  ]
+ },
+ "build": {},
+ "slo_id": "slo-interactive-v1",
+ "pricing_id": "host-h100pcie-rental-v0",
+ "native": null,
+ "artifacts": {
+  "requests.jsonl": {
+   "sha256": "0b787affcda33fc73667438d0dc335e2ff375f4f90687786856f6fddb83bf661",
+   "bytes": 152433
+  },
+  "stream_events.jsonl.gz": {
+   "sha256": "af3fc1b33b9f674cbac4dc0ebce1f987a83e5b2324dadf938b13d5c64efc97c5",
+   "bytes": 45412
+  },
+  "driver_summary.json": {
+   "sha256": "cb29e02923e14fed282142f9791be79c5b69f61c156090dc7a02913fe9123a0f",
+   "bytes": 1176
+  },
+  "server_events.jsonl": {
+   "sha256": "9588f3d8aae94530290f432ac73c528a977a2d9e64dcc0ad89303bbf510b68fe",
+   "bytes": 2582
+  },
+  "memory_and_power.jsonl": {
+   "sha256": "62fd5aa25de21823526cb813088f1b55d836e07a1ac15c8a642364a80ea478dc",
+   "bytes": 428
+  }
+ },
+ "started_utc": "2026-11-15T01:35:16.295586Z",
+ "ended_utc": "2026-11-15T01:35:25.765274Z"
+}

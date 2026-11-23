@@ -1,0 +1,5 @@
+Seventh round (14 Nov 2026, H100 PCIe 80 GB): as round 6, with the decode step retuned (0.25 ms at batch 512 instead of 0.34 ms) and decode-heavy request shapes.
+Every server: radix cache off, 560 state slots, at most 512 running requests, CUDA graphs up to batch 512, no overlap scheduling.
+config4 (LeapQuant): LEAPQUANT_STATE=compressed, fast kernels (decode K tiles of 32; fold with 2 sweeps), folds aligned across requests.
+Shapes: decode = 128 in / 512 out exactly; decode2k = 128 in / 2,048 out exactly (memory-bound at 512 for the fp32 state: 495,468 KV tokens hold about 230 such requests); short = up to 512 / 512 (random); long = up to 4,096 / 1,024 (random).
+The kernel numbers on the kernel page (e_triton_speed.txt) are from kernel/bench_triton.py with CUDA graph timing, after round 6.

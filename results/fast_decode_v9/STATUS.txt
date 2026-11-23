@@ -1,0 +1,3 @@
+memcheck exit 0 13:03
+racecheck exit 0 13:04
+g3 exit 0 13:08

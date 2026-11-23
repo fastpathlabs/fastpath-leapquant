@@ -1,0 +1,57 @@
+{
+ "claims": [],
+ "refused": [
+  {
+   "comparison": [
+    "smoke_mock",
+    "harness_smoke:mock_finite_c8"
+   ],
+   "reason": "mock server: no performance meaning"
+  },
+  {
+   "comparison": [
+    "smoke_mock",
+    "harness_smoke:mock_open_loop_rate40"
+   ],
+   "reason": "mock server: no performance meaning"
+  },
+  {
+   "comparison": [
+    "smoke_mock",
+    "harness_smoke:mock_sustained_c8"
+   ],
+   "reason": "mock server: no performance meaning"
+  }
+ ],
+ "note": "No claim: mock server: no performance meaning",
+ "banned_wording": [
+  {
+   "pattern": "production[- ]ready",
+   "reason": "production readiness is a release decision (gate G5), not a benchmark result"
+  },
+  {
+   "pattern": "\\blossless\\b",
+   "reason": "the state is compressed; quality is qualified by noninferiority at a margin"
+  },
+  {
+   "pattern": "universally faster|always faster|faster everywhere",
+   "reason": "results hold for the measured cells only"
+  },
+  {
+   "pattern": "official\\s+inferencex",
+   "reason": "InferenceX-derived results are Unofficial"
+  },
+  {
+   "pattern": "official\\s+(aa|artificial analysis)",
+   "reason": "AA-SLT results are method-inspired, not AA measurements"
+  },
+  {
+   "pattern": "reproduc(ed|es) the paper|paper reproduced",
+   "reason": "an H100/SGLang port is not a reproduction of B200/vLLM results"
+  },
+  {
+   "pattern": "quality[- ]equivalent",
+   "reason": "quality is noninferiority at a declared margin, not equivalence"
+  }
+ ]
+}

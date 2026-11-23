@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Kernel speed</title><style>
+:root { --surface:#fcfcfb; --ink:#0b0b0b; --muted:#52514e; --line:#e4e3df; --accent:#2a78d6; --warn:#a15c00; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--surface); color:var(--ink); font:16px/1.55 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 28px 16px 64px; }
+nav { font-size:14px; color:var(--muted); margin-bottom:18px; } nav a { color:var(--accent); text-decoration:none; margin-right:14px; }
+h1 { font-size: 30px; line-height:1.2; margin: 8px 0 10px; } h2 { font-size: 21px; margin: 40px 0 8px; } h3 { font-size:16px; margin:26px 0 6px; }
+p, li { color: var(--ink); } .lede { font-size:18px; color:var(--muted); } .muted { color:var(--muted); font-size:14px; }
+figure { margin: 18px 0 6px; } img { max-width:100%; height:auto; border:1px solid var(--line); border-radius:8px; }
+figcaption { font-size:13px; color:var(--muted); margin-top:4px; }
+.scroll { overflow-x:auto; } table { border-collapse:collapse; width:100%; font-size:14px; margin:8px 0 18px; }
+th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
+th { color:var(--muted); font-weight:600; } td.num { text-align:right; font-variant-numeric: tabular-nums; }
+.tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap:12px; margin:18px 0; }
+.tile { border:1px solid var(--line); border-radius:10px; padding:12px 14px; } .tile b { display:block; font-size:24px; }
+.tile span { color:var(--muted); font-size:13px; }
+.note { border-left:3px solid var(--warn); padding:6px 12px; margin:14px 0; color:var(--ink); background:#fff8ec; }
+.pending { border:1px dashed var(--line); border-radius:10px; padding:16px; color:var(--muted); }
+pre { font-size: 12px; background:#f2f1ee; padding:10px; border-radius:8px; }
+code { font-size: 13px; background:#f2f1ee; padding:1px 4px; border-radius:4px; }
+</style></head><body><main><nav><a href="index.html">Overview</a><a href="kernel.html">Kernel speed</a><a href="accuracy.html">Accuracy on real states</a><a href="verification.html">Verification</a><a href="tuning.html">Tuning</a><a href="profile.html">Profile</a><a href="serving.html">Serving</a></nav><h1>Kernel time per decode step</h1><p class="lede">One decode token for every request of the batch, for one linear-attention layer, on one GPU. LeapQuant next to the two kernels SGLang ships.</p><h2>Projections in bf16</h2><figure><img src="img/kernel_per_step_bf16.png" alt="Time per decode step by batch size"></figure><div class="scroll"><table><thead><tr><th>Batch</th><th>SGLang packed</th><th>SGLang window</th><th>LeapQuant, kernel only</th><th>LeapQuant, with gates</th><th>LeapQuant against packed</th><th>LeapQuant against window</th></tr></thead><tbody><tr><td class="">32</td><td class="num">0.0813</td><td class="num">0.0507</td><td class="num">0.0851</td><td class="num">0.1693</td><td class="num">0.96×</td><td class="num">0.60×</td></tr><tr><td class="">128</td><td class="num">0.3056</td><td class="num">0.1787</td><td class="num">0.3382</td><td class="num">0.4243</td><td class="num">0.90×</td><td class="num">0.53×</td></tr><tr><td class="">512</td><td class="num">1.1995</td><td class="num">0.6970</td><td class="num">1.2268</td><td class="num">1.4631</td><td class="num">0.98×</td><td class="num">0.57×</td></tr></tbody></table></div><figure><img src="img/kernel_append_bf16.png" alt="Append-only step by batch size"></figure><figure><img src="img/kernel_fold_bf16.png" alt="Fold step by batch size"></figure><div class="scroll"><table><thead><tr><th>Batch</th><th>Append: packed</th><th>Append: window</th><th>Append: LeapQuant</th><th>Fold step: window</th><th>Fold step: LeapQuant</th></tr></thead><tbody><tr><td class="">32</td><td class="num">0.0813</td><td class="num">0.0470</td><td class="num">0.0450</td><td class="num">0.1072</td><td class="num">0.6868</td></tr><tr><td class="">128</td><td class="num">0.3056</td><td class="num">0.1629</td><td class="num">0.1800</td><td class="num">0.4155</td><td class="num">2.7125</td></tr><tr><td class="">512</td><td class="num">1.1995</td><td class="num">0.6367</td><td class="num">0.6072</td><td class="num">1.6018</td><td class="num">10.5202</td></tr></tbody></table></div><h2>Projections in fp32</h2><figure><img src="img/kernel_per_step_fp32.png" alt="Time per decode step by batch size"></figure><div class="scroll"><table><thead><tr><th>Batch</th><th>SGLang packed</th><th>SGLang window</th><th>LeapQuant, kernel only</th><th>LeapQuant, with gates</th><th>LeapQuant against packed</th><th>LeapQuant against window</th></tr></thead><tbody><tr><td class="">32</td><td class="num">0.0818</td><td class="num">0.0582</td><td class="num">0.0847</td><td class="num">0.1698</td><td class="num">0.97×</td><td class="num">0.69×</td></tr><tr><td class="">128</td><td class="num">0.3069</td><td class="num">0.2010</td><td class="num">0.3380</td><td class="num">0.4245</td><td class="num">0.91×</td><td class="num">0.59×</td></tr><tr><td class="">512</td><td class="num">1.2052</td><td class="num">0.7879</td><td class="num">1.2198</td><td class="num">1.4530</td><td class="num">0.99×</td><td class="num">0.65×</td></tr></tbody></table></div><figure><img src="img/kernel_append_fp32.png" alt="Append-only step by batch size"></figure><figure><img src="img/kernel_fold_fp32.png" alt="Fold step by batch size"></figure><div class="scroll"><table><thead><tr><th>Batch</th><th>Append: packed</th><th>Append: window</th><th>Append: LeapQuant</th><th>Fold step: window</th><th>Fold step: LeapQuant</th></tr></thead><tbody><tr><td class="">32</td><td class="num">0.0818</td><td class="num">0.0542</td><td class="num">0.0448</td><td class="num">0.1187</td><td class="num">0.6830</td></tr><tr><td class="">128</td><td class="num">0.3069</td><td class="num">0.1843</td><td class="num">0.1797</td><td class="num">0.4518</td><td class="num">2.7125</td></tr><tr><td class="">512</td><td class="num">1.2052</td><td class="num">0.7224</td><td class="num">0.6059</td><td class="num">1.7711</td><td class="num">10.4287</td></tr></tbody></table></div><h2>Complete windows, with the state format of every kernel</h2><p>Positions 0 to 15 in order, every kernel from the same starting state with empty record buffers (plan 5, step S07). Source: <code>e_full_cycles_bf16.log</code>.</p><pre class="scroll">LeapQuant kernel benchmark on cuda: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+  GPU: NVIDIA H100 PCIe
+  milliseconds per decode step of one layer, whole batch
+
+  complete windows of 16 steps; median of 20 windows; all requests fold on the same step
+  batch  kernel                   projections / state / records     ms per step
+     32  leapquant, with gates    bf16 / int8+fp16 / fp16                0.1803
+     32  sglang packed            bf16 / fp32 / -                        0.0827
+     32  sglang window L=16       bf16 / fp32 / bf16                     0.0537
+     32  sglang packed            bf16 / bf16 / -                        0.0280
+     32  sglang window L=16       bf16 / bf16 / bf16                     0.0370
+     32  sglang packed            bf16 / fp16 / -                        0.0269
+     32  sglang window L=16       bf16 / fp16 / bf16                     0.0370
+
+    128  leapquant, with gates    bf16 / int8+fp16 / fp16                0.4317
+    128  sglang packed            bf16 / fp32 / -                        0.3070
+    128  sglang window L=16       bf16 / fp32 / bf16                     0.1836
+    128  sglang packed            bf16 / bf16 / -                        0.1600
+    128  sglang window L=16       bf16 / bf16 / bf16                     0.1053
+    128  sglang packed            bf16 / fp16 / -                        0.1591
+    128  sglang window L=16       bf16 / fp16 / bf16                     0.1046
+
+    512  leapquant, with gates    bf16 / int8+fp16 / fp16                1.4614
+    512  sglang packed            bf16 / fp32 / -                        1.2024
+    512  sglang window L=16       bf16 / fp32 / bf16                     0.7057
+    512  sglang packed            bf16 / bf16 / -                        0.6149
+    512  sglang window L=16       bf16 / bf16 / bf16                     0.3791
+    512  sglang packed            bf16 / fp16 / -                        0.6112
+    512  sglang window L=16       bf16 / fp16 / bf16                     0.3766
+
+</pre><h2>Complete windows, with the state format of every kernel</h2><p>Positions 0 to 15 in order, every kernel from the same starting state with empty record buffers (plan 5, step S07). Source: <code>e_full_cycles_fp32.log</code>.</p><pre class="scroll">LeapQuant kernel benchmark on cuda: HV=32 H=16 K=128 V=128 window=16 projections=fp32
+  GPU: NVIDIA H100 PCIe
+  milliseconds per decode step of one layer, whole batch
+
+  complete windows of 16 steps; median of 20 windows; all requests fold on the same step
+  batch  kernel                   projections / state / records     ms per step
+     32  leapquant, with gates    fp32 / int8+fp16 / fp16                0.1807
+     32  sglang packed            fp32 / fp32 / -                        0.0835
+     32  sglang window L=16       fp32 / fp32 / fp32                     0.0628
+     32  sglang packed            fp32 / bf16 / -                        0.0294
+     32  sglang window L=16       fp32 / bf16 / fp32                     0.0392
+     32  sglang packed            fp32 / fp16 / -                        0.0287
+     32  sglang window L=16       fp32 / fp16 / fp32                     0.0385
+
+    128  leapquant, with gates    fp32 / int8+fp16 / fp16                0.4319
+    128  sglang packed            fp32 / fp32 / -                        0.3086
+    128  sglang window L=16       fp32 / fp32 / fp32                     0.2059
+    128  sglang packed            fp32 / bf16 / -                        0.1624
+    128  sglang window L=16       fp32 / bf16 / fp32                     0.1194
+    128  sglang packed            fp32 / fp16 / -                        0.1619
+    128  sglang window L=16       fp32 / fp16 / fp32                     0.1181
+
+    512  leapquant, with gates    fp32 / int8+fp16 / fp16                1.4624
+    512  sglang packed            fp32 / fp32 / -                        1.2075
+    512  sglang window L=16       fp32 / fp32 / fp32                     0.7956
+    512  sglang packed            fp32 / bf16 / -                        0.6255
+    512  sglang window L=16       fp32 / bf16 / fp32                     0.4336
+    512  sglang packed            fp32 / fp16 / -                        0.6217
+    512  sglang window L=16       fp32 / fp16 / fp32                     0.4305
+
+</pre><h3>What the charts show</h3><ul><li>At batch 512, LeapQuant (kernel only) takes <b>1.22 ms</b> per step: 0.99 times the speed of SGLang's packed kernel and 0.65 times the speed of its window kernel (above 1 is faster, below 1 is slower).</li><li>A step that only appends takes 0.61 ms; a step that also folds takes 10.4 ms. One step in sixteen folds.</li><li>These averages assume all requests fold on the same step.</li></ul><h3>Setup</h3><p>32 value heads, 16 key heads, state 128 × 128, window 16, one layer. Timed in one harness (<code>kernel/bench_kernel.py</code>): wall clock around 100 calls after 25 warm-up calls. "With gates" adds the gate and normalisation arithmetic that SGLang's kernels do internally.</p><h3>What it does not show</h3><p>End-to-end serving speed, and any other GPU. Source: <code>e_kernel_speed_*.log</code>.</p><p class="muted">Generated 2026-11-13 11:46 from <code>results/run-quick-einstein-v5</code> by <code>reports/generate_reports.py</code>. <a href="../all_reports.html">All reports</a>.</p></main></body></html>

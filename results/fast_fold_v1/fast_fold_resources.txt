@@ -1,0 +1,11 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi8EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi8EEEvNS_4ArgsE
+    72 bytes stack frame, 68 bytes spill stores, 104 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers, 72 bytes cumulative stack size
+ptxas info    : Compile time = 382.167 ms
+ptxas info    : Compiling entry function '_ZN4lqff16fast_fold_kernelILi4EEEvNS_4ArgsE' for 'sm_90'
+ptxas info    : Function properties for _ZN4lqff16fast_fold_kernelILi4EEEvNS_4ArgsE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers
+ptxas info    : Compile time = 208.473 ms

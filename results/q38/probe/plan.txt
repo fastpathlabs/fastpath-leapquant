@@ -1,0 +1,10 @@
+Qwen3.8-27B probe: slots balanced for 2048-token requests (3 slots each)
+  bf16_window: budget 31.18 GiB (weights 28.47 GiB, mem fraction 0.7610821093749999), per slot 75.4 MiB, KV 64 KiB/token -> balanced 90 requests (270 slots); probe at 120 slots: KV 366,083 tokens, max running 40, free after graphs 14.72 GiB
+  fp32: budget 31.19 GiB (weights 28.47 GiB, mem fraction 0.7610821093749999), per slot 148.1 MiB, KV 64 KiB/token -> balanced 55 requests (165 slots); probe at 120 slots: KV 226,691 tokens, max running 40, free after graphs 16.01 GiB
+  leapquant: budget 31.46 GiB (weights 28.47 GiB, mem fraction 0.7610821093749999), per slot 63.6 MiB, KV 64 KiB/token -> balanced 100 requests (300 slots); probe at 120 slots: KV 387,727 tokens, max running 40, free after graphs 15.49 GiB
+  greedy agreement with fp32 (first differing character of 96-token completions; '-' = identical):
+    bf16_window: 204, -, 159, 71, -, 235, -, 65
+    leapquant: 240, -, 206, -, -, 72, 165, 185
+  fp32: 8 greedy, 2 sampled, 0 errors
+  bf16_window: 8 greedy, 2 sampled, 0 errors
+  leapquant: 8 greedy, 2 sampled, 0 errors

@@ -1,0 +1,15 @@
+{
+ "bundle": "/home/ubuntu/lqexp/reports/harness-campaign_20261115-070453",
+ "checked": 14148,
+ "failed": [
+  {
+   "comparison": "memory_per_arm|local_diagnostics:decode_128_512_c512|sglang_best/fp32_packed",
+   "shown": null,
+   "recomputed": null
+  }
+ ],
+ "uncovered": [],
+ "hash_failures": [],
+ "ok": false,
+ "checked_utc": "2026-11-15T07:05:17Z"
+}

@@ -1,0 +1,1 @@
+Explain, step by step and in detail, how a B-tree splits a node when a key is inserted into a full leaf, how the split can propagate to the root, and how deletion merges or redistributes nodes. Use a worked example with a tree of minimum degree 3 and at least 25 keys, and show the tree after every structural change.

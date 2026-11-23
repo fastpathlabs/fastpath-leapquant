@@ -1,0 +1,4 @@
+O3 PASS 0 min  skipped: own-step folds gave nothing in results/openloop
+O1 PASS 6 min  open loop: bf16 + window
+O2 PASS 6 min  open loop: LeapQuant, folds aligned
+done 2026-11-14T17:26:01Z

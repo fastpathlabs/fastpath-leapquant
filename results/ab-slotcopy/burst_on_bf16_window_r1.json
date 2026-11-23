@@ -1,0 +1,44 @@
+{
+ "requests": 256,
+ "length": 128,
+ "new_tokens": 4,
+ "wall_median_s": 1.6352205260045594,
+ "wall_mean_s": 1.6387870670034317,
+ "bursts": [
+  {
+   "burst": 0,
+   "wall_s": 1.632057494003675,
+   "prefill_tok_s": 20077.72405101693,
+   "latency_median_s": 1.5502936030025012,
+   "latency_max_s": 1.568561567008146
+  },
+  {
+   "burst": 1,
+   "wall_s": 1.6352205260045594,
+   "prefill_tok_s": 20038.887403195815,
+   "latency_median_s": 1.5448701874993276,
+   "latency_max_s": 1.570706305996282
+  },
+  {
+   "burst": 2,
+   "wall_s": 1.6314867840119405,
+   "prefill_tok_s": 20084.747434742432,
+   "latency_median_s": 1.5466285040020011,
+   "latency_max_s": 1.5682337239995832
+  },
+  {
+   "burst": 3,
+   "wall_s": 1.6551830020034686,
+   "prefill_tok_s": 19797.20668973577,
+   "latency_median_s": 1.5706730310048442,
+   "latency_max_s": 1.5916348510072567
+  },
+  {
+   "burst": 4,
+   "wall_s": 1.6399875289935153,
+   "prefill_tok_s": 19980.63974310232,
+   "latency_median_s": 1.5540978200006066,
+   "latency_max_s": 1.5756136140116723
+  }
+ ]
+}

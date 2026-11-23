@@ -1,0 +1,2 @@
+run_id,cell_id,candidate,status,reason
+lq-h100-2026-11.memory_per_arm.b1.sglang_best.decode_128_512_c512,local_diagnostics:decode_128_512_c512,sglang_best,crashed,V052_server_reachable

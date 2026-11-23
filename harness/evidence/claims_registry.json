@@ -1,0 +1,143 @@
+{
+ "schema": "lqh.claims_registry.v1",
+ "computed_utc": "2026-11-15T01:31:04.851708Z",
+ "g3_final_recomputed": {
+  "adopted": {
+   "lq": 0.31783,
+   "bf16_window": 0.38193,
+   "fp32_window": 0.69824,
+   "fp32_packed": 1.1979799999999998,
+   "runs": 10,
+   "files_sha256": {
+    "results/g3-final/adopted_1.txt": "1d653cc588629c23c48880cfdc13cb05a59f0f5f4ce7a1df026e762a994a116b",
+    "results/g3-final/adopted_2.txt": "4f462ac9854347e9b832fa2db49ff7055758cc03954ac6a79d1330b636435c94",
+    "results/g3-final/adopted_3.txt": "07f664efcc874cad4ccce3dfc23df0d8b79928bfa35f1705d8cc9ebb82a6f4dd",
+    "results/g3-final/adopted_4.txt": "08c359b5305476fc223a96ffb19cfaf504c759df9aacb52d01ed62d7e818fcb7",
+    "results/g3-final/adopted_5.txt": "87cf8795b5f23ed5d3175441df3e523a567a1141061dd9667baf5646ff092542",
+    "results/g3-final/adopted_6.txt": "fb868449b983fc1b42aed9c9de348a86a0f4347b34de45ffecf880e6774f2516",
+    "results/g3-final/adopted_7.txt": "62c4d5fb978ca7d681a10a7443dfb3acfa08b1ced173251887c50fec3426ec2d",
+    "results/g3-final/adopted_8.txt": "a7f4da4f8d1fa012d97960a83e50d90e1e20f71af8757b86fa8654ab046c6cc6",
+    "results/g3-final/adopted_9.txt": "597a083e44a210d370bd25dd703f5a56b53420033edf7db7e160f4a37810a76e",
+    "results/g3-final/adopted_10.txt": "c54f85e20b90bcaf370e17c3477aaa04d1df704fa872488108898db1b6b99db2"
+   }
+  },
+  "v9": {
+   "lq": 0.30041,
+   "bf16_window": 0.38186,
+   "fp32_window": 0.69831,
+   "fp32_packed": 1.19789,
+   "runs": 10,
+   "files_sha256": {
+    "results/g3-final/v9_1.txt": "f9efb8f1fdf015a9952f417afc17a6339aa5a6806d95412cc93fa88bc46a5b5a",
+    "results/g3-final/v9_2.txt": "8891070275c99fdffe769b8c95a6ea61e95295b1c6a952fabf1e39f4d5d5070f",
+    "results/g3-final/v9_3.txt": "2905dbe8c188ef5ba1a3715d83a11041ec81a558131b046ec438c9121b992c3d",
+    "results/g3-final/v9_4.txt": "114ac35e043f9c39e72b899dbbeaf3dbb4878ee715b7d9b898e4546e5f39937d",
+    "results/g3-final/v9_5.txt": "6da60eae2ca8608cd42d36b9e84771bbffe4d454abb73bdc1934f1e2a22ddd6a",
+    "results/g3-final/v9_6.txt": "43a87c19e8e62d33eb4a07cb767ab83f08f3557ffce13fce3c4324aa82f132ba",
+    "results/g3-final/v9_7.txt": "d2f0c0e3da37595b43251ae2bb8a365898183d35347d0ee19bb820e055a5ec67",
+    "results/g3-final/v9_8.txt": "21defbf64f8a890b26d9fff0abd0c90e5eb8a36dccbf8650fc143621d69c9042",
+    "results/g3-final/v9_9.txt": "cb999c69d216e4e3de4877584972a2f9914052356044f3c32855c3f72731611c",
+    "results/g3-final/v9_10.txt": "9315615ac58b296d71825171ad07d469bf7e8a56c21d498d1f204053ad92f86d"
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim": "CUDA fold 1.27 ms at batch 512 (fold v1)",
+   "value": 1.27,
+   "unit": "ms per fold",
+   "evidence_kind": "measured_raw",
+   "artifacts": [
+    "results/fast_fold_v1/F3_cuda_*.log line 31"
+   ],
+   "build": "fast_fold_v1 (superseded by v3/v4/v6 and batched Gram-Schmidt)",
+   "boundary": "the fold alone, one call per graph, boundary state restored before each replay; NOT a complete state-advancing window",
+   "status": "historical measurement of a superseded kernel; not a full-cycle result"
+  },
+  {
+   "claim": "0.332 ms per layer-token",
+   "value": 0.33177500000000004,
+   "unit": "ms/token",
+   "evidence_kind": "derived_from_reported",
+   "derivation": "0.2524 ms decode + 1.27 ms fold / 16 = 0.331775 ms (conditional model)",
+   "comparison": {
+    "time_ratio": 0.8682936404082702,
+    "time_reduction": 0.13170635959172983,
+    "speedup_x": 1.1516841232763166,
+    "speed_increase": 0.15168412327631664
+   },
+   "artifacts": [
+    "summary.txt lines 509-510"
+   ],
+   "status": "an estimate, not a timed result; the full-cycle timing is order-of-work step 1 (job 100)"
+  },
+  {
+   "claim": "G3 kernel gate MET: 1.271x bf16 window per token at batch 512",
+   "value": 1.2711294564095734,
+   "unit": "x",
+   "evidence_kind": "measured_raw",
+   "artifacts": [
+    "results/g3-final/v9_1.txt",
+    "results/g3-final/v9_2.txt",
+    "results/g3-final/v9_3.txt",
+    "results/g3-final/v9_4.txt",
+    "results/g3-final/v9_5.txt",
+    "results/g3-final/v9_6.txt",
+    "results/g3-final/v9_7.txt",
+    "results/g3-final/v9_8.txt",
+    "results/g3-final/v9_9.txt",
+    "results/g3-final/v9_10.txt"
+   ],
+   "boundary": "component sum (decode + fold/16), 10 paired runs, plan-5 gate numbering",
+   "caveats": [
+    "run order changes the fold time (1.04-1.07 ms after the Triton decode, 0.95 ms after v9); with the slower fold v9's ratio is 1.244 < 1.25",
+    "plan-5 G3 is not v6 G3 (State); its PASS is not imported into the v6 registry"
+   ],
+   "status": "recorded as history; v6.G2 is decided by the full-cycle timing (job 100)"
+  },
+  {
+   "claim": "memory-check run exited with code 1",
+   "evidence_kind": "measured_raw",
+   "artifacts": [
+    "results/fast_fold_v1/F1a_rerun.log",
+    "harness/evidence/sanitizer_results_historical.json"
+   ],
+   "resolution": "log found: results/fast_fold_v1/F1a_rerun.log: ERROR SUMMARY: 13 errors; classification api_errors_only (13 CUDA API errors on cuFuncSetAttribute; 0 memory-access reports). The exit code came from API errors raised by the Triton launcher, not from a reported memory violation; the run is 'api_errors_only', not 'clean'.",
+   "status": "resolved: API errors only (Triton launcher), no memory-access report; current checks queued (job 100b)"
+  },
+  {
+   "claim": "LeapQuant stores 1.19 bytes per boundary-state entry vs 2 (bf16)",
+   "evidence_kind": "derived_from_reported",
+   "derivation": {
+    "byte_ratio": 0.595,
+    "byte_reduction": 0.405,
+    "ideal_capacity_x": 1.680672268907563,
+    "ideal_capacity_increase": 0.680672268907563,
+    "caveat": "ideal: no other memory category; not equal total GPU memory, not SLO-qualified capacity"
+   },
+   "measured_alternative": "server logs: 1.69 (LeapQuant) vs 2.38 (bf16 window incl. ring) bytes per entry",
+   "status": "storage accounting only; not equal total GPU memory or SLO-qualified capacity"
+  },
+  {
+   "claim": "1,310 LeapQuant slots = equal memory with 1,100 bf16-window slots",
+   "evidence_kind": "unverified_assertion",
+   "facts": {
+    "slot_increase": 0.19090909090909092,
+    "measured_peaks_GiB": {
+     "bf16_window": "71.3-71.9",
+     "leapquant": "67.0-67.5"
+    },
+    "not_counted": "bf16 window replay ring buffers 4.89 GiB"
+   },
+   "status": "configured slots, not equal measured bytes; replaced by plan memory_per_arm (job 104)"
+  },
+  {
+   "claim": "round 13: all 1,024 requests running",
+   "evidence_kind": "unverified_assertion",
+   "facts": {
+    "server_max_running_seen": 929
+   },
+   "status": "contradicted by the server log (929)"
+  }
+ ]
+}

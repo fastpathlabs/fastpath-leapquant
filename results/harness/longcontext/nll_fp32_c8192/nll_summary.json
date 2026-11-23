@@ -1,0 +1,392 @@
+{
+ "schema": "lqh.nll.v1",
+ "measured_utc": "2026-11-15T12:43:59.732010Z",
+ "base_url": "http://127.0.0.1:30000",
+ "lengths": [
+  1024,
+  4096,
+  8192,
+  16384,
+  32768
+ ],
+ "documents": [
+  "emozilla/pg19-test:test:0",
+  "emozilla/pg19-test:test:1",
+  "emozilla/pg19-test:test:2",
+  "emozilla/pg19-test:test:3",
+  "emozilla/pg19-test:test:5",
+  "emozilla/pg19-test:test:6",
+  "emozilla/pg19-test:test:8",
+  "emozilla/pg19-test:test:10"
+ ],
+ "server_info": {
+  "chunked_prefill_size": 8192,
+  "mamba_ssm_dtype": "float32",
+  "disable_radix_cache": true,
+  "max_running_requests": 8,
+  "model_path": "Qwen/Qwen3.5-9B"
+ },
+ "chunked_prefill_size": 8192,
+ "buckets": {
+  "L1024:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9166730317931584,
+    "emozilla/pg19-test:test:1": 3.2088607640721185,
+    "emozilla/pg19-test:test:2": 2.7808785733404964,
+    "emozilla/pg19-test:test:3": 2.7961072424234303,
+    "emozilla/pg19-test:test:5": 2.208699283713492,
+    "emozilla/pg19-test:test:6": 1.7029120251256349,
+    "emozilla/pg19-test:test:8": 2.674091885978614,
+    "emozilla/pg19-test:test:10": 2.514579719098027
+   },
+   "mean": 2.4753503156931216,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L1024:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.430114269256592,
+    "emozilla/pg19-test:test:1": 0.16982834041118622,
+    "emozilla/pg19-test:test:2": 1.0716373920440674,
+    "emozilla/pg19-test:test:3": 3.5893237590789795,
+    "emozilla/pg19-test:test:5": 3.574040412902832,
+    "emozilla/pg19-test:test:6": 0.9695475101470947,
+    "emozilla/pg19-test:test:8": 0.04693474993109703,
+    "emozilla/pg19-test:test:10": 0.0027783624827861786
+   },
+   "mean": 1.4817755995318294,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L4096:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9187476567185513,
+    "emozilla/pg19-test:test:1": 3.2090197156840157,
+    "emozilla/pg19-test:test:2": 2.782323345052639,
+    "emozilla/pg19-test:test:3": 2.796893961238624,
+    "emozilla/pg19-test:test:5": 2.209593557806701,
+    "emozilla/pg19-test:test:6": 1.7044635209064454,
+    "emozilla/pg19-test:test:8": 2.6739454489797545,
+    "emozilla/pg19-test:test:10": 2.5173265810439878
+   },
+   "mean": 2.4765392234288397,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L4096:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9283021703203354,
+    "emozilla/pg19-test:test:1": 3.2244995469337425,
+    "emozilla/pg19-test:test:2": 2.542397908959046,
+    "emozilla/pg19-test:test:3": 2.786023773364245,
+    "emozilla/pg19-test:test:5": 1.9833109126077009,
+    "emozilla/pg19-test:test:6": 2.1829737628951413,
+    "emozilla/pg19-test:test:8": 2.4119736641309757,
+    "emozilla/pg19-test:test:10": 2.448645703993421
+   },
+   "mean": 2.438515930400576,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L4096:2048-4096": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.0323258665469015,
+    "emozilla/pg19-test:test:1": 2.8652828179073344,
+    "emozilla/pg19-test:test:2": 2.421231909199294,
+    "emozilla/pg19-test:test:3": 2.9416955595766474,
+    "emozilla/pg19-test:test:5": 2.083630330028626,
+    "emozilla/pg19-test:test:6": 2.1128075370907453,
+    "emozilla/pg19-test:test:8": 2.5345414230216647,
+    "emozilla/pg19-test:test:10": 2.446284557952662
+   },
+   "mean": 2.4297250001654844,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L4096:4096-8192": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.930642604827881,
+    "emozilla/pg19-test:test:1": 2.644012928009033,
+    "emozilla/pg19-test:test:2": 0.0032322565093636513,
+    "emozilla/pg19-test:test:3": 0.9293851852416992,
+    "emozilla/pg19-test:test:5": 0.5313120484352112,
+    "emozilla/pg19-test:test:6": 2.1189157962799072,
+    "emozilla/pg19-test:test:8": 2.2288055419921875,
+    "emozilla/pg19-test:test:10": 2.4694316387176514
+   },
+   "mean": 1.7319672500016168,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9187476567185513,
+    "emozilla/pg19-test:test:1": 3.2090197156840157,
+    "emozilla/pg19-test:test:2": 2.782323345052639,
+    "emozilla/pg19-test:test:3": 2.796893961238624,
+    "emozilla/pg19-test:test:5": 2.209593557806701,
+    "emozilla/pg19-test:test:6": 1.7044635209064454,
+    "emozilla/pg19-test:test:8": 2.6739454489797545,
+    "emozilla/pg19-test:test:10": 2.5173265810439878
+   },
+   "mean": 2.4765392234288397,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9274263863611225,
+    "emozilla/pg19-test:test:1": 3.2245692113754725,
+    "emozilla/pg19-test:test:2": 2.5429304199866323,
+    "emozilla/pg19-test:test:3": 2.7864812810579584,
+    "emozilla/pg19-test:test:5": 1.9836418270361396,
+    "emozilla/pg19-test:test:6": 2.1831497442512138,
+    "emozilla/pg19-test:test:8": 2.41238270372709,
+    "emozilla/pg19-test:test:10": 2.4478634618870174
+   },
+   "mean": 2.438555629460331,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:2048-4096": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.032745373957691,
+    "emozilla/pg19-test:test:1": 2.8638845100833645,
+    "emozilla/pg19-test:test:2": 2.420728976705824,
+    "emozilla/pg19-test:test:3": 2.9430670584071645,
+    "emozilla/pg19-test:test:5": 2.0823751638662458,
+    "emozilla/pg19-test:test:6": 2.1141340944929254,
+    "emozilla/pg19-test:test:8": 2.53436088662715,
+    "emozilla/pg19-test:test:10": 2.446712276931482
+   },
+   "mean": 2.429751042633981,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:4096-8192": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.0220169800987735,
+    "emozilla/pg19-test:test:1": 2.9962880946419697,
+    "emozilla/pg19-test:test:2": 2.367657849992601,
+    "emozilla/pg19-test:test:3": 3.0071062654918768,
+    "emozilla/pg19-test:test:5": 2.129308276257029,
+    "emozilla/pg19-test:test:6": 2.303504228182928,
+    "emozilla/pg19-test:test:8": 2.4343908687054583,
+    "emozilla/pg19-test:test:10": 2.4734892394432615
+   },
+   "mean": 2.4667202253517373,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L8192:8192-16384": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 9.013432502746582,
+    "emozilla/pg19-test:test:1": 2.0611276626586914,
+    "emozilla/pg19-test:test:2": 0.7385967969894409,
+    "emozilla/pg19-test:test:3": 0.5299869179725647,
+    "emozilla/pg19-test:test:5": 2.643758773803711,
+    "emozilla/pg19-test:test:6": 5.759079456329346,
+    "emozilla/pg19-test:test:8": 1.5699959993362427,
+    "emozilla/pg19-test:test:10": 0.021156586706638336
+   },
+   "mean": 2.792141837067902,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9187476567185513,
+    "emozilla/pg19-test:test:1": 3.2090197156840157,
+    "emozilla/pg19-test:test:2": 2.782323345052639,
+    "emozilla/pg19-test:test:3": 2.796893961238624,
+    "emozilla/pg19-test:test:5": 2.209593557806701,
+    "emozilla/pg19-test:test:6": 1.7044635209064454,
+    "emozilla/pg19-test:test:8": 2.6739454489797545,
+    "emozilla/pg19-test:test:10": 2.5173265810439878
+   },
+   "mean": 2.4765392234288397,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9274263863611225,
+    "emozilla/pg19-test:test:1": 3.2245692113754725,
+    "emozilla/pg19-test:test:2": 2.5429304199866323,
+    "emozilla/pg19-test:test:3": 2.7864812810579584,
+    "emozilla/pg19-test:test:5": 1.9836418270361396,
+    "emozilla/pg19-test:test:6": 2.1831497442512138,
+    "emozilla/pg19-test:test:8": 2.41238270372709,
+    "emozilla/pg19-test:test:10": 2.4478634618870174
+   },
+   "mean": 2.438555629460331,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:2048-4096": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.032745373957691,
+    "emozilla/pg19-test:test:1": 2.8638845100833645,
+    "emozilla/pg19-test:test:2": 2.420728976705824,
+    "emozilla/pg19-test:test:3": 2.9430670584071645,
+    "emozilla/pg19-test:test:5": 2.0823751638662458,
+    "emozilla/pg19-test:test:6": 2.1141340944929254,
+    "emozilla/pg19-test:test:8": 2.53436088662715,
+    "emozilla/pg19-test:test:10": 2.446712276931482
+   },
+   "mean": 2.429751042633981,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:4096-8192": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.0220169800987735,
+    "emozilla/pg19-test:test:1": 2.9962880946419697,
+    "emozilla/pg19-test:test:2": 2.367657849992601,
+    "emozilla/pg19-test:test:3": 3.0071062654918768,
+    "emozilla/pg19-test:test:5": 2.129308276257029,
+    "emozilla/pg19-test:test:6": 2.303504228182928,
+    "emozilla/pg19-test:test:8": 2.4343908687054583,
+    "emozilla/pg19-test:test:10": 2.4734892394432615
+   },
+   "mean": 2.4667202253517373,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:8192-16384": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9796619801261723,
+    "emozilla/pg19-test:test:1": 2.966402946724074,
+    "emozilla/pg19-test:test:2": 2.172571669592771,
+    "emozilla/pg19-test:test:3": 2.9375404448361344,
+    "emozilla/pg19-test:test:5": 2.1476540845568532,
+    "emozilla/pg19-test:test:6": 2.0581829346601497,
+    "emozilla/pg19-test:test:8": 2.350511156561892,
+    "emozilla/pg19-test:test:10": 2.4010299170935827
+   },
+   "mean": 2.376694391768954,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L16384:16384-32768": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 0.10291934758424759,
+    "emozilla/pg19-test:test:1": 0.00020632999076042324,
+    "emozilla/pg19-test:test:2": 11.72215461730957,
+    "emozilla/pg19-test:test:3": 3.5731329917907715,
+    "emozilla/pg19-test:test:5": 0.005712849088013172,
+    "emozilla/pg19-test:test:6": 12.219457626342773,
+    "emozilla/pg19-test:test:8": 2.4498062133789062,
+    "emozilla/pg19-test:test:10": 3.9073245525360107
+   },
+   "mean": 4.247589316002632,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:1-1024": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9187476567185513,
+    "emozilla/pg19-test:test:1": 3.2090197156840157,
+    "emozilla/pg19-test:test:2": 2.782323345052639,
+    "emozilla/pg19-test:test:3": 2.796893961238624,
+    "emozilla/pg19-test:test:5": 2.209593557806701,
+    "emozilla/pg19-test:test:6": 1.7044635209064454,
+    "emozilla/pg19-test:test:8": 2.6739454489797545,
+    "emozilla/pg19-test:test:10": 2.5173265810439878
+   },
+   "mean": 2.4765392234288397,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:1024-2048": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9274263863611225,
+    "emozilla/pg19-test:test:1": 3.2245692113754725,
+    "emozilla/pg19-test:test:2": 2.5429304199866323,
+    "emozilla/pg19-test:test:3": 2.7864812810579584,
+    "emozilla/pg19-test:test:5": 1.9836418270361396,
+    "emozilla/pg19-test:test:6": 2.1831497442512138,
+    "emozilla/pg19-test:test:8": 2.41238270372709,
+    "emozilla/pg19-test:test:10": 2.4478634618870174
+   },
+   "mean": 2.438555629460331,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:2048-4096": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.032745373957691,
+    "emozilla/pg19-test:test:1": 2.8638845100833645,
+    "emozilla/pg19-test:test:2": 2.420728976705824,
+    "emozilla/pg19-test:test:3": 2.9430670584071645,
+    "emozilla/pg19-test:test:5": 2.0823751638662458,
+    "emozilla/pg19-test:test:6": 2.1141340944929254,
+    "emozilla/pg19-test:test:8": 2.53436088662715,
+    "emozilla/pg19-test:test:10": 2.446712276931482
+   },
+   "mean": 2.429751042633981,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:4096-8192": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 2.0220169800987735,
+    "emozilla/pg19-test:test:1": 2.9962880946419697,
+    "emozilla/pg19-test:test:2": 2.367657849992601,
+    "emozilla/pg19-test:test:3": 3.0071062654918768,
+    "emozilla/pg19-test:test:5": 2.129308276257029,
+    "emozilla/pg19-test:test:6": 2.303504228182928,
+    "emozilla/pg19-test:test:8": 2.4343908687054583,
+    "emozilla/pg19-test:test:10": 2.4734892394432615
+   },
+   "mean": 2.4667202253517373,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:8192-16384": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9796619801261723,
+    "emozilla/pg19-test:test:1": 2.966402946724074,
+    "emozilla/pg19-test:test:2": 2.172571669592771,
+    "emozilla/pg19-test:test:3": 2.9375404448361344,
+    "emozilla/pg19-test:test:5": 2.1476540845568532,
+    "emozilla/pg19-test:test:6": 2.0581829346601497,
+    "emozilla/pg19-test:test:8": 2.350511156561892,
+    "emozilla/pg19-test:test:10": 2.4010299170935827
+   },
+   "mean": 2.376694391768954,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:16384-32768": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 1.9275625821094713,
+    "emozilla/pg19-test:test:1": 2.909053520701683,
+    "emozilla/pg19-test:test:2": 2.219872986198391,
+    "emozilla/pg19-test:test:3": 2.8023709290181085,
+    "emozilla/pg19-test:test:5": 2.1876675598454316,
+    "emozilla/pg19-test:test:6": 2.0824685832848844,
+    "emozilla/pg19-test:test:8": 2.3933591663392186,
+    "emozilla/pg19-test:test:10": 2.311932561300924
+   },
+   "mean": 2.354285986099764,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  },
+  "L32768:32768-1048576": {
+   "per_document": {
+    "emozilla/pg19-test:test:0": 7.152531907195225e-06,
+    "emozilla/pg19-test:test:1": 5.055276870727539,
+    "emozilla/pg19-test:test:2": 0.136453315615654,
+    "emozilla/pg19-test:test:3": 2.7735302448272705,
+    "emozilla/pg19-test:test:5": 0.0018181951018050313,
+    "emozilla/pg19-test:test:6": 0.1530219465494156,
+    "emozilla/pg19-test:test:8": 0.7165316939353943,
+    "emozilla/pg19-test:test:10": 2.050802707672119
+   },
+   "mean": 1.360930265870138,
+   "documents": 8,
+   "tokens_denominator": "positions inside the bucket, per document; documents weighted equally"
+  }
+ }
+}

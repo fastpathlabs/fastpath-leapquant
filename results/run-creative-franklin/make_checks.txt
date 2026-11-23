@@ -1,0 +1,98 @@
+python3 record_trace.py --self-test selftest.bin
+wrote selftest.bin: 400 tokens, 4 heads, state 32 x 48
+./leapquant_replay selftest.bin
+trace: selftest.bin
+  4 heads (4 used), state 32 x 48, one decay per token (Gated DeltaNet)
+  starting states loaded from the trace
+  400 tokens replayed, window 16, 4 compensators, 8 bits
+  self-check: fp32 replay vs the model's own kernel output, worst relative difference 0.00e+00  (ok)
+
+                                      bytes | state error at end  | output
+  method                             /entry |    median     worst | error
+  fp32 (what the model does today)     4.00 |         0         0 | 0
+  bf16, rounded every token            2.00 |    0.785%    0.794% | 0.719%
+  bf16, rounded every window           2.00 |    0.228%    0.230% | 0.187%
+  int8, rounded every token            1.12 |    2.443%    2.517% | 2.317%
+  int8, rounded every window           1.12 |    0.722%    0.747% | 0.599%
+    + compensators                     1.54 |    0.578%    0.578% | 0.472%
+    + smoothing  (= LeapQuant)         1.62 |    0.558%    0.602% | 0.464%
+
+  median, worst : state error across heads, after the last token
+  output error  : all heads and all tokens together
+  (error = distance from the fp32 result, as a share of its size)
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -DLQ_EXPECT_BIT_IDENTICAL -pthread leapquant.cpp reference_heads.cpp kernel/leapquant_kernel_cpu.cpp kernel/kernel_test.cpp -o build/kernel_test
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -DLQ_EXPECT_BIT_IDENTICAL -pthread -DLQ_WORD_LOADS leapquant.cpp reference_heads.cpp kernel/leapquant_kernel_cpu.cpp kernel/kernel_test.cpp -o build/kernel_test_words
+build/kernel_test
+[1] fp16 conversion equals the reference core
+[2][3] kernel against the reference core
+    in a window : worst difference of one output from the reference, when both start the window
+                  from the same state (limit 1e-4, the stage D limit of the plan)
+    folds       : folds whose boundary state is not identical to the reference's / folds compared
+    vs fp32     : output error against the fp32 truth over the whole run, kernel | reference
+    free run    : worst difference when kernel and reference never synchronise (not a pass criterion)
+
+    scenario                                                   in a window        folds    kernel reference  free run
+    small, odd sizes                                               0.0e+00         0/24    0.270%    0.270%   0.0e+00
+    small, starts at zero                                          0.0e+00         0/24    0.398%    0.398%   0.0e+00
+    batch of 5, staggered, forced folds                            0.0e+00        0/224    0.262%    0.262%   0.0e+00
+    window 8, no compensators, no smoothing, 4 bits                0.0e+00        0/440   23.881%   23.881%   0.0e+00
+    Qwen3.5-9B shape: 32 value heads, 16 key heads, 128 x 128      0.0e+00        0/384    0.165%    0.165%   0.0e+00
+[4] emulated GPU thread block gives the same bytes as one thread
+      5 threads per block: identical
+     32 threads per block: identical
+    128 threads per block: identical
+[5] bad arguments are rejected, sizes match the plan
+
+2081375 checks run, 0 failed
+build/kernel_test_words | tail -1
+2081375 checks run, 0 failed
+python3 record_trace.py --self-test selftest.bin
+wrote selftest.bin: 400 tokens, 4 heads, state 32 x 48
+./leapquant_replay selftest.bin --write-outputs build/selftest_outputs.bin > /dev/null
+python3 kernel/verify_kernel.py selftest.bin --device cpu --rows 3 --reference-outputs build/selftest_outputs.bin
+trace: selftest.bin
+  400 tokens, 4 heads, state 32 x 48, window 16, 4 compensators, 8 bits
+  kernel: /home/ubuntu/leapquant/build/libleapquant_cpu.so on cpu
+  3 synchronised + 3 free-running requests + 1 padded row; stored per head: 2,496 + 2,592 bytes
+
+  A. inside a window (kernel and reference start every window from the same state)
+     output difference over 4,800 (token, head) pairs: median 0.0e+00, 99% below 0.0e+00, worst 0.0e+00
+     limits: median < 1e-6, 99% < 1e-4, worst < 1e-3 .......... pass
+
+  B. folds (the same full-precision matrix in, a boundary state out)
+     75 folds of 4 heads; bit-identical to the reference: 75
+     int8 entries that differ: 0 of 460,800; fp16 compensator values that differ: 0 of 96,000
+     rounding error of the fold: kernel 0.4084%, reference 0.4084%
+     limit: within 5% of each other ........................... pass
+
+  C. free run (kernel and reference each run the whole trace alone), against fp32
+     output error: kernel 0.4644%, reference 0.4644%
+     state error at the end: kernel 0.5586%, reference 0.5586%
+     largest difference between the two free runs: 0.0e+00 (not a pass criterion)
+     limit: output errors within 10% of each other ............ pass
+
+  padded row gives zeros ....................................... pass
+  CPU build is bit-identical to the reference .................. pass
+  reference in this tool equals leapquant_replay, 400 tokens ... pass
+
+  RESULT: PASS
+python3 kernel/engine_test.py
+engine test on cpu: 150 steps, 2 layers, 4 value heads, state 32 x 48
+  1. worst difference from the reference core: 0.0e+00   (must be 0 on a CPU)
+  2. output error against the fp32 engine: 0.365%   (limit 2%)
+  3. 98 folds seen, 50 of them forced; fp32 tensor after a fold is off by at most 0.554%   (limit 2%)
+  4. prefix-cache hit followed for 88 steps
+     the hit restored from a LeapQuant checkpoint differs from the original by 0.614%   (limit 2%)
+     error against fp32 after the hit: original request 0.529%, restored request 0.554%
+     checkpoint size: 2,496 bytes per head
+  5. slot reuse, host round trip and padded rows: covered by 1 and 2 above
+
+PASS
+python3 kernel/block_engine_test.py
+block engine test on cpu: 260 steps, 30 requests in 22 different blocks, 987 decode rows, 7 LeapQuant slots
+  1. worst difference from the reference core: 0.0e+00   (must be 0 on a CPU)
+  2. output error against the fp32 engine: 0.121%   (limit 2%)
+  3. decode rows without a slot: 0
+  4. a pool that is too small is reported: yes
+
+PASS

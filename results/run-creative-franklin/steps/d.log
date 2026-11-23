@@ -1,0 +1,36 @@
+engine test on cuda: 150 steps, 2 layers, 4 value heads, state 32 x 48
+  1. worst difference from the reference core: 1.8e-02   (reported only: free-running on a GPU)
+  2. output error against the fp32 engine: 0.365%   (limit 2%)
+  3. 98 folds seen, 50 of them forced; fp32 tensor after a fold is off by at most 0.555%   (limit 2%)
+  4. prefix-cache hit followed for 88 steps
+     the hit restored from a LeapQuant checkpoint differs from the original by 0.612%   (limit 2%)
+     error against fp32 after the hit: original request 0.530%, restored request 0.553%
+     checkpoint size: 2,496 bytes per head
+  5. slot reuse, host round trip and padded rows: covered by 1 and 2 above
+
+PASS
+trace: /home/ubuntu/leapquant/traces/code/trace_layer_00.bin
+  4095 tokens, 32 heads, state 128 x 128, window 16, 4 compensators, 8 bits
+  kernel: /home/ubuntu/leapquant/build/libleapquant_cuda.so on cuda
+  2 synchronised + 2 free-running requests + 1 padded row; stored per head: 19,456 + 8,224 bytes
+
+  A. inside a window (kernel and reference start every window from the same state)
+     output difference over 262,080 (token, head) pairs: median 1.5e-08, 99% below 7.2e-07, worst 9.0e-05
+     limits: median < 1e-6, 99% < 1e-4, worst < 1e-3 .......... pass
+
+  B. folds (the same full-precision matrix in, a boundary state out)
+     510 folds of 32 heads; bit-identical to the reference: 510
+     int8 entries that differ: 0 of 267,386,880; fp16 compensator values that differ: 0 of 16,711,680
+     rounding error of the fold: kernel 0.0090%, reference 0.0090%
+     limit: within 5% of each other ........................... pass
+
+  C. free run (kernel and reference each run the whole trace alone), against fp32
+     output error: kernel 0.0093%, reference 0.0096%
+     state error at the end: kernel 0.0600%, reference 0.0601%
+     largest difference between the two free runs: 1.6e-03 (not a pass criterion)
+     limit: output errors within 10% of each other ............ pass
+
+  padded row gives zeros ....................................... pass
+  bit-identical to the reference: no (expected on a GPU)
+
+  RESULT: PASS

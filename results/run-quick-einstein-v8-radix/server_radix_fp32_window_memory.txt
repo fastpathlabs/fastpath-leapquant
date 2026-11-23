@@ -1,0 +1,3 @@
+[2026-11-14 07:04:41 PID903104] Mamba Cache is allocated. max_mamba_cache_size: 560, conv_state size: 0.62GB, ssm_state size: 26.30GB 
+[2026-11-14 07:04:41 PID903104] KV Cache is allocated. dtype: torch.bfloat16, #tokens: 495468, K size: 7.56 GB, V size: 7.56 GB
+[2026-11-14 07:05:02 PID903104] max_total_num_tokens=495468, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=186, context_len=262144, available_gpu_mem=11.41 GB

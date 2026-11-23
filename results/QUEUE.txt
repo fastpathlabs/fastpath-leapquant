@@ -1,0 +1,34 @@
+start 2026-11-14T09:56:23Z build /home/ubuntu/lqfold4/build_v6 decode triton
+round10 start 09:56
+round10 end 11:08 exit 0
+insert 110851 start
+note 11:20: build_v6/libleapquant_fastfold.so replaced by the batched-Gram-Schmidt fold (B49, sha ae3affd2cce95d37; v6 original sha 14e826957ec07569 kept as libleapquant_fastfold_v6_original.so). Runs from openloop on use it; round10 used the original.
+insert 110851 end 11:20 exit 0
+openloop start 11:20
+openloop end 12:12 exit 0
+insert 121244 start
+insert 121244 end 12:48 exit 0
+round9-equalmem start 12:48
+round9-equalmem end 13:02 exit 0
+insert 130220 start
+insert 130220 end 13:44 exit 0
+accuracy-paper start 13:44
+accuracy-paper end 13:44 exit 0
+insert 134439 start
+insert 134439 end 13:44 exit 0
+sglang-best start 13:44
+sglang-best end 13:52 exit 0
+insert 135246 start
+insert 135246 end 14:10 exit 0
+retraction start 14:10
+retraction end 14:16 exit 0
+insert 141659 start
+insert 141659 end 14:43 exit 0
+exact-requalify start 14:43
+exact-requalify end 14:46 exit 0
+insert 144642 start
+insert 144642 end 14:56 exit 0
+layer-switch start 14:56
+layer-switch end 15:04 exit 0
+insert 150418 start
+accuracy-paper start 15:04 build /home/ubuntu/lqdec7/build_v9 decode cuda v9 step reuse

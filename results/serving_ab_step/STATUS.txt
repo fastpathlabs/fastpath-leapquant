@@ -1,0 +1,5 @@
+A PASS 6 min  bf16 window
+B PASS 7 min  LeapQuant, decode inputs built per layer (as rounds 9 and 10)
+C PASS 6 min  LeapQuant, decode inputs built once per step
+D PASS 6 min  LeapQuant, once per step, CUDA decode variant 8
+done 2026-11-14T12:46:19Z

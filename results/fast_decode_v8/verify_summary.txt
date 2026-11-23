@@ -1,0 +1,14 @@
+trace                                                   A  B fold loss k/ref  C output error k/ref
+/home/ubuntu/leapquant/traces/code/trace_layer_00.bin pass        0.834  pass           0.589      
+/home/ubuntu/leapquant/traces/code/trace_layer_13.bin pass        1.005  pass           0.975      
+/home/ubuntu/leapquant/traces/code/trace_layer_30.bin pass        1.000  pass           1.021      
+/home/ubuntu/leapquant/traces/explain/trace_layer_00.bin pass        0.848  pass           0.550      
+/home/ubuntu/leapquant/traces/explain/trace_layer_13.bin pass        0.999  pass           1.092      
+/home/ubuntu/leapquant/traces/explain/trace_layer_30.bin pass        0.995  pass           0.890      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_00.bin pass        0.801  pass           0.558      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_13.bin pass        1.002  pass           1.075      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_30.bin pass        0.998  pass           1.058      
+
+C over 9 traces: geometric mean of kernel / reference output error 0.836 (limit 1.10); lowest 0.550, highest 1.092
+
+RESULT: PASS

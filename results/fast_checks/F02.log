@@ -1,0 +1,7 @@
+block engine test on cuda: 260 steps, 30 requests in 22 different blocks, 987 decode rows, 7 LeapQuant slots
+  1. worst difference from the reference core: 1.1e-02   (reported only: free-running on a GPU)
+  2. output error against the fp32 engine: 0.124%   (limit 2%)
+  3. decode rows without a slot: 0
+  4. a pool that is too small is reported: yes
+
+PASS

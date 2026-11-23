@@ -1,0 +1,168 @@
+{
+ "run_dir": "/home/ubuntu/lqexp/results/harness/pilot_128_512_c512/b4/bf16_window/decode_128_512_c512",
+ "schema": "lqh.validation.v1",
+ "run_id": "lq-h100-2026-11.pilot_128_512_c512.b4.bf16_window.decode_128_512_c512",
+ "counts": {
+  "expected": 2048,
+  "attempted": 2048,
+  "parsed": 2560,
+  "completed": 2048,
+  "duplicates": 0
+ },
+ "status": "measured",
+ "execution_validity": "valid",
+ "checks": [
+  {
+   "id": "V002_manifest_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V004_candidate_hash",
+   "ok": true,
+   "severity": "error",
+   "detail": "manifest 112a88e84418e7dd31df7811582fdc637b242af8e31e7b213b34859dd252c50a != recomputed 112a88e84418e7dd31df7811582fdc637b242af8e31e7b213b34859dd252c50a"
+  },
+  {
+   "id": "V005_artifact:requests.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 bcc91baf2d94ec5f != manifest bcc91baf2d94ec5f"
+  },
+  {
+   "id": "V005_artifact:stream_events.jsonl.gz",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 46da734af62fb5a4 != manifest 46da734af62fb5a4"
+  },
+  {
+   "id": "V005_artifact:driver_summary.json",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 7edfc95351ea998e != manifest 7edfc95351ea998e"
+  },
+  {
+   "id": "V005_artifact:server_events.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 75583103b373800e != manifest 75583103b373800e"
+  },
+  {
+   "id": "V005_artifact:memory_and_power.jsonl",
+   "ok": true,
+   "severity": "error",
+   "detail": "sha256 645861f6a0eebb6e != manifest 645861f6a0eebb6e"
+  },
+  {
+   "id": "V010_request_schema",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V011_duplicate_request_ids",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V012_non_finite_times",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V013_timestamp_order",
+   "ok": true,
+   "severity": "error",
+   "detail": "send <= first <= last <= terminal violated: "
+  },
+  {
+   "id": "V014_token_counts",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V015_success_fields",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V016_exact_output_length",
+   "ok": true,
+   "severity": "warning",
+   "detail": ""
+  },
+  {
+   "id": "V017_chunk_series",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V018_chunk_token_sum",
+   "ok": true,
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "id": "V019_expected_requests",
+   "ok": true,
+   "severity": "error",
+   "detail": "expected 2048 measured requests, records for 2048"
+  },
+  {
+   "id": "V030_phases_well_formed",
+   "ok": true,
+   "severity": "error",
+   "detail": "bad phases: []"
+  },
+  {
+   "id": "V031_main_phase_present",
+   "ok": true,
+   "severity": "error",
+   "detail": "finite cohort without a main phase"
+  },
+  {
+   "id": "V032_measured_inside_main",
+   "ok": true,
+   "severity": "error",
+   "detail": "sent before main start: [], ended after main end: []"
+  },
+  {
+   "id": "V033_warmup_before_main",
+   "ok": true,
+   "severity": "error",
+   "detail": "warmup overlaps the measured phase"
+  },
+  {
+   "id": "V020_device_listed",
+   "ok": true,
+   "severity": "error",
+   "detail": "no GPU recorded in the manifest"
+  },
+  {
+   "id": "V021_device_fields_known",
+   "ok": true,
+   "severity": "error",
+   "detail": "GPU fields unknown for index []"
+  },
+  {
+   "id": "V022_device_count_consistent",
+   "ok": true,
+   "severity": "error",
+   "detail": "allocated_physical_gpus=1, distinct listed GPUs=1"
+  },
+  {
+   "id": "V023_samples_from_allocated_devices",
+   "ok": true,
+   "severity": "error",
+   "detail": "samples from unlisted GPUs []"
+  }
+ ],
+ "errors": [],
+ "warnings": []
+}

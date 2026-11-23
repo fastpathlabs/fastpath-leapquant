@@ -1,0 +1,6 @@
+Sixth round (14 Nov 2026, H100 PCIe 80 GB): the fast LeapQuant kernels (Triton, tensor cores) and the compressed state (integration phase 2).
+Every server: radix cache off, 560 state slots, at most 512 running requests, CUDA graphs up to batch 512, no overlap scheduling.
+With the radix cache off SGLang runs as many requests as it has state slots, so concurrency 512 means 512 running requests.
+config4 (LeapQuant): LEAPQUANT_STATE=compressed (no fp32 state per slot), fast kernels, folds aligned across requests.
+Memory per server: fp32 state 26.3 GB and 495,468 KV tokens; bf16 state 13.2 GB and 926,316 KV tokens; LeapQuant 11.1 GB and 993,215 KV tokens.
+The kernel page (e_triton_speed.txt) was measured after this serving round, with the decode step retuned (0.254 ms at batch 512 instead of 0.34 ms in the servers of this round).

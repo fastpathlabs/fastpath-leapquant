@@ -1,0 +1,4 @@
+A PASS 4 min  bf16 window
+P_default PASS 4 min  LeapQuant, LEAPQUANT_FOLD_POLICY=(unset)
+P_stagger PASS 4 min  LeapQuant, LEAPQUANT_FOLD_POLICY=stagger
+done 2026-11-14T16:46:36Z

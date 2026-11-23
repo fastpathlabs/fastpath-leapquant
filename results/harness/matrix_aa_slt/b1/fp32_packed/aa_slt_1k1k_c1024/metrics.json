@@ -1,0 +1,454 @@
+{
+ "schema": "lqh.metrics.v1",
+ "harness_version": "lqh 1.0.0 (2026-11-15)",
+ "computed_utc": "2026-11-15T23:42:15.180974Z",
+ "run_id": "lq-h100-2026-11.matrix_aa_slt.b1.fp32_packed.aa_slt_1k1k_c1024",
+ "campaign_id": "lq-h100-2026-11",
+ "experiment_id": "lq-h100-2026-11.matrix_aa_slt",
+ "cell_id": "aa_slt_local:aa_slt_1k1k_c1024",
+ "plan_id": "matrix_aa_slt",
+ "block_id": 1,
+ "pair_id": "matrix_aa_slt.b1.aa_slt_1k1k_c1024",
+ "profile_id": "aa_slt_local",
+ "profile_version": "aa-slt-2026-11-15-v1",
+ "candidate_id": "fp32_packed",
+ "candidate_config_hash": "f0b2d90197a451a74e5c3f01b7a0a10e586384beac3e5027aa37ff1faefb667c",
+ "comparison_class": "best_qualified",
+ "evidence_kind": "measured_raw",
+ "is_carried": false,
+ "status": "invalid",
+ "validation_errors": [
+  "V054_client_resources",
+  "V053_failure_storm"
+ ],
+ "validation_warnings": [],
+ "workload": {
+  "profile": "aa_slt_local",
+  "lane": "sustained",
+  "isl": 1000,
+  "osl": 1000,
+  "concurrency": 1024,
+  "steady_s": 180,
+  "ramp_min_s": 30,
+  "drain_timeout_s": 900,
+  "seed": 0,
+  "request_timeout_s": 3600,
+  "variant": "aa_slt_1k1k",
+  "ignore_eos": true
+ },
+ "mock": false,
+ "metrics": {
+  "requests_expected": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_attempted": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_succeeded": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_failed": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_timeout": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_cancelled": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_incomplete": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_with_first_token": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "retries": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "warmup_requests": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "completion_rate": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "error_rate": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "first_token_response_rate": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "output_length_mismatches": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "requests_exact_chunk_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "input_tokens_succeeded": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tokens"
+  },
+  "output_tokens_succeeded": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tokens"
+  },
+  "output_tokens_unsuccessful": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tokens"
+  },
+  "cohort_duration_s": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "s"
+  },
+  "finite_cohort_output_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "finite_cohort_input_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "finite_cohort_total_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "request_throughput_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "output_tps_per_gpu": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/GPU"
+  },
+  "input_tps_per_gpu": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/GPU"
+  },
+  "total_tps_per_gpu": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/GPU"
+  },
+  "output_event_tps_max_10s": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "steady_window_s": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "s"
+  },
+  "steady_output_event_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "successful_steady_output_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "steady_failed_request_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tokens"
+  },
+  "steady_unresolved_requests": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_unresolved_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tokens"
+  },
+  "steady_completions": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_request_rate_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "steady_first_token_responses": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_boundary_started_before": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_boundary_ended_after": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_boundary_spanning": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "steady_cohort_requests": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "offered_rate_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "attempted_rate_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "achieved_completion_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "ttft_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "e2e_terminal_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "e2e_last_token_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "tpot_native_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "tpot_terminal_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "span_last_first_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "itl_token_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "chunk_gap_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "itl_estimated_uniform_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "client_queue_delay_ms": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "ms"
+  },
+  "user_speed_post_first_token_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/user"
+  },
+  "user_speed_e2e_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/user"
+  },
+  "interactivity_native_median_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/user"
+  },
+  "slo_qualifying_requests": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "slo_qualifying_fraction": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "request_goodput_rps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "req/s"
+  },
+  "output_goodput_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "output_goodput_tps_per_gpu": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s/GPU"
+  },
+  "server_running_requests": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "server_queue_depth": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "requests"
+  },
+  "server_token_usage": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "server_retractions": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "events"
+  },
+  "server_cuda_graph_fraction": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "fraction"
+  },
+  "server_reported_gen_tps": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "tok/s"
+  },
+  "gpu_memory_used_mib": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "MiB"
+  },
+  "gpu_memory_total_mib": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "MiB"
+  },
+  "gpu_power_w": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "W"
+  },
+  "gpu_sm_clock_mhz": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "MHz"
+  },
+  "gpu_temperature_c": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "C"
+  },
+  "gpu_energy_j": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "J"
+  },
+  "gpu_energy_j_per_output_token": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "J/token"
+  },
+  "gpu_energy_j_per_qualified_output_token": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "J/token"
+  },
+  "usd_per_hour": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "USD/h"
+  },
+  "usd_per_million_output_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "USD/1M tok"
+  },
+  "usd_per_million_qualified_output_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "USD/1M tok"
+  },
+  "usd_per_million_input_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "USD/1M tok"
+  },
+  "usd_per_million_total_tokens": {
+   "value": null,
+   "null_reason": "run_invalid",
+   "unit": "USD/1M tok"
+  }
+ },
+ "capacity": {
+  "configured_state_slots": 560,
+  "configured_state_slots_source": "server flags",
+  "server_max_running_requests": 512,
+  "kv_tokens": null,
+  "client_concurrency": 1024,
+  "admitted_running_median": null,
+  "admitted_running_max": null,
+  "waiting_median": null,
+  "waiting_max": null,
+  "note": "client concurrency is not the decode batch: the admitted running requests are"
+ }
+}

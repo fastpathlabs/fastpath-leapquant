@@ -1,0 +1,6 @@
+{"kind":"capacity","max_total_num_tokens":100000,"max_running_requests":4096}
+{"kind":"decode","t_unix":1794706450.0,"line":3,"t_run":-1.4194180965423584,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706451.0,"line":4,"t_run":-0.4194180965423584,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706452.0,"line":5,"t_run":0.5805819034576416,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1416.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706453.0,"line":6,"t_run":1.5805819034576416,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1656.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706454.0,"line":7,"t_run":2.5805819034576416,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}

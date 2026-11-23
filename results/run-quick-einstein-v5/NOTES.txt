@@ -1,0 +1,3 @@
+Fifth round: the current state. Baselines are the logs of round 2 (384 state slots, at most 128 requests running; "512" is 128 running plus a queue).
+LeapQuant: when one request's window is full, every request folds on that step. Kernel as of 11:16 (fold 9.8 ms at batch 512).
+The kernel pages (speed, profile, verification, accuracy on real states) show the measurements taken with this same kernel in round 4.

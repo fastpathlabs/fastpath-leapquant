@@ -1,0 +1,8 @@
+{"t": "2026-11-15T06:47:33.254216Z", "block": 1, "candidate": "fp32_packed", "state": "done"}
+{"t": "2026-11-15T06:50:24.749014Z", "block": 1, "candidate": "fp32_window", "state": "done"}
+{"t": "2026-11-15T06:52:39.927627Z", "block": 1, "candidate": "bf16_rounded", "state": "done"}
+{"t": "2026-11-15T06:54:49.532394Z", "block": 1, "candidate": "bf16_window", "state": "done"}
+{"t": "2026-11-15T06:58:45.263527Z", "block": 1, "candidate": "sglang_default", "state": "done"}
+{"t": "2026-11-15T06:59:46.034205Z", "block": 1, "candidate": "sglang_best", "state": "done"}
+{"t": "2026-11-15T07:02:02.008517Z", "block": 1, "candidate": "lq_final", "state": "done"}
+{"t": "2026-11-15T07:04:30.057394Z", "block": 1, "candidate": "lq_final_eqmem", "state": "done"}

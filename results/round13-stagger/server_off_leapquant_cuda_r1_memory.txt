@@ -1,0 +1,3 @@
+[2026-11-14 17:26:37 PID1541907] Mamba Cache is allocated. max_mamba_cache_size: 1100, conv_state size: 1.21GB, ssm_state size: 0.09GB 
+[2026-11-14 17:26:38 PID1541907] LeapQuant decode state allocated: 24 layers x 1101 slots x 32 heads, window 16, compensators 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4, 21.798 GB, fast kernels, state compressed only (no fp32 state per slot)
+[2026-11-14 17:27:04 PID1541907] max_total_num_tokens=594852, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=1024, context_len=262144, available_gpu_mem=13.95 GB

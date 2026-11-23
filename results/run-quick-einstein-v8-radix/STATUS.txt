@@ -1,0 +1,5 @@
+R0 PASS 3 min  radix cache on: compressed state from cache hits (smoke)
+R1 PASS 7 min  serving, radix on: fp32 window, 560 slots
+R2 PASS 7 min  serving, radix on: bf16 window, 1100 slots
+R3 PASS 7 min  serving, radix on: LeapQuant compressed, 1560 slots
+done 2026-11-14T07:27:03Z

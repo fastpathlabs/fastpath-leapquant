@@ -1,0 +1,4 @@
+O1 PASS 17 min  open loop: bf16 + window
+O2 PASS 17 min  open loop: LeapQuant, folds aligned
+O3 PASS 17 min  open loop: LeapQuant, folds on each request's own step
+done 2026-11-14T12:12:44Z

@@ -1,0 +1,2 @@
+Third round. The three baselines are the logs of round 2 (same machine, same limits: 384 state slots, at most 128 requests running; "512" is 128 running plus a queue).
+LeapQuant here: all requests fold their window on the same decode step (new in the SGLang patch). That removes about 4 ms per decode step, and makes one step in 16 slow: see the p99 inter-token latency in the full table.

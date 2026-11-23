@@ -1,0 +1,17 @@
+server starting (pid 729389), log: /home/ubuntu/lqexp/results/run-quick-einstein-v7/server_smoke_lq_mirror.log
+server is up
+[2026-11-14 04:22:59 PID729462] LeapQuant decode state allocated: 24 layers x 561 slots x 32 heads, window 16, compensators 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4, 11.107 GB, fast kernels, state mirrored in fp32 (phase 1)
+wrote /home/ubuntu/lqexp/results/run-quick-einstein-v7/smoke_lq_mirror.json: 6 answers
+
+ words  same first  prompt
+   116         116  What is the capital of France? Answer in one sentence.
+   151         151  List the first ten prime numbers and explain in two sentence
+   199         199  Write a Python function that returns the n-th Fibonacci numb
+   177         177  Explain step by step how to compute 37 * 43 in your head.
+   267         201  Summarise in five sentences how a hash table handles collisi
+   256          85  Translate into German: 'The train to Munich leaves from plat
+
+answers that differ within their first 15 words: 0 of 6
+Read the two files side by side. Differences late in an answer are expected;
+an answer that degrades into noise or repetition is a bug.
+SMOKE: PASS

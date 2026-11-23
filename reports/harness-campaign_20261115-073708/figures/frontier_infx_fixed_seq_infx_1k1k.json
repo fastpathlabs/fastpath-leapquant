@@ -1,0 +1,48 @@
+{
+ "figure_id": "frontier_infx_fixed_seq_infx_1k1k",
+ "title": "infx_fixed_seq infx_1k1k: throughput per GPU vs per-user speed",
+ "generator": "lqh 1.0.0 (2026-11-15)",
+ "points": [
+  {
+   "figure_id": "frontier_infx_fixed_seq_infx_1k1k",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.bf16_window.infx_1k1k_c16",
+   "candidate_id": "bf16_window",
+   "cell_id": "infx_fixed_seq:infx_1k1k_c16",
+   "client_concurrency": 16,
+   "x_per_user_tps_median": 79.78784082502904,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 1241.3007164176092,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "finite cohort (drain included)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  },
+  {
+   "figure_id": "frontier_infx_fixed_seq_infx_1k1k",
+   "run_id": "lq-h100-2026-11.validation_pair.b1.lq_final.infx_1k1k_c16",
+   "candidate_id": "lq_final",
+   "cell_id": "infx_fixed_seq:infx_1k1k_c16",
+   "client_concurrency": 16,
+   "x_per_user_tps_median": 78.65666714701038,
+   "x_unit": "tok/s/user (median, post first token)",
+   "y_output_tps_per_gpu": 1218.9396499715945,
+   "y_unit": "tok/s/GPU (successful output)",
+   "status": "measured",
+   "plotted": true,
+   "originating_experiment": "lq-h100-2026-11.validation_pair",
+   "block_id": 1,
+   "hardware": "NVIDIA H100 PCIe",
+   "measurement_boundary": "finite cohort (drain included)",
+   "comparison_class": "same_capacity",
+   "evidence_kind": "measured_raw",
+   "derivation": "y = deployment successful output tok/s / allocated GPUs; x = median over succeeded requests of (N-1)/(last-first token)"
+  }
+ ],
+ "data_sha256": "cdd5c8f173cb455336edbda75fd1af395b66c155fd702c3e450c9bf7590d6fa1"
+}

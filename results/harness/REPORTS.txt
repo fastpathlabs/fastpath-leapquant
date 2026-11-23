@@ -1,0 +1,17 @@
+20261115-024343 first campaign report (carried evidence): /home/ubuntu/lqexp/reports/harness-campaign_20261115-024343 check exit 1
+20261115-024454 carried evidence, interval aligned: /home/ubuntu/lqexp/reports/harness-campaign_20261115-024454 check exit 0
+20261115-061537 after 110_kernel_cycle: /home/ubuntu/lqexp/reports/harness-campaign_20261115-061537 check exit 0
+20261115-061651 after 111_lifecycle: /home/ubuntu/lqexp/reports/harness-campaign_20261115-061651 check exit 0
+20261115-063037 after 112_sanitizers: /home/ubuntu/lqexp/reports/harness-campaign_20261115-063037 check exit 0
+20261115-064413 after 113_validation_pair: /home/ubuntu/lqexp/reports/harness-campaign_20261115-064413 check exit 1
+20261115-064835 recheck of harness-campaign_20261115-064413 (after 113_validation_pair) with the checker that re-derives GPU energy (lqh/checker.py 2a1e87a7): "ok": true; the bundle itself is unchanged
+20261115-070453 after 114_memory_per_arm: /home/ubuntu/lqexp/reports/harness-campaign_20261115-070453 check exit 1
+20261115-071014 note on harness-campaign_20261115-070453 (after 114): its check failure is the crashed sglang_best run (server out of memory, published as 0.0 tok/s measured) and a comparison without a value; fixed by V052_server_reachable + computable-only comparisons (lqh validate.py/report.py), the run re-derived as crashed; the bundle itself is unchanged
+20261115-073708 after 115_pilot: /home/ubuntu/lqexp/reports/harness-campaign_20261115-073708 check exit 0
+20261115-101354 after 116_matrix_infx: /home/ubuntu/lqexp/reports/harness-campaign_20261115-101354 check exit 0
+20261115-122722 after 117_matrix_aa_slt: /home/ubuntu/lqexp/reports/harness-campaign_20261115-122722 check exit 0
+20261115-123658 after 118_quality: /home/ubuntu/lqexp/reports/harness-campaign_20261115-123658 check exit 0
+20261115-132523 after 119_longcontext: /home/ubuntu/lqexp/reports/harness-campaign_20261115-132523 check exit 0
+20261115-134832 after 120_compounding: /home/ubuntu/lqexp/reports/harness-campaign_20261115-134832 check exit 0
+20261115-221205 after 121_quality: /home/ubuntu/lqexp/reports/harness-campaign_20261115-221205 check exit 0
+20261115-232954 after 122_confirm_aa_slt: /home/ubuntu/lqexp/reports/harness-campaign_20261115-232954 check exit 0

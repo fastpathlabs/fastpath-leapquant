@@ -1,0 +1,15 @@
+Output error against fp32, % (all heads and tokens). bf16 = bf16 state rounded every window.
+trace                            base       w8       b6       b4       r2       r8      b6p      b4p       r0    r0rot    r2rot    r4rot     bf16
+code_trace_layer_00             0.017    0.024    0.076    0.569    0.017    0.017    0.039    0.205    2.013    0.437    0.023    0.023    0.491
+code_trace_layer_13             0.357    0.494    1.540   21.284    0.458    0.248    0.705    4.103    1.770    1.642    0.728    0.574    0.766
+code_trace_layer_30             0.624    0.943    3.003   71.914    0.790    0.451    1.256    8.933    1.338    2.630    1.690    1.354    0.339
+explain_trace_layer_00          0.023    0.041    0.126    1.115    0.023    0.023    0.056    0.248    1.777    1.082    0.029    0.028    0.956
+explain_trace_layer_13          1.108    1.707    3.964   98.261    1.500    0.550    1.578   10.319    2.946    2.202    1.460    1.040    1.417
+explain_trace_layer_30          1.738    3.021    6.048  302.876    3.446    1.050    2.820   19.617    2.801    4.121    3.451    2.543    0.769
+reasoning_trace_layer_00        0.022    0.041    0.120    1.123    0.022    0.022    0.061    0.279    2.547    0.714    0.029    0.028    1.233
+reasoning_trace_layer_13        0.612    1.091    3.513  114.697    0.910    0.356    1.411   10.876    2.684    2.375    1.198    0.811    1.695
+reasoning_trace_layer_30        1.262    2.240    5.688  318.690    1.638    0.933    2.347   20.236    2.900    4.441    2.979    2.286    0.703
+bytes per entry                  1.19     1.19     1.19     1.19     1.12     1.31     1.72     1.72     1.06     1.06     1.12     1.19     2.00
+traces at least as good as bf16        6        5        3        1        5        6        5        3        0        2        5        6
+
+Settings: base = window 16, 4 compensators, 8 bits; w8 = window 8; b6 = 6 bits, 4 compensators, one step per value column; b4 = 4 bits, 4 compensators, one step per value column; r2 = 2 compensators; r8 = 8 compensators; b6p = 6 bits: 6 compensators (paper), one step per 8 key rows (ours); b4p = 4 bits: 6 compensators (paper), one step per 8 key rows (ours); r0 = 0 compensators; r0rot = 0 compensators, Hadamard-rotated keys and state; r2rot = 2 compensators, rotated; r4rot = 4 compensators, rotated

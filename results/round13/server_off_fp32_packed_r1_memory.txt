@@ -1,0 +1,2 @@
+[2026-11-14 16:54:44 PID1534766] Mamba Cache is allocated. max_mamba_cache_size: 560, conv_state size: 0.62GB, ssm_state size: 26.30GB 
+[2026-11-14 16:55:07 PID1534766] max_total_num_tokens=466870, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=560, context_len=262144, available_gpu_mem=16.07 GB

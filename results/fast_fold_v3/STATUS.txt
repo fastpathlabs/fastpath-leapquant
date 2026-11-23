@@ -1,0 +1,7 @@
+test_v3_x0 exit 0
+test_v3_x1 exit 0
+memcheck_v3_x0 exit 0
+racecheck_v3_x0 exit 0
+restore_cuda exit 0
+restore_triton exit 0
+done

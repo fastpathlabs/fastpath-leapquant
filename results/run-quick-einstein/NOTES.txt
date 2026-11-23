@@ -1,0 +1,4 @@
+Read before using these numbers.
+1. The server ran at most 186 requests at once in every configuration (SGLang wants 3 state slots per request; 560 fp32 slots are 26 GB). "512" therefore means 186 running requests plus a queue, which is why its time to first token is 15 to 30 seconds.
+2. The LeapQuant run is NOT like for like. To fit its 12 GB state, its server got a smaller KV cache, and that cache then limited it to about 141 running requests. It also used an earlier kernel with the gate arithmetic outside the kernel.
+3. A like-for-like second round is in run-quick-einstein-v2.

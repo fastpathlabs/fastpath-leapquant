@@ -1,0 +1,94 @@
+LeapQuant decode: CUDA decode, variant 9
+Triton kernels on NVIDIA H100 PCIe: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+dtypes: projections bf16; state int8 levels, fp32 steps and scales, fp16 compensators and records, fp16 log decays; fold backend cuda; decode backend cuda
+
+  batch 512
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.6e-06  worst 1.0e-04;   records written: worst relative difference 5.8e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00174 worst 0.00273   fast: mean 0.00174 worst 0.00274   fast / exact (mean): 1.0026
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9997
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.8e-07
+    fast export vs exact export: worst relative difference 7.1e-08 (boundary state), 5.8e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99542, 0.98249   fast: 0.99484, 0.98119
+    time   fast decode step 0.2410 ms (position 0: 0.2053, last: 0.2760)   fast fold 0.828 ms   ->  0.2928 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 1.469 ms; with every row skipped 0.0039 ms
+    time   sglang window kernel, fp32 state: 0.6981 ms per token (append steps 0.6351, the step that writes the state 1.6428)
+    time   sglang packed kernel, fp32 state: 1.1978 ms per token
+    time   sglang window kernel, bf16 state: 0.3818 ms per token (append steps 0.3588, the step that writes the state 0.7269)
+    time   sglang packed kernel, bf16 state: 0.6110 ms per token
+    full cycle   LeapQuant: 4.6935 ms per window of 16 tokens = 0.2933 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 10 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+    full cycle   sglang window kernel, fp32 state: 0.6965 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   sglang window kernel, bf16 state: 0.3736 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   ratio sglang bf16 window / LeapQuant per token: 1.2735  (time reduction 21.47%)
+
+  batch 128
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.8e-06  worst 7.6e-05;   records written: worst relative difference 4.7e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00172 worst 0.00268   fast: mean 0.00172 worst 0.00272   fast / exact (mean): 1.0023
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9995
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.7e-07
+    fast export vs exact export: worst relative difference 7.0e-08 (boundary state), 4.7e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99570, 0.98454   fast: 0.99518, 0.97877
+    time   fast decode step 0.0562 ms (position 0: 0.0447, last: 0.0738)   fast fold 0.215 ms   ->  0.0696 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.389 ms; with every row skipped 0.0042 ms
+    time   sglang window kernel, fp32 state: 0.1799 ms per token (append steps 0.1645, the step that writes the state 0.4106)
+    time   sglang packed kernel, fp32 state: 0.3037 ms per token
+    time   sglang window kernel, bf16 state: 0.1018 ms per token (append steps 0.0959, the step that writes the state 0.1907)
+    time   sglang packed kernel, bf16 state: 0.1570 ms per token
+    full cycle   LeapQuant: 1.1335 ms per window of 16 tokens = 0.0708 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 10 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+    full cycle   sglang window kernel, fp32 state: 0.1779 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   sglang window kernel, bf16 state: 0.0998 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   ratio sglang bf16 window / LeapQuant per token: 1.4082  (time reduction 28.99%)
+
+  batch 32
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.7e-06  worst 7.9e-05;   records written: worst relative difference 7.4e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00175 worst 0.00256   fast: mean 0.00176 worst 0.00259   fast / exact (mean): 1.0026
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00032   fast: mean 0.00027 worst 0.00032   fast / exact (mean): 0.9998
+    full-precision state exported by the fast fold vs exact export: worst relative difference 3.9e-07
+    fast export vs exact export: worst relative difference 7.0e-08 (boundary state), 4.1e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99536, 0.98701   fast: 0.99457, 0.97903
+    time   fast decode step 0.0163 ms (position 0: 0.0120, last: 0.0173)   fast fold 0.067 ms   ->  0.0205 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.113 ms; with every row skipped 0.0041 ms
+    time   sglang window kernel, fp32 state: 0.0514 ms per token (append steps 0.0482, the step that writes the state 0.1000)
+    time   sglang packed kernel, fp32 state: 0.0799 ms per token
+    time   sglang window kernel, bf16 state: 0.0281 ms per token (append steps 0.0269, the step that writes the state 0.0455)
+    time   sglang packed kernel, bf16 state: 0.0242 ms per token
+    full cycle   LeapQuant: 0.3402 ms per window of 16 tokens = 0.0213 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 10 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+    full cycle   sglang window kernel, fp32 state: 0.0504 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   sglang window kernel, bf16 state: 0.0266 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   ratio sglang bf16 window / LeapQuant per token: 1.2523  (time reduction 20.15%)
+
+  batch 8
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 4.2e-06  worst 2.4e-05;   records written: worst relative difference 4.6e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00173 worst 0.00248   fast: mean 0.00173 worst 0.00248   fast / exact (mean): 1.0021
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00032   fast: mean 0.00027 worst 0.00032   fast / exact (mean): 1.0006
+    full-precision state exported by the fast fold vs exact export: worst relative difference 4.4e-07
+    fast export vs exact export: worst relative difference 6.9e-08 (boundary state), 4.4e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99537, 0.98570   fast: 0.99479, 0.98469
+    time   fast decode step 0.0091 ms (position 0: 0.0083, last: 0.0096)   fast fold 0.029 ms   ->  0.0109 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.039 ms; with every row skipped 0.0041 ms
+    time   sglang window kernel, fp32 state: 0.0132 ms per token (append steps 0.0127, the step that writes the state 0.0208)
+    time   sglang packed kernel, fp32 state: 0.0127 ms per token
+    time   sglang window kernel, bf16 state: 0.0115 ms per token (append steps 0.0111, the step that writes the state 0.0165)
+    time   sglang packed kernel, bf16 state: 0.0069 ms per token
+    full cycle   LeapQuant: 0.1764 ms per window of 16 tokens = 0.0110 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 10 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+    full cycle   sglang window kernel, fp32 state: 0.0113 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   sglang window kernel, bf16 state: 0.0094 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   ratio sglang bf16 window / LeapQuant per token: 0.8535  (time reduction -17.17%)
+
+  batch 1
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 1.9e-06  worst 1.5e-05;   records written: worst relative difference 2.8e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00176 worst 0.00241   fast: mean 0.00177 worst 0.00244   fast / exact (mean): 1.0053
+    store loss (boundary state vs the state stored)   exact: mean 0.00026 worst 0.00030   fast: mean 0.00026 worst 0.00030   fast / exact (mean): 0.9995
+    full-precision state exported by the fast fold vs exact export: worst relative difference 3.7e-07
+    fast export vs exact export: worst relative difference 6.8e-08 (boundary state), 3.7e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99426, 0.98479   fast: 0.99283, 0.97397
+    time   fast decode step 0.0082 ms (position 0: 0.0076, last: 0.0087)   fast fold 0.017 ms   ->  0.0092 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 0.020 ms; with every row skipped 0.0040 ms
+    time   sglang window kernel, fp32 state: 0.0092 ms per token (append steps 0.0089, the step that writes the state 0.0139)
+    time   sglang packed kernel, fp32 state: 0.0045 ms per token
+    time   sglang window kernel, bf16 state: 0.0090 ms per token (append steps 0.0088, the step that writes the state 0.0125)
+    time   sglang packed kernel, bf16 state: 0.0039 ms per token
+    full cycle   LeapQuant: 0.1598 ms per window of 16 tokens = 0.0100 ms per token (one CUDA graph: 16 state-advancing decode steps + fold; start state restored outside the timing; median of 10 replays; boundary state advanced by the cycle: True; fold backend cuda, decode backend cuda; order lq-first)
+    full cycle   sglang window kernel, fp32 state: 0.0074 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   sglang window kernel, bf16 state: 0.0071 ms per token (same method: one graph of 16 steps, the last writes the state)
+    full cycle   ratio sglang bf16 window / LeapQuant per token: 0.7155  (time reduction -39.76%)
+

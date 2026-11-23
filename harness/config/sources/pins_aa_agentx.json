@@ -1,0 +1,1410 @@
+{
+  "retrieved_utc": "2026-11-15T00:40:38Z",
+  "retrieval_window_utc": {
+    "start": "2026-11-15T00:28:58Z",
+    "end": "2026-11-15T00:40:38Z"
+  },
+  "method": "Anonymous GETs only (curl). Nothing downloaded was executed. Each quote is a whitespace-normalised exact substring of the named file (checked by _scripts/build_spec.py). Each agentx raw file's git blob SHA-1 was checked against the commit tree.",
+  "aa_slt": {
+    "url": "https://artificialanalysis.ai/methodology/system-load-test",
+    "title": "System Load Test (AA-SLT) Methodology",
+    "version_or_date_shown": null,
+    "workload": {
+      "status": "confirmed",
+      "input_tokens": 1000,
+      "output_tokens": 1000,
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Workload shape: 1,000 input tokens and 1,000 output tokens per query."
+        }
+      ]
+    },
+    "streaming": {
+      "status": "confirmed",
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Streaming: Benchmarking is conducted with streaming enabled."
+        }
+      ]
+    },
+    "closed_loop_replacement": {
+      "status": "confirmed",
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "The benchmark measures system performance by maintaining fixed numbers of parallel queries sent to the system during the testing phase."
+        },
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Once each individual query finishes, another query is immediately sent to the machine."
+        }
+      ]
+    },
+    "phase_duration": {
+      "status": "confirmed; the page says '3 minutes' (= 180 s)",
+      "seconds": 180,
+      "excludes_ramp_up_and_cooldown": true,
+      "ramp_up_and_cooldown_lengths": "not stated",
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Phase duration: Each phase lasts 3 minutes (excluding ramp-up and cool-down periods)."
+        },
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Each benchmarking phase is conducted for 3 minutes, and the number of concurrent queries is scaled with each subsequent phase."
+        }
+      ]
+    },
+    "concurrency_sweep": {
+      "status": "confirmed",
+      "levels": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "then": "+64 per phase (128, 192, ...) until the output-throughput ceiling plateaus",
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Concurrency levels: 1, 2, 4, 8, 16, 32, 64, then in increments of 64 until the system output throughput ceiling plateaus."
+        }
+      ]
+    },
+    "plateau_definition": {
+      "status": "qualitative only: no numeric tolerance, no count of non-improving phases",
+      "evidence": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "The benchmarking continues until the system's output throughput ceiling is reached, meaning that with higher concurrency, no additional extra tokens are received compared to prior periods."
+        }
+      ]
+    },
+    "metrics": {
+      "system_output_throughput": {
+        "definition": "average aggregate output tokens/s across all concurrent requests over the phase",
+        "evidence": [
+          {
+            "source": "derived/aa_slt.txt",
+            "quote": "System Output Throughput: The average aggregate output tokens per second across all concurrent requests over the benchmarking phase."
+          },
+          {
+            "source": "derived/aa_slt.txt",
+            "quote": "The aggregate amount of tokens received from the system during each phase is measured, and contributes to our system output throughput metric."
+          }
+        ]
+      },
+      "response_rate": {
+        "definition": "share of queries sent during the phase that got at least 1 output token",
+        "evidence": [
+          {
+            "source": "derived/aa_slt.txt",
+            "quote": "Response rate: The proportion of queries sent during the benchmarking phase that received responses (at least 1 output token)."
+          }
+        ]
+      },
+      "end_to_end_latency_per_query": {
+        "aggregation": "median per concurrency phase",
+        "evidence": [
+          {
+            "source": "derived/aa_slt.txt",
+            "quote": "End-to-End Latency per Query: The end-to-end response time for each query from the time the query is sent. Figures are reported as the median of each concurrency phase."
+          }
+        ]
+      },
+      "output_speed_per_query": {
+        "definition": "output tokens/s after the first token is received (TTFT excluded)",
+        "aggregation": "median per concurrency phase",
+        "evidence": [
+          {
+            "source": "derived/aa_slt.txt",
+            "quote": "Output Speed per Query: Output tokens per second after the first token is received for each query. Figures are reported as the median of each concurrency phase."
+          }
+        ]
+      },
+      "other_metrics": "none listed; TTFT is NOT among the reported SLT metrics",
+      "general": [
+        {
+          "source": "derived/aa_slt.txt",
+          "quote": "Per-query performance is also measured, and these contribute to our per-query metrics (usually represented as a median or mean)."
+        }
+      ]
+    },
+    "prompt_source": {
+      "status": "not stated on the page"
+    },
+    "ignore_eos_or_exact_output_lengths": {
+      "status": "not stated; only the '1,000 output tokens per query' workload shape is given"
+    },
+    "tokenizer_for_counting": {
+      "status": "not stated on the SLT page",
+      "context": "Only tokenizer mention found is on the API page (v3 uses provider-reported counts; v2 used tiktoken o200k_base); that is the API benchmark, not SLT."
+    },
+    "official_cli": {
+      "status": "none mentioned on the page",
+      "context": "Anonymous listing of github.com/ArtificialAnalysis (raw_aa_gh/org_repos.json) shows no SLT-named repo; it lists aa-agentperf-local ('Benchmark local LLM serving by replaying real agent trajectories', i.e. AA-AgentPerf, a different benchmark) and an aiperf fork (not inspected)."
+    },
+    "figure_caption": {
+      "source": "derived/aa_slt.txt",
+      "quote": "Artificial Analysis System Load Test (example with 4 concurrent requests)"
+    }
+  },
+  "aa_api_v3": {
+    "url": "https://artificialanalysis.ai/methodology/performance-benchmarking",
+    "version": "3.0.0",
+    "version_date": "3 November 2026",
+    "version_evidence": [
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Version 3.0.0"
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "3 November 2026"
+      }
+    ],
+    "output_speed": {
+      "status": "confirmed",
+      "includes_ttft": true,
+      "token_source": "provider-reported output tokens incl. reasoning tokens; counted from response text only when the provider reports none",
+      "multi_turn": "session output tokens / time the endpoint spent answering (tool run time excluded)",
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "Output Speed (output tokens per second): The number of output tokens, including reasoning tokens, received per second over a request's full duration, from sending the request to receiving the final token, so it includes time to first token. For a multi-turn session, we divide its output tokens by the time the endpoint took to answer its requests, which excludes the time tools take to run between them."
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "Token Measurement: We count output tokens as reported by each provider's API where available, including reasoning tokens whether or not the API returns their text. When a provider reports none, we count them from the response text."
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "Token counting: We count output tokens as reported by each provider's API (previously tiktoken o200k_base)."
+        }
+      ]
+    },
+    "workloads": {
+      "status": "confirmed (sizes are approximate)",
+      "list": [
+        "~1,000-token single request",
+        "~10,000-token single request",
+        "~100,000-token single request",
+        "multi-turn agentic session with tool calls"
+      ],
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "A single request of approximately 1,000 input tokens"
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "A single request of approximately 10,000 input tokens"
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "A single request of approximately 100,000 input tokens"
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "An agentic task over multiple turns, from our coding, knowledge work and automation evaluations"
+        }
+      ]
+    },
+    "load": {
+      "status": "concurrent load; the concurrency level is NOT specified",
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "We measure every workload under concurrent load, to better represent how endpoints perform in production."
+        }
+      ]
+    },
+    "aggregation_over_days": {
+      "status": "confirmed: per-run median per workload, then the mean of run medians over the past 5 days",
+      "run_frequency": "every 6 hours; endpoints of deprecated models every 18 hours",
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "For each run, we take the median of each workload's samples: its requests, or its session for a multi-turn workload. An endpoint's value for a workload is the average of its run medians over the past 5 days."
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "We run the benchmark every 6 hours across a range of workloads"
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "We measure endpoints of deprecated models every 18 hours"
+        }
+      ]
+    },
+    "weighting_across_workloads": {
+      "status": "confirmed: equal weight, averaged over the workloads actually measured",
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "An endpoint's headline output speed, time to first answer token and time to first token are the average of its workloads. Each workload counts equally."
+        },
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "Where we have no measurement of a workload for an endpoint, such as a prompt longer than its context window or a tool-calling workload on an endpoint without function calling, the average covers the workloads we measured."
+        }
+      ]
+    },
+    "failures": {
+      "status": "confirmed: endpoint-side failures count as output speed 0; client-side failures are excluded",
+      "evidence": [
+        {
+          "source": "derived/aa_api_v3.txt",
+          "quote": "Failure Handling: A request that fails on the endpoint's side, such as a server error, a rate limit (429) or a timeout, counts as an output speed of 0. A multi-turn session that fails or does not finish within its scheduled run counts only the requests the endpoint answered, or 0 if it answered none. We exclude failures on our side, such as an invalid API key, exhausted credits or our account's quota, or a sandbox error."
+        }
+      ]
+    },
+    "other_definitions": [
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Time to First Answer Token: The time in seconds between sending a request to the service or system and receiving the first answer token of the response."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Time to First Token: The time in seconds between sending a request to the service or system and receiving the first token of the response. For reasoning models which return reasoning tokens, this will be the first reasoning token."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "End-to-End Time: The time in seconds between sending a request and receiving the final token, measured on each request."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Endpoint Error Rate: The share of an endpoint's requests in the past 5 days that failed on the endpoint's side."
+      }
+    ],
+    "api_parameters": [
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "temperature: 0.6 for reasoning models and temperature: 0 for non-reasoning models, unless specified otherwise by the model creator."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "top_p: 1 for single-request workloads, unless specified otherwise by the model creator"
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "max_tokens of up to the endpoint's output token limit, capped at 65,536, or 128,000 for endpoints that often reason longer"
+      }
+    ],
+    "prompts": [
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Each run draws its prompts and tasks from a large, diverse set and sends the same ones to every endpoint in that run, so every endpoint is compared on the same work."
+      }
+    ],
+    "server_location": {
+      "source": "derived/aa_api_v3.txt",
+      "quote": "Server Location: We run the benchmark on Google Cloud Run in the us-central1 region."
+    },
+    "changes_vs_v2": [
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Headline output speed: Our headline output speed now averages the workloads we measured over the past 5 days (previously the median of the 10k input token workload over the past 72 hours)."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "End-to-end output speed: Output speed now covers each request's full duration, including time to first token, and excludes the time tools take to run in multi-turn sessions."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Failures: Failures on the endpoint's side now count as an output speed of 0, and failures on our side are excluded."
+      },
+      {
+        "source": "derived/aa_api_v3.txt",
+        "quote": "Frequency: We run the benchmark every 6 hours (previously every 3 hours)."
+      }
+    ]
+  },
+  "agentx": {
+    "repo": "https://github.com/SemiAnalysisAI/agentx-harness",
+    "commit": "18015a2d77a6077bee9750c6929a889d52c7df54",
+    "commit_date_utc": "2026-11-13T20:22:11Z",
+    "tree_sha": "980075222344e19f562aac36017d4a4fbd636183",
+    "tag": "agentx-v1.0.14 (lightweight tag; refs API object.type=commit, sha=18015a2d77a6077bee9750c6929a889d52c7df54)",
+    "preset_file": {
+      "path": "src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+      "note": "The CURRENT 'agentx' preset is defined in the same file as the legacy one: AGENTX = INFERENCEX_AGENTX_MVP.model_copy(update=...); both registered in src/aiperf/common/scenario/registry.py",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "AGENTX = INFERENCEX_AGENTX_MVP.model_copy("
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "\"name\": \"agentx\","
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/registry.py",
+          "quote": "AGENTX.name: AGENTX,"
+        }
+      ]
+    },
+    "current_preset_agentx": {
+      "profiling_window_s": {
+        "value": 3600,
+        "status": "confirmed as the default; explicit --benchmark-duration wins, floor 900 s; responses arriving within --benchmark-grace-period (default 30 s) after the window still count",
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"default_benchmark_duration_seconds\": 3600,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "min_benchmark_duration_seconds=900,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+            "quote": "The grace period in seconds to wait for responses after benchmark duration ends."
+          }
+        ]
+      },
+      "random_seed": {
+        "value": 42,
+        "status": "confirmed for flag-based CLI only (scenario cli_defaults). With --config/-f YAML an unset seed becomes a fresh secrets.randbits(63)",
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"random_seed\": 42,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/config/flags/converter.py",
+            "quote": "if value is not None and key not in cli.model_fields_set"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/validator.py",
+            "quote": "seed = secrets.randbits(63)"
+          },
+          {
+            "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+            "quote": "The argument preset applies to flag-based `aiperf profile` commands; `--config` continues to define benchmark settings in the YAML file."
+          }
+        ]
+      },
+      "trajectory_start_ratio": {
+        "value": [
+          0.25,
+          0.75
+        ],
+        "status": "confirmed; auto-filled but NOT validated (an explicit value is accepted silently)",
+        "semantics": "For timestamped Weka traces t* ~ Uniform[start + 0.25*span, start + 0.75*span] of the trace tree's recorded wall-clock span, seeded per (seed, trace, lane). Timestamp-less traces use a turn-index fraction. Recycled sessions replay from turn 0.",
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"default_trajectory_start_min_ratio\": 0.25,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"default_trajectory_start_max_ratio\": 0.75,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/timing/trajectory_source.py",
+            "quote": "lo = start_ms + self._start_min_ratio * duration_ms"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/timing/trajectory_source.py",
+            "quote": "t_star_ms = float(lo if hi == lo else rng.uniform(lo, hi))"
+          },
+          {
+            "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+            "quote": "the scenario auto-fills `0.0`/`1.0` but never validates them, so an explicit different value is honored silently"
+          }
+        ]
+      },
+      "warmup_requests_per_lane": {
+        "value": 10,
+        "status": "confirmed",
+        "semantics": "In addition to the mandatory snapshot primers (one per stream active at t*), each lane sends exactly 10 cache-pressure requests with zero idle delay and max_tokens=1. Excluded from metrics. Dropped if --agentic-cache-warmup-duration is given.",
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"warmup_requests_per_lane\": 10,"
+          },
+          {
+            "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+            "quote": "For example, `--concurrency 16` with `--warmup-requests-per-lane 10` adds 160 cache-pressure requests after the primers, with a strict 10-additional-request quota on every lane."
+          },
+          {
+            "source": "raw_agentx/src/aiperf/timing/strategies/agentic_replay.py",
+            "quote": "_WARMUP_MAX_TOKENS = 1"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/timing/strategies/agentic_replay.py",
+            "quote": "self.credit_issuer.set_max_tokens_override(_WARMUP_MAX_TOKENS)"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/config/flags/converter.py",
+            "quote": "defaults.pop(\"warmup_requests_per_lane\", None)"
+          }
+        ]
+      },
+      "other_cli_defaults": {
+        "endpoint_type": "chat",
+        "streaming": true,
+        "stats_interval": 30,
+        "failed_request_threshold": 0.1,
+        "warmup_grace_period": 1800,
+        "trace_idle_gap_cap_seconds": 300,
+        "use_server_token_count": true,
+        "no_gpu_telemetry": true,
+        "conversation_num_dataset_entries": 393,
+        "slice_duration": 1.0,
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"failed_request_threshold\": 0.10,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"trace_idle_gap_cap_seconds\": 300,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"use_server_token_count\": True,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"conversation_num_dataset_entries\": 393,"
+          },
+          {
+            "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+            "quote": "The preset supplies streaming chat, a 3,600-second profiling duration, seed 42, trajectory start ratios 0.25–0.75, 10 warmup requests per lane, a 1,800-second warmup grace period, a 0.10 live failure threshold, a 300-second trace idle cap, 393 dataset entries, server token counts, disabled GPU telemetry, 30-second stats, and 1-second metric slices."
+          }
+        ]
+      },
+      "environment_defaults": {
+        "AIPERF_DATASET_CONFIGURATION_TIMEOUT": 1800,
+        "AIPERF_SERVICE_PROFILE_CONFIGURE_TIMEOUT": 1800,
+        "AIPERF_UI_REALTIME_METRICS_ENABLED": true,
+        "AIPERF_HTTP_TCP_USER_TIMEOUT_ms": 900000,
+        "AIPERF_HTTP_X_SESSION_AFFINITY_FROM_CORRELATION_ID": false,
+        "AIPERF_RECORD_PROGRESS_STALL_TIMEOUT": 0,
+        "evidence": [
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"TCP_USER_TIMEOUT\": 900000,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"X_SESSION_AFFINITY_FROM_CORRELATION_ID\": False,"
+          },
+          {
+            "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+            "quote": "\"RECORD\": {\"PROGRESS_STALL_TIMEOUT\": 0},"
+          }
+        ]
+      }
+    },
+    "scenario_locks": {
+      "note": "Shared by 'agentx' and 'inferencex-agentx-mvp'. A conflicting explicit value refuses to start unless --unsafe-override (which sets submission_valid=false). A missing dataset (synthetic default) can never be overridden.",
+      "locks": [
+        "timing_mode=agentic_replay; rejects --request-rate/--arrival-pattern/--user-centric-rate/--fixed-schedule/--adaptive-scale",
+        "streaming required (auto-enabled; explicit --no-streaming is a violation)",
+        "ignore_eos=true injected into the request body; explicit false is a violation",
+        "--ignore-trace-delays forbidden",
+        "--synthesis-max-isl (client-side input truncation) forbidden",
+        "--inter-turn-delay-cap-seconds forbidden",
+        "--system-idle-gap-cap-seconds locked to 10.0",
+        "cache_bust.target locked to first_turn_prefix",
+        "--benchmark-duration >= 900 s",
+        "loader allowlist of 16 Weka names; a local weka_trace dir is unpinned (violation); weka_hf only with semianalysisai/cc-traces-weka-062126",
+        "scenario + sweep (e.g. --concurrency 64,128) rejected at the envelope level",
+        "post-run: TTFT/ITL observations must cover >= 95% of the profiling phase",
+        "auto-filled only (not validated): trajectory start ratios; random seed when unset"
+      ],
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "timing_mode=TimingMode.AGENTIC_REPLAY,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "require_ignore_eos=True,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "forbid_ignore_trace_delays=True,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "forbid_input_truncation=True,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "system_idle_gap_cap_seconds=10.0,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "forbid_inter_turn_delay_cap=True,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "require_cache_bust=CacheBustTarget.FIRST_TURN_PREFIX,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "minimum_profile_metric_coverage_ratio=0.95,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/validator.py",
+          "quote": "_AGENTX_WEKA_HF_REPO = \"semianalysisai/cc-traces-weka-062126\""
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/validator.py",
+          "quote": "current_value=\"weka_trace (local, unpinned)\","
+        }
+      ]
+    },
+    "submission_valid": {
+      "location": "metadata.submission_valid in <artifact-dir>/profile_export_aiperf.json (plus aggregate/profile_export_aiperf_aggregate.json when --num-profile-runs >= 2); absent when no --scenario",
+      "reasons_field": "metadata.submission_invalid_reasons (only emitted when non-empty)",
+      "reasons": {
+        "unsafe_override": "scenario lock violated but --unsafe-override given",
+        "context_overflow_rate_exceeded": "context-overflow responses / total responses > 0.01 (strict; AIPERF_AGENTX_CONTEXT_OVERFLOW_RATE_LIMIT)",
+        "run_cancelled": "Ctrl+C, a --failed-request-threshold abort (agentx default 0.10), or a root-session warmup failure",
+        "insufficient_profile_metric_coverage": "TTFT/ITL observations cover < 95% of the profiling phase; also exits non-zero",
+        "scenario_reresolve_failed": "aggregate export only; fails closed",
+        "scenario_with_sweep": "aggregate export only; scenario + sweep under --unsafe-override"
+      },
+      "not_a_reason": "Generic HTTP errors do not by themselves invalidate (FAQ). Under agentx the 0.10 failed-request threshold cancels the run, which then gets run_cancelled.",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+          "quote": "CONTEXT_OVERFLOW_REASON = \"context_overflow_rate_exceeded\""
+        },
+        {
+          "source": "raw_agentx/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+          "quote": "RUN_CANCELLED_REASON = \"run_cancelled\""
+        },
+        {
+          "source": "raw_agentx/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+          "quote": "if rate > Environment.AGENTX.CONTEXT_OVERFLOW_RATE_LIMIT:"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+          "quote": "md[\"submission_valid\"] = bool(submission_valid)"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/validator.py",
+          "quote": "submission_invalid_reasons=[\"unsafe_override\"],"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/records/records_manager.py",
+          "quote": "[\"insufficient_profile_metric_coverage\"] if fatal_errors else []"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/cli_runner/_aggregate.py",
+          "quote": "submission_invalid_reasons: list[str] = [\"scenario_reresolve_failed\"]"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/cli_runner/_aggregate.py",
+          "quote": "submission_invalid_reasons.append(\"scenario_with_sweep\")"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/environment.py",
+          "quote": "'context_overflow_rate_exceeded'. Default 0.01 (1%) matches the"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/exporters/metrics_json_exporter.py",
+          "quote": "export_data.metadata = run_metadata"
+        },
+        {
+          "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+          "quote": "The per-run `profile_export_aiperf.json` carries it under its `metadata` block"
+        }
+      ]
+    },
+    "session_concurrency": {
+      "definition": "--concurrency N = N live session TREES (root + every descendant subagent). A slot is released only when the whole tree drains; then the lane recycles with a fresh session from turn 0. Subagents share the parent's slot, so in-flight HTTP requests can exceed N.",
+      "cli_help_caveat": "The generic --concurrency help text still says 'concurrent requests'; agentic replay overrides that meaning.",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/timing/session_tree.py",
+          "quote": "``--concurrency N`` means N such trees live at any instant."
+        },
+        {
+          "source": "raw_agentx/src/aiperf/timing/session_tree.py",
+          "quote": "Exactly one session slot per live tree, released exactly once, when the tree DRAINS: the root has sent its terminal turn (``root_pending`` cleared) AND every descendant has terminally completed (``outstanding == 0``)."
+        },
+        {
+          "source": "raw_agentx/docs/benchmark-modes/semianalysis-agentx-faq.md",
+          "quote": "So the instantaneous in-flight request count can exceed N during fan-out bursts; the steady population of independent sessions is N."
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "Number of concurrent requests to maintain."
+        }
+      ]
+    },
+    "public_dataset_semianalysis_cc_traces_weka_062126_256k": {
+      "exists": true,
+      "hf_repo": "semianalysisai/cc-traces-weka-062126-256k",
+      "stats": "393 traces, 28.4k main turns, 1,697 subagent groups, 39.8k subagent inner requests, 68.3k total requests",
+      "context_requirement": "Built for max_model_len ~256k. Each request has input + output <= 256,000 proxy-tokenizer tokens. The full 062126 corpus caps per-request input at 990,016 tokens (~1M window).",
+      "scenario_accepts": true,
+      "note": "--hf-weka-dataset ...-256k is rejected under the scenario; use --public-dataset ..._256k",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "semianalysis_cc_traces_weka_062126_256k:"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "hf_dataset_name: semianalysisai/cc-traces-weka-062126-256k"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "393 traces, 28.4k main turns, 1,697 subagent groups, 39.8k subagent inner requests, 68.3k total requests, public, no auth"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "dropping any request whose input + output exceeds 256,000 proxy-tokenizer tokens."
+        },
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "Designed for servers configured with max_model_len ~ 256k."
+        },
+        {
+          "source": "raw_agentx/src/aiperf/plugin/plugins.yaml",
+          "quote": "Per-request input is capped at 990,016 tokens"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "\"semianalysis_cc_traces_weka_062126_256k\","
+        }
+      ]
+    },
+    "cli": {
+      "command": "agentx profile (the 'agentx' console script is added at release build by tools/build_agentx_release.py; the source pyproject only declares 'aiperf'; equivalent: aiperf profile --scenario agentx)",
+      "auto_scenario": "agentx profile inserts '--scenario agentx' unless --scenario, --config or -f is present",
+      "flags": {
+        "--scenario": "choices 'agentx' | 'inferencex-agentx-mvp'",
+        "--url": "alias -u; repeatable for multiple servers; base URL",
+        "--endpoint": "ALIAS OF --custom-endpoint: a URL path override such as /v1/chat/completions, not the endpoint type (that is --endpoint-type, preset default chat)",
+        "--model": "alias of --model-names (also -m)",
+        "--tokenizer": "HF tokenizer; still loaded for prompt synthesis even with server token counts",
+        "--concurrency": "int; a comma list is a sweep, which is rejected under a scenario",
+        "--public-dataset": "registered loader name, e.g. semianalysis_cc_traces_weka_062126[_256k]",
+        "--output-artifact-dir": "alias --artifact-dir"
+      },
+      "readme_example": "agentx profile --url \"$SERVER_URL\" --endpoint /v1/chat/completions --model \"$SERVED_MODEL_NAME\" --tokenizer \"$TOKENIZER\" --tokenizer-trust-remote-code --concurrency \"$CONC\" --public-dataset \"$DATASET\" --output-artifact-dir \"$OUTPUT_DIR\"",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/agentx_cli.py",
+          "quote": "tokens[1:1] = [\"--scenario\", \"agentx\"]"
+        },
+        {
+          "source": "raw_agentx/tools/build_agentx_release.py",
+          "quote": "project[\"scripts\"][\"agentx\"] = \"agentx_cli:main\""
+        },
+        {
+          "source": "raw_agentx/pyproject.toml",
+          "quote": "aiperf = \"aiperf.cli:app\""
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "CLIParameter(name=(\"--scenario\",), group=Groups.SCENARIO),"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "('agentx' or 'inferencex-agentx-mvp')"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--custom-endpoint\","
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--endpoint\",  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "name=(\"--endpoint-type\",),  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--model\",  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--url\",  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "name=(\"--tokenizer\"),"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--concurrency\",  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "name=(\"--public-dataset\",),"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--output-artifact-dir\","
+        },
+        {
+          "source": "raw_agentx/src/aiperf/config/flags/cli_config.py",
+          "quote": "\"--artifact-dir\",  # GenAI-Perf"
+        },
+        {
+          "source": "raw_agentx/README.md",
+          "quote": "--url \"$SERVER_URL\" --endpoint /v1/chat/completions"
+        },
+        {
+          "source": "raw_agentx/README.md",
+          "quote": "--output-artifact-dir \"$OUTPUT_DIR\""
+        }
+      ]
+    },
+    "legacy_inferencex_agentx_mvp": {
+      "default_benchmark_duration_s": 1800,
+      "min_benchmark_duration_s": 900,
+      "trajectory_start_ratio": [
+        0.0,
+        1.0
+      ],
+      "random_seed": "fresh secrets.randbits(63) per run when unset",
+      "cli_defaults": "none: no warmup_requests_per_lane (snapshot primers only), no failed-request threshold, no trace idle cap, no env defaults",
+      "locks": "same as agentx",
+      "evidence": [
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "default_benchmark_duration_seconds=1800,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "default_trajectory_start_min_ratio=0.0,"
+        },
+        {
+          "source": "raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+          "quote": "default_trajectory_start_max_ratio=1.0,"
+        },
+        {
+          "source": "raw_agentx/docs/tutorials/agentx-mvp.md",
+          "quote": "The different duration and trajectory window mean results from the two default commands are not directly equivalent."
+        }
+      ]
+    },
+    "doc_vs_code_notes": [
+      {
+        "issue": "The FAQ at this commit describes the legacy preset ('under the AgentX scenario' t* is 0-100%, 1800 s, fresh random seed). The code's 'agentx' preset uses 0.25-0.75, 3600 s and seed 42.",
+        "evidence": [
+          {
+            "source": "raw_agentx/docs/benchmark-modes/semianalysis-agentx-faq.md",
+            "quote": "uniformly across the **full** recorded run (0%–100%) under the AgentX scenario (the generic agentic-replay default outside the scenario is 25%–75%)"
+          }
+        ]
+      },
+      {
+        "issue": "README/tutorial install line pins agentx-harness==1.0.7, but this commit is tag agentx-v1.0.14 and the release script takes the version from the tag",
+        "evidence": [
+          {
+            "source": "raw_agentx/README.md",
+            "quote": "pip install agentx-harness==1.0.7"
+          }
+        ]
+      }
+    ]
+  },
+  "inferencex_app_metrics": {
+    "repo": "https://github.com/SemiAnalysisAI/InferenceX-app",
+    "commit": "e713065fb553011e57197d49668ca454636284e6",
+    "commit_date_utc": "2026-11-14T12:37:32Z",
+    "file": "packages/app/src/components/inference/axis-metric-explanations.ts",
+    "y_metrics": {
+      "tpPerGpu / inputTputPerGpu / outputTputPerGpu": {
+        "definition": "Per CHIP (the keys say GPU): the replica's total (input+output), input, or output tokens/s divided by the number of chips serving the replica. The default tpPerGpu is TOTAL tokens, not output only.",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "tpPerGpu: throughputPerChip('total'),"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "outputTputPerGpu: throughputPerChip('output'),"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "tok/s/chip = ${TOKEN_TYPE_EN[tokenType]} per second ÷ number of chips serving the replica"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "total: 'total tokens (input + output)',"
+          }
+        ]
+      },
+      "tpPerMw (+input/output)": {
+        "definition": "tok/s/chip divided by all-in utility MW provisioned per chip",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "tok/s/MW = ${TOKEN_RATE_EN[tokenType]} ÷ all-in utility MW provisioned per chip"
+          }
+        ]
+      },
+      "costh/costr (+Output, +i)": {
+        "definition": "$/Mtok = cost per chip-hour x 1e6 / (3600 x tok/s/chip); h = hyperscaler ownership cost, r = 3-year rental",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "$/Mtok = all-in cost per chip-hour ($) × 1,000,000 ÷ (3,600 × ${TOKEN_RATE_EN[tokenType]})"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "h: 'all-in hourly ownership cost at large hyperscaler purchasing volume',"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "r: 'all-in hourly rental cost on a 3-year commit',"
+          }
+        ]
+      },
+      "tokensPerDollar*": {
+        "definition": "(tok/s/chip x 3600) / cost per chip-hour",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "tok/$ = (${TOKEN_RATE_EN[tokenType]} × 3,600) ÷ all-in cost per chip-hour ($)"
+          }
+        ]
+      },
+      "tokenRevenuePerGpuHour": {
+        "definition": "(uncached in x in price + cached in x cache price + out x out price) per GPU-second, x3600; normalized prices $1/M uncached in and out, $0.10/M cached",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "$/GPU/hr = (uncached input × input price + cached input × cache-read price + output × output price) per GPU-second, scaled to one hour"
+          }
+        ]
+      },
+      "jTotal/jOutput/jInput (provisioned)": {
+        "definition": "all-in utility W per chip / tok/s/chip (an upper bound, not telemetry)",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "J/tok = all-in utility power per chip (W) ÷ ${TOKEN_RATE_EN[tokenType]}"
+          }
+        ]
+      },
+      "measured power and energy": {
+        "definition": "Mean per-chip telemetry W over run, prefill or decode. P75/P90 = time-weighted percentile of summed GPU W / GPU count. Measured J/tok = energy over run / tokens. J/query over successful requests. %TDP.",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "W = mean of sampled per-chip accelerator power draw over ${MEASURED_PHASE_EN[phase]}"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "P75 fleet W/chip = time-weighted P75(sum of GPU watts) ÷ GPU count"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "J/tok = measured accelerator energy over the run ÷ ${TOKEN_TYPE_EN[tokenType]} processed"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "J/query = measured accelerator energy over the run ÷ successfully completed requests"
+          }
+        ]
+      },
+      "gpu/utility provisioned and IT/utility modeled J/tok": {
+        "definition": "rated TDP x allocated GPUs / tok/s; all-in provisioned W x GPUs / tok/s; measured J/tok scaled by modeled IT (no PUE) or facility (x PUE) power / measured GPU power",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "J/tok = rated TDP (W) × allocated GPUs ÷ total output tokens per second"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "W/GPU = measured IT power (W) × PUE ÷ allocated GPUs"
+          }
+        ]
+      }
+    },
+    "x_axes": {
+      "kinds": [
+        "interactivity",
+        "e2eLatency",
+        "ttft",
+        "e2eNormalizedInteractivity"
+      ],
+      "interactivity": {
+        "definition": "Per-user streaming token rate (tok/s/user). For fixed-sequence Mean it is 1 / mean TPOT (s), not the mean of per-request rates.",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "Interactivity is the rate at which a single user receives generated tokens while the"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "is 1 divided by mean TPOT in seconds, not the arithmetic mean of per-request rates."
+          }
+        ]
+      },
+      "e2eLatency": {
+        "definition": "submit to complete response (TTFT + generation), seconds",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "End-to-end latency is the total wall-clock time from submitting a request until the"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "complete response finishes — the wait before the first token plus the entire"
+          }
+        ]
+      },
+      "ttft": {
+        "definition": "submit to first generated token; percentile prefixes (Median/P90/P99) are over all requests in the run",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "Time to first token (TTFT) is the delay from submitting a request until the first"
+          },
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "prefixes (Median, P90, P99) report that delay across all requests in the run."
+          }
+        ]
+      },
+      "e2eNormalizedInteractivity": {
+        "definition": "output tokens / end-to-end latency (counts the pre-first-token wait)",
+        "evidence": [
+          {
+            "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+            "quote": "request: output tokens divided by end-to-end latency. Unlike plain interactivity it"
+          }
+        ]
+      },
+      "selection": {
+        "source": "raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+        "quote": "if (opts.isDerivedNormalizedInteractivity) return 'e2eNormalizedInteractivity';"
+      }
+    },
+    "not_in_this_file": "TPOT/ITL definitions, the per-request field computations, and the default metric choice live in other files (e.g. ./metric-registry); not downloaded."
+  },
+  "files": [
+    {
+      "url": "https://artificialanalysis.ai/methodology/system-load-test",
+      "sha256": "de01991ec62506c494050d2e6d06364432582ebed624f9fafa6bbda12940e981",
+      "path": "scratch/pins_aa_agentx/raw_aa_slt/system-load-test.html",
+      "bytes": 290731,
+      "note": "dynamic page; hash pins this snapshot only"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/performance-benchmarking",
+      "sha256": "6f18b69e2d7c4d3c4419450a3f54e323abbcc7c4955cd7aed678f0e5bc54d795",
+      "path": "scratch/pins_aa_agentx/raw_aa_perf/performance-benchmarking.html",
+      "bytes": 338412,
+      "note": "dynamic page; hash pins this snapshot only"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology",
+      "sha256": "53b6d853690c22bbfcfbce1217a0e38d36245e51c491bb43f820f5e87336ab9a",
+      "path": "scratch/pins_aa_agentx/raw_aa_index/methodology.html",
+      "bytes": 315226,
+      "note": "index used to enumerate methodology pages"
+    },
+    {
+      "url": "https://artificialanalysis.ai/methodology/agentperf",
+      "sha256": "d08a9adc10be17c2b3b4168a1d121b0077c257e1aca7979abea2315c9188204a",
+      "path": "scratch/pins_aa_agentx/raw_aa_agentperf/agentperf.html",
+      "bytes": 315861,
+      "note": "related AA benchmark (context only)"
+    },
+    {
+      "url": "https://api.github.com/orgs/ArtificialAnalysis/repos?per_page=100",
+      "sha256": "de96fce05a629a6f21c5b95e5bbe559dd764f83b9d6175c2906bc7be5489b513",
+      "path": "scratch/pins_aa_agentx/raw_aa_gh/org_repos.json",
+      "bytes": 40618,
+      "note": "checked for an official SLT CLI"
+    },
+    {
+      "url": "https://api.github.com/repos/SemiAnalysisAI/agentx-harness/git/trees/18015a2d77a6077bee9750c6929a889d52c7df54?recursive=1",
+      "sha256": "dfbf6ef0791ede9d9ebf1beca559e92afa4c25ed761e0b1a0708ceeb826627f9",
+      "path": "scratch/pins_aa_agentx/raw_agentx_tree/tree.json",
+      "bytes": 844942,
+      "note": "tree listing (2636 entries, truncated=false)"
+    },
+    {
+      "url": "https://api.github.com/repos/SemiAnalysisAI/agentx-harness/commits/18015a2d77a6077bee9750c6929a889d52c7df54",
+      "sha256": "4bbff48270a27b05e9436addbfb8ad54704dbcbcd333bb76b628351c080e14fd",
+      "path": "scratch/pins_aa_agentx/raw_agentx_tree/commit.json",
+      "bytes": 155281
+    },
+    {
+      "url": "https://api.github.com/repos/SemiAnalysisAI/agentx-harness/git/ref/tags/agentx-v1.0.14",
+      "sha256": "048f293124ee91e4e2b278c04dde8189ba87cdccfe7705c7b959cae7a38a3a5e",
+      "path": "scratch/pins_aa_agentx/raw_agentx_tree/tagref.json",
+      "bytes": 425
+    },
+    {
+      "url": "https://codeload.github.com/SemiAnalysisAI/agentx-harness/tar.gz/18015a2d77a6077bee9750c6929a889d52c7df54",
+      "sha256": "7d9d934db188bbd8e59bc8a86ced19dd087feb7387d2abd1832c70fa4cb14f8f",
+      "path": "scratch/pins_aa_agentx/agentx_src_tarball/agentx-harness.tar.gz",
+      "bytes": 14882864,
+      "note": "used only for grep; codeload archives are not guaranteed byte-stable"
+    },
+    {
+      "url": "https://api.github.com/repos/SemiAnalysisAI/InferenceX-app/commits/e713065fb553011e57197d49668ca454636284e6",
+      "sha256": "0cec8267622b17a3ac96080da7e6cc502a4ffc5ae1a3adb1a97f4946af86a980",
+      "path": "scratch/pins_aa_agentx/raw_inferencex_meta/commit.json",
+      "bytes": 11851
+    },
+    {
+      "url": "https://api.github.com/repos/SemiAnalysisAI/InferenceX-app/contents/packages/app/src/components/inference/axis-metric-explanations.ts?ref=e713065fb553011e57197d49668ca454636284e6",
+      "sha256": "f94d64bbc578d9172fd7656ed590bb0f35f6f9bbc1626847a7e222831a0c977d",
+      "path": "scratch/pins_aa_agentx/raw_inferencex_meta/contents.json",
+      "bytes": 50989,
+      "note": "blob sha cross-check"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/README.md",
+      "sha256": "8b8c1c644780cad6f9cb8852357812997afdcc15c93b1045080351d973842cb1",
+      "path": "scratch/pins_aa_agentx/raw_agentx/README.md",
+      "bytes": 19434,
+      "repo_path": "README.md",
+      "git_blob_sha1": "30a3acf632b4e2c5060736bb1bb8ccab90c34420",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/pyproject.toml",
+      "sha256": "a028ac446ba3ce0766e65fe616f93dbb0b8e57f70fdce8d55a92af28c18c9d4f",
+      "path": "scratch/pins_aa_agentx/raw_agentx/pyproject.toml",
+      "bytes": 12399,
+      "repo_path": "pyproject.toml",
+      "git_blob_sha1": "6c0b0daab21d5c45d5282fc412d50d7b51a375b8",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/tools/build_agentx_release.py",
+      "sha256": "67d7d1c2fc267c0f29f4e7fff6c3e526797df46abf3f79d568a207e94837c52a",
+      "path": "scratch/pins_aa_agentx/raw_agentx/tools/build_agentx_release.py",
+      "bytes": 4567,
+      "repo_path": "tools/build_agentx_release.py",
+      "git_blob_sha1": "f696f5ecee3e6d0674ce19599cb86ccfff6a1e8c",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/docs/cli-options.md",
+      "sha256": "7e7435ff1415194424125f44b1f40f721fe2b3adba373186b25868485026db3c",
+      "path": "scratch/pins_aa_agentx/raw_agentx/docs/cli-options.md",
+      "bytes": 219535,
+      "repo_path": "docs/cli-options.md",
+      "git_blob_sha1": "90fa4e93c5ff4018aa4a237c0ea60466c0bf1b51",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/docs/benchmark-modes/semianalysis-agentx-faq.md",
+      "sha256": "3b25622b715e9e77c063f3eda9b9b0b87ce9dd4dec5fbcb55c23606ec15b43ea",
+      "path": "scratch/pins_aa_agentx/raw_agentx/docs/benchmark-modes/semianalysis-agentx-faq.md",
+      "bytes": 85490,
+      "repo_path": "docs/benchmark-modes/semianalysis-agentx-faq.md",
+      "git_blob_sha1": "fc5dff4f8b030254291a627009955a7a181a4ab0",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/docs/tutorials/agentx-mvp.md",
+      "sha256": "585a0093c630833e6231ba3aeae40c26404b9db6aca2444eaf6f45c0535492b5",
+      "path": "scratch/pins_aa_agentx/raw_agentx/docs/tutorials/agentx-mvp.md",
+      "bytes": 48873,
+      "repo_path": "docs/tutorials/agentx-mvp.md",
+      "git_blob_sha1": "806fd48a597e07410a27433a747128b0c972467d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/agentx_cli.py",
+      "sha256": "7993e0135b01b042a4248f290d549950795ff1b6bbb5ece1db4b327f70dc9f1d",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/agentx_cli.py",
+      "bytes": 1900,
+      "repo_path": "src/agentx_cli.py",
+      "git_blob_sha1": "cd1ad2e761655b44b8bf3f6675663a70126a4498",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/records/records_manager.py",
+      "sha256": "0584856f460a6a31f6e1dcf891b2db563d64cc2977d3cfaf729adba5a34d4744",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/records/records_manager.py",
+      "bytes": 113381,
+      "repo_path": "src/aiperf/records/records_manager.py",
+      "git_blob_sha1": "03fb7af0e1f802f815a27af0e67d4f4390698aeb",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/cli_runner/_aggregate.py",
+      "sha256": "51d4635b3a8512c6f39a42f6b37c62e36307932c70781c2749284a0445d0beed",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/cli_runner/_aggregate.py",
+      "bytes": 13081,
+      "repo_path": "src/aiperf/cli_runner/_aggregate.py",
+      "git_blob_sha1": "993b74108489160a0d0d1ea397c522d330f7e43c",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/config/phases.py",
+      "sha256": "8d50afbc33530e148b40017efa6f56ff31854ee78e05e6b9acdc50fcda8449a5",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/config/phases.py",
+      "bytes": 26821,
+      "repo_path": "src/aiperf/config/phases.py",
+      "git_blob_sha1": "c1a502c62ca8077686d65a519e285fc4c3566ce1",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/config/flags/cli_config.py",
+      "sha256": "28260214bad4c6cd106bff0f1e61ef9c2a7df57e32a3baf2d4a1043585797227",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/config/flags/cli_config.py",
+      "bytes": 171685,
+      "repo_path": "src/aiperf/config/flags/cli_config.py",
+      "git_blob_sha1": "fcfff501cf5bb90d30e864928fde7ac088587178",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/config/flags/converter.py",
+      "sha256": "3dfd24cc815d731673ad2914b4d05027f118c8ce86c32eb7f78587e997fd1852",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/config/flags/converter.py",
+      "bytes": 32849,
+      "repo_path": "src/aiperf/config/flags/converter.py",
+      "git_blob_sha1": "b7c1a9931b49e31377c4e7bcd5d48ca0f8b4fd83",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/exporters/metrics_json_exporter.py",
+      "sha256": "49292f5ee7d54372bb554da6e1829aa81a1c9f358411dc56ec84455eca8bece7",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/exporters/metrics_json_exporter.py",
+      "bytes": 10904,
+      "repo_path": "src/aiperf/exporters/metrics_json_exporter.py",
+      "git_blob_sha1": "88addd237c460aae11c07ac341d7615284446f61",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+      "sha256": "19d7f0febfd763c6e39b30ee491e3145d160d947eaf747703f812e39c9d10d18",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+      "bytes": 8841,
+      "repo_path": "src/aiperf/exporters/aggregate/aggregate_base_exporter.py",
+      "git_blob_sha1": "77220412292c478b5c0e0fba6cf21c94c9dd7d5d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/dataset/loader/base_public_dataset.py",
+      "sha256": "746c7d9b7a0182098c2d59372b479c3280786f0f50df556b314a0f6368bfd14f",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/dataset/loader/base_public_dataset.py",
+      "bytes": 9517,
+      "repo_path": "src/aiperf/dataset/loader/base_public_dataset.py",
+      "git_blob_sha1": "370d5b2da4e4b9dbbb51827cd8cc052012555643",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/dataset/loader/semianalysis_cc_traces_weka.py",
+      "sha256": "596e0ea3fdd297cf0023f8fe36c82d68fabe3a0ec9af711ac6697046d67f17bb",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/dataset/loader/semianalysis_cc_traces_weka.py",
+      "bytes": 9542,
+      "repo_path": "src/aiperf/dataset/loader/semianalysis_cc_traces_weka.py",
+      "git_blob_sha1": "304d710e6b2df251315b352045a9392feed4e4b7",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/cli_commands/profile.py",
+      "sha256": "96c7f2cea881f35957543145b77d1d4fceb6495aae19dd94faa3db2b179a7c05",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/cli_commands/profile.py",
+      "bytes": 3163,
+      "repo_path": "src/aiperf/cli_commands/profile.py",
+      "git_blob_sha1": "f27508dc4575a4b963d94976250d8a741160ddb9",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/plugin/plugins.yaml",
+      "sha256": "b76fe1d4140e59571b5c6bcf3973bdfe5c5c8d7ce2ce95599f23904cfd33ce86",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/plugin/plugins.yaml",
+      "bytes": 130293,
+      "repo_path": "src/aiperf/plugin/plugins.yaml",
+      "git_blob_sha1": "89a5c038e312feb603fa93250a9e79a15b68e83d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/timing/concurrency.py",
+      "sha256": "6f10c731c5be82ea01c53f19b7b07ef101b1603c8c161ec41f82179db973a119",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/timing/concurrency.py",
+      "bytes": 23106,
+      "repo_path": "src/aiperf/timing/concurrency.py",
+      "git_blob_sha1": "0f57b51cfc5df1983e9ba79d8dac30d9946bba2d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/timing/session_tree.py",
+      "sha256": "d858e8ba0bc6c2007b1c5d630d67b5d003b8bec2d31a0301eb337ac68c61b25a",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/timing/session_tree.py",
+      "bytes": 12731,
+      "repo_path": "src/aiperf/timing/session_tree.py",
+      "git_blob_sha1": "e355e09d138efe68834d3bddfd24594a7f68c706",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/timing/trajectory_source.py",
+      "sha256": "534c4292f30f131191061fab291b1ec4b0e34c62e2c5fd75a784d7475e521d86",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/timing/trajectory_source.py",
+      "bytes": 42259,
+      "repo_path": "src/aiperf/timing/trajectory_source.py",
+      "git_blob_sha1": "54d563d1915b71b7cc11b9dfc75ec442c37bc50d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/timing/strategies/agentic_replay.py",
+      "sha256": "02ed8aea84dc17256ac0fef187b45cb47a23a7a8a98149554897ff6bf6415fc1",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/timing/strategies/agentic_replay.py",
+      "bytes": 94768,
+      "repo_path": "src/aiperf/timing/strategies/agentic_replay.py",
+      "git_blob_sha1": "164652efddd22d89e8dd0e8831b6d5540b8b8f8d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/environment.py",
+      "sha256": "dd0642bda00bf570cac858d0dc9e42f97db45cdd256bfdfe23f9c1637c2b7bea",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/environment.py",
+      "bytes": 84387,
+      "repo_path": "src/aiperf/common/environment.py",
+      "git_blob_sha1": "5eb5ffcb6de1f618277c0ffc53f5d569d82bf6e8",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/scenario/__init__.py",
+      "sha256": "0514035b003d0c215619391b71af06001a527e15b2baa61acd88a3603c4c7e1e",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/scenario/__init__.py",
+      "bytes": 965,
+      "repo_path": "src/aiperf/common/scenario/__init__.py",
+      "git_blob_sha1": "dfaa040d34fe5f82e57e8d471541c3f098b66406",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/scenario/base.py",
+      "sha256": "060b844268619b45786929a93b0187fb85eb63a7294c14a5e9fa628653c09023",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/scenario/base.py",
+      "bytes": 10642,
+      "repo_path": "src/aiperf/common/scenario/base.py",
+      "git_blob_sha1": "f61dfa8576adb1a42fdc03594c02097b1a32ed3d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+      "sha256": "646fba985ba355034fb5d8a8d171e074fa1026a0b6600c677cfde81f7fbb896d",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+      "bytes": 3142,
+      "repo_path": "src/aiperf/common/scenario/inferencex_agentx_mvp.py",
+      "git_blob_sha1": "e6cd84517320d76fae50a38ad39f09cf4e118cb6",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/scenario/registry.py",
+      "sha256": "7624ad37080e8c67023ea7186054b2e0f06fd581cce22bccd02297e5ef79a03f",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/scenario/registry.py",
+      "bytes": 695,
+      "repo_path": "src/aiperf/common/scenario/registry.py",
+      "git_blob_sha1": "fd1c28858aae9de1f63a488e86913c19bfbf8831",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/agentx-harness/18015a2d77a6077bee9750c6929a889d52c7df54/src/aiperf/common/scenario/validator.py",
+      "sha256": "3d9915ea81b43c739f67dcd194339ccb82cd188b059d0a94b989a73baa527130",
+      "path": "scratch/pins_aa_agentx/raw_agentx/src/aiperf/common/scenario/validator.py",
+      "bytes": 32956,
+      "repo_path": "src/aiperf/common/scenario/validator.py",
+      "git_blob_sha1": "46b4061041c533f97c8cca38d591096bd580375d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SemiAnalysisAI/InferenceX-app/e713065fb553011e57197d49668ca454636284e6/packages/app/src/components/inference/axis-metric-explanations.ts",
+      "sha256": "bd9fae1ccc1e691f7410706189373260c820a6122801a86121917c0cdda07db9",
+      "path": "scratch/pins_aa_agentx/raw_inferencex_app/packages/app/src/components/inference/axis-metric-explanations.ts",
+      "bytes": 35955,
+      "repo_path": "packages/app/src/components/inference/axis-metric-explanations.ts",
+      "git_blob_sha1": "e405a9152a2e25d79aa86a8e5437e14dd4da5e2d",
+      "git_blob_matches_tree": true
+    },
+    {
+      "url": null,
+      "sha256": "8a056285035bd1c8ea0748c84581839b44dfd87f9a4cf6de464789033c731b81",
+      "path": "scratch/pins_aa_agentx/derived/aa_slt.txt",
+      "bytes": 2859,
+      "derived_from": "scratch/pins_aa_agentx/raw_aa_slt/system-load-test.html",
+      "note": "visible text extracted locally (_scripts/html2text.py); quotes are verified against this"
+    },
+    {
+      "url": null,
+      "sha256": "c9c8d321a3ab3e565f76bc7d92486769d9e0dba9e2755ccaca5d2b5d4d759062",
+      "path": "scratch/pins_aa_agentx/derived/aa_api_v3.txt",
+      "bytes": 15273,
+      "derived_from": "scratch/pins_aa_agentx/raw_aa_perf/performance-benchmarking.html",
+      "note": "visible text extracted locally (_scripts/html2text.py); quotes are verified against this"
+    },
+    {
+      "url": null,
+      "sha256": "66fe2b09fc5fd09c54c79cb83e9f38942085c5b8a53b700463c721bad3c06421",
+      "path": "scratch/pins_aa_agentx/derived/aa_agentperf.txt",
+      "bytes": 6361,
+      "derived_from": "scratch/pins_aa_agentx/raw_aa_agentperf/agentperf.html",
+      "note": "visible text extracted locally (_scripts/html2text.py); quotes are verified against this"
+    }
+  ],
+  "discrepancies": [
+    {
+      "claim": "AA-SLT prompt source",
+      "finding": "Not stated on the page."
+    },
+    {
+      "claim": "AA-SLT uses ignore-EOS / exact output lengths",
+      "finding": "Not stated. The page gives only the 1,000-in/1,000-out workload shape and does not say how output length is enforced."
+    },
+    {
+      "claim": "AA-SLT tokenizer used for counting",
+      "finding": "Not stated on the SLT page."
+    },
+    {
+      "claim": "AA-SLT official CLI exists",
+      "finding": "None mentioned. AA's public GitHub org has no SLT-named repo; aa-agentperf-local is for AA-AgentPerf."
+    },
+    {
+      "claim": "AA-SLT 'plateau' is defined",
+      "finding": "Only qualitatively ('no additional extra tokens ... compared to prior periods'). No numeric tolerance."
+    },
+    {
+      "claim": "AA-SLT reports metrics beyond the four (e.g. TTFT)",
+      "finding": "No. Only system output throughput, response rate, median E2E latency and median output speed after the first token."
+    },
+    {
+      "claim": "AA API v3 runs at a known concurrency",
+      "finding": "The page says only 'under concurrent load'. No level is given (implicit in the request, so flagged as a gap)."
+    },
+    {
+      "claim": "agentx seed 42 always applies",
+      "finding": "Only for flag-based CLI runs, and only when --random-seed is unset. With --config YAML an unset seed becomes a random 63-bit seed."
+    },
+    {
+      "claim": "agentx 3600 s / 25-75% are scenario locks",
+      "finding": "Both are overridable defaults. Duration has only a 900 s floor. Trajectory ratios are never validated, so changing them does not affect submission_valid."
+    },
+    {
+      "claim": "agentx --endpoint selects the endpoint",
+      "finding": "--endpoint is an alias of --custom-endpoint (URL path such as /v1/chat/completions). The endpoint type is --endpoint-type (preset default chat)."
+    },
+    {
+      "claim": "agentx --concurrency counts HTTP requests",
+      "finding": "In agentic replay it counts live session trees. In-flight requests can exceed N."
+    },
+    {
+      "claim": "Repo docs match the agentx preset",
+      "finding": "The FAQ still describes the legacy preset (0-100%, 1800 s, random seed). README/tutorial pin agentx-harness==1.0.7 while this commit is tag v1.0.14."
+    }
+  ]
+}

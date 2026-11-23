@@ -1,0 +1,30 @@
+bf16_window    beyond_aime    INCONCLUSIVE  acc 0.733 vs 0.533  diff +0.200 [-0.039, +0.406]  cap 20.0%  
+bf16_window    aime2026       INCONCLUSIVE  acc 0.900 vs 0.867  diff +0.033 [-0.083, +0.161]  cap 3.3%  
+bf16_window    livecodebench_v6 INCONCLUSIVE  acc 0.833 vs 0.750  diff +0.083 [-0.158, +0.326]  cap 0.0%  
+bf16_window    gpqa_diamond   INCONCLUSIVE  acc 0.833 vs 0.867  diff -0.033 [-0.181, +0.111]  cap 0.0%  
+leapquant      beyond_aime    INCONCLUSIVE  acc 0.667 vs 0.533  diff +0.133 [-0.074, +0.321]  cap 0.0%  
+leapquant      aime2026       INCONCLUSIVE  acc 0.900 vs 0.867  diff +0.033 [-0.114, +0.186]  cap 3.3%  
+leapquant      livecodebench_v6 INCONCLUSIVE  acc 0.750 vs 0.750  diff +0.000 [-0.187, +0.187]  cap 0.0%  
+leapquant      gpqa_diamond   INCONCLUSIVE  acc 0.900 vs 0.867  diff +0.033 [-0.083, +0.161]  cap 0.0%  
+{
+ "bf16_window_primary_product_baseline": false,
+ "bf16_window_reasons": [
+  "aime2026: INCONCLUSIVE",
+  "beyond_aime: INCONCLUSIVE",
+  "gpqa_diamond: INCONCLUSIVE",
+  "livecodebench_v6: INCONCLUSIVE"
+ ],
+ "comparator_for_cost_claims": "fp32 (bf16_window ineligible as the primary baseline; its speed stays visible)",
+ "leapquant_quality_qualified": false,
+ "leapquant_reasons": [
+  "aime2026: INCONCLUSIVE",
+  "beyond_aime: INCONCLUSIVE",
+  "gpqa_diamond: INCONCLUSIVE",
+  "livecodebench_v6: INCONCLUSIVE"
+ ],
+ "leapquant_claim_status": "experimental: raw performance only, no quality-qualified cost claim",
+ "cap_rate_target": "under 5% of answers cut",
+ "cap_rate_exceeded": [
+  "bf16_window:beyond_aime"
+ ]
+}

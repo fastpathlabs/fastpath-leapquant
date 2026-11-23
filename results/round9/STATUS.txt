@@ -1,0 +1,9 @@
+A1 PASS 8 min  radix off: bf16 window, repetition 1
+B1 PASS 8 min  radix off: LeapQuant compressed, CUDA fold, repetition 1
+C1 PASS 6 min  radix on: bf16 window, 1100 slots, repetition 1
+D1 PASS 7 min  radix on: LeapQuant compressed, CUDA fold, 1560 slots, repetition 1
+A2 PASS 7 min  radix off: bf16 window, repetition 2
+B2 PASS 8 min  radix off: LeapQuant compressed, CUDA fold, repetition 2
+C2 PASS 6 min  radix on: bf16 window, 1100 slots, repetition 2
+D2 PASS 7 min  radix on: LeapQuant compressed, CUDA fold, 1560 slots, repetition 2
+done 2026-11-14T09:42:55Z

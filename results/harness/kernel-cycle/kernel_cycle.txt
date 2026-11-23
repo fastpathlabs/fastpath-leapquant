@@ -1,0 +1,5 @@
+batch    1: 10 reps, LeapQuant median 0.0100 ms/token, bf16 window / LeapQuant 0.7190 (95% 0.7167 .. 0.7213), state advanced: True
+batch    8: 10 reps, LeapQuant median 0.0110 ms/token, bf16 window / LeapQuant 0.8548 (95% 0.8544 .. 0.8552), state advanced: True
+batch   32: 10 reps, LeapQuant median 0.0211 ms/token, bf16 window / LeapQuant 1.2494 (95% 1.2444 .. 1.2544), state advanced: True
+batch  128: 10 reps, LeapQuant median 0.0709 ms/token, bf16 window / LeapQuant 1.4077 (95% 1.4066 .. 1.4089), state advanced: True
+batch  512: 10 reps, LeapQuant median 0.2935 ms/token, bf16 window / LeapQuant 1.2729 (95% 1.2721 .. 1.2738), state advanced: True, gate p5.G3: MET

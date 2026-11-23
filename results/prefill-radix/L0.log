@@ -1,0 +1,14 @@
+server starting (pid 1575530), log: /home/ubuntu/lqexp/results/prefill-radix/server_lq_off.log
+server is up
+burst 0: wall 1.478 s  22,176 prompt tok/s  latency median 1.406 s, max 1.425 s
+burst 1: wall 1.470 s  22,292 prompt tok/s  latency median 1.400 s, max 1.419 s
+start_profile: Start profiling.
+
+burst 2: wall 1.675 s  19,564 prompt tok/s  latency median 1.602 s, max 1.620 s
+burst 3: wall 55.219 s  593 prompt tok/s  latency median 55.146 s, max 55.167 s
+burst 4: wall 1.495 s  21,922 prompt tok/s  latency median 1.420 s, max 1.442 s
+median wall 1.495 s over 5 bursts
+total 64844
+drwxrwxr-x 2 ubuntu ubuntu     4096 Nov 14 18:55 .
+drwxrwxr-x 6 ubuntu ubuntu     4096 Nov 14 18:56 ..
+-rw-rw-r-- 1 ubuntu ubuntu 66389091 Nov 14 18:56 1794682528.7809458-TP-0.trace.json.gz

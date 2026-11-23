@@ -1,0 +1,7 @@
+C PASS 7 min  radix on: bf16 window, 1100 slots
+K_bf16 PASS 0 min  two-turn radix check: bf16 window (the reference)
+T_field PASS 7 min  radix on: LeapQuant 1310 slots, auto, slot copy field by field (LEAPQUANT_FUSED_SLOT_COPY=0)
+K_field PASS 0 min  two-turn radix check: LeapQuant, copy field by field, against bf16 window
+T_fused PASS 7 min  radix on: LeapQuant 1310 slots, auto, fused slot copy (LEAPQUANT_FUSED_SLOT_COPY=1)
+K_fused PASS 0 min  two-turn radix check: LeapQuant, fused copy, against bf16 window
+done 2026-11-14T19:26:30Z

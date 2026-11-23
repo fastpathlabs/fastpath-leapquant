@@ -1,0 +1,13 @@
+server starting (pid 1592032), log: /home/ubuntu/lqexp/results/accuracy-paper/server_paper_fp32_window.log
+server is up
+aime2025: 30 questions, concurrency 64 ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+aime2024: 30 questions, concurrency 64 ...
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2025         120      103    85.83%  3.18%          1       0         13          41336
+  aime2024         120      106    88.33%  2.93%          2       0         12          35920
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/accuracy-paper/paper_fp32_window.json

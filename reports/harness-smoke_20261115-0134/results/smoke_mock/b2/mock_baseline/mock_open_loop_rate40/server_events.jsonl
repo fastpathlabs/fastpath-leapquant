@@ -1,0 +1,12 @@
+{"kind":"capacity","max_total_num_tokens":100000,"max_running_requests":4096}
+{"kind":"decode","t_unix":1794706520.0,"line":12,"t_run":-5.797173976898193,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1862.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706521.0,"line":13,"t_run":-4.797173976898193,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1856.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706522.0,"line":14,"t_run":-3.7971739768981934,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1871.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706523.0,"line":15,"t_run":-2.7971739768981934,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1859.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706524.0,"line":16,"t_run":-1.7971739768981934,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":691.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706525.0,"line":17,"t_run":-0.7971739768981934,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706526.0,"line":18,"t_run":0.20282602310180664,"running":7.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":450.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706527.0,"line":19,"t_run":1.2028260231018066,"running":6.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1279.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706528.0,"line":20,"t_run":2.2028260231018066,"running":4.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1228.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706529.0,"line":21,"t_run":3.2028260231018066,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":915.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706530.0,"line":22,"t_run":4.202826023101807,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}

@@ -1,0 +1,18 @@
+LeapQuant decode: CUDA decode, variant 9
+Triton kernels on NVIDIA H100 PCIe: HV=32 H=16 K=128 V=128 window=16 projections=bf16
+dtypes: projections bf16; state int8 levels, fp32 steps and scales, fp16 compensators and records, fp16 log decays; fold backend cuda; decode backend cuda
+
+  batch 512
+    decode step, fast vs exact   output difference: median 2.6e-07  p99 3.6e-06  worst 1.4e-04;   records written: worst relative difference 5.4e-04
+    fold loss (new boundary state vs full precision)   exact: mean 0.00172 worst 0.00270   fast: mean 0.00172 worst 0.00273   fast / exact (mean): 1.0056
+    store loss (boundary state vs the state stored)   exact: mean 0.00027 worst 0.00034   fast: mean 0.00027 worst 0.00034   fast / exact (mean): 0.9998
+    full-precision state exported by the fast fold vs exact export: worst relative difference 5.8e-07
+    fast export vs exact export: worst relative difference 7.1e-08 (boundary state), 5.8e-07 (with 16 records)
+    share of the best rank-4 energy captured (mean, lowest)   exact: 0.99769, 0.98926   fast: 0.99652, 0.98465
+    time   fast decode step 0.2411 ms (position 0: 0.2053, last: 0.2763)   fast fold 0.946 ms   ->  0.3002 ms per token with a fold every 16 tokens
+    time   fast store (adopt) of every row 1.636 ms; with every row skipped 0.0039 ms
+    time   sglang window kernel, fp32 state: 0.6985 ms per token (append steps 0.6355, the step that writes the state 1.6436)
+    time   sglang packed kernel, fp32 state: 1.1976 ms per token
+    time   sglang window kernel, bf16 state: 0.3819 ms per token (append steps 0.3588, the step that writes the state 0.7270)
+    time   sglang packed kernel, bf16 state: 0.6111 ms per token
+

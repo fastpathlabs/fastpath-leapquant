@@ -1,0 +1,48 @@
+{
+ "schema": "lqh.driver_summary.v1",
+ "lane": "finite",
+ "config": {
+  "profile": "harness_smoke",
+  "lane": "finite",
+  "isl": 64,
+  "osl": 32,
+  "concurrency": 8,
+  "num_prompts": 80,
+  "num_warmups": 16,
+  "request_timeout_s": 60,
+  "variant": "mock_finite",
+  "ignore_eos": true
+ },
+ "target": {
+  "base_url": "http://127.0.0.1:31983",
+  "model": "mock-model",
+  "endpoint": "/v1/completions"
+ },
+ "clock": {
+  "origin_utc": "2026-11-15T01:34:32.204377Z",
+  "origin_unix": 1794706472.2043579,
+  "domain": "client_monotonic",
+  "sync": "time.perf_counter_ns offsets from one origin; Unix time sampled once at the origin"
+ },
+ "started_utc": "2026-11-15T01:34:32.207801Z",
+ "exit": "ok",
+ "phases": {
+  "warmup": {
+   "start": 0.163861292,
+   "end": 0.375400792,
+   "requests": 16
+  },
+  "main": {
+   "start": 0.37540275,
+   "end": 1.403398292,
+   "requests": 80
+  }
+ },
+ "requests": {
+  "measured": 80,
+  "warmup": 16,
+  "succeeded": 77
+ },
+ "ended_utc": "2026-11-15T01:34:33.609168Z",
+ "records_written": 96
+}

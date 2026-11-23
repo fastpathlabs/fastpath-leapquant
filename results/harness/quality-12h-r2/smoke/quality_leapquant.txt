@@ -1,0 +1,8 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2026           2        0     0.00%  0.00%          1       0          2            256
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/smoke/quality_leapquant.json
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h-r2/smoke/quality_items_leapquant.jsonl

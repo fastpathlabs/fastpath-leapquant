@@ -1,0 +1,11 @@
+memcheck exit 0 12:13
+racecheck exit 0 12:14
+bench_triton_1 exit 0 12:15
+bench_v8_1 exit 0 12:15
+bench_triton_2 exit 0 12:15
+bench_v8_2 exit 0 12:16
+batch 512 decode: triton 0.2525 0.2532, v8 0.2469 0.2470 -> v8 faster: 1
+verify exit 0 12:18
+engine exit 0 12:18
+restore exit 0 12:18
+done

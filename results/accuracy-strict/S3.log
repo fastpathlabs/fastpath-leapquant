@@ -1,0 +1,11 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2025         120      106    88.33%  2.93%          0       0         14          41449
+  aime2024         120      103    85.83%  3.18%          1       0         13          37172
+
+  Paired comparison with /home/ubuntu/lqexp/results/accuracy-strict/paper_strict_bf16_window.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2024       120    85.83%    84.17%          5          3      +1.67%    -7.06 .. +10.40  INCONCLUSIVE
+  aime2025       120    88.33%    75.83%         17          2     +12.50%    +1.33 .. +23.67  PASS
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin

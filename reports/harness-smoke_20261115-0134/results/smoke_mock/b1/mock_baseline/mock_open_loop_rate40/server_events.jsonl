@@ -1,0 +1,12 @@
+{"kind":"capacity","max_total_num_tokens":100000,"max_running_requests":4096}
+{"kind":"decode","t_unix":1794706459.0,"line":12,"t_run":-5.9131410121917725,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1830.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706460.0,"line":13,"t_run":-4.9131410121917725,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1827.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706461.0,"line":14,"t_run":-3.9131410121917725,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1841.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706462.0,"line":15,"t_run":-2.9131410121917725,"running":8.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1831.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706463.0,"line":16,"t_run":-1.9131410121917725,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":642.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706464.0,"line":17,"t_run":-0.9131410121917725,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706465.0,"line":18,"t_run":0.08685898780822754,"running":6.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":458.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706466.0,"line":19,"t_run":1.0868589878082275,"running":6.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1284.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706467.0,"line":20,"t_run":2.0868589878082275,"running":4.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":1223.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706468.0,"line":21,"t_run":3.0868589878082275,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":907.0,"tokens":0.0}
+{"kind":"decode","t_unix":1794706469.0,"line":22,"t_run":4.0868589878082275,"running":0.0,"queue":0.0,"token_usage":0.0,"cuda_graph":true,"gen_tps":0.0,"tokens":0.0}

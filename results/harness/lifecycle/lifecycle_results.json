@@ -1,0 +1,47 @@
+{
+ "schema": "lqh.lifecycle.v1",
+ "environment": "CUDA fold, CUDA decode v9, step reuse, fused slot copy, one fit sweep",
+ "tests": [
+  {
+   "test": "restore_test",
+   "command": "python3 kernel/restore_test.py",
+   "exit_status": 0,
+   "status": "PASS",
+   "log": "restore_test.txt",
+   "log_sha256": "916d9af96824aec939f293660bca1a08a8e501ac13a9ce0b335a90a98b6e2c10"
+  },
+  {
+   "test": "slot_copy_test",
+   "command": "python3 kernel/slot_copy_test.py",
+   "exit_status": 0,
+   "status": "PASS",
+   "log": "slot_copy_test.txt",
+   "log_sha256": "d2b610bd8694d04ac36f596fb44a7a91d06b610e269231ac23f06c9ef39781b3"
+  },
+  {
+   "test": "fast_fold_test",
+   "command": "python3 kernel/fast_fold_test.py",
+   "exit_status": 0,
+   "status": "PASS",
+   "log": "fast_fold_test.txt",
+   "log_sha256": "a12592fcd569ea7af3464661676fd5206555277ab1ac5a09cf5f50dde6a811ec"
+  },
+  {
+   "test": "engine_test",
+   "command": "python3 kernel/engine_test.py",
+   "exit_status": 0,
+   "status": "PASS",
+   "log": "engine_test.txt",
+   "log_sha256": "08a7288c9f39420b318e613701cfdcdb5f17805bc2e72c4c29e4a6cbd25bfba6"
+  },
+  {
+   "test": "compressed_test",
+   "command": "python3 kernel/compressed_test.py",
+   "exit_status": 0,
+   "status": "PASS",
+   "log": "compressed_test.txt",
+   "log_sha256": "ec4e0461d1d34f8764085829150ec1c470408a9f8952d5776c50f84c26959059"
+  }
+ ],
+ "all_pass": true
+}

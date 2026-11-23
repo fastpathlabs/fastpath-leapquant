@@ -1,0 +1,16 @@
+server starting (pid 1565200), log: /home/ubuntu/lqexp/results/layer-switch-2/server_layers_all.log
+server is up
+wrote /home/ubuntu/lqexp/results/layer-switch-2/smoke_layers_all.json: 6 answers
+
+ words  same first  prompt
+   116         116  What is the capital of France? Answer in one sentence.
+   151         151  List the first ten prime numbers and explain in two sentence
+   199         199  Write a Python function that returns the n-th Fibonacci numb
+   177         177  Explain step by step how to compute 37 * 43 in your head.
+   267         201  Summarise in five sentences how a hash table handles collisi
+   256          85  Translate into German: 'The train to Munich leaves from plat
+
+answers that differ within their first 15 words: 0 of 6
+Read the two files side by side. Differences late in an answer are expected;
+an answer that degrades into noise or repetition is a bug.
+SMOKE: PASS

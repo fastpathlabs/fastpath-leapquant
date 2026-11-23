@@ -1,0 +1,8 @@
+  1. prefill of two new requests (and a padded row): stored state off by at most 0.306%
+  2. second chunk of slot 3 starts 0.297% from where its first chunk ended; stored states off by at most 0.325%
+  3. 60 decode steps, 3 aligned folds: output error against fp32 0.350%   (limit 2%)
+  4. padded row gives zeros: yes
+  5. prefix-cache hit: boundary state copied bit for bit: yes; the copy's prefill starts from the source's state (largest difference 0.0e+00)
+     LeapQuant state per slot (all layers): 39.8 KiB; fp32 would be 48.0 KiB
+
+PASS

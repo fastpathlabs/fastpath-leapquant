@@ -1,0 +1,21 @@
+server starting (pid 1687209), log: /home/ubuntu/lqexp/results/harness/quality-12h/server_quality_fp32.log
+server is up
+KV cache 1696061 tokens, at most 132608 per request: retraction-free up to 12; concurrency 12
+beyond_aime: 15 questions
+aime2026: 30 questions
+livecodebench_v6: 12 questions
+gpqa_diamond: 30 questions
+all tasks through one pool, concurrency 12 ...
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  beyond_aime        15        0     0.00%  0.00%          0      15          0              0
+  aime2026          30        0     0.00%  0.00%          0      30          0              0
+  livecodebench_v6        12        0     0.00%  0.00%          0      12          0              0
+  gpqa_diamond        30        0     0.00%  0.00%          0      30          0              0
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h/quality_fp32.json
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h/quality_items_fp32.jsonl
+
+  EXECUTION INVALID: 87 requests failed. Accuracy numbers above count them as wrong answers.

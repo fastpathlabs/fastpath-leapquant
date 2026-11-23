@@ -1,0 +1,7 @@
+K1 PASS 0 min  kernel agreement, 27B layout (HV 48, H 16) then 9B layout (HV 32, H 16), batch 4/32/128
+K2 FAIL 1 min  compute-sanitizer memcheck, 27B layout, batch 4
+S1 PASS 5 min  server fp32 packed, 120 slots: pools, greedy and sampled answers
+S2 PASS 3 min  server bf16 window, 120 slots: pools, greedy and sampled answers
+S3 PASS 3 min  server LeapQuant (lq_final settings), 120 slots: pools, greedy and sampled answers
+P PASS 0 min  pool budget and balanced slot counts for 1k/1k; greedy agreement with fp32
+done 2026-11-15T23:50:25Z

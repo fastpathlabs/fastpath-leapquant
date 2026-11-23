@@ -1,0 +1,22 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  beyond_aime        15        0     0.00%  0.00%          0      15          0              0
+  aime2026          30        0     0.00%  0.00%          0      30          0              0
+  livecodebench_v6        12        0     0.00%  0.00%          0      12          0              0
+  gpqa_diamond        30        0     0.00%  0.00%          0      30          0              0
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h/quality_bf16_window.json
+  wrote /home/ubuntu/lqexp/results/harness/quality-12h/quality_items_bf16_window.jsonl
+
+  EXECUTION INVALID: 87 requests failed. Accuracy numbers above count them as wrong answers.
+
+  Paired comparison with /home/ubuntu/lqexp/results/harness/quality-12h/quality_fp32.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2026   60 requests failed (transport or server errors)  INVALID
+  beyond_aime 30 requests failed (transport or server errors)  INVALID
+  gpqa_diamond 60 requests failed (transport or server errors)  INVALID
+  livecodebench_v6 24 requests failed (transport or server errors)  INVALID
+
+  RESULT: INVALID: the two runs cannot be compared

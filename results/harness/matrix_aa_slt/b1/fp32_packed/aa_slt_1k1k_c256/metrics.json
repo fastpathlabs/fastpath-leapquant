@@ -1,0 +1,775 @@
+{
+ "schema": "lqh.metrics.v1",
+ "harness_version": "lqh 1.0.0 (2026-11-15)",
+ "computed_utc": "2026-11-15T12:06:54.234573Z",
+ "run_id": "lq-h100-2026-11.matrix_aa_slt.b1.fp32_packed.aa_slt_1k1k_c256",
+ "campaign_id": "lq-h100-2026-11",
+ "experiment_id": "lq-h100-2026-11.matrix_aa_slt",
+ "cell_id": "aa_slt_local:aa_slt_1k1k_c256",
+ "plan_id": "matrix_aa_slt",
+ "block_id": 1,
+ "pair_id": "matrix_aa_slt.b1.aa_slt_1k1k_c256",
+ "profile_id": "aa_slt_local",
+ "profile_version": "aa-slt-2026-11-15-v1",
+ "candidate_id": "fp32_packed",
+ "candidate_config_hash": "f0b2d90197a451a74e5c3f01b7a0a10e586384beac3e5027aa37ff1faefb667c",
+ "comparison_class": "best_qualified",
+ "evidence_kind": "measured_raw",
+ "is_carried": false,
+ "status": "measured",
+ "validation_errors": [],
+ "validation_warnings": [],
+ "workload": {
+  "profile": "aa_slt_local",
+  "lane": "sustained",
+  "isl": 1000,
+  "osl": 1000,
+  "concurrency": 256,
+  "steady_s": 180,
+  "ramp_min_s": 30,
+  "drain_timeout_s": 900,
+  "seed": 0,
+  "request_timeout_s": 3600,
+  "variant": "aa_slt_1k1k",
+  "ignore_eos": true
+ },
+ "mock": false,
+ "metrics": {
+  "requests_expected": {
+   "value": null,
+   "null_reason": "not_declared",
+   "unit": "requests"
+  },
+  "requests_attempted": {
+   "value": 1392,
+   "unit": "requests"
+  },
+  "requests_succeeded": {
+   "value": 1392,
+   "unit": "requests"
+  },
+  "requests_failed": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "requests_timeout": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "requests_cancelled": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "requests_incomplete": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "requests_with_first_token": {
+   "value": 1392,
+   "unit": "requests"
+  },
+  "retries": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "completion_rate": {
+   "value": 1.0,
+   "unit": "fraction"
+  },
+  "error_rate": {
+   "value": 0.0,
+   "unit": "fraction"
+  },
+  "first_token_response_rate": {
+   "value": 1.0,
+   "unit": "fraction"
+  },
+  "input_tokens_succeeded": {
+   "value": 1392000,
+   "unit": "tokens"
+  },
+  "output_tokens_succeeded": {
+   "value": 1392000,
+   "unit": "tokens"
+  },
+  "output_tokens_unsuccessful": {
+   "value": 0,
+   "unit": "tokens"
+  },
+  "warmup_requests": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "output_length_mismatches": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "requests_exact_chunk_tokens": {
+   "value": 1392,
+   "unit": "requests"
+  },
+  "ttft_ms": {
+   "unit": "ms",
+   "aggregation": "request",
+   "n": 877,
+   "mean": 14511.195617576968,
+   "std": 4290.42558651653,
+   "min": 9128.232381999993,
+   "max": 21751.382671000018,
+   "median": 13172.905173000003,
+   "p50": 13172.905173000003,
+   "p90": 20777.408237200012,
+   "p95": 21293.5861426,
+   "p99": 21691.74454484002
+  },
+  "e2e_terminal_ms": {
+   "unit": "ms",
+   "aggregation": "request",
+   "n": 877,
+   "mean": 50894.96556235348,
+   "std": 5294.976756383865,
+   "min": 33095.935913999994,
+   "max": 59759.96415,
+   "median": 49785.61310200001,
+   "p50": 49785.61310200001,
+   "p90": 58466.448173199984,
+   "p95": 59140.02214760001,
+   "p99": 59636.49464851999
+  },
+  "e2e_last_token_ms": {
+   "unit": "ms",
+   "aggregation": "request",
+   "n": 877,
+   "mean": 50894.85225299202,
+   "std": 5294.969469761412,
+   "min": 33095.82631899997,
+   "max": 59759.87666899999,
+   "median": 49785.50537000001,
+   "p50": 49785.50537000001,
+   "p90": 58466.355071599995,
+   "p95": 59139.92013540002,
+   "p99": 59636.316786879994
+  },
+  "tpot_native_ms": {
+   "unit": "ms",
+   "aggregation": "request (N > 1)",
+   "n": 877,
+   "mean": 36.42007671212718,
+   "std": 4.031525127363315,
+   "min": 20.059561333333328,
+   "max": 38.05944601701704,
+   "median": 38.00710536236236,
+   "p50": 38.00710536236236,
+   "p90": 38.05388058298298,
+   "p95": 38.05656525605607,
+   "p99": 38.05823979163163
+  },
+  "tpot_terminal_ms": {
+   "unit": "ms",
+   "aggregation": "request (N > 1)",
+   "n": 877,
+   "mean": 36.42019013491142,
+   "std": 4.031532158426628,
+   "min": 20.05967103803806,
+   "max": 38.05955792592594,
+   "median": 38.007228741741734,
+   "p50": 38.007228741741734,
+   "p90": 38.05397110450449,
+   "p95": 38.05667511791792,
+   "p99": 38.05832963275276
+  },
+  "span_last_first_ms": {
+   "unit": "ms",
+   "aggregation": "request (N > 1)",
+   "n": 877,
+   "mean": 36.42007671212718,
+   "std": 4.031525127363315,
+   "min": 20.059561333333328,
+   "max": 38.05944601701704,
+   "median": 38.00710536236236,
+   "p50": 38.00710536236236,
+   "p90": 38.05388058298298,
+   "p95": 38.05656525605607,
+   "p99": 38.05823979163163
+  },
+  "chunk_gap_ms": {
+   "unit": "ms",
+   "aggregation": "chunk gap",
+   "n": 876123,
+   "mean": 36.420076703841815,
+   "std": 16.648669454421146,
+   "min": 9.439000000043052,
+   "max": 91.70700000001375,
+   "median": 29.90999999997257,
+   "p50": 29.90999999997257,
+   "p90": 73.00100000000498,
+   "p95": 73.56199999998125,
+   "p99": 74.49599999998213
+  },
+  "itl_token_ms": {
+   "unit": "ms",
+   "aggregation": "token gap (exact)",
+   "n": 876123,
+   "mean": 36.420076703841815,
+   "std": 16.648669454421146,
+   "min": 9.439000000043052,
+   "max": 91.70700000001375,
+   "median": 29.90999999997257,
+   "p50": 29.90999999997257,
+   "p90": 73.00100000000498,
+   "p95": 73.56199999998125,
+   "p99": 74.49599999998213,
+   "requests_excluded_multi_token_chunks": 0
+  },
+  "client_queue_delay_ms": {
+   "unit": "ms",
+   "aggregation": "request",
+   "n": 877,
+   "mean": 0.1281923238309705,
+   "std": 0.021499025060576767,
+   "min": 0.10713999998301915,
+   "max": 0.26694100000668186,
+   "median": 0.11733699997762415,
+   "p50": 0.11733699997762415,
+   "p90": 0.15895559999421494,
+   "p95": 0.17033419999279426,
+   "p99": 0.18534427999838954
+  },
+  "user_speed_post_first_token_tps": {
+   "unit": "tok/s/user",
+   "aggregation": "request (N > 1)",
+   "n": 877,
+   "mean": 27.95196363380183,
+   "std": 4.508753670669547,
+   "min": 26.274686172596486,
+   "max": 49.851538794035456,
+   "median": 26.310869782529636,
+   "p50": 26.310869782529636,
+   "p90": 33.278388476231385,
+   "p95": 39.81272317171701,
+   "p99": 47.44845255922188
+  },
+  "user_speed_e2e_tps": {
+   "unit": "tok/s/user",
+   "aggregation": "request",
+   "n": 877,
+   "mean": 19.875768973927162,
+   "std": 2.2257134224332793,
+   "min": 16.73363560535497,
+   "max": 30.215290301602483,
+   "median": 20.086167501326297,
+   "p50": 20.086167501326297,
+   "p90": 21.97019082754724,
+   "p95": 22.782949522349053,
+   "p99": 28.82038094559775
+  },
+  "itl_estimated_uniform_ms": {
+   "value": null,
+   "null_reason": "no_multi_token_chunks",
+   "unit": "ms"
+  },
+  "interactivity_native_median_tps": {
+   "value": 26.31086978252964,
+   "unit": "tok/s/user"
+  },
+  "steady_window_s": {
+   "value": 180.0,
+   "unit": "s"
+  },
+  "steady_output_event_tps": {
+   "value": 4899.0055555555555,
+   "unit": "tok/s",
+   "exact_token_counts": true
+  },
+  "successful_steady_output_tps": {
+   "value": 4899.0055555555555,
+   "unit": "tok/s",
+   "exact_token_counts": true
+  },
+  "steady_failed_request_tokens": {
+   "value": 0,
+   "unit": "tokens"
+  },
+  "steady_unresolved_requests": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "steady_unresolved_tokens": {
+   "value": 0,
+   "unit": "tokens"
+  },
+  "steady_completions": {
+   "value": 877,
+   "unit": "requests"
+  },
+  "steady_request_rate_rps": {
+   "value": 4.872222222222222,
+   "unit": "req/s"
+  },
+  "steady_first_token_responses": {
+   "value": 878,
+   "unit": "requests"
+  },
+  "steady_boundary_started_before": {
+   "value": 256,
+   "unit": "requests"
+  },
+  "steady_boundary_ended_after": {
+   "value": 256,
+   "unit": "requests"
+  },
+  "steady_boundary_spanning": {
+   "value": 0,
+   "unit": "requests"
+  },
+  "steady_cohort_requests": {
+   "value": 877,
+   "unit": "requests"
+  },
+  "output_tps_per_gpu": {
+   "value": 4899.0055555555555,
+   "unit": "tok/s/GPU"
+  },
+  "slo_qualifying_requests": {
+   "value": 186,
+   "unit": "requests",
+   "failed_conditions": {
+    "ttft": 1206
+   }
+  },
+  "slo_qualifying_fraction": {
+   "value": 0.1336206896551724,
+   "unit": "fraction"
+  },
+  "request_goodput_rps": {
+   "value": 0.0,
+   "unit": "req/s",
+   "basis": "qualifying completions inside the steady window"
+  },
+  "output_goodput_tps": {
+   "value": 0.0,
+   "unit": "tok/s",
+   "basis": "in-window tokens of qualifying requests"
+  },
+  "output_goodput_tps_per_gpu": {
+   "value": 0.0,
+   "unit": "tok/s/GPU"
+  },
+  "global_constraints": {
+   "checks": [
+    {
+     "constraint": "error_rate_max",
+     "limit": 0.01,
+     "observed": 0.0,
+     "ok": true
+    },
+    {
+     "constraint": "p99_token_gap_ms_max",
+     "basis": "itl_token_ms",
+     "limit": 100,
+     "observed": 74.49599999998213,
+     "ok": true
+    },
+    {
+     "constraint": "quality_status_required",
+     "required": "qualified",
+     "observed": null,
+     "ok": false
+    }
+   ]
+  },
+  "operating_point_eligible": {
+   "value": false,
+   "reasons": [
+    "quality_status_required"
+   ]
+  },
+  "server_running_requests": {
+   "unit": "requests",
+   "aggregation": "decode log line",
+   "n": 120,
+   "mean": 186.0,
+   "std": 0.0,
+   "min": 186.0,
+   "max": 186.0,
+   "median": 186.0,
+   "p50": 186.0,
+   "p90": 186.0,
+   "p95": 186.0,
+   "p99": 186.0
+  },
+  "server_queue_depth": {
+   "unit": "requests",
+   "aggregation": "log line",
+   "n": 1008,
+   "mean": 69.10218253968254,
+   "std": 0.40394286686997866,
+   "min": 64.0,
+   "max": 70.0,
+   "median": 69.0,
+   "p50": 69.0,
+   "p90": 70.0,
+   "p95": 70.0,
+   "p99": 70.0
+  },
+  "server_token_usage": {
+   "unit": "fraction",
+   "aggregation": "log line",
+   "n": 1008,
+   "mean": 0.5602777777777778,
+   "std": 0.030894762202834054,
+   "min": 0.49,
+   "max": 0.6,
+   "median": 0.57,
+   "p50": 0.57,
+   "p90": 0.59,
+   "p95": 0.59,
+   "p99": 0.59
+  },
+  "server_retractions": {
+   "value": 0,
+   "unit": "events"
+  },
+  "server_cuda_graph_fraction": {
+   "value": 1.0,
+   "unit": "fraction"
+  },
+  "server_reported_gen_tps": {
+   "unit": "tok/s",
+   "aggregation": "decode log line",
+   "n": 120,
+   "mean": 4997.25875,
+   "std": 760.8555585343412,
+   "min": 4031.58,
+   "max": 6358.29,
+   "median": 4779.285,
+   "p50": 4779.285,
+   "p90": 6289.686000000001,
+   "p95": 6323.2195,
+   "p99": 6356.7734
+  },
+  "gpu_memory_used_mib": {
+   "unit": "MiB",
+   "aggregation": "sample",
+   "n": 360,
+   "mean": 65258.0,
+   "std": 0.0,
+   "min": 65258.0,
+   "max": 65258.0,
+   "median": 65258.0,
+   "p50": 65258.0,
+   "p90": 65258.0,
+   "p95": 65258.0,
+   "p99": 65258.0
+  },
+  "gpu_power_w": {
+   "unit": "W",
+   "aggregation": "sample",
+   "n": 360,
+   "mean": 344.73980555555556,
+   "std": 2.1309316470533695,
+   "min": 339.78,
+   "max": 351.16,
+   "median": 344.74,
+   "p50": 344.74,
+   "p90": 347.351,
+   "p95": 348.28099999999995,
+   "p99": 349.5064
+  },
+  "gpu_sm_clock_mhz": {
+   "unit": "MHz",
+   "aggregation": "sample",
+   "n": 360,
+   "mean": 1457.4166666666667,
+   "std": 82.83513579527846,
+   "min": 1245.0,
+   "max": 1650.0,
+   "median": 1485.0,
+   "p50": 1485.0,
+   "p90": 1545.0,
+   "p95": 1575.0,
+   "p99": 1611.1500000000003
+  },
+  "gpu_temperature_c": {
+   "unit": "C",
+   "aggregation": "sample",
+   "n": 360,
+   "mean": 57.44444444444444,
+   "std": 1.1889408088351499,
+   "min": 56.0,
+   "max": 61.0,
+   "median": 57.0,
+   "p50": 57.0,
+   "p90": 59.0,
+   "p95": 59.0,
+   "p99": 60.0
+  },
+  "gpu_memory_total_mib": {
+   "value": 81559.0,
+   "unit": "MiB"
+  },
+  "gpu_energy_j": {
+   "value": 62053.34669178639,
+   "unit": "J",
+   "coverage": {
+    "GPU-43c8b3d1-6c2a-9b4f-28d2-59a8ac034d76": 1.0
+   },
+   "gpu_only": true
+  },
+  "gpu_energy_j_per_output_token": {
+   "value": 0.07036954970655768,
+   "unit": "J/token"
+  },
+  "gpu_energy_j_per_qualified_output_token": {
+   "value": null,
+   "null_reason": "zero_denominator",
+   "unit": "J/token"
+  },
+  "usd_per_hour": {
+   "value": 2.0,
+   "unit": "USD/h",
+   "pricing": {
+    "mode": "whole_instance",
+    "pricing_id": "host-h100pcie-rental-v1",
+    "currency": "USD",
+    "source": "Asif (user decision, 15 Nov 2026): the host's price is $2.00 per hour",
+    "date": "2026-11-15",
+    "region": null,
+    "instances": 1,
+    "usd_per_instance_hour": 2.0,
+    "extras_usd_per_hour": 0
+   }
+  },
+  "usd_per_million_output_tokens": {
+   "value": 0.11340169943786778,
+   "unit": "USD/1M tok"
+  },
+  "usd_per_million_qualified_output_tokens": {
+   "value": null,
+   "null_reason": "zero_denominator",
+   "unit": "USD/1M tok"
+  },
+  "usd_per_million_input_tokens": {
+   "value": null,
+   "null_reason": "throughput_missing",
+   "unit": "USD/1M tok",
+   "alternative_view": "whole deployment cost attributed to this denominator; not additive"
+  },
+  "usd_per_million_total_tokens": {
+   "value": null,
+   "null_reason": "throughput_missing",
+   "unit": "USD/1M tok",
+   "alternative_view": "whole deployment cost attributed to this denominator; not additive"
+  },
+  "cohort_duration_s": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "s"
+  },
+  "finite_cohort_output_tps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "tok/s"
+  },
+  "finite_cohort_input_tps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "tok/s"
+  },
+  "finite_cohort_total_tps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "tok/s"
+  },
+  "request_throughput_rps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "req/s"
+  },
+  "input_tps_per_gpu": {
+   "value": null,
+   "null_reason": "not_computed_for_this_run",
+   "unit": "tok/s/GPU"
+  },
+  "total_tps_per_gpu": {
+   "value": null,
+   "null_reason": "not_computed_for_this_run",
+   "unit": "tok/s/GPU"
+  },
+  "output_event_tps_max_10s": {
+   "value": null,
+   "null_reason": "not_computed_for_this_run",
+   "unit": "tok/s"
+  },
+  "offered_rate_rps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "req/s"
+  },
+  "attempted_rate_rps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "req/s"
+  },
+  "achieved_completion_rps": {
+   "value": null,
+   "null_reason": "not_applicable_to_lane:sustained",
+   "unit": "req/s"
+  }
+ },
+ "headline": {
+  "deployment_output_tps": 4899.0055555555555,
+  "output_tps_per_gpu": 4899.0055555555555,
+  "usd_per_million_output_tokens": 0.11340169943786778,
+  "qualified_output_tps": 0.0,
+  "qualified_output_tps_per_gpu": 0.0,
+  "usd_per_million_qualified_output_tokens": null,
+  "basis": "steady window (successful in-window tokens)"
+ },
+ "interval": {
+  "start_unix": 1794744198.7273664,
+  "end_unix": 1794744378.7273664,
+  "basis": "steady"
+ },
+ "capacity": {
+  "configured_state_slots": 560,
+  "configured_state_slots_source": "server log",
+  "server_max_running_requests": 186,
+  "kv_tokens": 495468,
+  "client_concurrency": 256,
+  "admitted_running_median": 186.0,
+  "admitted_running_max": 186.0,
+  "waiting_median": 69.0,
+  "waiting_max": 70.0,
+  "note": "client concurrency is not the decode batch: the admitted running requests are"
+ },
+ "slo": {
+  "slo_id": "slo-interactive-v1",
+  "definition": {
+   "slo_id": "slo-interactive-v1",
+   "version": 1,
+   "declared_utc": "2026-11-15T01:30:00Z",
+   "origin": "docs/DECISIONS.md line 15 (Service SLO, declared 14 Nov 2026): per request TTFT <= 2 s (1,000-token prompts) and TPOT <= 50 ms; distribution: p99 time between tokens <= 100 ms. The historical open-loop runs applied only the two request limits (runbook/serving_openloop.sh); this object applies all three.",
+   "request_predicate": {
+    "require_success": true,
+    "ttft_ms_max": 2000,
+    "tpot_ms_max": 50,
+    "tpot_metric": "tpot_native_ms: (E2EL - TTFT) / (N - 1) for N > 1; 0 for a one-token response (pinned InferenceX convention)",
+    "e2e_ms_max": null,
+    "e2e_metric": "e2e_terminal_ms",
+    "token_gap_rule": null
+   },
+   "global_constraints": {
+    "error_rate_max": 0.01,
+    "p99_token_gap_ms_max": 100,
+    "quality_status_required": "qualified",
+    "p99_token_gap_metric": "itl_token_ms",
+    "p99_token_gap_note": "exact token gaps; when per-chunk token counts are unknown the limit is unmeasurable (chunk gaps are not substituted)"
+   },
+   "eligibility": "measured requests of the run (warmup excluded); finite cohort over the cohort duration, sustained lane inside the steady window",
+   "units": {
+    "ttft_ms_max": "ms",
+    "tpot_ms_max": "ms per output token",
+    "error_rate_max": "fraction of attempted measured requests"
+   },
+   "scope_note": "TTFT limit stated for 1,000-token prompts; for 8,192-token prompts slo-batch-v1 is reported alongside"
+  }
+ },
+ "interactivity": {
+  "statistic": "user_speed_post_first_token_tps.median",
+  "observed": 26.310869782529636,
+  "slices": [
+   {
+    "threshold_tps_per_user": 30.0,
+    "meets": false
+   },
+   {
+    "threshold_tps_per_user": 50.0,
+    "meets": false
+   },
+   {
+    "threshold_tps_per_user": 75.0,
+    "meets": false
+   },
+   {
+    "threshold_tps_per_user": 100.0,
+    "meets": false
+   }
+  ]
+ },
+ "native": null,
+ "parity": null,
+ "site_metrics": {
+  "system_output_throughput_tps": 4899.0055555555555,
+  "response_rate": 1.0,
+  "median_e2e_latency_s": 49.78561310200001,
+  "median_output_speed_after_first_token_tps": 26.310869782529636,
+  "definitions": {
+   "system_output_throughput_tps": "average aggregate output tokens/s received during the 180 s phase",
+   "response_rate": "share of queries sent in the phase that received at least one output token (a first token is not a successful completion; see completion_rate)",
+   "median_e2e_latency_s": "median over queries sent in the phase, terminal response",
+   "median_output_speed_after_first_token_tps": "median over queries sent in the phase"
+  },
+  "label": "Independent AA-SLT-method-inspired result (not an Artificial Analysis measurement)"
+ },
+ "api_v3_equivalents": {
+  "output_speed_full_duration_median_tps": 20.086167501326297,
+  "definition": "per request: output tokens / (last token - send), TTFT included; median over the cohort. Local metric equivalent, not an AA score (no 5-day history, private prompts not reproduced)."
+ },
+ "allocations": [
+  {
+   "kind": "allocation",
+   "category": "weights",
+   "gib": 17.62,
+   "t_unix": 1794742906.0,
+   "source": "server log line 25",
+   "note": "mem usage after this step (cumulative)"
+  },
+  {
+   "kind": "allocation",
+   "category": "recurrent_state_ssm",
+   "gib": 26.3,
+   "t_unix": 1794742907.0,
+   "source": "server log line 28",
+   "note": "size of this allocation"
+  },
+  {
+   "kind": "allocation",
+   "category": "recurrent_state_conv",
+   "gib": 0.62,
+   "t_unix": 1794742907.0,
+   "source": "server log line 28",
+   "note": "size of this allocation"
+  },
+  {
+   "kind": "allocation",
+   "category": "kv_cache_k",
+   "gib": 7.56,
+   "t_unix": 1794742908.0,
+   "source": "server log line 30",
+   "note": "size of this allocation"
+  },
+  {
+   "kind": "allocation",
+   "category": "kv_cache_v",
+   "gib": 7.56,
+   "t_unix": 1794742908.0,
+   "source": "server log line 30",
+   "note": "size of this allocation"
+  },
+  {
+   "kind": "allocation",
+   "category": "cuda_graph_prefill",
+   "gib": 1.98,
+   "t_unix": 1794742925.0,
+   "source": "server log line 152",
+   "note": "mem usage after this step (cumulative)"
+  }
+ ],
+ "inputs_sha256": {
+  "requests.jsonl": "51beff8aca412581ac16fa5e355d696467b00f4f5c259e35c38418417942fc52",
+  "stream_events.jsonl.gz": "808c75121fb5c0c0e1a5fbbe51e76ffc9103db90877200cc01f5f4ecd3e60652",
+  "driver_summary.json": "652ec8a55af59c7b7a1e01cf30eddccba97a73cb1f5dec28a86ad9820b933c7b",
+  "run_manifest.json": "4fd4e7cdee0185cd03b79bdd537418bf2e5b9e0416fca735b338e031b549398b"
+ }
+}

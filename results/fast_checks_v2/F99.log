@@ -1,0 +1,38 @@
+trace                                                   A  B fold loss k/ref  C output error k/ref
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_00.bin pass        0.810  pass           0.575      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_01.bin pass        1.000  pass           0.996      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_02.bin pass        1.001  pass           1.050      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_04.bin pass        1.000  pass           1.018      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_05.bin pass        1.003  pass           1.010      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_06.bin pass        1.007  pass           0.932      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_08.bin pass        0.999  pass           0.982      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_09.bin pass        1.002  pass           0.997      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_10.bin pass        0.998  pass           0.985      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_12.bin pass        1.002  pass           0.995      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_13.bin pass        1.005  pass           1.008      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_14.bin pass        1.001  pass           1.038      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_16.bin pass        1.001  pass           0.999      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_17.bin pass        1.005  pass           1.027      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_18.bin pass        1.003  pass           1.003      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_20.bin pass        1.000  pass           1.064      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_21.bin pass        1.000  pass           0.979      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_22.bin pass        1.003  pass           1.015      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_24.bin pass        1.000  pass           1.059      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_25.bin pass        1.002  pass           1.015      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_26.bin pass        0.994  pass           1.006      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_28.bin pass        1.000  pass           0.969      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_29.bin pass        1.000  pass           1.025      
+/home/ubuntu/leapquant/traces/all_layers/trace_layer_30.bin pass        1.000  pass           1.026      
+/home/ubuntu/leapquant/traces/code/trace_layer_00.bin pass        0.814  pass           0.577      
+/home/ubuntu/leapquant/traces/code/trace_layer_13.bin pass        1.004  pass           1.016      
+/home/ubuntu/leapquant/traces/code/trace_layer_30.bin pass        1.000  pass           0.996      
+/home/ubuntu/leapquant/traces/explain/trace_layer_00.bin pass        0.834  pass           0.594      
+/home/ubuntu/leapquant/traces/explain/trace_layer_13.bin pass        0.996  pass           1.122      
+/home/ubuntu/leapquant/traces/explain/trace_layer_30.bin pass        0.991  pass           0.997      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_00.bin pass        0.794  pass           0.580      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_13.bin pass        1.001  pass           1.157      
+/home/ubuntu/leapquant/traces/reasoning/trace_layer_30.bin pass        0.997  pass           1.097      
+
+C over 33 traces: geometric mean of kernel / reference output error 0.952 (limit 1.10); lowest 0.575, highest 1.157
+
+RESULT: PASS

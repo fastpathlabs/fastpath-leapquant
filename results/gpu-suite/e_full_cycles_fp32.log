@@ -1,0 +1,30 @@
+LeapQuant kernel benchmark on cuda: HV=32 H=16 K=128 V=128 window=16 projections=fp32
+  GPU: NVIDIA H100 PCIe
+  milliseconds per decode step of one layer, whole batch
+
+  complete windows of 16 steps; median of 20 windows; all requests fold on the same step
+  batch  kernel                   projections / state / records     ms per step
+     32  leapquant, with gates    fp32 / int8+fp16 / fp16                0.1807
+     32  sglang packed            fp32 / fp32 / -                        0.0837
+     32  sglang window L=16       fp32 / fp32 / fp32                     0.0626
+     32  sglang packed            fp32 / bf16 / -                        0.0293
+     32  sglang window L=16       fp32 / bf16 / fp32                     0.0388
+     32  sglang packed            fp32 / fp16 / -                        0.0286
+     32  sglang window L=16       fp32 / fp16 / fp32                     0.0388
+
+    128  leapquant, with gates    fp32 / int8+fp16 / fp16                0.4327
+    128  sglang packed            fp32 / fp32 / -                        0.3089
+    128  sglang window L=16       fp32 / fp32 / fp32                     0.2055
+    128  sglang packed            fp32 / bf16 / -                        0.1622
+    128  sglang window L=16       fp32 / bf16 / fp32                     0.1193
+    128  sglang packed            fp32 / fp16 / -                        0.1617
+    128  sglang window L=16       fp32 / fp16 / fp32                     0.1178
+
+    512  leapquant, with gates    fp32 / int8+fp16 / fp16                1.4727
+    512  sglang packed            fp32 / fp32 / -                        1.2075
+    512  sglang window L=16       fp32 / fp32 / fp32                     0.7957
+    512  sglang packed            fp32 / bf16 / -                        0.6255
+    512  sglang window L=16       fp32 / bf16 / fp32                     0.4335
+    512  sglang packed            fp32 / fp16 / -                        0.6218
+    512  sglang window L=16       fp32 / fp16 / fp32                     0.4285
+

@@ -1,0 +1,454 @@
+{
+ "reference": "/home/ubuntu/lqexp/results/harness/compounding/nll_reference",
+ "computed_utc": "2026-11-15T13:48:08.595009Z",
+ "unit_of_uncertainty": "document",
+ "candidates": {
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_all_layers": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_subset_layers": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_0": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_5": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_10": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_14": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_17": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_21": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_26": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  },
+  "/home/ubuntu/lqexp/results/harness/compounding/nll_layer_30": {
+   "L8192:1-1024": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:1024-2048": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:2048-4096": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:4096-8192": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   },
+   "L8192:8192-16384": {
+    "delta_nll_mean": 0.0,
+    "documents": 4,
+    "low": 0.0,
+    "high": 0.0,
+    "relative_perplexity_change": 0.0
+   }
+  }
+ },
+ "compounding": {
+  "L8192:1-1024": {
+   "single_layers": [
+    "nll_layer_0",
+    "nll_layer_10",
+    "nll_layer_14",
+    "nll_layer_17",
+    "nll_layer_21",
+    "nll_layer_26",
+    "nll_layer_30",
+    "nll_layer_5"
+   ],
+   "sum_of_single_layer_deltas": 0.0,
+   "same_layers_together_delta": 0.0,
+   "all_layer_delta": 0.0
+  },
+  "L8192:1024-2048": {
+   "single_layers": [
+    "nll_layer_0",
+    "nll_layer_10",
+    "nll_layer_14",
+    "nll_layer_17",
+    "nll_layer_21",
+    "nll_layer_26",
+    "nll_layer_30",
+    "nll_layer_5"
+   ],
+   "sum_of_single_layer_deltas": 0.0,
+   "same_layers_together_delta": 0.0,
+   "all_layer_delta": 0.0
+  },
+  "L8192:2048-4096": {
+   "single_layers": [
+    "nll_layer_0",
+    "nll_layer_10",
+    "nll_layer_14",
+    "nll_layer_17",
+    "nll_layer_21",
+    "nll_layer_26",
+    "nll_layer_30",
+    "nll_layer_5"
+   ],
+   "sum_of_single_layer_deltas": 0.0,
+   "same_layers_together_delta": 0.0,
+   "all_layer_delta": 0.0
+  },
+  "L8192:4096-8192": {
+   "single_layers": [
+    "nll_layer_0",
+    "nll_layer_10",
+    "nll_layer_14",
+    "nll_layer_17",
+    "nll_layer_21",
+    "nll_layer_26",
+    "nll_layer_30",
+    "nll_layer_5"
+   ],
+   "sum_of_single_layer_deltas": 0.0,
+   "same_layers_together_delta": 0.0,
+   "all_layer_delta": 0.0
+  },
+  "L8192:8192-16384": {
+   "single_layers": [
+    "nll_layer_0",
+    "nll_layer_10",
+    "nll_layer_14",
+    "nll_layer_17",
+    "nll_layer_21",
+    "nll_layer_26",
+    "nll_layer_30",
+    "nll_layer_5"
+   ],
+   "sum_of_single_layer_deltas": 0.0,
+   "same_layers_together_delta": 0.0,
+   "all_layer_delta": 0.0
+  }
+ }
+}

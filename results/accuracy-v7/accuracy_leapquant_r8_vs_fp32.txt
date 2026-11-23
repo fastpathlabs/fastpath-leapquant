@@ -1,0 +1,15 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  gsm8k           1000      930    93.00%  0.81%         35       0         91           2304
+  aime2025          30        1     3.33%  3.28%          2       0         29           8120
+  mmlu_pro        1000      659    65.90%  1.50%        120       0        304           5085
+
+  wrote /home/ubuntu/lqexp/results/accuracy-v7/accuracy_leapquant_r8.json
+
+  Paired comparison with /home/ubuntu/lqexp/results/accuracy-v7/accuracy_fp32_run1.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2025        30     3.33%     3.33%          0          0      +0.00%     +0.00 .. +0.00  PASS
+  gsm8k         1000    93.00%    94.00%         17         27      -1.00%     -2.30 .. +0.30  INCONCLUSIVE
+  mmlu_pro      1000    65.90%    65.60%         62         59      +0.30%     -1.86 .. +2.46  INCONCLUSIVE
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin

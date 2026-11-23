@@ -1,0 +1,38 @@
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -DLQ_EXPECT_BIT_IDENTICAL -pthread leapquant.cpp reference_heads.cpp kernel/leapquant_kernel_cpu.cpp kernel/kernel_test.cpp -o build/kernel_test
+In file included from kernel/leapquant_kernel_cpu.cpp:18:
+kernel/leapquant_kernel_blocks.h:725:16: warning: ISO C++ prohibits anonymous structs [-Wpedantic]
+  725 |         struct {
+      |                ^
+g++ -O2 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -ffp-contract=off -DLQ_EXPECT_BIT_IDENTICAL -pthread -DLQ_WORD_LOADS leapquant.cpp reference_heads.cpp kernel/leapquant_kernel_cpu.cpp kernel/kernel_test.cpp -o build/kernel_test_words
+In file included from kernel/leapquant_kernel_cpu.cpp:18:
+kernel/leapquant_kernel_blocks.h:725:16: warning: ISO C++ prohibits anonymous structs [-Wpedantic]
+  725 |         struct {
+      |                ^
+build/kernel_test
+[1] fp16 conversion equals the reference core
+[2][3] kernel against the reference core
+    in a window : worst difference of one output from the reference, when both start the window
+                  from the same state (limit 1e-4, the stage D limit of the plan)
+    folds       : folds whose boundary state is not identical to the reference's / folds compared
+    vs fp32     : output error against the fp32 truth over the whole run, kernel | reference
+    free run    : worst difference when kernel and reference never synchronise (not a pass criterion)
+
+    scenario                                                   in a window        folds    kernel reference  free run
+    small, odd sizes                                               0.0e+00         0/24    0.268%    0.268%   0.0e+00
+    small, starts at zero                                          0.0e+00         0/24    0.398%    0.398%   0.0e+00
+    batch of 5, staggered, forced folds                            0.0e+00        0/224    0.262%    0.262%   0.0e+00
+    window 8, no compensators, no smoothing, 4 bits                0.0e+00        0/440   23.881%   23.881%   0.0e+00
+    Qwen3.5-9B shape: 32 value heads, 16 key heads, 128 x 128      0.0e+00        0/384    0.165%    0.165%   0.0e+00
+    6-bit, 6 compensators, scale group 8                           0.0e+00         0/10    0.548%    0.548%   0.0e+00
+[4] emulated GPU thread block gives the same bytes as one thread
+      5 threads, batch of 5, staggered, forced folds        identical
+     32 threads, batch of 5, staggered, forced folds        identical
+    128 threads, batch of 5, staggered, forced folds        identical
+      5 threads, 6-bit, 6 compensators, scale group 8       identical
+     32 threads, 6-bit, 6 compensators, scale group 8       identical
+    128 threads, 6-bit, 6 compensators, scale group 8       identical
+[5] bad arguments are rejected, sizes match the plan
+
+2082115 checks run, 0 failed
+build/kernel_test_words | tail -1
+2082115 checks run, 0 failed

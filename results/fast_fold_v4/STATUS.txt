@@ -1,0 +1,12 @@
+test exit 0
+memcheck exit 0
+racecheck exit 1
+bench_triton_1 exit 0
+bench_cuda_1 exit 0
+bench_triton_2 exit 0
+bench_cuda_2 exit 0
+verify exit 0
+restore exit 0
+engine exit 0
+done
+ncu_decode done

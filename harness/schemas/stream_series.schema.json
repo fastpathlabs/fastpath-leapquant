@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lqh.stream_series.v1",
+  "title": "Streamed content chunks of one request attempt (stream_events.jsonl.gz line)",
+  "type": "object",
+  "required": ["request_id", "attempt", "kind", "dt_us"],
+  "properties": {
+    "request_id": {"type": "string"},
+    "attempt": {"type": "integer", "minimum": 1},
+    "kind": {"const": "chunk_series"},
+    "clock_domain": {"enum": ["run", "request_relative"]},
+    "dt_us": {"type": "array", "items": {"type": "integer", "minimum": 0}, "description": "arrival of each content chunk, microseconds after the send"},
+    "tokens": {"type": ["array", "null"], "items": {"type": "integer", "minimum": 0}, "description": "exact token count of each chunk (server continuous usage); null when unknown"},
+    "chunk_semantics": {"enum": ["exact_tokens_per_chunk", "one_chunk_unknown_tokens", "inferred_single_token_chunks"]},
+    "terminal_dt_us": {"type": ["integer", "null"]},
+    "events": {"type": "array", "items": {"type": "object", "required": ["kind"], "properties": {"kind": {"type": "string"}, "dt_us": {"type": ["integer", "null"]}}}}
+  }
+}

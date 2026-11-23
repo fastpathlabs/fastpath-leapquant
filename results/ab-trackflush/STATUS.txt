@@ -1,0 +1,9 @@
+C PASS 7 min  radix on: bf16 window, 1100 slots
+K_bf16 PASS 0 min  two-turn radix check: bf16 window (the reference)
+T_auto PASS 7 min  radix on: LeapQuant 1310 slots, LEAPQUANT_FOLD_POLICY=auto (own-step folds, track flushes kept)
+K_auto PASS 0 min  two-turn radix check: LeapQuant auto against bf16 window
+T_aligned PASS 7 min  radix on: LeapQuant 1310 slots, aligned folds, LEAPQUANT_TRACK_FLUSH=0
+K_aligned PASS 0 min  two-turn radix check: LeapQuant aligned, no track flushes, against bf16 window
+T_stagger PASS 7 min  radix on: LeapQuant 1310 slots, LEAPQUANT_FOLD_POLICY=stagger, LEAPQUANT_TRACK_FLUSH=0
+K_stagger PASS 0 min  two-turn radix check: LeapQuant stagger, no track flushes, against bf16 window
+done 2026-11-14T18:40:51Z

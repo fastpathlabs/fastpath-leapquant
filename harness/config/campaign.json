@@ -1,0 +1,768 @@
+{
+ "schema": "lqh.campaign.v1",
+ "campaign_id": "lq-h100-2026-11",
+ "declared_utc": "2026-11-15T01:30:00Z",
+ "specification": "the internal test-harness specification of 14 Nov 2026, revision 3 (final)",
+ "model": {
+  "id": "Qwen/Qwen3.5-9B",
+  "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "tokenizer": "Qwen/Qwen3.5-9B (same snapshot)",
+  "served_path": "Qwen/Qwen3.5-9B",
+  "weights_dtype": "bfloat16",
+  "context_positions": 262144,
+  "vocab_size": 248320
+ },
+ "engine": {
+  "name": "sglang",
+  "commit": "c8ea70797157cafab46b3807f850d1c5c061a8d1",
+  "python": "$HOME/venv-sglang/bin/python",
+  "build_facts": "runbook/manifest.sh output in every run manifest (source, library and package hashes)"
+ },
+ "hardware": {
+  "allocation": "1 x NVIDIA H100 PCIe 80 GB, host quick-einstein (28 CPUs, 177 GB RAM), driver 580, CUDA 13",
+  "gpus": 1,
+  "label": "H100 port evaluated with paper-inspired methodology (the paper used B200, RTX PRO 6000 and RTX 5090)"
+ },
+ "numerical_policy": {
+  "source": "docs/DECISIONS.md",
+  "bits": 8,
+  "rank": 4,
+  "window": 16,
+  "fit_sweeps": 1,
+  "folds": "staggered by default (LEAPQUANT_FOLD_POLICY unset = stagger; 'aligned' gives the earlier default)",
+  "owner": "Asif (changes create a new numerical candidate and need new quality evidence)",
+  "changed": "15 Nov 2026, 05:00 UTC, Asif: one sweep (B52) and staggered folds (B53) adopted; runs before this used 2 sweeps and aligned/auto folds"
+ },
+ "candidates_file": "harness/config/candidates.json",
+ "profile_versions": {
+  "infx_fixed_seq": "infx-fabf7ba-v1",
+  "aa_slt_local": "aa-slt-2026-11-15-v1",
+  "agentx_local": "agentx-v1.0.14-18015a2-v1",
+  "aa_api_v3_metrics": "aa-api-3.0.0-local-v1",
+  "paper_reproduction": "leapquant-v2-2026-11-10-v1",
+  "local_diagnostics": "local-2026-11-15-v1"
+ },
+ "default_slo_id": "slo-interactive-v1",
+ "pricing_id": "host-h100pcie-rental-v1",
+ "objective": {
+  "primary": "successful deployment output tokens/s per allocated GPU of the combined LeapQuant candidate (lq_combined) at its best SLO-eligible operating point, against the fastest quality-qualified comparable control, on infx_fixed_seq 1k/1k and 8k/1k and aa_slt_local; and USD per million successful output tokens on the same boundary",
+  "always_visible": [
+   "deployment successful output TPS",
+   "output TPS per all allocated GPUs",
+   "USD per million successful output tokens",
+   "the same three restricted to SLO-qualified requests"
+  ],
+  "eligibility": {
+   "quality": "candidate-level: noninferior to the FP32 reference on every qualification task at the 1-point margin (docs/DECISIONS.md); otherwise INCONCLUSIVE or FAIL and no quality-qualified cost claim",
+   "reliability": "error rate <= 1% of attempted measured requests (slo-interactive-v1 global constraint)",
+   "latency": "slo-interactive-v1 (TTFT <= 2 s and TPOT <= 50 ms together, per request); slo-batch-v1 reported alongside for 8k/1k"
+  },
+  "smallest_economically_useful_effect": "3% more successful output tokens/s at equal cost per hour (cost ratio 0.971)",
+  "confidence_interval_target": "95% interval half-width on the paired log ratio <= 1.5% (to resolve a 3-4% effect)",
+  "headline_estimator": "geometric mean of per-block paired ratios, t interval on log ratios",
+  "frozen": "these fields are frozen before the confirmation dataset; v6 targets kept in history",
+  "history_v6_targets": {
+   "plan5_G3_kernel": "<= 0.306 ms per token at batch 512 (20% below bf16 window 0.382 ms); met 14 Nov 13:08 with 0.3004 ms (results/g3-final, component-sum method)",
+   "v6_gates": "G0 Evidence, G1 Numerical, G2 Kernel, G3 State, G4 Product, G5 Release (harness/config/gates.json)"
+  }
+ },
+ "comparison_classes": {
+  "same_capacity": "same admissible active requests (max running 512), same configured slots (1,100) and cache budgets; isolates implementation changes",
+  "equal_total_memory": "different slot counts, all allocations charged to one GPU-byte budget (measured, not configured)",
+  "best_qualified": "each arm at its best tuned configuration, quality-qualified; assesses the product"
+ },
+ "primary_cells": [
+  "infx_fixed_seq:infx_1k1k at the selected operating point",
+  "infx_fixed_seq:infx_8k1k at the selected operating point",
+  "aa_slt_local:aa_slt_1k1k at the plateau point",
+  "local_diagnostics:decode_128_512_c512"
+ ],
+ "repetition_design": {
+  "unit": "independent paired run block (server restart per arm and block, balanced order)",
+  "pilot": "pilot_128_512_c512: 5 paired blocks to learn the run-to-run variance",
+  "confirmation": "sample size frozen from the pilot before any confirmation result is seen: n = max(5, lqh.stats.required_blocks(pilot sd of log ratios, 0.015)), capped at 12 blocks per primary cell; screening data never counted as confirmation",
+  "inconclusive_outcome": "an interval that cannot exclude the smallest useful effect is reported as INCONCLUSIVE; no extra blocks beyond the frozen n",
+  "selection_disclosure": "the operating point chosen from screening is confirmed on new blocks; the number of screened cells is published"
+ },
+ "plateau_rule_aa_slt": "stop when two successive +64 steps each add < 3% steady output throughput, a point exceeds 5% errors, or the plan budget is used (local rule, not AA's)",
+ "budget": {
+  "screening_gpu_hours": 24,
+  "confirmation_gpu_hours": 10,
+  "quality_gpu_hours": 40,
+  "note": "plans stop starting new arms when their budget_s is used; skipped cells are recorded as not_run with the reason"
+ },
+ "quality_qualification": {
+  "order_of_work": 2,
+  "arms": [
+   "fp32_state (packed, fp32): reference",
+   "bf16_window (16-token window)",
+   "leapquant (lq_final: staggered folds, fused slot copy, one sweep)"
+  ],
+  "model": "Qwen/Qwen3.5-9B",
+  "tasks": {
+   "aime2026": "MathArena/aime_2026 (30 problems)",
+   "beyond_aime": "ByteDance-Seed/BeyondAIME (100 problems)",
+   "gpqa_diamond": "Idavidrein/gpqa gpqa_diamond (198 questions): BLOCKED until the HF account accepts the dataset terms",
+   "livecodebench_v6": "livecodebench/code_generation_lite release_v6: BLOCKED until a sandboxed scorer exists (private tests are pickled; executing model code needs isolation)"
+  },
+  "sampling": {
+   "source": "paper Table 5 (Qwen3.5-9B)",
+   "temperature": 1.0,
+   "top_p": 0.95,
+   "top_k": 20,
+   "presence_penalty": 1.5,
+   "max_output_tokens": 131072,
+   "thinking": "on",
+   "seeds": [
+    1234
+   ],
+   "not_reproduced": "the paper's early stop on repetitive output (method not published)",
+   "max_output_tokens_note": "raised from the paper's 81,920 (Table 5) by Asif on 15 Nov 2026, before any run of this qualification: at 81,920, 11-12% of answers were cut in the strict paper lane (target under 5%). A deviation from the paper.",
+   "seeds_note": "12-hour schedule: one seed per question (3 seeds deferred)"
+  },
+  "answer_budget_rule": "fewer than 5% of answers cut at the budget; the cap rate is reported per arm and task; capped answers count as wrong in the fixed-budget primary outcome",
+  "concurrency": "retraction-free (backlog B58): min(16, KV tokens / (prompt budget 1,536 + 131,072)) per arm, radix cache off, SGLang static memory 0.90 (KV pool ~1.71M tokens): 12 requests per arm. 0 retractions checked per arm.",
+  "join": "paired by sample ID and seed; question-clustered interval (eval/accuracy_bench.py), Newcombe hybrid interval for single-sample pairs (no degenerate zero-discordance interval)",
+  "margin_points": 1.0,
+  "decision_rule_frozen": "If bf16_window is noninferior to FP32 at the 1-point margin on EVERY task, it stays the primary product baseline. Otherwise (FAIL, INCONCLUSIVE or a task not run) it is ineligible as the primary baseline: its speed stays visible and FP32 is the comparator for cost claims. LeapQuant gets a quality-qualified cost claim only if it is noninferior on every task.",
+  "paper_bf16_variant": "rounded every decode step ('per-step', paper Table 1/2); the windowed BF16 appears only in the paper's ablation (Table 2: 87.8 AIME 2026)",
+  "arms_deferred": [
+   "bf16_rounded (the paper's BF16 baseline): not run in the 12-hour schedule"
+  ],
+  "subsets_12h": {
+   "aime2026": "all 30 problems",
+   "beyond_aime": "15 of 100 (evenly spaced)",
+   "gpqa_diamond": "30 of 198 (evenly spaced), if the dataset terms are accepted",
+   "livecodebench_v6": "12 problems (evenly spaced) of the paper's window, if the sandboxed scorer passes its self-test",
+   "power": "one seed and these subsets detect only large losses (interval half-widths of roughly 10-25 points); the frozen 1-point rule cannot pass at this size, so every task is expected INCONCLUSIVE. The full qualification (3 seeds, all questions, 4 arms) needs about 60 GPU-hours."
+  }
+ },
+ "order_of_work": [
+  {
+   "step": 1,
+   "what": "time the complete, state-advancing layer cycle with the CUDA fold on one build, with its log",
+   "plan": "kernel_full_cycle (runbook/harness_kernel_cycle.sh)",
+   "status": "rescheduled in the 12-hour schedule (schedule_12h)"
+  },
+  {
+   "step": 2,
+   "what": "qualify the 16-bit window control on the paper's tasks",
+   "plan": "runbook/quality_16bit.sh",
+   "status": "rescheduled in the 12-hour schedule (schedule_12h)"
+  },
+  {
+   "step": 3,
+   "what": "total GPU bytes for every arm, with configured slots, running and waiting requests printed",
+   "plan": "memory_per_arm",
+   "status": "rescheduled in the 12-hour schedule (schedule_12h)"
+  },
+  {
+   "step": 4,
+   "what": "paired pilot of 128/512 at concurrency 512, five blocks",
+   "plan": "pilot_128_512_c512",
+   "status": "rescheduled in the 12-hour schedule (schedule_12h)"
+  }
+ ],
+ "plans": {
+  "smoke_mock": {
+   "purpose": "deterministic local mock: harness behaviour only",
+   "candidates": [
+    "mock_baseline",
+    "mock_candidate"
+   ],
+   "blocks": 2,
+   "comparison_class": "smoke",
+   "slo_id": "slo-interactive-v1",
+   "points": [
+    {
+     "profile": "harness_smoke",
+     "variant": "mock_finite",
+     "lane": "finite",
+     "isl": 64,
+     "osl": 32,
+     "concurrency": 8,
+     "num_prompts": 80,
+     "num_warmups": 16,
+     "request_timeout_s": 60
+    },
+    {
+     "profile": "harness_smoke",
+     "variant": "mock_sustained",
+     "lane": "sustained",
+     "isl": 64,
+     "osl": 48,
+     "concurrency": 8,
+     "steady_s": 6,
+     "ramp_min_s": 1,
+     "drain_timeout_s": 30,
+     "request_timeout_s": 60
+    },
+    {
+     "profile": "harness_smoke",
+     "variant": "mock_open_loop",
+     "lane": "open_loop",
+     "isl": 64,
+     "osl": 32,
+     "rate_rps": 40,
+     "arrival_s": 3,
+     "drain_timeout_s": 30,
+     "request_timeout_s": 60
+    }
+   ]
+  },
+  "validation_pair": {
+   "purpose": "section 12: one actual baseline/candidate pair before the matrix, to validate token accounting, the pinned-client adapter and tracing",
+   "candidates": [
+    "bf16_window",
+    "lq_final"
+   ],
+   "blocks": 1,
+   "comparison_class": "same_capacity",
+   "budget_s": 1800,
+   "points": [
+    {
+     "profile": "local_diagnostics",
+     "variant": "decode_128_512",
+     "lane": "finite",
+     "isl": 128,
+     "osl": 512,
+     "concurrency": 64,
+     "num_prompts": 320,
+     "num_warmups": 64,
+     "random_range_ratio": 1.0,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 16,
+     "num_prompts": 160,
+     "num_warmups": 32,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 16,
+     "steady_s": 60,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600,
+     "note": "validation only: 60 s steady phase (AA uses 180 s)"
+    }
+   ]
+  },
+  "memory_per_arm": {
+   "purpose": "order of work 3: GPU bytes, configured slots, admitted running and waiting requests for every arm",
+   "candidates": [
+    "fp32_packed",
+    "fp32_window",
+    "bf16_rounded",
+    "bf16_window",
+    "sglang_default",
+    "sglang_best",
+    "lq_final",
+    "lq_final_eqmem"
+   ],
+   "blocks": 1,
+   "comparison_class": "equal_total_memory",
+   "budget_s": 2400,
+   "points": [
+    {
+     "profile": "local_diagnostics",
+     "variant": "decode_128_512",
+     "lane": "finite",
+     "isl": 128,
+     "osl": 512,
+     "concurrency": 512,
+     "num_prompts": 1024,
+     "num_warmups": 512,
+     "random_range_ratio": 1.0,
+     "seed": 0,
+     "request_timeout_s": 3600
+    }
+   ]
+  },
+  "pilot_128_512_c512": {
+   "purpose": "order of work 4: run-to-run variance of the decode-heavy cell, 5 paired blocks",
+   "candidates": [
+    "bf16_window",
+    "lq_final"
+   ],
+   "blocks": 5,
+   "comparison_class": "same_capacity",
+   "budget_s": 2700,
+   "points": [
+    {
+     "profile": "local_diagnostics",
+     "variant": "decode_128_512",
+     "lane": "finite",
+     "isl": 128,
+     "osl": 512,
+     "concurrency": 512,
+     "random_range_ratio": 1.0,
+     "seed": 0,
+     "request_timeout_s": 3600,
+     "num_prompts": 2048,
+     "num_warmups": 512
+    }
+   ]
+  },
+  "screening_lq": {
+   "purpose": "screen LeapQuant default, stagger, fused copy, combined; track flush as an independent factor",
+   "blocks": 2,
+   "candidates": [
+    "bf16_window",
+    "lq_default",
+    "lq_stagger",
+    "lq_fusedcopy",
+    "lq_combined",
+    "lq_trackflush0",
+    "lq_stagger_trackflush0"
+   ],
+   "comparison_class": "same_capacity",
+   "budget_s": 36000,
+   "points": [
+    {
+     "profile": "local_diagnostics",
+     "variant": "decode_128_512",
+     "lane": "finite",
+     "isl": 128,
+     "osl": 512,
+     "concurrency": 512,
+     "random_range_ratio": 1.0,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 64,
+     "num_prompts": 640,
+     "num_warmups": 128,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 64,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    }
+   ]
+  },
+  "matrix_infx": {
+   "purpose": "InferenceX fixed-sequence sweeps, screening block",
+   "blocks": 1,
+   "candidates": [
+    "lq_final",
+    "bf16_window",
+    "fp32_packed"
+   ],
+   "comparison_class": "best_qualified",
+   "budget_s": 9000,
+   "points": [
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 1,
+     "num_prompts": 10,
+     "num_warmups": 2,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 4,
+     "num_prompts": 40,
+     "num_warmups": 8,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 16,
+     "num_prompts": 160,
+     "num_warmups": 32,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 64,
+     "num_prompts": 640,
+     "num_warmups": 128,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 256,
+     "num_prompts": 2560,
+     "num_warmups": 512,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_1k1k",
+     "lane": "infx_upstream",
+     "isl": 1024,
+     "osl": 1024,
+     "concurrency": 512,
+     "num_prompts": 5120,
+     "num_warmups": 1024,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_8k1k",
+     "lane": "infx_upstream",
+     "isl": 8192,
+     "osl": 1024,
+     "concurrency": 4,
+     "num_prompts": 40,
+     "num_warmups": 8,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    },
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_8k1k",
+     "lane": "infx_upstream",
+     "isl": 8192,
+     "osl": 1024,
+     "concurrency": 64,
+     "num_prompts": 640,
+     "num_warmups": 128,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    }
+   ],
+   "order_note": "one block: the product candidate first, so a budget stop can only drop the last arm (the job's own timeout is the hard stop)"
+  },
+  "matrix_aa_slt": {
+   "purpose": "AA-SLT method sweep 1..64 then +64 until the declared plateau rule",
+   "blocks": 1,
+   "candidates": [
+    "lq_final",
+    "bf16_window",
+    "fp32_packed"
+   ],
+   "comparison_class": "best_qualified",
+   "budget_s": 9000,
+   "points": [
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 1,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 4,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 16,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 64,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 128,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 256,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 512,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 1024,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    }
+   ],
+   "plateau_extension_deferred": {
+    "step": 64,
+    "max": 1024,
+    "min_gain": 0.03,
+    "patience": 2,
+    "max_error_rate": 0.05
+   },
+   "order_note": "one block: the product candidate first, so a budget stop can only drop the last arm (the job's own timeout is the hard stop)"
+  },
+  "smoke_infx_mock": {
+   "purpose": "the pinned InferenceX client through the adapter against the mock server: conversion and parity only",
+   "candidates": [
+    "mock_baseline"
+   ],
+   "blocks": 1,
+   "comparison_class": "smoke",
+   "slo_id": "slo-interactive-v1",
+   "points": [
+    {
+     "profile": "infx_fixed_seq",
+     "variant": "infx_mock",
+     "lane": "infx_upstream",
+     "isl": 128,
+     "osl": 32,
+     "concurrency": 4,
+     "num_prompts": 40,
+     "num_warmups": 8,
+     "random_range_ratio": 1.0,
+     "seed": 0
+    }
+   ]
+  },
+  "confirm_aa_slt": {
+   "purpose": "Confirmation repeats of the public matrix (Asif, 15 Nov 2026 ~19:00 UTC: 'ok do the repeat'): the AA-SLT method (staggered starts and a timed steady phase, so no wave lock), 5 paired blocks at 1, 64, 256 and 512 users, all three arms in every block. The claim ledger refuses single-run comparisons; these give the 95% intervals.",
+   "blocks": 5,
+   "candidates": [
+    "lq_final",
+    "bf16_window",
+    "fp32_packed"
+   ],
+   "baseline": "lq_final",
+   "comparison_class": "best_qualified",
+   "budget_s": 19800,
+   "points": [
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 1,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 64,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 256,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 512,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    }
+   ],
+   "order_note": "balanced arm order per block (runner.block_order). Baseline lq_final, so the report lists bf16_window / lq_final and fp32_packed / lq_final; LeapQuant over each arm is the exact inverse (per block and interval bounds)."
+  },
+  "tuned_slots_aa": {
+   "purpose": "DEPLOYMENT comparison (15 Nov 2026 23:30 UTC; Asif's multi-GPU benchmark prompt, section 6): each arm's state slots balanced for 1k/1k under the same HBM budget (LeapQuant 1,008, bf16 window 927, fp32 609 slots), AA-SLT method at 1 user (small batch) and 256 users (the highest point of the screen with latency-qualified goodput); 512 dropped (zero SLO goodput in every arm: an overload point, not an operating point). 5 paired blocks, balanced order. Time-boxed: tests must finish within a few hours.",
+   "blocks": 5,
+   "candidates": [
+    "lq_final_s1008",
+    "bf16_window_s927",
+    "fp32_packed_s609"
+   ],
+   "baseline": "lq_final_s1008",
+   "comparison_class": "best_qualified",
+   "budget_s": 9900,
+   "points": [
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 1,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    },
+    {
+     "profile": "aa_slt_local",
+     "variant": "aa_slt_1k1k",
+     "lane": "sustained",
+     "isl": 1000,
+     "osl": 1000,
+     "concurrency": 256,
+     "steady_s": 180,
+     "ramp_min_s": 30,
+     "drain_timeout_s": 900,
+     "seed": 0,
+     "request_timeout_s": 3600
+    }
+   ],
+   "order_note": "balanced order per block; baseline lq_final_s1008, so the report gives bf16_window_s927 / lq_final_s1008 and fp32_packed_s609 / lq_final_s1008 (LeapQuant over each is the exact inverse)"
+  }
+ },
+ "schedule_12h": {
+  "decided": "15 Nov 2026, 05:00 UTC, Asif: 'Try to finish all tests in the next 12 hours max'; public matrix before the remaining quality runs",
+  "window_utc": [
+   "2026-11-15T05:40Z",
+   "2026-11-15T16:30Z"
+  ],
+  "order": [
+   "kernel full cycle",
+   "lifecycle",
+   "sanitizers (reduced)",
+   "validation pair",
+   "memory per arm",
+   "pilot 128/512 c512 (5 blocks)",
+   "InferenceX matrix (3 arms, reduced grid)",
+   "AA-SLT matrix (3 arms, 1..1024)",
+   "quality (all four tasks, subsets, 3 arms)",
+   "long-context NLL",
+   "compounding (reduced)"
+  ],
+  "reductions": {
+   "matrix_arms": "fp32_packed, bf16_window, lq_final (sglang_default, sglang_best, bf16_rounded, fp32_window: memory-per-arm snapshot only)",
+   "infx_grid": "1k/1k at 1, 4, 16, 64, 256, 512; 8k/1k at 4 and 64 (1024 and the 2x steps deferred)",
+   "aa_slt_grid": "1, 4, 16, 64, then 128, 256, 512, 1024 (AA's 2x and +64 steps deferred; plateau judged on these points)",
+   "pilot_prompts": "4 x C prompts and 1 x C warmups (local diagnostic, not the InferenceX contract)",
+   "quality": "see quality_qualification.subsets_12h",
+   "compounding": "8 single layers + those 8 together + all 24 (not all 24 singles)"
+  }
+ }
+}

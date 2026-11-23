@@ -1,0 +1,133 @@
+{
+ "schema": "lqh.gates.v1",
+ "note": "Stable gate ids. v6 numbering (plan v6, LeapQuant_complete_execution_plan_v6_chatgpt.docx): G0 Evidence, G1 Numerical, G2 Kernel, G3 State, G4 Product, G5 Release. Plan 5 used G2-G6 for other gates; a PASS recorded under plan-5 numbering is NEVER imported into a v6 gate of the same number (e.g. plan-5 'G3 MET' is a kernel-speed result, not v6 G3 State). A new gate or threshold needs a new definition_version and a prospective freeze.",
+ "gates": [
+  {
+   "gate_id": "v6.G0",
+   "name": "Evidence",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "F01-F08 plus repaired verdicts and a real baseline",
+   "metric": "task status (docs/PLAN6_BACKLOG.md section 1)",
+   "comparator": "all F tasks Done or explicitly N/A",
+   "threshold": null,
+   "prerequisites": [],
+   "evidence_ids": [],
+   "status": "OPEN",
+   "status_reason": "F01, F02, F05-F08 Partly; F04 Blocked (X1)"
+  },
+  {
+   "gate_id": "v6.G1",
+   "name": "Numerical",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "N01-N08 and final candidate conformance",
+   "metric": "numerical verification of the exact final binary on all supported linear layers",
+   "comparator": "every criterion passes on the final binary",
+   "threshold": null,
+   "prerequisites": [
+    "v6.G0"
+   ],
+   "evidence_ids": [],
+   "status": "OPEN",
+   "status_reason": "final combined build (lq_combined) not re-qualified on all layers; quality qualification pending (order of work 2)"
+  },
+  {
+   "gate_id": "v6.G2",
+   "name": "Kernel",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "K11/K12 on the final selected binary; active acceleration needs the selected full-cycle win",
+   "metric": "complete state-advancing layer cycle per token at batch 512 (kernel/bench_triton.py --full-cycle)",
+   "comparator": "lower 95% bound of (bf16 window / LeapQuant) >= 1.25 (plan-5 threshold, adopted as v6 G2's full-cycle win)",
+   "threshold": 1.25,
+   "prerequisites": [
+    "v6.G1"
+   ],
+   "evidence_ids": [
+    "harness/kernel-cycle/kernel_cycle.json (queued job 100)"
+   ],
+   "status": "OPEN",
+   "status_reason": "full-cycle timing not yet run; the 14 Nov component-sum result is order-dependent (inventory: 1.244 with the slower fold timing)"
+  },
+  {
+   "gate_id": "v6.G3",
+   "name": "State",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "S01-S10 on the selected engine: actual memory and lifecycle behaviour, support envelope",
+   "metric": "lifecycle tests (save/restore on outputs, branch, slot reuse, eviction, reset, cancellation) and measured total GPU bytes per arm",
+   "comparator": "every lifecycle case passes on the final binary; memory reconciled",
+   "threshold": null,
+   "prerequisites": [
+    "v6.G1"
+   ],
+   "evidence_ids": [
+    "harness memory_per_arm (job 104)",
+    "lqh.lifecycle restore-on-outputs (planned)"
+   ],
+   "status": "OPEN",
+   "status_reason": "restore-on-outputs test implemented, not run; memory per arm queued"
+  },
+  {
+   "gate_id": "v6.G4",
+   "name": "Product",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "E01-E03; matched quality, SLO, goodput and memory",
+   "metric": "docs/DECISIONS.md service gate: open-loop goodput (requests/s within slo-interactive-v1) at the capacity boundary vs bf16 window",
+   "comparator": "goodput >= +15% and the lower bound of the paired 95% interval > +5%",
+   "threshold": 1.15,
+   "prerequisites": [
+    "v6.G2",
+    "v6.G3",
+    "quality qualification"
+   ],
+   "evidence_ids": [],
+   "status": "OPEN",
+   "status_reason": "quality qualification pending; historical open-loop runs did not apply the p99 ITL limit and used one seed"
+  },
+  {
+   "gate_id": "v6.G5",
+   "name": "Release",
+   "definition_version": "v6-2026-11-13",
+   "frozen_utc": "2026-11-13T23:46:00Z",
+   "definition": "E04-E08; final combined feature suite and operational readiness",
+   "metric": "release decision record",
+   "comparator": "supported configurations named with owners and limits",
+   "threshold": null,
+   "prerequisites": [
+    "v6.G4"
+   ],
+   "evidence_ids": [],
+   "status": "OPEN",
+   "status_reason": "not started (backlog B24)"
+  }
+ ],
+ "history": [
+  {
+   "gate_id": "p5.G3",
+   "name": "plan-5 kernel speed gate",
+   "definition": "per token at batch 512 (decode + 1/16 fold, component sum), at least 20% below bf16 window (<= 0.306 ms)",
+   "recorded_status": "MET 14 Nov 13:08 (results/g3-final: 0.3004 vs 0.3819 ms, ratio 1.271, 10 paired runs)",
+   "evidence_kind": "measured_raw (component sum, not a full cycle)",
+   "review_notes": [
+    "the run order changes the fold time (1.04-1.07 ms after the Triton decode, 0.95 ms after v9); with the slower fold v9's ratio is 1.244 < 1.25 (historical inventory)",
+    "the 0.3817 ms control quoted with g3-final comes from results/g3 (6 runs); g3-final's own control is 0.3819 ms"
+   ],
+   "import_into_v6": "REFUSED: different numbering and boundary; v6.G2 is decided by the full-cycle timing"
+  }
+ ],
+ "rejected_numberings": [
+  "plan5.G2",
+  "plan5.G3",
+  "plan5.G4",
+  "plan5.G5",
+  "plan5.G6",
+  "review2.G2",
+  "review2.G3",
+  "review2.G4",
+  "review2.G5",
+  "review2.G6"
+ ]
+}

@@ -1,0 +1,4 @@
+S1 PASS 211 min  retraction-free: LeapQuant, compressed state, CUDA fold, against the fp32 window (/home/ubuntu/lqexp/results/accuracy-paper/paper_fp32_window.json)
+S2 PASS 238 min  retraction-free: bf16 window against the fp32 window
+S3 PASS 0 min  retraction-free: LeapQuant against bf16 window
+done 2026-11-15T06:10:05Z

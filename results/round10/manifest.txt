@@ -1,0 +1,18 @@
+time_utc: 2026-11-14T09:56:23Z
+host: quick-einstein
+kernel_source_hash: 265d1f4e500b6323
+reference_source_hash: 7b205c3e35144a0c
+engine_glue_hash: 8e5415c8bf9cf4d2
+fast_kernels_hash: cae6868c2e898dd0
+run_scripts_hash: 9e5f4891d313674c
+environment: LEAPQUANT_STATE= LEAPQUANT_FAST= LEAPQUANT_ALIGN_FOLDS= LEAPQUANT_COMPENSATORS=
+sglang_patch_hash: 9385f7b797bca530
+libleapquant_cuda.so: 1645e965e8bf9c03 built 2026-11-14T09:01:26Z
+libleapquant_cpu.so: 56ed80c2006746e9 built 2026-11-14T09:01:26Z
+libleapquant_reference.so: 3fb061c61c7673e7 built 2026-11-14T09:01:26Z
+gpu: NVIDIA H100 PCIe, 81559 MiB, 580.196.07
+nvcc: Build cuda_13.0.r13.0/compiler.36424714_0
+venv-sglang: torch 2.14.1+cu132; sglang 0.5.24.dev1336+gc8ea70797; sglang-kernel 0.4.10; triton 3.8.0; transformers 5.19.0; flashinfer-python 0.7.4 ; cuda 13.2
+venv-trace: torch 2.15.0+cu132; triton 3.9.0; transformers 5.23.0 ; cuda 13.2
+sglang_commit: c8ea707971 with 9 changed files
+model: Qwen/Qwen3.5-9B

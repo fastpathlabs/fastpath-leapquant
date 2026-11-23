@@ -1,0 +1,30 @@
+Output error against fp32, % (all heads and tokens). bf16 = bf16 state rounded every window.
+trace                            base       w8       b6       b4       r2       r8      b6p      b4p       r0    r0rot    r2rot    r4rot     bf16
+trace_layer_00                  0.013        -        -        -        -        -        -        -        -        -        -        -    0.421
+trace_layer_01                  0.096        -        -        -        -        -        -        -        -        -        -        -    0.755
+trace_layer_02                  0.088        -        -        -        -        -        -        -        -        -        -        -    0.320
+trace_layer_04                  0.191        -        -        -        -        -        -        -        -        -        -        -    0.499
+trace_layer_05                  0.234        -        -        -        -        -        -        -        -        -        -        -    0.626
+trace_layer_06                  0.213        -        -        -        -        -        -        -        -        -        -        -    0.633
+trace_layer_08                  0.326        -        -        -        -        -        -        -        -        -        -        -    0.352
+trace_layer_09                  0.319        -        -        -        -        -        -        -        -        -        -        -    0.342
+trace_layer_10                  0.455        -        -        -        -        -        -        -        -        -        -        -    0.479
+trace_layer_12                  0.406        -        -        -        -        -        -        -        -        -        -        -    0.511
+trace_layer_13                  0.220        -        -        -        -        -        -        -        -        -        -        -    0.869
+trace_layer_14                  0.327        -        -        -        -        -        -        -        -        -        -        -    0.281
+trace_layer_16                  0.341        -        -        -        -        -        -        -        -        -        -        -    0.492
+trace_layer_17                  0.396        -        -        -        -        -        -        -        -        -        -        -    0.558
+trace_layer_18                  0.172        -        -        -        -        -        -        -        -        -        -        -    0.220
+trace_layer_20                  0.418        -        -        -        -        -        -        -        -        -        -        -    0.350
+trace_layer_21                  0.363        -        -        -        -        -        -        -        -        -        -        -    0.207
+trace_layer_22                  0.385        -        -        -        -        -        -        -        -        -        -        -    0.242
+trace_layer_24                  0.326        -        -        -        -        -        -        -        -        -        -        -    0.196
+trace_layer_25                  0.220        -        -        -        -        -        -        -        -        -        -        -    0.100
+trace_layer_26                  0.299        -        -        -        -        -        -        -        -        -        -        -    0.113
+trace_layer_28                  0.419        -        -        -        -        -        -        -        -        -        -        -    0.247
+trace_layer_29                  0.475        -        -        -        -        -        -        -        -        -        -        -    0.266
+trace_layer_30                  0.479        -        -        -        -        -        -        -        -        -        -        -    0.315
+bytes per entry                  1.19      nan      nan      nan      nan      nan      nan      nan      nan      nan      nan      nan     2.00
+traces at least as good as bf16       14        0        0        0        0        0        0        0        0        0        0        0
+
+Settings: base = window 16, 4 compensators, 8 bits; w8 = window 8; b6 = 6 bits, 4 compensators, one step per value column; b4 = 4 bits, 4 compensators, one step per value column; r2 = 2 compensators; r8 = 8 compensators; b6p = 6 bits: 6 compensators (paper), one step per 8 key rows (ours); b4p = 4 bits: 6 compensators (paper), one step per 8 key rows (ours); r0 = 0 compensators; r0rot = 0 compensators, Hadamard-rotated keys and state; r2rot = 2 compensators, rotated; r4rot = 4 compensators, rotated

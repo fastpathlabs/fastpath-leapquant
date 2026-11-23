@@ -1,0 +1,33 @@
+build/
+leapquant_test
+leapquant_replay
+selftest.bin
+traces/
+.venv/
+__pycache__/
+*.pyc
+eval/cache/
+.DS_Store
+~$*
+*.dSYM
+
+comparison.md
+
+# Exceeds GitHub's 100 MB file limit
+results/gpu-suite/T02.log
+
+# Planning documents and zip snapshots are not part of the release
+*.docx
+*.zip
+
+# Serving logs that are almost only repeated prefill and decode lines.
+# The scores and summaries next to them are kept.
+results/harness/longcontext/server_bf16_window_c16.log
+results/harness/longcontext/server_fp32_c16.log
+results/harness/longcontext/server_leapquant_c16.log
+results/harness/matrix_aa_slt/b1/bf16_window/server.log
+results/harness/matrix_aa_slt/b1/fp32_packed/server.log
+results/harness/matrix_aa_slt/b1/lq_final/server.log
+results/harness/quality-12h-r2/server_quality_fp32.log
+results/harness/quality-12h-r2/server_quality_leapquant.log
+results/harness/quality-12h-r2/server_quality_bf16_window.log

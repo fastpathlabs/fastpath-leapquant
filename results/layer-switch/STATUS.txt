@@ -1,0 +1,6 @@
+L0 PASS 1 min  fp32 + window: reference answers
+L1 PASS 1 min  LeapQuant on all layers (mirror)
+L2 FAIL 2 min  LeapQuant on layer 30 only (mirror)
+L3 FAIL 2 min  LeapQuant on layers 0-13 only (mirror)
+L4 PASS 0 min  compressed state with a subset of layers: refused at start
+done 2026-11-14T15:04:18Z

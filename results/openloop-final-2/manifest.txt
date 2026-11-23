@@ -1,0 +1,22 @@
+time_utc: 2026-11-14T16:59:21Z
+host: quick-einstein
+kernel_source_hash: 265d1f4e500b6323
+reference_source_hash: 7b205c3e35144a0c
+engine_glue_hash: 6af9617b398d53e1
+fast_kernels_hash: c6faa368ad9bae48
+fast_cuda_source_hash: 11cb0afebef2d2ae
+run_scripts_hash: f26fbe1fa189badc
+environment: LEAPQUANT_STATE= LEAPQUANT_FAST= LEAPQUANT_ALIGN_FOLDS= LEAPQUANT_COMPENSATORS= LEAPQUANT_FOLD_BACKEND= LEAPQUANT_DECODE_BACKEND=cuda LEAPQUANT_CUDA_DECODE_VARIANT=9 LEAPQUANT_STEP_REUSE=1 LEAPQUANT_LAYERS= LEAPQUANT_FOLD_POLICY=
+sglang_patch_hash: 9385f7b797bca530
+build_dir: /home/ubuntu/lqdec7/build_v9
+libleapquant_cuda.so: 1645e965e8bf9c03 built 2026-11-14T09:01:26Z
+libleapquant_cpu.so: 56ed80c2006746e9 built 2026-11-14T09:01:26Z
+libleapquant_reference.so: 3fb061c61c7673e7 built 2026-11-14T09:01:26Z
+libleapquant_fastfold.so: 8a78d45fa72cbc8b built 2026-11-14T12:18:05Z
+gpu: NVIDIA H100 PCIe, 81559 MiB, 580.196.07
+nvcc: Build cuda_13.0.r13.0/compiler.36424714_0
+venv-sglang: torch 2.14.1+cu132; sglang 0.5.24.dev1336+gc8ea70797; sglang-kernel 0.4.10; triton 3.8.0; transformers 5.19.0; flashinfer-python 0.7.4 ; cuda 13.2
+venv-trace: torch 2.15.0+cu132; triton 3.9.0; transformers 5.23.0 ; cuda 13.2
+sglang_commit: c8ea707971 with 9 changed files
+sglang_diff_hash: ddb69da544485725
+model: Qwen/Qwen3.5-9B

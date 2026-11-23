@@ -1,0 +1,21 @@
+server starting (pid 1601409), log: /home/ubuntu/lqexp/results/accuracy-strict/server_strict_leapquant.log
+server is up
+KV cache 1388839 tokens, at most 82944 per request: concurrency 16
+aime2025: 30 questions, concurrency 16 ...
+aime2024: 30 questions, concurrency 16 ...
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  aime2025         120      106    88.33%  2.93%          0       0         14          41449
+  aime2024         120      103    85.83%  3.18%          1       0         13          37172
+
+  quality gate: not run (no --quality-gate command; the gate lives in the harness repository)
+
+  wrote /home/ubuntu/lqexp/results/accuracy-strict/paper_strict_leapquant.json
+
+  Paired comparison with /home/ubuntu/lqexp/results/accuracy-paper/paper_fp32_window.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2024       120    85.83%    88.33%          1          4      -2.50%    -11.03 .. +6.03  INCONCLUSIVE
+  aime2025       120    88.33%    85.83%          9          6      +2.50%    -6.56 .. +11.56  INCONCLUSIVE
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin
+retractions: 0

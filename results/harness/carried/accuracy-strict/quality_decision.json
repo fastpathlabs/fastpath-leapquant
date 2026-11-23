@@ -1,0 +1,59 @@
+{
+ "schema": "lqh.quality_decision.v1",
+ "computed_utc": "2026-11-15T02:44:54.978965Z",
+ "label": "carried: strict paper lane (B58), AIME 2024/2025, 4 samples, T 1.0, 81,920 tokens, vs fp32 window",
+ "reference_arm": "fp32_window",
+ "margin_points": 1.0,
+ "tasks_declared": [
+  "aime2024",
+  "aime2025"
+ ],
+ "is_carried": true,
+ "arms": {
+  "strict_leapquant": {
+   "aime2025": {
+    "n_reference": 120,
+    "n_arm": 120,
+    "samples": 120,
+    "accuracy_arm": 0.8833333333333333,
+    "accuracy_reference": 0.8583333333333333,
+    "difference": 0.025000000000000022,
+    "cap_rate_arm": 0.11666666666666667,
+    "cap_rate_reference": 0.10833333333333334,
+    "failed_requests_arm": 0,
+    "low": -0.0655718374808259,
+    "high": 0.11557183748082592,
+    "method": "question-clustered t interval with a binomial variance floor, 30 questions x 4 samples",
+    "discordant": 15,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "aime2024": {
+    "n_reference": 120,
+    "n_arm": 120,
+    "samples": 120,
+    "accuracy_arm": 0.8583333333333333,
+    "accuracy_reference": 0.8833333333333333,
+    "difference": -0.025000000000000022,
+    "cap_rate_arm": 0.10833333333333334,
+    "cap_rate_reference": 0.1,
+    "failed_requests_arm": 0,
+    "low": -0.11028604882899906,
+    "high": 0.060286048828999066,
+    "method": "question-clustered t interval with a binomial variance floor, 30 questions x 4 samples",
+    "discordant": 5,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   }
+  }
+ },
+ "decision_rule": "lane-specific: noninferior on every task of this lane at the margin",
+ "decision": {
+  "strict_leapquant_noninferior_on_every_task": false,
+  "note": "prompt hashes were not recorded by these historical runs (null in both arms); the cohorts are joined by question id, sample and seed"
+ },
+ "reference_cap_rate": {
+  "aime2025": 0.10833333333333334,
+  "aime2024": 0.1
+ }
+}

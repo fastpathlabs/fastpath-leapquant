@@ -1,0 +1,15 @@
+
+  task       questions  correct  accuracy    +/-  no answer  failed  truncated  tokens/answer
+  gsm8k            300      286    95.33%  1.22%          4       0         25           2263
+  aime2025          30        2     6.67%  4.55%          2       0         28           8156
+  mmlu_pro         300      178    59.33%  2.84%         47       0         99           5276
+
+  wrote /home/ubuntu/leapquant/results/gpu-suite/accuracy_leapquant.json
+
+  Paired comparison with /home/ubuntu/leapquant/results/gpu-suite/accuracy_fp32_run1.json (baseline). Noninferiority margin: 1.0 points.
+  task        paired  this run  baseline  only this  only base  difference       95% interval  verdict
+  aime2025        30     6.67%     3.33%          1          0      +3.33%     -3.09 .. +9.76  INCONCLUSIVE
+  gsm8k          300    95.33%    94.00%          7          3      +1.33%     -0.73 .. +3.39  PASS
+  mmlu_pro       300    59.33%    63.33%         12         24      -4.00%     -7.89 .. -0.11  INCONCLUSIVE
+
+  RESULT: INCONCLUSIVE: at least one task has too few questions to exclude a loss of the margin

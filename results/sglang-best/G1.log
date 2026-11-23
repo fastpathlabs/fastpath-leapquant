@@ -1,0 +1,6 @@
+server starting (pid 1007997), log: /home/ubuntu/lqexp/results/sglang-best/server_best_window.log
+server exited; see /home/ubuntu/lqexp/results/sglang-best/server_best_window.log
+the window kernel refused these settings (see server_best_window.log); packed kernel instead
+server starting (pid 1008175), log: /home/ubuntu/lqexp/results/sglang-best/server_best_packed.log
+runbook/env.sh: line 51: 1008175 Killed                  python3 -m sglang.launch_server --model-path "$MODEL" --port "$PORT" "$@" > "$log" 2>&1
+server exited; see /home/ubuntu/lqexp/results/sglang-best/server_best_packed.log

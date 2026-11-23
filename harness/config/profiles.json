@@ -1,0 +1,188 @@
+{
+ "schema": "lqh.profiles.v1",
+ "note": "Pinned benchmark profiles (test-harness prompt rev. 3, sections 2-6). A profile changes only by a new version, never in the middle of a sweep. Hashes are SHA-256 of the files as fetched; agentx and AA details were checked by quote against the fetched files (harness/config/sources/pins_aa_agentx.json).",
+ "profiles": [
+  {
+   "profile_id": "infx_fixed_seq",
+   "version": "infx-fabf7ba-v1",
+   "purpose": "Pinned InferenceX finite-request client; exact 1024/1024 and 8192/1024.",
+   "publication_label": "Unofficial independent InferenceX harness results",
+   "source": {
+    "repository": "https://github.com/SemiAnalysisAI/InferenceX",
+    "subproject": "inferencex-e2e",
+    "pinned_revision": "fabf7ba3f6682ecf61b23ebd1aeb35dd98aee0ab",
+    "commit_date_utc": "2026-11-14T18:12:55Z",
+    "retrieved_utc": "2026-11-15T00:20:00Z",
+    "files_sha256": {
+     "inferencex-e2e/infx/bench/fixed_seq.py": "d535ef0b9acf63bc2e713d7caf55cba8680a81acbe13448b44e100857d8574dc",
+     "inferencex-e2e/infx/bench_serving/benchmark_serving.py": "37fb32baeff1a055caf07bdfff6b9577802479b860ede0667b4299e39015c4e5",
+     "inferencex-e2e/infx/bench_serving/backend_request_func.py": "dc30f0034ff7ee3db2b8b69f5d21377286e9e2fd83a52ec3c6e3fde0223fa777",
+     "inferencex-e2e/infx/bench_serving/benchmark_outcome.py": "2406f515fcdec3ecc5521d08829fa5774a4e1400ea35ad375ce7358f1a64af39",
+     "inferencex-e2e/infx/results/fixed_sequence.py": "fbaaa7610f2bd29696560bb5abe6f4799b1c46a374481dc74e1e16eece4b4983",
+     "inferencex-e2e/configs/CONFIGS.md": "a5ced012d8376987d5071fa612def565dfec197a9d4270e95039ac3823342b1a",
+     "inferencex-e2e/pyproject.toml": "34ea36ed3bb0952feee73a20e6e0914b42feb74fdb1b87acf3b661717cb3a3cb",
+     "inferencex-e2e/uv.lock": "ebcab9f2406b0d68013cac830c4d4f67fe4792d81cc562dd3a397384a0265fed"
+    }
+   },
+   "contract_verified_in_pinned_code": {
+    "client_argv": "client_argv(Point) in fixed_seq.py: python3 -m infx.bench_serving.benchmark_serving --model M --backend B --base-url U --dataset-name random --random-input-len ISL --random-output-len OSL --random-range-ratio R --num-prompts N --max-concurrency C --request-rate inf --ignore-eos --save-result --num-warmups 2*C --percentile-metrics ttft,tpot,itl,e2el --result-dir D --result-filename F [--tokenizer T]",
+    "backend_for_sglang": "SINGLE_NODE_BACKENDS maps framework sglang to client backend 'vllm' = async_request_openai_completions on /v1/completions (endpoint default)",
+    "num_prompts": "srt recipes: 10 x concurrency (fixed_seq.srt_single / srt_sweep); the 'point' mode takes --num-prompts explicitly",
+    "warmups": "2 x concurrency requests of the first sampled prompt, under the same concurrency limit; excluded from all metrics",
+    "duration": "time.perf_counter() from just before the measured requests are scheduled to after the last one returns (drain included)",
+    "tpot": "per request with N > 1: (latency - ttft) / (N - 1), latency = time of the LAST CONTENT CHUNK minus send (not the terminal response)",
+    "itl": "gaps between consecutive content chunks (any chunk with non-empty choices)",
+    "output_tokens": "server usage.completion_tokens from the final usage chunk (stream_options.include_usage), else retokenised text",
+    "percentiles": "numpy percentile (linear), mean/median/std population",
+    "failure_gate": "benchmark_outcome: status 'failed' only when failed/requested > 5%; a 'passed' point may contain failures",
+    "seed": "--seed default 0 (random and numpy seeded)",
+    "prompt": "random token ids in [0, tokenizer.vocab_size) decoded to text (re-tokenised by the server: actual input length may differ slightly; the client records the mismatch)",
+    "aggregates": "results/fixed_sequence.py: tput_per_gpu = total_token_throughput / GPUs; output_tput_per_gpu = output_throughput / GPUs; intvty = 1000 / tpot_ms for every *tpot* key"
+   },
+   "parameters": {
+    "isl_osl": [[1024, 1024], [8192, 1024]],
+    "concurrency_grid": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
+    "num_prompts": "10 x concurrency",
+    "num_warmups": "2 x concurrency",
+    "random_range_ratio": 1.0,
+    "seed": 0,
+    "request_rate": "inf",
+    "ignore_eos": true,
+    "use_chat_template": false
+   },
+   "expected_artifacts": ["native/result.json (pinned client, --save-detailed)", "native/client.log", "requests.jsonl", "stream_events.jsonl.gz (request_relative clock)", "driver_summary.json", "run_manifest.json"],
+   "validation_rules": ["native completed + failed == num_prompts", "harness recomputation from the client's per-request arrays equals its aggregates (parity)", "observed output lengths == OSL for every success (ignore_eos)", "observed input lengths recorded (text prompts are re-tokenised)", "upstream failure gate reported separately from the project's error-rate limit"],
+   "deviations": [
+    {"id": "D-IX-1", "what": "--save-detailed added to the pinned client's argv", "why": "keeps the per-request arrays (TTFT, ITL, output lengths, errors) the project metrics and parity check need; it only stops the client from deleting them before saving", "effect_on_measurement": "none (verified in benchmark_serving.main: the fields are deleted after the benchmark)"},
+    {"id": "D-IX-2", "what": "run with the GPU host's SGLang virtualenv interpreter and packages instead of `uv run --locked`", "why": "uv is not installed on the host; the client imports only numpy, tqdm, transformers, aiohttp, huggingface_hub", "effect_on_measurement": "package versions differ from uv.lock; they are recorded in each run's build facts"},
+    {"id": "D-IX-3", "what": "the benchmark_serving module is invoked directly with client_argv's exact arguments instead of through `infx.bench fixed-seq point`", "why": "point mode cannot pass --save-detailed (D-IX-1)", "effect_on_measurement": "none: identical argv apart from D-IX-1"}
+   ],
+   "compatibility_checklist": [
+    {"requirement": "load model: finite cohort, infinite rate capped by max concurrency", "status": "pass"},
+    {"requirement": "tokenizer: pinned (Qwen/Qwen3.5-9B snapshot c2022362...)", "status": "pass"},
+    {"requirement": "prompt generation: upstream random profile, range ratio 1.0, seed recorded", "status": "pass"},
+    {"requirement": "output length: ignore-EOS, exact OSL verified per request", "status": "pass"},
+    {"requirement": "warmup 2 x C, excluded", "status": "pass"},
+    {"requirement": "duration includes drain", "status": "pass"},
+    {"requirement": "errors: all attempts and failures exported; upstream gate kept separate", "status": "pass"},
+    {"requirement": "aggregation: native aggregates preserved next to project aggregates", "status": "pass"},
+    {"requirement": "hardware identical to an official InferenceX entry", "status": "fail", "note": "1 x H100 PCIe; results are Unofficial"},
+    {"requirement": "official recipe (container image, srt-slurm launcher, power telemetry)", "status": "fail", "note": "the server is launched by this harness, not srt-slurm; no power-window aggregation"},
+    {"requirement": "chat template accounting", "status": "pass", "note": "use_chat_template false, as in the point mode"}
+   ],
+   "status": "implemented; pinned client must be installed on the GPU host (runbook/harness_setup.sh)"
+  },
+  {
+   "profile_id": "aa_slt_local",
+   "version": "aa-slt-2026-11-15-v1",
+   "purpose": "Artificial Analysis System Load Test method, sustained 1000/1000, implemented locally (no official CLI exists).",
+   "publication_label": "Independent AA-SLT-method-inspired results",
+   "source": {"url": "https://artificialanalysis.ai/methodology/system-load-test", "retrieved_utc": "2026-11-15T00:40:38Z", "page_sha256": "de01991ec62506c494050d2e6d06364432582ebed624f9fafa6bbda12940e981", "text_sha256": "8a056285035bd1c8ea0748c84581839b44dfd87f9a4cf6de464789033c731b81", "version_shown": null},
+   "verified_from_source": {
+    "workload": "1,000 input / 1,000 output tokens per query",
+    "streaming": true,
+    "replacement": "a finished query is immediately replaced (fixed number of parallel queries)",
+    "phase": "each phase lasts 3 minutes excluding ramp-up and cool-down (their lengths are not stated)",
+    "sweep": "1, 2, 4, 8, 16, 32, 64, then +64 per phase until throughput plateaus",
+    "plateau": "qualitative only: no additional tokens compared to prior periods",
+    "metrics": ["system output throughput (average aggregate output tokens/s over the phase)", "response rate (share of queries with at least one output token)", "median end-to-end latency", "median per-query output speed after the first token"]
+   },
+   "not_stated_by_source": ["prompt source", "ignore-EOS or how output length is enforced", "tokenizer used for counting", "an official CLI", "ramp-up and cool-down lengths", "numeric plateau tolerance"],
+   "parameters": {
+    "isl": 1000, "osl": 1000, "steady_s": 180,
+    "concurrency_grid": [1, 2, 4, 8, 16, 32, 64], "then_step": 64, "max_concurrency": 1024,
+    "ramp_rule_local": "workers start staggered over ramp_min_s = 30 s; the steady phase starts when every worker has completed one query (and not before 30 s)",
+    "drain_rule_local": "after the steady phase no new query is sent; in-flight queries finish (status known) or are marked incomplete at a 900 s deadline",
+    "plateau_rule_local": "stop when two successive +64 steps each add less than 3% steady output throughput, or a point fails (error rate above 5%), or the plan budget is used; points above the plateau stay visible. A local choice, not prescribed by AA.",
+    "ignore_eos": true, "seed": 0, "unique_prompts": true
+   },
+   "expected_artifacts": ["requests.jsonl", "stream_events.jsonl.gz (exact per-chunk tokens)", "driver_summary.json with ramp/steady/drain timestamps", "server_events.jsonl", "memory_and_power.jsonl"],
+   "validation_rules": ["ramp, steady and drain are disjoint and ordered", "only tokens received inside the steady window count", "boundary-crossing and unresolved requests published"],
+   "deviations": [
+    {"id": "D-AA-1", "what": "prompts are random token ids with a unique 4-token prefix per query", "why": "AA's prompts are not public"},
+    {"id": "D-AA-2", "what": "ignore_eos=true for exactly 1,000 output tokens", "why": "the page states the shape but not how it is enforced"},
+    {"id": "D-AA-3", "what": "ramp, drain and plateau rules are local choices (parameters above)", "why": "not stated by the source"}
+   ],
+   "compatibility_checklist": [
+    {"requirement": "1000/1000 workload", "status": "pass"},
+    {"requirement": "streaming", "status": "pass"},
+    {"requirement": "immediate replacement", "status": "pass"},
+    {"requirement": "180 s measured phase excluding ramp and cool-down", "status": "pass"},
+    {"requirement": "sweep 1..64 then +64 until plateau", "status": "pass", "note": "plateau tolerance is local"},
+    {"requirement": "four site metrics", "status": "pass"},
+    {"requirement": "AA prompt set and tokenizer", "status": "unknown"},
+    {"requirement": "AA hardware / deployment", "status": "fail", "note": "local 1 x H100 PCIe"}
+   ],
+   "status": "implemented (lqh.driver sustained lane)"
+  },
+  {
+   "profile_id": "agentx_local",
+   "version": "agentx-v1.0.14-18015a2-v1",
+   "purpose": "Pinned current agentx session-tree replay, after state-lifecycle qualification.",
+   "publication_label": "Unofficial independent AgentX results",
+   "source": {"repository": "https://github.com/SemiAnalysisAI/agentx-harness", "pinned_revision": "18015a2d77a6077bee9750c6929a889d52c7df54", "tag": "agentx-v1.0.14 (lightweight tag)", "retrieved_utc": "2026-11-15T00:40:38Z",
+    "files_sha256": {"src/agentx_cli.py": "7993e0135b01b042a4248f290d549950795ff1b6bbb5ece1db4b327f70dc9f1d", "src/aiperf/common/scenario/inferencex_agentx_mvp.py": "646fba985ba355034fb5d8a8d171e074fa1026a0b6600c677cfde81f7fbb896d", "src/aiperf/common/scenario/registry.py": "7624ad37080e8c67023ea7186054b2e0f06fd581cce22bccd02297e5ef79a03f", "src/aiperf/common/scenario/validator.py": "3d9915ea81b43c739f67dcd194339ccb82cd188b059d0a94b989a73baa527130"}},
+   "verified_from_source": {
+    "preset": "AGENTX = INFERENCEX_AGENTX_MVP.model_copy(...) in inferencex_agentx_mvp.py",
+    "defaults": "3600 s profiling window, seed 42 (flag-based runs without --random-seed), trajectory start 0.25-0.75 of each trace's recorded wall-clock span, 10 warmup requests per lane (max_tokens 1, excluded), chat endpoint, failed-request threshold 0.10, warmup grace 1800 s, trace idle cap 300 s",
+    "overridable_not_locked": "the 3600 s window and the 25-75% start range are defaults, not locks",
+    "locks": "agentic replay timing; streaming; ignore_eos; no --ignore-trace-delays / --synthesis-max-isl / inter-turn delay cap; system idle cap 10 s; cache-bust first_turn_prefix; duration >= 900 s; pinned Weka dataset; concurrency sweeps rejected; TTFT/ITL coverage >= 95% of the profiling phase",
+    "validity": "metadata.submission_valid in profile_export_aiperf.json; reasons unsafe_override, context_overflow_rate_exceeded (>1%), run_cancelled, insufficient_profile_metric_coverage, scenario_reresolve_failed, scenario_with_sweep",
+    "concurrency": "N live session trees (root plus subagents); in-flight HTTP requests can exceed N",
+    "dataset": "semianalysis_cc_traces_weka_062126_256k (HF semianalysisai/cc-traces-weka-062126-256k, 393 traces, 68.3k requests; requests with input+output > 256,000 tokens dropped; meant for max_model_len ~256k)"
+   },
+   "command_template": "agentx profile --scenario agentx --url http://127.0.0.1:PORT --endpoint /v1/chat/completions --model SERVED_MODEL --tokenizer TOKENIZER_PATH --concurrency N --public-dataset semianalysis_cc_traces_weka_062126_256k --output-artifact-dir RESULTS/agentx_cN",
+   "prerequisites": ["state lifecycle qualification of the exact candidate: save/restore, branch, slot reuse, prefix eviction, reset, cancellation (harness lifecycle tests)", "agentx-harness 1.0.14 installed on the host", "context: the model allows 262,144 positions; the server's KV capacity for 256k-token requests at the chosen concurrency must be checked first, otherwise a transparently named alternative corpus"],
+   "status": "blocked: lifecycle qualification not complete; agentx-harness not installed",
+   "compatibility_checklist": [
+    {"requirement": "pinned preset and locks kept", "status": "unknown", "note": "not run"},
+    {"requirement": "256k corpus fits the served context", "status": "unknown", "note": "model 262,144 positions; runtime KV capacity per session not yet checked"}
+   ]
+  },
+  {
+   "profile_id": "aa_api_v3_metrics",
+   "version": "aa-api-3.0.0-local-v1",
+   "purpose": "Endpoint-style metric equivalents of AA API performance v3 (3 November 2026); no official score.",
+   "publication_label": "Local API metrics; no official AA score",
+   "source": {"url": "https://artificialanalysis.ai/methodology/performance-benchmarking", "retrieved_utc": "2026-11-15T00:40:38Z", "page_sha256": "6f18b69e2d7c4d3c4419450a3f54e323abbcc7c4955cd7aed678f0e5bc54d795", "version_shown": "Version 3.0.0, 3 November 2026"},
+   "verified_from_source": {"output_speed": "output tokens (reasoning included) / full request duration including TTFT; provider-reported counts", "workloads": "~1k, ~10k, ~100k input tokens and multi-turn agentic", "aggregation": "median per workload per run; mean of run medians over the past 5 days; runs every 6 hours; equal weight per measured workload", "failures": "server-side failures (5xx, 429, timeout) count as speed 0", "concurrency": "not stated"},
+   "local_definition": "per run and workload: median over requests of output_tokens / (last token - send), endpoint failures as 0; across the declared observation period: mean of run medians; across workloads: equal weights. Kept separate from successful-only system throughput.",
+   "status": "metric equivalents computed for every run (api_v3_equivalents); no 5-day history is manufactured; 10k/100k/multi-turn workloads not run"
+  },
+  {
+   "profile_id": "paper_reproduction",
+   "version": "leapquant-v2-2026-11-10-v1",
+   "purpose": "Single-layer, pure-decode, offline-serving and task-quality comparisons with the LeapQuant paper, cell by cell.",
+   "publication_label": "Matched reproduction or explicit partial replication (H100 port evaluated with paper-inspired methodology)",
+   "source": {"pdf": "https://arxiv.org/pdf/2609.38166v2", "pdf_sha256": "044e839c2ea0b1a6cb4893fd2dc2b373c0d5d74c55fac25863777d5df2acc32f", "retrieved_utc": "2026-11-15T00:29:00Z", "project_page": "https://leapquant.github.io/", "project_page_sha256": "7678d8aa30b6d8f59db5e25c919b67d81c9c923441cf191bfaa75e284aa4bc45", "cells_file": "harness/config/sources/paper_cells.json"},
+   "lanes": {
+    "single_layer": "kernel/bench_triton.py --full-cycle: one CUDA graph of 16 state-advancing decode steps + fold vs SGLang fp32/bf16 window kernels (paper baseline: FLA FP32 kernel on B200 / RTX PRO 6000 / RTX 5090)",
+    "pure_decode": "planned: decode-step time at batch 32/128/512, 4K context, CUDA graphs, FP32-state control (paper Fig. 8: vLLM)",
+    "offline_serving": "planned: paper Fig. 9 datasets (GSM, MMLU, GPQA) offline output throughput (paper: vLLM, prefix caching implied)",
+    "task_quality": "runbook/quality_16bit.sh: AIME 2026, BeyondAIME, GPQA-Diamond, LiveCodeBench v6; paper Table 5 sampling for Qwen3.5-9B: temperature 1.0, top-p 0.95, top-k 20, presence penalty 1.5, 81,920 output tokens, 3 seeds"
+   },
+   "deviations": [{"id": "D-P-1", "what": "H100 PCIe and SGLang c8ea707, not B200/RTX PRO 6000 and vLLM", "why": "the only hardware assigned"}, {"id": "D-P-2", "what": "the paper's early stop on repetitive output is not reproduced", "why": "its method is not published"}],
+   "status": "partly implemented: crosswalk file and quality lane; pure-decode and offline-serving lanes planned"
+  },
+  {
+   "profile_id": "local_diagnostics",
+   "version": "local-2026-11-15-v1",
+   "purpose": "128/512 decode-heavy cell, long decode, open-loop overload, lifecycle, numerical and profiling tests.",
+   "publication_label": "Local diagnostic or product workload",
+   "variants": {
+    "decode_128_512": {"lane": "finite", "isl": 128, "osl": 512, "note": "decode-heavy cell of the historical rounds; InferenceX-style finite cohort (10 x C prompts, 2 x C warmup)"},
+    "long_decode_128_2048": {"lane": "finite", "isl": 128, "osl": 2048},
+    "public_1k1k": {"lane": "finite", "isl": 1024, "osl": 1024, "note": "the harness's own client on the InferenceX shape: adapter-parity check against infx_fixed_seq, never published as InferenceX"},
+    "open_loop_1k1k": {"lane": "open_loop", "isl": 1024, "osl": 1024, "note": "seeded Poisson arrivals, same schedule for every arm"}
+   },
+   "status": "implemented (lqh.driver finite / open_loop lanes)"
+  },
+  {
+   "profile_id": "harness_smoke",
+   "version": "smoke-v1",
+   "purpose": "Deterministic local mock: harness behaviour only. Never a performance result.",
+   "publication_label": "Harness smoke test (mock server; no performance meaning)",
+   "status": "implemented (lqh.mock_server)"
+  }
+ ]
+}

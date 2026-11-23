@@ -1,0 +1,14 @@
+server starting (pid 1573035), log: /home/ubuntu/lqexp/results/prefill-radix/server_bf16_off.log
+server is up
+burst 0: wall 1.446 s  22,658 prompt tok/s  latency median 1.363 s, max 1.387 s
+burst 1: wall 1.438 s  22,781 prompt tok/s  latency median 1.354 s, max 1.376 s
+start_profile: Start profiling.
+
+burst 2: wall 1.613 s  20,313 prompt tok/s  latency median 1.534 s, max 1.564 s
+burst 3: wall 56.154 s  584 prompt tok/s  latency median 56.068 s, max 56.100 s
+burst 4: wall 1.445 s  22,682 prompt tok/s  latency median 1.362 s, max 1.392 s
+median wall 1.446 s over 5 bursts
+total 64824
+drwxrwxr-x 2 ubuntu ubuntu     4096 Nov 14 18:53 .
+drwxrwxr-x 5 ubuntu ubuntu     4096 Nov 14 18:54 ..
+-rw-rw-r-- 1 ubuntu ubuntu 66367841 Nov 14 18:53 1794682384.5163884-TP-0.trace.json.gz

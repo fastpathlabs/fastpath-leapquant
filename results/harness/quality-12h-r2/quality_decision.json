@@ -1,0 +1,184 @@
+{
+ "schema": "lqh.quality_decision.v1",
+ "computed_utc": "2026-11-15T22:11:36.956605Z",
+ "results": "/home/ubuntu/lqexp/results/harness/quality-12h-r2",
+ "reference_arm": "fp32",
+ "margin_points": 1.0,
+ "decision_rule": "If bf16_window is noninferior to FP32 at the 1-point margin on EVERY task, it stays the primary product baseline. Otherwise (FAIL, INCONCLUSIVE or a task not run) it is ineligible as the primary baseline: its speed stays visible and FP32 is the comparator for cost claims. LeapQuant gets a quality-qualified cost claim only if it is noninferior on every task.",
+ "tasks_declared": [
+  "aime2026",
+  "beyond_aime",
+  "gpqa_diamond",
+  "livecodebench_v6"
+ ],
+ "arms": {
+  "bf16_window": {
+   "beyond_aime": {
+    "n_reference": 15,
+    "n_arm": 15,
+    "samples": 15,
+    "accuracy_arm": 0.7333333333333333,
+    "accuracy_reference": 0.5333333333333333,
+    "difference": 0.19999999999999996,
+    "cap_rate_arm": 0.2,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.039057123969308716,
+    "high": 0.40646407193230183,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 3,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "aime2026": {
+    "n_reference": 30,
+    "n_arm": 30,
+    "samples": 30,
+    "accuracy_arm": 0.9,
+    "accuracy_reference": 0.8666666666666667,
+    "difference": 0.033333333333333326,
+    "cap_rate_arm": 0.03333333333333333,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.08342764687624796,
+    "high": 0.1611037850516397,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 1,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "livecodebench_v6": {
+    "n_reference": 12,
+    "n_arm": 12,
+    "samples": 12,
+    "accuracy_arm": 0.8333333333333334,
+    "accuracy_reference": 0.75,
+    "difference": 0.08333333333333337,
+    "cap_rate_arm": 0.0,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.158127603047976,
+    "high": 0.32648788967813847,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 1,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "gpqa_diamond": {
+    "n_reference": 30,
+    "n_arm": 30,
+    "samples": 30,
+    "accuracy_arm": 0.8333333333333334,
+    "accuracy_reference": 0.8666666666666667,
+    "difference": -0.033333333333333326,
+    "cap_rate_arm": 0.0,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.18135594334402214,
+    "high": 0.11059506163075,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 3,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   }
+  },
+  "leapquant": {
+   "beyond_aime": {
+    "n_reference": 15,
+    "n_arm": 15,
+    "samples": 15,
+    "accuracy_arm": 0.6666666666666666,
+    "accuracy_reference": 0.5333333333333333,
+    "difference": 0.1333333333333333,
+    "cap_rate_arm": 0.0,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.07413401076973802,
+    "high": 0.32064681083442115,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 2,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "aime2026": {
+    "n_reference": 30,
+    "n_arm": 30,
+    "samples": 30,
+    "accuracy_arm": 0.9,
+    "accuracy_reference": 0.8666666666666667,
+    "difference": 0.033333333333333326,
+    "cap_rate_arm": 0.03333333333333333,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.114405499815142,
+    "high": 0.18602455680826863,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 3,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "livecodebench_v6": {
+    "n_reference": 12,
+    "n_arm": 12,
+    "samples": 12,
+    "accuracy_arm": 0.75,
+    "accuracy_reference": 0.75,
+    "difference": 0.0,
+    "cap_rate_arm": 0.0,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.1868386195743766,
+    "high": 0.18683861957437656,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 0,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   },
+   "gpqa_diamond": {
+    "n_reference": 30,
+    "n_arm": 30,
+    "samples": 30,
+    "accuracy_arm": 0.9,
+    "accuracy_reference": 0.8666666666666667,
+    "difference": 0.033333333333333326,
+    "cap_rate_arm": 0.0,
+    "cap_rate_reference": 0.0,
+    "failed_requests_arm": 0,
+    "low": -0.08342764687624796,
+    "high": 0.1611037850516397,
+    "method": "Newcombe hybrid score (method 10) with phi correction",
+    "discordant": 1,
+    "verdict": "INCONCLUSIVE",
+    "margin_points": 1.0
+   }
+  }
+ },
+ "reference_cap_rate": {
+  "beyond_aime": 0.0,
+  "aime2026": 0.0,
+  "livecodebench_v6": 0.0,
+  "gpqa_diamond": 0.0
+ },
+ "decision": {
+  "bf16_window_primary_product_baseline": false,
+  "bf16_window_reasons": [
+   "aime2026: INCONCLUSIVE",
+   "beyond_aime: INCONCLUSIVE",
+   "gpqa_diamond: INCONCLUSIVE",
+   "livecodebench_v6: INCONCLUSIVE"
+  ],
+  "comparator_for_cost_claims": "fp32 (bf16_window ineligible as the primary baseline; its speed stays visible)",
+  "leapquant_quality_qualified": false,
+  "leapquant_reasons": [
+   "aime2026: INCONCLUSIVE",
+   "beyond_aime: INCONCLUSIVE",
+   "gpqa_diamond: INCONCLUSIVE",
+   "livecodebench_v6: INCONCLUSIVE"
+  ],
+  "leapquant_claim_status": "experimental: raw performance only, no quality-qualified cost claim",
+  "cap_rate_target": "under 5% of answers cut",
+  "cap_rate_exceeded": [
+   "bf16_window:beyond_aime"
+  ]
+ }
+}

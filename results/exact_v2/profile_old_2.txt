@@ -1,0 +1,29 @@
+LeapQuant kernel profile on cuda: batch 512, 32 heads, state 128 x 128, window 16, 4 compensators, 2 sweeps, fit together   old
+  kernel library: /home/ubuntu/lqexp/build/libleapquant_cuda.so
+
+  decode step (append only)
+    phase                                          ms  share     cumulative ms (10% .. 90%)
+    decays of the window records                0.034   5.3%        0.034 (0.034 .. 0.034)
+    fade the two input vectors                  0.029   4.6%        0.063 (0.063 .. 0.064)
+    key matches (records, compensators)         0.173  26.8%        0.236 (0.236 .. 0.237)
+    int8 matrix, correction, output             0.408  63.4%        0.644 (0.643 .. 0.646)
+
+  fold of a full window (all 512 rows fold)
+    phase                                          ms  share     cumulative ms (10% .. 90%)
+    rebuild the full-precision matrix           4.951  30.0%        4.951 (4.949 .. 4.953)
+    compensator 1: starting guess              11.556  70.0%       16.507 (16.484 .. 16.537)
+      sweep 1: key_side = M * value_side        0.001   0.0%       16.508 (16.474 .. 16.537)
+      sweep 1: length of key_side (1 thread)   -0.000  -0.0%       16.507 (16.486 .. 16.536)
+      sweep 1: normalise key_side              -0.007  -0.0%       16.501 (16.479 .. 16.537)
+      sweep 1: value_side = M^T * key_side      0.004   0.0%       16.504 (16.478 .. 16.556)
+      sweep 1: length of value_side (1 thread)    0.002   0.0%       16.507 (16.481 .. 16.533)
+    compensator 1: the other sweeps            -1.985 -12.0%       14.521 (14.506 .. 14.536)
+    compensator 1: store and subtract           0.191   1.2%       14.713 (14.697 .. 14.732)
+    compensators 2 .. R                         0.653   4.0%       15.366 (15.351 .. 15.392)
+    row scales (smoothing)                      0.089   0.5%       15.454 (15.434 .. 15.476)
+    column steps and rounding                   1.054   6.4%       16.508 (16.480 .. 16.545)
+
+  fold launch in which 32 of 512 rows fold: 1.069 ms   (a full fold divided by 16 would be 1.032 ms)
+  -> per decode step if requests fold on different steps: 0.644 + 1.069 = 1.714 ms
+  fold launch in which no row folds: 0.057 ms
+  per decode step if all requests fold on the same step: 0.644 + 16.508 / 16 + launches = 1.730 ms

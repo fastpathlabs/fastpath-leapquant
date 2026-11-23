@@ -1,0 +1,4 @@
+server starting (pid 1727308), log: /home/ubuntu/lqexp/results/q38/probe/server_leapquant.log
+server is up
+leapquant: server up with CUDA graphs to batch 512
+leapquant: 8 greedy, 2 sampled, 0 errors -> OK

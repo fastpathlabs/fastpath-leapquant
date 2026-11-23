@@ -1,0 +1,4 @@
+[2026-11-14 18:25:54 PID1559226] Mamba Cache is allocated. max_mamba_cache_size: 1310, conv_state size: 1.44GB, ssm_state size: 0.09GB 
+[2026-11-14 18:25:54 PID1559226] KV Cache is allocated. dtype: torch.bfloat16, #tokens: 479653, K size: 7.32 GB, V size: 7.32 GB
+[2026-11-14 18:25:55 PID1559226] LeapQuant decode state allocated: 24 layers x 1311 slots x 32 heads, window 16, compensators 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4, 25.956 GB, fast kernels, state compressed only (no fp32 state per slot)
+[2026-11-14 18:26:19 PID1559226] max_total_num_tokens=479653, chunked_prefill_size=8192, max_prefill_tokens=16384, max_running_requests=436, context_len=262144, available_gpu_mem=15.36 GB
