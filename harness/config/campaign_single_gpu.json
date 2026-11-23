@@ -41,7 +41,7 @@
  },
  "campaign_id": "lq-h100-2026-11-sg",
  "declared_utc": "2026-11-16T02:00:00Z",
- "specification": "LEAPQUANT: SINGLE-GPU BENCHMARK EXECUTION PROMPT, updated 15 Nov 2026",
+ "specification": "LeapQuant single-GPU benchmark plan, 15 Nov 2026",
  "default_slo_id": "slo-interactive-v2",
  "pricing_id": "host-h100pcie-scenario-v2",
  "objective": "Does LeapQuant deliver more successful output tokens, better user latency, lower serving cost and smaller memory use than the strongest working native configuration of the same engine (bf16 window), on one H100 PCIe, while preserving quality? fp32 packed is the correctness/paper reference with one serving bridge run.",

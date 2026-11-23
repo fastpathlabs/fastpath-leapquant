@@ -134,9 +134,9 @@ def main(argv=None) -> int:
         "jobs": jobs(Path(args.job_log) if args.job_log else None),
         "blocked_or_not_run": [
             {"item": "multi-GPU stages 2-5 (DP 1/2/4/8 for the 9B, TP 1/2/4/8 for the 27B, equal-budget TP/DP/EP)",
-             "reason": "one GPU on this host; no authorization to provision more (more GPUs need the owners' approval; "
-                       "the multi-gpu'); TP support in the LeapQuant integration is also untested"},
-            {"item": "Qwen3.6-35B-A3B (MoE)", "reason": "prompt stage 5, after the 27B passes; not in the time box"},
+             "reason": "one GPU on this host; no authorization to provision more (more GPUs need the owners' "
+                       "approval); TP support in the LeapQuant integration is also untested"},
+            {"item": "Qwen3.6-35B-A3B (MoE)", "reason": "plan stage 5, after the 27B passes; not in the time box"},
             {"item": "profile C (product open-loop), profile D (AgentX), profile E (mixed-length wave study)",
              "reason": "not in the time box; AgentX harness not installed (backlog B70)"},
             {"item": "10-block confirmations; full quality suites (GPQA-Diamond 198, MMLU-Pro, LiveCodeBench)",
