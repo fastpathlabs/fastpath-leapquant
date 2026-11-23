@@ -1031,7 +1031,7 @@
    "job": "122",
    "name": "confirm_aa_slt",
    "notes": [
-    "queued (Asif: \"ok do the repeat\"): AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)",
+    "queued: AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)",
     "STOPPED by decision at 23:29 during block 2 (Asif 23:00: tests must finish within a few hours; plan revised to the 15 Nov multi-GPU benchmark prompt). Block 1 complete for all three arms; block 2 fp32 c1 and c64 kept; fp32 c256 cut mid-run."
    ],
    "start": "22:18",
@@ -1064,7 +1064,7 @@
  "blocked_or_not_run": [
   {
    "item": "multi-GPU stages 2-5 (DP 1/2/4/8 for the 9B, TP 1/2/4/8 for the 27B, equal-budget TP/DP/EP)",
-   "reason": "one GPU on this host; no authorization to provision more (Asif: 'prompt to me when you need the multi-gpu'); TP support in the LeapQuant integration is also untested"
+   "reason": "one GPU on this host; no authorization to provision more (more GPUs need the owners' approval); TP support in the LeapQuant integration is also untested"
   },
   {
    "item": "Qwen3.6-35B-A3B (MoE)",

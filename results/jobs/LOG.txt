@@ -63,7 +63,7 @@
 120_compounding end 13:54 exit 0
 2026-11-15T18:30:53Z 121_quality queued: re-run of 118 (every request failed: FlashInfer sampling-kernel compile could not find curand.h); fix FLASHINFER_EXTRA_CUDAFLAGS (curand-only include folder, runbook/env.sh), arms with failed requests now fail, smoke run first; earlier runbook files in results/quality-fix_backup_20261115
 121_quality start 18:31
-2026-11-15T18:52:35Z 122_confirm_aa_slt queued (Asif: "ok do the repeat"): AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)
+2026-11-15T18:52:35Z 122_confirm_aa_slt queued: AA-SLT at 1/64/256/512 users, lq_final/bf16_window/fp32_packed, 5 paired blocks, ~5 h; campaign.json plan confirm_aa_slt (earlier file in results/quality-fix_backup_20261115)
 121_quality end 22:18 exit 0
 122_confirm_aa_slt start 22:18
 2026-11-15T22:27:47Z 123_q38_probe queued (B75: Qwen3.8-27B kernel agreement/memcheck at its head layout, one server per arm, balanced slot counts) and 124_tuned_slots_9b queued (9B arms with slots balanced for 1k/1k: LeapQuant 1,008, bf16 window 927, fp32 609; AA 256/512 users, 5 blocks); configs backed up in results/quality-fix_backup_20261115

@@ -146,6 +146,8 @@ checkouts in `$HOME`. Do not run them on a machine you care about.
 
 **About the run records.** The files in `results/` and `reports/` are kept as they were written during the runs.
 They include the team's working notes, such as who made a decision, and an assumed host price of $2.00 per hour.
+Two quoted chat lines were removed from them before release; nothing else in them was edited, apart from the
+GPQA answer texts (see `results/harness/quality-12h-r2`).
 That price is a scenario value, not an invoice.
 
 ## Check everything that needs no GPU
